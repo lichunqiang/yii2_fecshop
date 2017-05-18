@@ -19,27 +19,26 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
 /**
- * Class GraphUser
- * @package Facebook
+ * Class GraphUser.
+ *
  * @author Fosco Marotto <fjm@fb.com>
  * @author David Poll <depoll@fb.com>
  */
 class GraphUser extends GraphObject
 {
-
-  /**
+    /**
    * Returns the ID for the user as a string if present.
    *
    * @return string|null
    */
   public function getId()
   {
-    return $this->getProperty('id');
+      return $this->getProperty('id');
   }
 
   /**
@@ -49,13 +48,13 @@ class GraphUser extends GraphObject
    */
   public function getName()
   {
-    return $this->getProperty('name');
+      return $this->getProperty('name');
   }
-  
-  public function getEmail()
-  {
-    return $this->getProperty('email');
-  }
+
+    public function getEmail()
+    {
+        return $this->getProperty('email');
+    }
 
   /**
    * Returns the first name for the user as a string if present.
@@ -64,7 +63,7 @@ class GraphUser extends GraphObject
    */
   public function getFirstName()
   {
-    return $this->getProperty('first_name');
+      return $this->getProperty('first_name');
   }
 
   /**
@@ -74,7 +73,7 @@ class GraphUser extends GraphObject
    */
   public function getMiddleName()
   {
-    return $this->getProperty('middle_name');
+      return $this->getProperty('middle_name');
   }
 
   /**
@@ -84,9 +83,9 @@ class GraphUser extends GraphObject
    */
   public function getLastName()
   {
-    return $this->getProperty('last_name');
+      return $this->getProperty('last_name');
   }
-  
+
   /**
    * Returns the gender for the user as a string if present.
    *
@@ -94,7 +93,7 @@ class GraphUser extends GraphObject
    */
   public function getGender()
   {
-    return $this->getProperty('gender');
+      return $this->getProperty('gender');
   }
 
   /**
@@ -104,7 +103,7 @@ class GraphUser extends GraphObject
    */
   public function getLink()
   {
-    return $this->getProperty('link');
+      return $this->getProperty('link');
   }
 
   /**
@@ -114,11 +113,12 @@ class GraphUser extends GraphObject
    */
   public function getBirthday()
   {
-    $value = $this->getProperty('birthday');
-    if ($value) {
-      return new \DateTime($value);
-    }
-    return null;
+      $value = $this->getProperty('birthday');
+      if ($value) {
+          return new \DateTime($value);
+      }
+
+      return null;
   }
 
   /**
@@ -129,7 +129,6 @@ class GraphUser extends GraphObject
    */
   public function getLocation()
   {
-    return $this->getProperty('location', GraphLocation::className());
+      return $this->getProperty('location', GraphLocation::className());
   }
-
 }

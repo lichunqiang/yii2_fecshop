@@ -3,25 +3,26 @@
  * FecShop file.
  *
  * @link http://www.fecshop.com/
+ *
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
 ?>
 <div class="swiper-container" data-space-between='10'>
 	<div class="swiper-wrapper">
-		<div class="swiper-slide"><img src="<?= Yii::$service->image->getImgUrl('custom/home_img_1.jpg','apphtml5'); ?>" alt="" style='width: 100%'></div>
-		<div class="swiper-slide"><img src="<?= Yii::$service->image->getImgUrl('custom/home_img_2.jpg','apphtml5'); ?>" alt="" style='width: 100%'></div>
-		<div class="swiper-slide"><img src="<?= Yii::$service->image->getImgUrl('custom/home_img_3.jpg','apphtml5'); ?>" alt="" style='width: 100%'></div>
+		<div class="swiper-slide"><img src="<?= Yii::$service->image->getImgUrl('custom/home_img_1.jpg', 'apphtml5'); ?>" alt="" style='width: 100%'></div>
+		<div class="swiper-slide"><img src="<?= Yii::$service->image->getImgUrl('custom/home_img_2.jpg', 'apphtml5'); ?>" alt="" style='width: 100%'></div>
+		<div class="swiper-slide"><img src="<?= Yii::$service->image->getImgUrl('custom/home_img_3.jpg', 'apphtml5'); ?>" alt="" style='width: 100%'></div>
 	</div>
 	<div class="swiper-pagination"></div>
 </div>
 <div style="padding:10px;">
 	<div class="row">
 		<div class="col-50">
-			<img src="<?= Yii::$service->image->getImgUrl('custom/home_small_1.jpg','apphtml5'); ?>" alt="" style='width: 100%'>
+			<img src="<?= Yii::$service->image->getImgUrl('custom/home_small_1.jpg', 'apphtml5'); ?>" alt="" style='width: 100%'>
 		</div>
 		<div class="col-50">
-			<img src="<?= Yii::$service->image->getImgUrl('custom/home_small_2.jpg','apphtml5'); ?>" alt="" style='width: 100%'>
+			<img src="<?= Yii::$service->image->getImgUrl('custom/home_small_2.jpg', 'apphtml5'); ?>" alt="" style='width: 100%'>
 		</div>
 	</div>
 </div>
@@ -39,13 +40,13 @@
         <div class="list-block">
             <div class="list-container">
 				<?php
-					$parentThis['products'] = $bestFeaturedProducts;
-					$parentThis['name'] = 'featured';
-					$config = [
-						'view'  		=> 'cms/home/index/product.php',
-					];
-					echo Yii::$service->page->widget->renderContent('category_product_price',$config,$parentThis);
-				?>
+                    $parentThis['products'] = $bestFeaturedProducts;
+                    $parentThis['name'] = 'featured';
+                    $config = [
+                        'view'        => 'cms/home/index/product.php',
+                    ];
+                    echo Yii::$service->page->widget->renderContent('category_product_price', $config, $parentThis);
+                ?>
 				
             </div>
         </div>
@@ -61,4 +62,4 @@
 $.init();  
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['owl_fecshop_slider'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+<?php $this->registerJs($this->blocks['owl_fecshop_slider'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>

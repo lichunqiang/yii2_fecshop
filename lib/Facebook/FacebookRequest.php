@@ -19,24 +19,23 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
-use Facebook\HttpClients\FacebookHttpable;
 use Facebook\HttpClients\FacebookCurlHttpClient;
+use Facebook\HttpClients\FacebookHttpable;
 use Facebook\HttpClients\FacebookStreamHttpClient;
 
 /**
- * Class FacebookRequest
- * @package Facebook
+ * Class FacebookRequest.
+ *
  * @author Fosco Marotto <fjm@fb.com>
  * @author David Poll <depoll@fb.com>
  */
 class FacebookRequest
 {
-
-  /**
+    /**
    * @const string Version number of the Facebook PHP SDK.
    */
   const VERSION = '4.0.15';
@@ -98,7 +97,7 @@ class FacebookRequest
    */
   public function getSession()
   {
-    return $this->session;
+      return $this->session;
   }
 
   /**
@@ -108,7 +107,7 @@ class FacebookRequest
    */
   public function getPath()
   {
-    return $this->path;
+      return $this->path;
   }
 
   /**
@@ -118,7 +117,7 @@ class FacebookRequest
    */
   public function getParameters()
   {
-    return $this->params;
+      return $this->params;
   }
 
   /**
@@ -128,7 +127,7 @@ class FacebookRequest
    */
   public function getMethod()
   {
-    return $this->method;
+      return $this->method;
   }
 
   /**
@@ -138,32 +137,33 @@ class FacebookRequest
    */
   public function getETag()
   {
-    return $this->etag;
+      return $this->etag;
   }
 
   /**
    * setHttpClientHandler - Returns an instance of the HTTP client
-   * handler
+   * handler.
    *
    * @param \Facebook\HttpClients\FacebookHttpable
    */
   public static function setHttpClientHandler(FacebookHttpable $handler)
   {
-    static::$httpClientHandler = $handler;
+      static::$httpClientHandler = $handler;
   }
 
   /**
    * getHttpClientHandler - Returns an instance of the HTTP client
-   * data handler
+   * data handler.
    *
    * @return FacebookHttpable
    */
   public static function getHttpClientHandler()
   {
-    if (static::$httpClientHandler) {
-      return static::$httpClientHandler;
-    }
-    return function_exists('curl_init') ? new FacebookCurlHttpClient() : new FacebookStreamHttpClient();
+      if (static::$httpClientHandler) {
+          return static::$httpClientHandler;
+      }
+
+      return function_exists('curl_init') ? new FacebookCurlHttpClient() : new FacebookStreamHttpClient();
   }
 
   /**
@@ -172,38 +172,37 @@ class FacebookRequest
    *   immutable.
    *
    * @param FacebookSession $session
-   * @param string $method
-   * @param string $path
-   * @param array|null $parameters
-   * @param string|null $version
-   * @param string|null $etag
+   * @param string          $method
+   * @param string          $path
+   * @param array|null      $parameters
+   * @param string|null     $version
+   * @param string|null     $etag
    */
   public function __construct(
     FacebookSession $session, $method, $path, $parameters = null, $version = null, $etag = null
-  )
-  {
-    $this->session = $session;
-    $this->method = $method;
-    $this->path = $path;
-    if ($version) {
-      $this->version = $version;
-    } else {
-      $this->version = static::GRAPH_API_VERSION;
-    }
-    $this->etag = $etag;
+  ) {
+      $this->session = $session;
+      $this->method = $method;
+      $this->path = $path;
+      if ($version) {
+          $this->version = $version;
+      } else {
+          $this->version = static::GRAPH_API_VERSION;
+      }
+      $this->etag = $etag;
 
-    $params = ($parameters ?: array());
-    if ($session
-      && !isset($params["access_token"])) {
-      $params["access_token"] = $session->getToken();
-    }
-    if (FacebookSession::useAppSecretProof()
-      && !isset($params["appsecret_proof"])) {
-      $params["appsecret_proof"] = $this->getAppSecretProof(
-        $params["access_token"]
+      $params = ($parameters ?: []);
+      if ($session
+      && !isset($params['access_token'])) {
+          $params['access_token'] = $session->getToken();
+      }
+      if (FacebookSession::useAppSecretProof()
+      && !isset($params['appsecret_proof'])) {
+          $params['appsecret_proof'] = $this->getAppSecretProof(
+        $params['access_token']
       );
-    }
-    $this->params = $params;
+      }
+      $this->params = $params;
   }
 
   /**
@@ -213,66 +212,67 @@ class FacebookRequest
    */
   protected function getRequestURL()
   {
-    return static::BASE_GRAPH_URL . '/' . $this->version . $this->path;
+      return static::BASE_GRAPH_URL.'/'.$this->version.$this->path;
   }
 
   /**
    * execute - Makes the request to Facebook and returns the result.
    *
-   * @return FacebookResponse
-   *
    * @throws FacebookSDKException
    * @throws FacebookRequestException
+   *
+   * @return FacebookResponse
    */
   public function execute()
   {
-    $url = $this->getRequestURL();
-    $params = $this->getParameters();
+      $url = $this->getRequestURL();
+      $params = $this->getParameters();
 
-    if ($this->method === "GET") {
-      $url = self::appendParamsToUrl($url, $params);
-      $params = array();
-    }
+      if ($this->method === 'GET') {
+          $url = self::appendParamsToUrl($url, $params);
+          $params = [];
+      }
 
-    $connection = self::getHttpClientHandler();
-    $connection->addRequestHeader('User-Agent', 'fb-php-' . self::VERSION);
-    $connection->addRequestHeader('Accept-Encoding', '*'); // Support all available encodings.
+      $connection = self::getHttpClientHandler();
+      $connection->addRequestHeader('User-Agent', 'fb-php-'.self::VERSION);
+      $connection->addRequestHeader('Accept-Encoding', '*'); // Support all available encodings.
 
     // ETag
     if (isset($this->etag)) {
-      $connection->addRequestHeader('If-None-Match', $this->etag);
+        $connection->addRequestHeader('If-None-Match', $this->etag);
     }
 
     // Should throw `FacebookSDKException` exception on HTTP client error.
     // Don't catch to allow it to bubble up.
     $result = $connection->send($url, $this->method, $params);
 
-    static::$requestCount++;
+      static::$requestCount++;
 
-    $etagHit = 304 == $connection->getResponseHttpStatusCode();
+      $etagHit = 304 == $connection->getResponseHttpStatusCode();
 
-    $headers = $connection->getResponseHeaders();
-    $etagReceived = isset($headers['ETag']) ? $headers['ETag'] : null;
+      $headers = $connection->getResponseHeaders();
+      $etagReceived = isset($headers['ETag']) ? $headers['ETag'] : null;
 
-    $decodedResult = json_decode($result);
-    if ($decodedResult === null) {
-      $out = array();
-      parse_str($result, $out);
-      return new FacebookResponse($this, $out, $result, $etagHit, $etagReceived);
-    }
-    if (isset($decodedResult->error)) {
-      throw FacebookRequestException::create(
+      $decodedResult = json_decode($result);
+      if ($decodedResult === null) {
+          $out = [];
+          parse_str($result, $out);
+
+          return new FacebookResponse($this, $out, $result, $etagHit, $etagReceived);
+      }
+      if (isset($decodedResult->error)) {
+          throw FacebookRequestException::create(
         $result,
         $decodedResult->error,
         $connection->getResponseHttpStatusCode()
       );
-    }
+      }
 
-    return new FacebookResponse($this, $decodedResult, $result, $etagHit, $etagReceived);
+      return new FacebookResponse($this, $decodedResult, $result, $etagHit, $etagReceived);
   }
 
   /**
-   * Generate and return the appsecret_proof value for an access_token
+   * Generate and return the appsecret_proof value for an access_token.
    *
    * @param string $token
    *
@@ -280,34 +280,33 @@ class FacebookRequest
    */
   public function getAppSecretProof($token)
   {
-    return hash_hmac('sha256', $token, FacebookSession::_getTargetAppSecret());
+      return hash_hmac('sha256', $token, FacebookSession::_getTargetAppSecret());
   }
 
   /**
    * appendParamsToUrl - Gracefully appends params to the URL.
    *
    * @param string $url
-   * @param array $params
+   * @param array  $params
    *
    * @return string
    */
-  public static function appendParamsToUrl($url, $params = array())
+  public static function appendParamsToUrl($url, $params = [])
   {
-    if (!$params) {
-      return $url;
-    }
+      if (!$params) {
+          return $url;
+      }
 
-    if (strpos($url, '?') === false) {
-      return $url . '?' . http_build_query($params, null, '&');
-    }
+      if (strpos($url, '?') === false) {
+          return $url.'?'.http_build_query($params, null, '&');
+      }
 
-    list($path, $query_string) = explode('?', $url, 2);
-    parse_str($query_string, $query_array);
+      list($path, $query_string) = explode('?', $url, 2);
+      parse_str($query_string, $query_array);
 
     // Favor params from the original URL over $params
     $params = array_merge($params, $query_array);
 
-    return $path . '?' . http_build_query($params, null, '&');
+      return $path.'?'.http_build_query($params, null, '&');
   }
-
 }

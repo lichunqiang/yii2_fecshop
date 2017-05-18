@@ -19,26 +19,25 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
 /**
- * Class GraphPage
- * @package Facebook
+ * Class GraphPage.
+ *
  * @author Artur Luiz <artur@arturluiz.com.br>
  */
 class GraphPage extends GraphObject
 {
-
-  /**
+    /**
    * Returns the ID for the user's page as a string if present.
    *
    * @return string|null
    */
   public function getId()
   {
-    return $this->getProperty('id');
+      return $this->getProperty('id');
   }
 
   /**
@@ -48,7 +47,7 @@ class GraphPage extends GraphObject
    */
   public function getCategory()
   {
-    return $this->getProperty('category');
+      return $this->getProperty('category');
   }
 
   /**
@@ -58,7 +57,6 @@ class GraphPage extends GraphObject
    */
   public function getName()
   {
-    return $this->getProperty('name');
+      return $this->getProperty('name');
   }
-
 }

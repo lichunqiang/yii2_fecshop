@@ -19,85 +19,83 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\HttpClients;
 
 /**
  * Class FacebookCurl
  * Abstraction for the procedural curl elements so that curl can be mocked
  * and the implementation can be tested.
- * @package Facebook
  */
 class FacebookCurl
 {
-
-  /**
+    /**
    * @var resource Curl resource instance
    */
   protected $curl;
 
   /**
-   * Make a new curl reference instance
+   * Make a new curl reference instance.
    */
   public function init()
   {
-    $this->curl = curl_init();
+      $this->curl = curl_init();
   }
 
   /**
-   * Set a curl option
+   * Set a curl option.
    *
    * @param $key
    * @param $value
    */
   public function setopt($key, $value)
   {
-    curl_setopt($this->curl, $key, $value);
+      curl_setopt($this->curl, $key, $value);
   }
 
   /**
-   * Set an array of options to a curl resource
+   * Set an array of options to a curl resource.
    *
    * @param array $options
    */
   public function setopt_array(array $options)
   {
-    curl_setopt_array($this->curl, $options);
+      curl_setopt_array($this->curl, $options);
   }
 
   /**
-   * Send a curl request
+   * Send a curl request.
    *
    * @return mixed
    */
   public function exec()
   {
-    return curl_exec($this->curl);
+      return curl_exec($this->curl);
   }
 
   /**
-   * Return the curl error number
+   * Return the curl error number.
    *
    * @return int
    */
   public function errno()
   {
-    return curl_errno($this->curl);
+      return curl_errno($this->curl);
   }
 
   /**
-   * Return the curl error message
+   * Return the curl error message.
    *
    * @return string
    */
   public function error()
   {
-    return curl_error($this->curl);
+      return curl_error($this->curl);
   }
 
   /**
-   * Get info from a curl reference
+   * Get info from a curl reference.
    *
    * @param $type
    *
@@ -105,25 +103,24 @@ class FacebookCurl
    */
   public function getinfo($type)
   {
-    return curl_getinfo($this->curl, $type);
+      return curl_getinfo($this->curl, $type);
   }
 
   /**
-   * Get the currently installed curl version
+   * Get the currently installed curl version.
    *
    * @return array
    */
   public function version()
   {
-    return curl_version();
+      return curl_version();
   }
 
   /**
-   * Close the resource connection to curl
+   * Close the resource connection to curl.
    */
   public function close()
   {
-    curl_close($this->curl);
+      curl_close($this->curl);
   }
-
 }

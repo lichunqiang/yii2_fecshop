@@ -19,23 +19,22 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
 use Facebook\Entities\AccessToken;
 use Facebook\Entities\SignedRequest;
 
 /**
- * Class FacebookSession
- * @package Facebook
+ * Class FacebookSession.
+ *
  * @author Fosco Marotto <fjm@fb.com>
  * @author David Poll <depoll@fb.com>
  */
 class FacebookSession
 {
-
-  /**
+    /**
    * @var string
    */
   private static $defaultAppId;
@@ -67,12 +66,12 @@ class FacebookSession
    * It will throw a SessionException in case of error.
    *
    * @param AccessToken|string $accessToken
-   * @param SignedRequest $signedRequest The SignedRequest entity
+   * @param SignedRequest      $signedRequest The SignedRequest entity
    */
   public function __construct($accessToken, SignedRequest $signedRequest = null)
   {
-    $this->accessToken = $accessToken instanceof AccessToken ? $accessToken : new AccessToken($accessToken);
-    $this->signedRequest = $signedRequest;
+      $this->accessToken = $accessToken instanceof AccessToken ? $accessToken : new AccessToken($accessToken);
+      $this->signedRequest = $signedRequest;
   }
 
   /**
@@ -82,7 +81,7 @@ class FacebookSession
    */
   public function getToken()
   {
-    return (string) $this->accessToken;
+      return (string) $this->accessToken;
   }
 
   /**
@@ -92,7 +91,7 @@ class FacebookSession
    */
   public function getAccessToken()
   {
-    return $this->accessToken;
+      return $this->accessToken;
   }
 
   /**
@@ -102,7 +101,7 @@ class FacebookSession
    */
   public function getSignedRequest()
   {
-    return $this->signedRequest;
+      return $this->signedRequest;
   }
 
   /**
@@ -112,7 +111,7 @@ class FacebookSession
    */
   public function getSignedRequestData()
   {
-    return $this->signedRequest ? $this->signedRequest->getPayload() : null;
+      return $this->signedRequest ? $this->signedRequest->getPayload() : null;
   }
 
   /**
@@ -124,7 +123,7 @@ class FacebookSession
    */
   public function getSignedRequestProperty($key)
   {
-    return $this->signedRequest ? $this->signedRequest->get($key) : null;
+      return $this->signedRequest ? $this->signedRequest->get($key) : null;
   }
 
   /**
@@ -134,10 +133,11 @@ class FacebookSession
    */
   public function getUserId()
   {
-    return $this->signedRequest ? $this->signedRequest->getUserId() : null;
+      return $this->signedRequest ? $this->signedRequest->getUserId() : null;
   }
 
   // @TODO Remove getSessionInfo() in 4.1: can be accessed from AccessToken directly
+
   /**
    * getSessionInfo - Makes a request to /debug_token with the appropriate
    *   arguments to get debug information about the sessions token.
@@ -149,10 +149,11 @@ class FacebookSession
    */
   public function getSessionInfo($appId = null, $appSecret = null)
   {
-    return $this->accessToken->getInfo($appId, $appSecret);
+      return $this->accessToken->getInfo($appId, $appSecret);
   }
 
   // @TODO Remove getLongLivedSession() in 4.1: can be accessed from AccessToken directly
+
   /**
    * getLongLivedSession - Returns a new Facebook session resulting from
    *   extending a short-lived access token.  If this session is not
@@ -165,11 +166,13 @@ class FacebookSession
    */
   public function getLongLivedSession($appId = null, $appSecret = null)
   {
-    $longLivedAccessToken = $this->accessToken->extend($appId, $appSecret);
-    return new static($longLivedAccessToken, $this->signedRequest);
+      $longLivedAccessToken = $this->accessToken->extend($appId, $appSecret);
+
+      return new static($longLivedAccessToken, $this->signedRequest);
   }
 
   // @TODO Remove getExchangeToken() in 4.1: can be accessed from AccessToken directly
+
   /**
    * getExchangeToken - Returns an exchange token string which can be sent
    *   back to clients and exchanged for a device-linked access token.
@@ -181,27 +184,28 @@ class FacebookSession
    */
   public function getExchangeToken($appId = null, $appSecret = null)
   {
-    return AccessToken::getCodeFromAccessToken($this->accessToken, $appId, $appSecret);
+      return AccessToken::getCodeFromAccessToken($this->accessToken, $appId, $appSecret);
   }
 
   // @TODO Remove validate() in 4.1: can be accessed from AccessToken directly
+
   /**
    * validate - Ensures the current session is valid, throwing an exception if
    *   not.  Fetches token info from Facebook.
    *
-   * @param string|null $appId Application ID to use
+   * @param string|null $appId     Application ID to use
    * @param string|null $appSecret App secret value to use
    * @param string|null $machineId
    *
-   * @return boolean
-   *
    * @throws FacebookSDKException
+   *
+   * @return bool
    */
   public function validate($appId = null, $appSecret = null, $machineId = null)
   {
-    if ($this->accessToken->isValid($appId, $appSecret, $machineId)) {
-      return true;
-    }
+      if ($this->accessToken->isValid($appId, $appSecret, $machineId)) {
+          return true;
+      }
 
     // @TODO For v4.1 this should not throw an exception, but just return false.
     throw new FacebookSDKException(
@@ -210,26 +214,27 @@ class FacebookSession
   }
 
   // @TODO Remove validateSessionInfo() in 4.1: can be accessed from AccessToken directly
+
   /**
    * validateTokenInfo - Ensures the provided GraphSessionInfo object is valid,
    *   throwing an exception if not.  Ensures the appId matches,
    *   that the token is valid and has not expired.
    *
    * @param GraphSessionInfo $tokenInfo
-   * @param string|null $appId Application ID to use
-   * @param string|null $machineId
-   *
-   * @return boolean
+   * @param string|null      $appId     Application ID to use
+   * @param string|null      $machineId
    *
    * @throws FacebookSDKException
+   *
+   * @return bool
    */
   public static function validateSessionInfo(GraphSessionInfo $tokenInfo,
                                            $appId = null,
                                            $machineId = null)
   {
-    if (AccessToken::validateAccessToken($tokenInfo, $appId, $machineId)) {
-      return true;
-    }
+      if (AccessToken::validateAccessToken($tokenInfo, $appId, $machineId)) {
+          return true;
+      }
 
     // @TODO For v4.1 this should not throw an exception, but just return false.
     throw new FacebookSDKException(
@@ -247,14 +252,15 @@ class FacebookSession
    */
   public static function newSessionFromSignedRequest(SignedRequest $signedRequest)
   {
-    if ($signedRequest->get('code')
+      if ($signedRequest->get('code')
       && !$signedRequest->get('oauth_token')) {
-      return self::newSessionAfterValidation($signedRequest);
-    }
-    $accessToken = $signedRequest->get('oauth_token');
-    $expiresAt = $signedRequest->get('expires', 0);
-    $accessToken = new AccessToken($accessToken, $expiresAt);
-    return new static($accessToken, $signedRequest);
+          return self::newSessionAfterValidation($signedRequest);
+      }
+      $accessToken = $signedRequest->get('oauth_token');
+      $expiresAt = $signedRequest->get('expires', 0);
+      $accessToken = new AccessToken($accessToken, $expiresAt);
+
+      return new static($accessToken, $signedRequest);
   }
 
   /**
@@ -267,9 +273,10 @@ class FacebookSession
    */
   protected static function newSessionAfterValidation(SignedRequest $signedRequest)
   {
-    $code = $signedRequest->get('code');
-    $accessToken = AccessToken::getAccessTokenFromCode($code);
-    return new static($accessToken, $signedRequest);
+      $code = $signedRequest->get('code');
+      $accessToken = AccessToken::getAccessTokenFromCode($code);
+
+      return new static($accessToken, $signedRequest);
   }
 
   /**
@@ -277,17 +284,18 @@ class FacebookSession
    *   application which can be used for publishing and requesting app-level
    *   information.
    *
-   * @param string|null $appId Application ID to use
+   * @param string|null $appId     Application ID to use
    * @param string|null $appSecret App secret value to use
    *
    * @return FacebookSession
    */
   public static function newAppSession($appId = null, $appSecret = null)
   {
-    $targetAppId = static::_getTargetAppId($appId);
-    $targetAppSecret = static::_getTargetAppSecret($appSecret);
-    return new FacebookSession(
-      $targetAppId . '|' . $targetAppSecret
+      $targetAppId = static::_getTargetAppId($appId);
+      $targetAppSecret = static::_getTargetAppSecret($appSecret);
+
+      return new self(
+      $targetAppId.'|'.$targetAppSecret
     );
   }
 
@@ -295,13 +303,13 @@ class FacebookSession
    * setDefaultApplication - Will set the static default appId and appSecret
    *   to be used for API requests.
    *
-   * @param string $appId Application ID to use by default
+   * @param string $appId     Application ID to use by default
    * @param string $appSecret App secret value to use by default
    */
   public static function setDefaultApplication($appId, $appSecret)
   {
-    self::$defaultAppId = $appId;
-    self::$defaultAppSecret = $appSecret;
+      self::$defaultAppId = $appId;
+      self::$defaultAppSecret = $appSecret;
   }
 
   /**
@@ -310,18 +318,20 @@ class FacebookSession
    *
    * @param string $appId
    *
-   * @return string
-   *
    * @throws FacebookSDKException
+   *
+   * @return string
    */
-  public static function _getTargetAppId($appId = null) {
-    $target = ($appId ?: self::$defaultAppId);
-    if (!$target) {
-      throw new FacebookSDKException(
+  public static function _getTargetAppId($appId = null)
+  {
+      $target = ($appId ?: self::$defaultAppId);
+      if (!$target) {
+          throw new FacebookSDKException(
         'You must provide or set a default application id.', 700
       );
-    }
-    return $target;
+      }
+
+      return $target;
   }
 
   /**
@@ -330,18 +340,20 @@ class FacebookSession
    *
    * @param string $appSecret
    *
-   * @return string
-   *
    * @throws FacebookSDKException
+   *
+   * @return string
    */
-  public static function _getTargetAppSecret($appSecret = null) {
-    $target = ($appSecret ?: self::$defaultAppSecret);
-    if (!$target) {
-      throw new FacebookSDKException(
+  public static function _getTargetAppSecret($appSecret = null)
+  {
+      $target = ($appSecret ?: self::$defaultAppSecret);
+      if (!$target) {
+          throw new FacebookSDKException(
         'You must provide or set a default application secret.', 701
       );
-    }
-    return $target;
+      }
+
+      return $target;
   }
 
   /**
@@ -351,7 +363,7 @@ class FacebookSession
    */
   public static function enableAppSecretProof($on = true)
   {
-    static::$useAppSecretProof = ($on ? true : false);
+      static::$useAppSecretProof = ($on ? true : false);
   }
 
   /**
@@ -361,7 +373,6 @@ class FacebookSession
    */
   public static function useAppSecretProof()
   {
-    return static::$useAppSecretProof;
+      return static::$useAppSecretProof;
   }
-
 }

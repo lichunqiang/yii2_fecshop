@@ -19,20 +19,19 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
 /**
- * Class FacebookRequestException
- * @package Facebook
+ * Class FacebookRequestException.
+ *
  * @author Fosco Marotto <fjm@fb.com>
  * @author David Poll <depoll@fb.com>
  */
 class FacebookRequestException extends FacebookSDKException
 {
-
-  /**
+    /**
    * @var int Status code for the response causing the exception
    */
   private $statusCode;
@@ -50,16 +49,16 @@ class FacebookRequestException extends FacebookSDKException
   /**
    * Creates a FacebookRequestException.
    *
-   * @param string $rawResponse The raw response from the Graph API
-   * @param array $responseData The decoded response from the Graph API
-   * @param int $statusCode
+   * @param string $rawResponse  The raw response from the Graph API
+   * @param array  $responseData The decoded response from the Graph API
+   * @param int    $statusCode
    */
   public function __construct($rawResponse, $responseData, $statusCode)
   {
-    $this->rawResponse = $rawResponse;
-    $this->statusCode = $statusCode;
-    $this->responseData = self::convertToArray($responseData);
-    parent::__construct(
+      $this->rawResponse = $rawResponse;
+      $this->statusCode = $statusCode;
+      $this->responseData = self::convertToArray($responseData);
+      parent::__construct(
       $this->get('message', 'Unknown Exception'), $this->get('code', -1), null
     );
   }
@@ -68,22 +67,22 @@ class FacebookRequestException extends FacebookSDKException
    * Process an error payload from the Graph API and return the appropriate
    *   exception subclass.
    *
-   * @param string $raw the raw response from the Graph API
-   * @param array $data the decoded response from the Graph API
-   * @param int $statusCode the HTTP response code
+   * @param string $raw        the raw response from the Graph API
+   * @param array  $data       the decoded response from the Graph API
+   * @param int    $statusCode the HTTP response code
    *
    * @return FacebookRequestException
    */
   public static function create($raw, $data, $statusCode)
   {
-    $data = self::convertToArray($data);
-    if (!isset($data['error']['code']) && isset($data['code'])) {
-      $data = array('error' => $data);
-    }
-    $code = (isset($data['error']['code']) ? $data['error']['code'] : null);
+      $data = self::convertToArray($data);
+      if (!isset($data['error']['code']) && isset($data['code'])) {
+          $data = ['error' => $data];
+      }
+      $code = (isset($data['error']['code']) ? $data['error']['code'] : null);
 
-    if (isset($data['error']['error_subcode'])) {
-      switch ($data['error']['error_subcode']) {
+      if (isset($data['error']['error_subcode'])) {
+          switch ($data['error']['error_subcode']) {
         // Other authentication issues
         case 458:
         case 459:
@@ -94,9 +93,9 @@ class FacebookRequestException extends FacebookSDKException
           return new FacebookAuthorizationException($raw, $data, $statusCode);
           break;
       }
-    }
+      }
 
-    switch ($code) {
+      switch ($code) {
       // Login status or token expired, revoked, or invalid
       case 100:
       case 102:
@@ -125,13 +124,13 @@ class FacebookRequestException extends FacebookSDKException
 
     // Missing Permissions
     if ($code == 10 || ($code >= 200 && $code <= 299)) {
-      return new FacebookPermissionException($raw, $data, $statusCode);
+        return new FacebookPermissionException($raw, $data, $statusCode);
     }
 
     // OAuth authentication error
     if (isset($data['error']['type'])
       and $data['error']['type'] === 'OAuthException') {
-      return new FacebookAuthorizationException($raw, $data, $statusCode);
+        return new FacebookAuthorizationException($raw, $data, $statusCode);
     }
 
     // All others
@@ -142,46 +141,47 @@ class FacebookRequestException extends FacebookSDKException
    * Checks isset and returns that or a default value.
    *
    * @param string $key
-   * @param mixed $default
+   * @param mixed  $default
    *
    * @return mixed
    */
   private function get($key, $default = null)
   {
-    if (isset($this->responseData['error'][$key])) {
-      return $this->responseData['error'][$key];
-    }
-    return $default;
+      if (isset($this->responseData['error'][$key])) {
+          return $this->responseData['error'][$key];
+      }
+
+      return $default;
   }
 
   /**
-   * Returns the HTTP status code
+   * Returns the HTTP status code.
    *
    * @return int
    */
   public function getHttpStatusCode()
   {
-    return $this->statusCode;
+      return $this->statusCode;
   }
 
   /**
-   * Returns the sub-error code
+   * Returns the sub-error code.
    *
    * @return int
    */
   public function getSubErrorCode()
   {
-    return $this->get('error_subcode', -1);
+      return $this->get('error_subcode', -1);
   }
 
   /**
-   * Returns the error type
+   * Returns the error type.
    *
    * @return string
    */
   public function getErrorType()
   {
-    return $this->get('type', '');
+      return $this->get('type', '');
   }
 
   /**
@@ -191,7 +191,7 @@ class FacebookRequestException extends FacebookSDKException
    */
   public function getRawResponse()
   {
-    return $this->rawResponse;
+      return $this->rawResponse;
   }
 
   /**
@@ -201,11 +201,11 @@ class FacebookRequestException extends FacebookSDKException
    */
   public function getResponse()
   {
-    return $this->responseData;
+      return $this->responseData;
   }
 
   /**
-   * Converts a stdClass object to an array
+   * Converts a stdClass object to an array.
    *
    * @param mixed $object
    *
@@ -213,10 +213,10 @@ class FacebookRequestException extends FacebookSDKException
    */
   private static function convertToArray($object)
   {
-    if ($object instanceof \stdClass) {
-      return get_object_vars($object);
-    }
-    return $object;
-  }
+      if ($object instanceof \stdClass) {
+          return get_object_vars($object);
+      }
 
+      return $object;
+  }
 }

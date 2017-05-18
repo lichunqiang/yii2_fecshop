@@ -3,14 +3,15 @@
  * FecShop file.
  *
  * @link http://www.fecshop.com/
+ *
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
-use yii\helpers\Html;
 use fec\helpers\CRequest;
 use fec\helpers\CUrl;
-use fecadmin\models\AdminRole;
-/** 
+use yii\helpers\Html;
+
+/*
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -77,7 +78,7 @@ $(document).ready(function(){
 		pm = "?attr_group="+val;
 		currentPrimayInfo = $(".primary_info").val();
 		currentPrimayInfo = currentPrimayInfo ? '&'+currentPrimayInfo : '';
-		url = '<?= CUrl::getUrl("catalog/productinfo/manageredit"); ?>'+pm+currentPrimayInfo;
+		url = '<?= CUrl::getUrl('catalog/productinfo/manageredit'); ?>'+pm+currentPrimayInfo;
 		$.pdialog.reload(url,options);
 	});
 });
@@ -86,7 +87,7 @@ $(document).ready(function(){
 function getCategoryData(product_id,i){
 														
 	$.ajax({
-		url:'<?= CUrl::getUrl("catalog/productinfo/getproductcategory",['product_id'=>$product_id]); ?>',
+		url:'<?= CUrl::getUrl('catalog/productinfo/getproductcategory', ['product_id'=>$product_id]); ?>',
 		async:false,
 		timeout: 80000,
 		dataType: 'json', 
@@ -193,7 +194,7 @@ function thissubmit(thiss){
 
 <div class="pageContent"> 
 	<form  method="post" action="<?= $saveUrl ?>" class="pageForm required-validate" onsubmit="return thissubmit(this, dialogAjaxDoneCloseAndReflush);">
-		<?php echo CRequest::getCsrfInputHtml();  ?>	
+		<?php echo CRequest::getCsrfInputHtml(); ?>	
 		<input type="hidden" name="operate"  value="<?=  $operate ?>" />
 		<input type="hidden" class="primary_info"  value="<?= $primaryInfo ?>" />
 		<div class="tabs" >
@@ -241,8 +242,10 @@ function thissubmit(thiss){
 									</tr>
 								</thead>
 								<tbody>
-									<?php if(is_array($tier_price) && !empty($tier_price)){  ?>
-										<?php foreach($tier_price as $one){ ?>
+									<?php if (is_array($tier_price) && !empty($tier_price)) {
+    ?>
+										<?php foreach ($tier_price as $one) {
+        ?>
 										<tr>
 											<td>
 												<input class="tier_qty" type="text" value="<?= $one['qty'] ?>"> and above 
@@ -254,8 +257,10 @@ function thissubmit(thiss){
 												<img src="<?= \Yii::$service->image->getImgUrl('/images/bkg_btn-close2.gif')  ?>">
 											</td>
 										</tr>
-										<?php } ?>
-									<?php } ?>
+										<?php 
+    } ?>
+									<?php 
+} ?>
 								</tbody>
 								<tfoot style="text-align:right;">
 									<tr>
