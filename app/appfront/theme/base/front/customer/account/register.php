@@ -57,7 +57,8 @@
 							</div>
 						</div>
 						
-						<?php if($registerPageCaptcha){  ?>
+						<?php if ($registerPageCaptcha) {
+    ?>
 						<div class="field">
                             <label for="captcha" class="required"><em>*</em><?= Yii::$service->page->translate->__('Captcha'); ?></label>
                             <div class="input-box register-captcha">
@@ -74,10 +75,11 @@
 							});
 							<?php $this->endBlock(); ?>  
 							</script>  
-							<?php $this->registerJs($this->blocks['login_captcha_onclick_refulsh'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+							<?php $this->registerJs($this->blocks['login_captcha_onclick_refulsh'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
                         </div>
-						<?php }  ?>
+						<?php 
+}  ?>
 					</li>
 					
 					
@@ -85,7 +87,7 @@
 						
 				</ul>
 			</div>
-			<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+			<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 			<div class="buttons-set">
 				
 				<button type="button" id="js_registBtn" class="redBtn"><em><span><i></i><?= Yii::$service->page->translate->__('Submit'); ?></span></em></button>
@@ -96,15 +98,15 @@
 	</div>
 </div>
 <?php 
-$requiredValidate 			= Yii::$service->page->translate->__('This is a required field.');
-$emailFormatValidate 		= Yii::$service->page->translate->__('Please enter a valid email address. For example johndoe@domain.com.');
-$firstNameLenghtValidate 	= Yii::$service->page->translate->__('first name length must between');
-$lastNameLenghtValidate 	= Yii::$service->page->translate->__('last name length must between');
-$passwordLenghtValidate 	= Yii::$service->page->translate->__('Please enter 6 or more characters. Leading or trailing spaces will be ignored.');
-$passwordMatchValidate 		= Yii::$service->page->translate->__('Please make sure your passwords match. ');
+$requiredValidate = Yii::$service->page->translate->__('This is a required field.');
+$emailFormatValidate = Yii::$service->page->translate->__('Please enter a valid email address. For example johndoe@domain.com.');
+$firstNameLenghtValidate = Yii::$service->page->translate->__('first name length must between');
+$lastNameLenghtValidate = Yii::$service->page->translate->__('last name length must between');
+$passwordLenghtValidate = Yii::$service->page->translate->__('Please enter 6 or more characters. Leading or trailing spaces will be ignored.');
+$passwordMatchValidate = Yii::$service->page->translate->__('Please make sure your passwords match. ');
 //$minNameLength = 2;
 //$maxNameLength = 20;
-//$minPassLength = 6;  
+//$minPassLength = 6;
 //$maxPassLength = 30;
 
 ?>
@@ -203,7 +205,7 @@ $(document).ready(function(){
 });
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['customer_account_register'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+<?php $this->registerJs($this->blocks['customer_account_register'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 
 

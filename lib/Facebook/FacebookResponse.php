@@ -19,20 +19,19 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
 /**
- * Class FacebookResponse
- * @package Facebook
+ * Class FacebookResponse.
+ *
  * @author Fosco Marotto <fjm@fb.com>
  * @author David Poll <depoll@fb.com>
  */
 class FacebookResponse
 {
-
-  /**
+    /**
    * @var FacebookRequest The request which produced this response
    */
   private $request;
@@ -61,18 +60,18 @@ class FacebookResponse
    * Creates a FacebookResponse object for a given request and response.
    *
    * @param FacebookRequest $request
-   * @param array $responseData JSON Decoded response data
-   * @param string $rawResponse Raw string response
-   * @param bool $etagHit Indicates whether sent ETag matched the one on the FB side
-   * @param string|null $etag ETag received with the response. `null` in case of ETag hit.
+   * @param array           $responseData JSON Decoded response data
+   * @param string          $rawResponse  Raw string response
+   * @param bool            $etagHit      Indicates whether sent ETag matched the one on the FB side
+   * @param string|null     $etag         ETag received with the response. `null` in case of ETag hit.
    */
   public function __construct($request, $responseData, $rawResponse, $etagHit = false, $etag = null)
   {
-    $this->request = $request;
-    $this->responseData = $responseData;
-    $this->rawResponse = $rawResponse;
-    $this->etagHit = $etagHit;
-    $this->etag = $etag;
+      $this->request = $request;
+      $this->responseData = $responseData;
+      $this->rawResponse = $rawResponse;
+      $this->etagHit = $etagHit;
+      $this->etag = $etag;
   }
 
   /**
@@ -82,7 +81,7 @@ class FacebookResponse
    */
   public function getRequest()
   {
-    return $this->request;
+      return $this->request;
   }
 
   /**
@@ -92,37 +91,37 @@ class FacebookResponse
    */
   public function getResponse()
   {
-    return $this->responseData;
+      return $this->responseData;
   }
 
   /**
-   * Returns the raw response
+   * Returns the raw response.
    *
    * @return string
    */
   public function getRawResponse()
   {
-    return $this->rawResponse;
+      return $this->rawResponse;
   }
 
   /**
-   * Returns true if ETag matched the one sent with a request
+   * Returns true if ETag matched the one sent with a request.
    *
    * @return bool
    */
   public function isETagHit()
   {
-    return $this->etagHit;
+      return $this->etagHit;
   }
 
   /**
-   * Returns the ETag
+   * Returns the ETag.
    *
    * @return string
    */
   public function getETag()
   {
-    return $this->etag;
+      return $this->etag;
   }
 
   /**
@@ -133,8 +132,9 @@ class FacebookResponse
    *
    * @return mixed
    */
-  public function getGraphObject($type = 'Facebook\GraphObject') {
-    return (new GraphObject($this->responseData))->cast($type);
+  public function getGraphObject($type = 'Facebook\GraphObject')
+  {
+      return (new GraphObject($this->responseData))->cast($type);
   }
 
   /**
@@ -145,14 +145,16 @@ class FacebookResponse
    *
    * @return mixed
    */
-  public function getGraphObjectList($type = 'Facebook\GraphObject') {
-    $out = array();
-    $data = $this->responseData->data;
-    $dataLength = count($data);
-    for ($i = 0; $i < $dataLength; $i++) {
-      $out[] = (new GraphObject($data[$i]))->cast($type);
-    }
-    return $out;
+  public function getGraphObjectList($type = 'Facebook\GraphObject')
+  {
+      $out = [];
+      $data = $this->responseData->data;
+      $dataLength = count($data);
+      for ($i = 0; $i < $dataLength; $i++) {
+          $out[] = (new GraphObject($data[$i]))->cast($type);
+      }
+
+      return $out;
   }
 
   /**
@@ -163,7 +165,7 @@ class FacebookResponse
    */
   public function getRequestForNextPage()
   {
-    return $this->handlePagination('next');
+      return $this->handlePagination('next');
   }
 
   /**
@@ -174,7 +176,7 @@ class FacebookResponse
    */
   public function getRequestForPreviousPage()
   {
-    return $this->handlePagination('previous');
+      return $this->handlePagination('previous');
   }
 
   /**
@@ -184,23 +186,24 @@ class FacebookResponse
    *
    * @return FacebookRequest|null
    */
-  private function handlePagination($direction) {
-    if (isset($this->responseData->paging->$direction)) {
-      $url = parse_url($this->responseData->paging->$direction);
-      parse_str($url['query'], $params);
+  private function handlePagination($direction)
+  {
+      if (isset($this->responseData->paging->$direction)) {
+          $url = parse_url($this->responseData->paging->$direction);
+          parse_str($url['query'], $params);
 
-      if (isset($params['type']) && strpos($this->request->getPath(), $params['type']) !== false){
-        unset($params['type']);
-      }
-      return new FacebookRequest(
+          if (isset($params['type']) && strpos($this->request->getPath(), $params['type']) !== false) {
+              unset($params['type']);
+          }
+
+          return new FacebookRequest(
         $this->request->getSession(),
         $this->request->getMethod(),
         $this->request->getPath(),
         $params
       );
-    } else {
-      return null;
-    }
+      } else {
+          return null;
+      }
   }
-
 }

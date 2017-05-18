@@ -19,16 +19,15 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
 /**
- * Class GraphAlbum
- * @package Facebook
+ * Class GraphAlbum.
+ *
  * @author Daniele Grosso <daniele.grosso@gmail.com>
  */
-
 class GraphAlbum extends GraphObject
 {
     /**
@@ -44,7 +43,7 @@ class GraphAlbum extends GraphObject
     /**
      * Returns whether the viewer can upload photos to this album.
      *
-     * @return boolean|null
+     * @return bool|null
      */
     public function canUpload()
     {
@@ -82,6 +81,7 @@ class GraphAlbum extends GraphObject
         if ($value) {
             return new \DateTime($value);
         }
+
         return null;
     }
 
@@ -96,6 +96,7 @@ class GraphAlbum extends GraphObject
         if ($value) {
             return new \DateTime($value);
         }
+
         return null;
     }
 
@@ -116,7 +117,7 @@ class GraphAlbum extends GraphObject
      */
     public function getFrom()
     {
-      return  $this->getProperty('from', GraphUser::className());
+        return  $this->getProperty('from', GraphUser::className());
     }
 
     /**
@@ -160,7 +161,7 @@ class GraphAlbum extends GraphObject
     }
 
     /**
-     * Returns the type of the album. enum{profile, mobile, wall, normal, album}
+     * Returns the type of the album. enum{profile, mobile, wall, normal, album}.
      *
      * @return string|null
      */

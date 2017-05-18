@@ -3,23 +3,24 @@
  * FecShop file.
  *
  * @link http://www.fecshop.com/
+ *
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
 ?>
 <div class="main container">
-	<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('home-big-img','appfront') ?>
+	<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('home-big-img', 'appfront') ?>
 	<div class="mt10">
 		<h4 class="sectionBox_h best_seller"><span><?= Yii::$service->page->translate->__('best seller'); ?></span><em><a href=""><?= Yii::$service->page->translate->__('more'); ?></a></em></h4>
 		<div class="pro-content">
 			<?php
-				$parentThis['products'] = $bestSellerProducts;
-				$parentThis['name'] = 'best-seller';
-				$config = [
-					'view'  		=> 'cms/home/index/product.php',
-				];
-				echo Yii::$service->page->widget->renderContent('category_product_price',$config,$parentThis);
-			?>
+                $parentThis['products'] = $bestSellerProducts;
+                $parentThis['name'] = 'best-seller';
+                $config = [
+                    'view'        => 'cms/home/index/product.php',
+                ];
+                echo Yii::$service->page->widget->renderContent('category_product_price', $config, $parentThis);
+            ?>
 		</div>
 
 	</div>
@@ -28,13 +29,13 @@
 		<h4 class="sectionBox_h featured"><span><?= Yii::$service->page->translate->__('featured products'); ?></span><em><a href=""><?= Yii::$service->page->translate->__('more'); ?></a></em></h4>
 		<div class="pro-content">
 			<?php
-				$parentThis['products'] = $bestFeaturedProducts;
-				$parentThis['name'] = 'featured';
-				$config = [
-					'view'  		=> 'cms/home/index/product.php',
-				];
-				echo Yii::$service->page->widget->renderContent('category_product_price',$config,$parentThis);
-			?>
+                $parentThis['products'] = $bestFeaturedProducts;
+                $parentThis['name'] = 'featured';
+                $config = [
+                    'view'        => 'cms/home/index/product.php',
+                ];
+                echo Yii::$service->page->widget->renderContent('category_product_price', $config, $parentThis);
+            ?>
 		</div>
 	</div>
 	
@@ -79,4 +80,4 @@ $(document).ready(function(){
 });
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['owl_fecshop_slider'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+<?php $this->registerJs($this->blocks['owl_fecshop_slider'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>

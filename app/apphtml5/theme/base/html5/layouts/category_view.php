@@ -3,41 +3,41 @@
  * FecShop file.
  *
  * @link http://www.fecshop.com/
+ *
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
 ?>
 <?php
 $jsOptions = [
-	# js config 1
-	[
-		'options' => [
-			'position' =>  'POS_END',
-		//	'condition'=> 'lt IE 9',
-		],
-		'js'	=>[
-			'js/zepto.min.js',
-			'js/sm.min.js',
-			'js/sm-extend.min.js',
-			'js/js.js',
-		],
-	],
+    // js config 1
+    [
+        'options' => [
+            'position' => 'POS_END',
+        //	'condition'=> 'lt IE 9',
+        ],
+        'js'    => [
+            'js/zepto.min.js',
+            'js/sm.min.js',
+            'js/sm-extend.min.js',
+            'js/js.js',
+        ],
+    ],
 ];
 
-
-# css config
+// css config
 $cssOptions = [
-	# css config 1.
-	[
-		'css'	=>[
-			'css/sm.min.css',
-			'css/sm-extend.min.css',
-			'css/fec.css',
-		],
-	],
+    // css config 1.
+    [
+        'css'    => [
+            'css/sm.min.css',
+            'css/sm-extend.min.css',
+            'css/fec.css',
+        ],
+    ],
 ];
-\Yii::$service->page->asset->jsOptions 	= $jsOptions;
-\Yii::$service->page->asset->cssOptions = $cssOptions;				
+\Yii::$service->page->asset->jsOptions = $jsOptions;
+\Yii::$service->page->asset->cssOptions = $cssOptions;
 \Yii::$service->page->asset->register($this);
 ?>
 
@@ -45,16 +45,16 @@ $cssOptions = [
 <!DOCTYPE html>
 <html>
 <head>
-<?= Yii::$service->page->widget->render('head',$this); ?>
+<?= Yii::$service->page->widget->render('head', $this); ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
 	<div class="page-group">
 		<div class="page" id="page-infinite-scroll-bottom">
-			<?= Yii::$service->page->widget->render('header',$this); ?>
+			<?= Yii::$service->page->widget->render('header', $this); ?>
 			<?= $content; ?>
 		</div>
-		<?= Yii::$service->page->widget->render('menu',$this); ?>
+		<?= Yii::$service->page->widget->render('menu', $this); ?>
 	</div>
 <?php $this->endBody() ?>
 </body>

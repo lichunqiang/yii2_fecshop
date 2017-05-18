@@ -19,27 +19,26 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
 /**
- * Class GraphSessionInfo
- * @package Facebook
+ * Class GraphSessionInfo.
+ *
  * @author Fosco Marotto <fjm@fb.com>
  * @author David Poll <depoll@fb.com>
  */
 class GraphSessionInfo extends GraphObject
 {
-
-  /**
+    /**
    * Returns the application id the token was issued for.
    *
    * @return string|null
    */
   public function getAppId()
   {
-    return $this->getProperty('app_id');
+      return $this->getProperty('app_id');
   }
 
   /**
@@ -49,7 +48,7 @@ class GraphSessionInfo extends GraphObject
    */
   public function getApplication()
   {
-    return $this->getProperty('application');
+      return $this->getProperty('application');
   }
 
   /**
@@ -59,22 +58,22 @@ class GraphSessionInfo extends GraphObject
    */
   public function getExpiresAt()
   {
-    $stamp = $this->getProperty('expires_at');
-    if ($stamp) {
-      return (new \DateTime())->setTimestamp($stamp);
-    } else {
-      return null;
-    }
+      $stamp = $this->getProperty('expires_at');
+      if ($stamp) {
+          return (new \DateTime())->setTimestamp($stamp);
+      } else {
+          return null;
+      }
   }
 
   /**
    * Returns whether the token is valid.
    *
-   * @return boolean
+   * @return bool
    */
   public function isValid()
   {
-    return $this->getProperty('is_valid');
+      return $this->getProperty('is_valid');
   }
 
   /**
@@ -84,12 +83,12 @@ class GraphSessionInfo extends GraphObject
    */
   public function getIssuedAt()
   {
-    $stamp = $this->getProperty('issued_at');
-    if ($stamp) {
-      return (new \DateTime())->setTimestamp($stamp);
-    } else {
-      return null;
-    }
+      $stamp = $this->getProperty('issued_at');
+      if ($stamp) {
+          return (new \DateTime())->setTimestamp($stamp);
+      } else {
+          return null;
+      }
   }
 
   /**
@@ -99,7 +98,7 @@ class GraphSessionInfo extends GraphObject
    */
   public function getScopes()
   {
-    return $this->getPropertyAsArray('scopes');
+      return $this->getPropertyAsArray('scopes');
   }
 
   /**
@@ -109,7 +108,6 @@ class GraphSessionInfo extends GraphObject
    */
   public function getId()
   {
-    return $this->getProperty('user_id');
+      return $this->getProperty('user_id');
   }
-
 }

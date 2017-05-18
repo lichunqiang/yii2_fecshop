@@ -3,12 +3,13 @@
  * FecShop file.
  *
  * @link http://www.fecshop.com/
+ *
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
 ?>
 <?php  //var_dump($categoryArr);
-	
+
 ?>
 
 
@@ -30,17 +31,21 @@
 			</div>
 		</div>
 		<div class="category_menu">
-			<?php if(is_array($categoryArr) && !empty($categoryArr)){ ?>
+			<?php if (is_array($categoryArr) && !empty($categoryArr)) {
+    ?>
 				<ul>
-				<?php foreach($categoryArr as $category1){ ?>
+				<?php foreach ($categoryArr as $category1) {
+        ?>
 					<li class="item-content">
 						<div class="item-title">
 							<a href="<?= $category1['url'] ?>" class="nav_t" external><?= $category1['name'] ?></a>	
 						</div>
-						<?php $childMenu1 = $category1['childMenu'];   ?>
-						<?php if(is_array($childMenu1) && !empty($childMenu1)){ ?>
+						<?php $childMenu1 = $category1['childMenu']; ?>
+						<?php if (is_array($childMenu1) && !empty($childMenu1)) {
+            ?>
 							<ul>
-								<?php foreach($childMenu1 as $category2){ ?>
+								<?php foreach ($childMenu1 as $category2) {
+                ?>
 									<span class="icon icon-right"></span>
 									<li class="item-content">
 										<div class="item-title">
@@ -48,28 +53,36 @@
 												<?= $category2['name'] ?>
 											</a>
 										</div>
-										<?php $childMenu2 = $category2['childMenu'];   ?>
-										<?php if(is_array($childMenu2) && !empty($childMenu2)){ ?>
+										<?php $childMenu2 = $category2['childMenu']; ?>
+										<?php if (is_array($childMenu2) && !empty($childMenu2)) {
+                    ?>
 											<ul>
-											<?php foreach($childMenu2 as $category3){ ?>
+											<?php foreach ($childMenu2 as $category3) {
+                        ?>
 												<span class="icon icon-right"></span>
 												<li class="item-content">
 													<div class="item-title"><a href="<?= $category3['url'] ?>" external><?= $category3['name'] ?></a></div>
 												</li>
 												
-											<?php } ?>
+											<?php 
+                    } ?>
 											</ul>
-										<?php } ?>
+										<?php 
+                } ?>
 									</li>
-								<?php } ?>
+								<?php 
+            } ?>
 							</ul>
-							<?php //echo $category1['menu_custom'];  ?>
+							<?php //echo $category1['menu_custom'];?>
 									
-						<?php } ?>
+						<?php 
+        } ?>
 					</li>
-				<?php } ?>
+				<?php 
+    } ?>
 				</ul>
-			<?php } ?>
+			<?php 
+} ?>
 		</div>
 		
 	</div>
@@ -93,7 +106,7 @@
 			<ul>
 				<li class="item-content">
 					<div class="item-inner">
-						<div class="item-title"><a href="<?= Yii::$service->url->homeUrl();  ?>" external>Home</a></div>
+						<div class="item-title"><a href="<?= Yii::$service->url->homeUrl(); ?>" external>Home</a></div>
 					</div>
 				</li>
 				<li class="item-content">

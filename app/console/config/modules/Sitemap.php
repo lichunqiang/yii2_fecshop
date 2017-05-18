@@ -3,14 +3,15 @@
  * FecShop file.
  *
  * @link http://www.fecshop.com/
+ *
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
 ?>
 <?php
 return [
-	'sitemap' => [
-		'class' => '\fecshop\app\console\modules\Sitemap\Module',
-		
-	],
+    'sitemap' => [
+        'class' => '\fecshop\app\console\modules\Sitemap\Module',
+
+    ],
 ];

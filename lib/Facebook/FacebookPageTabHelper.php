@@ -19,19 +19,18 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
 /**
- * Class FacebookPageTabHelper
- * @package Facebook
+ * Class FacebookPageTabHelper.
+ *
  * @author Fosco Marotto <fjm@fb.com>
  */
 class FacebookPageTabHelper extends FacebookCanvasLoginHelper
 {
-
-  /**
+    /**
    * @var array|null
    */
   protected $pageData;
@@ -44,49 +43,50 @@ class FacebookPageTabHelper extends FacebookCanvasLoginHelper
    */
   public function __construct($appId = null, $appSecret = null)
   {
-    parent::__construct($appId, $appSecret);
+      parent::__construct($appId, $appSecret);
 
-    if (!$this->signedRequest) {
-      return;
-    }
+      if (!$this->signedRequest) {
+          return;
+      }
 
-    $this->pageData = $this->signedRequest->get('page');
+      $this->pageData = $this->signedRequest->get('page');
   }
 
   /**
    * Returns a value from the page data.
    *
-   * @param string $key
+   * @param string     $key
    * @param mixed|null $default
    *
    * @return mixed|null
    */
   public function getPageData($key, $default = null)
   {
-    if (isset($this->pageData[$key])) {
-      return $this->pageData[$key];
-    }
-    return $default;
+      if (isset($this->pageData[$key])) {
+          return $this->pageData[$key];
+      }
+
+      return $default;
   }
 
   /**
    * Returns true if the page is liked by the user.
    *
-   * @return boolean
+   * @return bool
    */
   public function isLiked()
   {
-    return $this->getPageData('liked') === true;
+      return $this->getPageData('liked') === true;
   }
 
   /**
    * Returns true if the user is an admin.
    *
-   * @return boolean
+   * @return bool
    */
   public function isAdmin()
   {
-    return $this->getPageData('admin') === true;
+      return $this->getPageData('admin') === true;
   }
 
   /**
@@ -96,7 +96,6 @@ class FacebookPageTabHelper extends FacebookCanvasLoginHelper
    */
   public function getPageId()
   {
-    return $this->getPageData('id');
+      return $this->getPageData('id');
   }
-
 }

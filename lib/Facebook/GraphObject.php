@@ -19,20 +19,19 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
 /**
- * Class GraphObject
- * @package Facebook
+ * Class GraphObject.
+ *
  * @author Fosco Marotto <fjm@fb.com>
  * @author David Poll <depoll@fb.com>
  */
 class GraphObject
 {
-
-  /**
+    /**
    * @var array - Holds the raw associative data for this object
    */
   protected $backingData;
@@ -44,18 +43,18 @@ class GraphObject
    */
   public function __construct($raw)
   {
-    if ($raw instanceof \stdClass) {
-      $raw = get_object_vars($raw);
-    }
-    $this->backingData = $raw;
-
-    if (isset($this->backingData['data']) && count($this->backingData) === 1) {
-      if ($this->backingData['data'] instanceof \stdClass) {
-        $this->backingData = get_object_vars($this->backingData['data']);
-      } else {
-        $this->backingData = $this->backingData['data'];
+      if ($raw instanceof \stdClass) {
+          $raw = get_object_vars($raw);
       }
-    }
+      $this->backingData = $raw;
+
+      if (isset($this->backingData['data']) && count($this->backingData) === 1) {
+          if ($this->backingData['data'] instanceof \stdClass) {
+              $this->backingData = get_object_vars($this->backingData['data']);
+          } else {
+              $this->backingData = $this->backingData['data'];
+          }
+      }
   }
 
   /**
@@ -64,22 +63,22 @@ class GraphObject
    *
    * @param string $type The GraphObject subclass to cast to
    *
-   * @return GraphObject
-   *
    * @throws FacebookSDKException
+   *
+   * @return GraphObject
    */
   public function cast($type)
   {
-    if ($this instanceof $type) {
-      return $this;
-    }
-    if (is_subclass_of($type, GraphObject::className())) {
-      return new $type($this->backingData);
-    } else {
-      throw new FacebookSDKException(
+      if ($this instanceof $type) {
+          return $this;
+      }
+      if (is_subclass_of($type, self::className())) {
+          return new $type($this->backingData);
+      } else {
+          throw new FacebookSDKException(
         'Cannot cast to an object that is not a GraphObject subclass', 620
       );
-    }
+      }
   }
 
   /**
@@ -89,7 +88,7 @@ class GraphObject
    */
   public function asArray()
   {
-    return $this->backingData;
+      return $this->backingData;
   }
 
   /**
@@ -103,16 +102,16 @@ class GraphObject
    */
   public function getProperty($name, $type = 'Facebook\GraphObject')
   {
-    if (isset($this->backingData[$name])) {
-      $value = $this->backingData[$name];
-      if (is_scalar($value)) {
-        return $value;
+      if (isset($this->backingData[$name])) {
+          $value = $this->backingData[$name];
+          if (is_scalar($value)) {
+              return $value;
+          } else {
+              return (new self($value))->cast($type);
+          }
       } else {
-        return (new GraphObject($value))->cast($type);
+          return null;
       }
-    } else {
-      return null;
-    }
   }
 
   /**
@@ -130,22 +129,23 @@ class GraphObject
    */
   public function getPropertyAsArray($name, $type = 'Facebook\GraphObject')
   {
-    $target = array();
-    if (isset($this->backingData[$name]['data'])) {
-      $target = $this->backingData[$name]['data'];
-    } else if (isset($this->backingData[$name])
+      $target = [];
+      if (isset($this->backingData[$name]['data'])) {
+          $target = $this->backingData[$name]['data'];
+      } elseif (isset($this->backingData[$name])
       && !is_scalar($this->backingData[$name])) {
-      $target = $this->backingData[$name];
-    }
-    $out = array();
-    foreach ($target as $key => $value) {
-      if (is_scalar($value)) {
-        $out[$key] = $value;
-      } else {
-        $out[$key] = (new GraphObject($value))->cast($type);
+          $target = $this->backingData[$name];
       }
-    }
-    return $out;
+      $out = [];
+      foreach ($target as $key => $value) {
+          if (is_scalar($value)) {
+              $out[$key] = $value;
+          } else {
+              $out[$key] = (new self($value))->cast($type);
+          }
+      }
+
+      return $out;
   }
 
   /**
@@ -155,7 +155,7 @@ class GraphObject
    */
   public function getPropertyNames()
   {
-    return array_keys($this->backingData);
+      return array_keys($this->backingData);
   }
 
   /**
@@ -165,7 +165,6 @@ class GraphObject
    */
   public static function className()
   {
-    return get_called_class();
+      return get_called_class();
   }
-
 }

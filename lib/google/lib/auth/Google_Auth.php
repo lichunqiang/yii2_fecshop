@@ -15,50 +15,82 @@
  * limitations under the License.
  */
 
-require_once "Google_OAuth2.php";
+require_once 'Google_OAuth2.php';
 
+class Google_AuthNone extends Google_Auth
+{
+    public $key = null;
 
-class Google_AuthNone extends Google_Auth {
-  public $key = null;
-
-  public function __construct() {
-    global $apiConfig;
-    if (!empty($apiConfig['developer_key'])) {
-      $this->setDeveloperKey($apiConfig['developer_key']);
+    public function __construct()
+    {
+        global $apiConfig;
+        if (!empty($apiConfig['developer_key'])) {
+            $this->setDeveloperKey($apiConfig['developer_key']);
+        }
     }
-  }
 
-  public function setDeveloperKey($key) {$this->key = $key;}
-  public function authenticate($service) {/*noop*/}
-  public function setAccessToken($accessToken) {/* noop*/}
-  public function getAccessToken() {return null;}
-  public function createAuthUrl($scope) {return null;}
-  public function refreshToken($refreshToken) {/* noop*/}
-  public function revokeToken() {/* noop*/}
-
-  public function sign(Google_HttpRequest $request) {
-    if ($this->key) {
-      $request->setUrl($request->getUrl() . ((strpos($request->getUrl(), '?') === false) ? '?' : '&')
-          . 'key='.urlencode($this->key));
+    public function setDeveloperKey($key)
+    {
+        $this->key = $key;
     }
-    return $request;
-  }
+
+    public function authenticate($service)
+    {/*noop*/
+    }
+
+    public function setAccessToken($accessToken)
+    {/* noop*/
+    }
+
+    public function getAccessToken()
+    {
+        return null;
+    }
+
+    public function createAuthUrl($scope)
+    {
+        return null;
+    }
+
+    public function refreshToken($refreshToken)
+    {/* noop*/
+    }
+
+    public function revokeToken()
+    {/* noop*/
+    }
+
+    public function sign(Google_HttpRequest $request)
+    {
+        if ($this->key) {
+            $request->setUrl($request->getUrl().((strpos($request->getUrl(), '?') === false) ? '?' : '&')
+          .'key='.urlencode($this->key));
+        }
+
+        return $request;
+    }
 }
 
-
 /**
- * Abstract class for the Authentication in the API client
- * @author Chris Chabot <chabotc@google.com>
+ * Abstract class for the Authentication in the API client.
  *
+ * @author Chris Chabot <chabotc@google.com>
  */
-abstract class Google_Auth {
-  abstract public function authenticate($service);
-  abstract public function sign(Google_HttpRequest $request);
-  abstract public function createAuthUrl($scope);
+abstract class Google_Auth
+{
+    abstract public function authenticate($service);
 
-  abstract public function getAccessToken();
-  abstract public function setAccessToken($accessToken);
-  abstract public function setDeveloperKey($developerKey);
-  abstract public function refreshToken($refreshToken);
-  abstract public function revokeToken();
+    abstract public function sign(Google_HttpRequest $request);
+
+    abstract public function createAuthUrl($scope);
+
+    abstract public function getAccessToken();
+
+    abstract public function setAccessToken($accessToken);
+
+    abstract public function setDeveloperKey($developerKey);
+
+    abstract public function refreshToken($refreshToken);
+
+    abstract public function revokeToken();
 }

@@ -3,6 +3,7 @@
  * FecShop file.
  *
  * @link http://www.fecshop.com/
+ *
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
@@ -11,7 +12,7 @@
 	<div class="footer-top sidebar">
 		<div class="container">
 			<div class="row">
-				<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('social','appfront') ?>
+				<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('social', 'appfront') ?>
 				
 				<div class="col-xs-12 col-sm-6 col-md-3 newsletter widget links">
 					<header>
@@ -30,7 +31,7 @@
 						</div>
 					</form>
 				</div>
-				<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('links_and_account','appfront') ?>
+				<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('links_and_account', 'appfront') ?>
 				
 				<div class="clear"></div>
 			</div>
@@ -38,7 +39,7 @@
 	</div>
 	
 	<div class="footer-bottom">
-		<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('copy_right','appfront') ?>
+		<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('copy_right', 'appfront') ?>
 	</div>
 </footer>
 	

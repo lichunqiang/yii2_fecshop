@@ -19,87 +19,85 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
 /**
- * Class GraphLocation
- * @package Facebook
+ * Class GraphLocation.
+ *
  * @author Fosco Marotto <fjm@fb.com>
  * @author David Poll <depoll@fb.com>
  */
 class GraphLocation extends GraphObject
 {
-
-  /**
-   * Returns the street component of the location
+    /**
+   * Returns the street component of the location.
    *
    * @return string|null
    */
   public function getStreet()
   {
-    return $this->getProperty('street');
+      return $this->getProperty('street');
   }
 
   /**
-   * Returns the city component of the location
+   * Returns the city component of the location.
    *
    * @return string|null
    */
   public function getCity()
   {
-    return $this->getProperty('city');
+      return $this->getProperty('city');
   }
 
   /**
-   * Returns the state component of the location
+   * Returns the state component of the location.
    *
    * @return string|null
    */
   public function getState()
   {
-    return $this->getProperty('state');
+      return $this->getProperty('state');
   }
 
   /**
-   * Returns the country component of the location
+   * Returns the country component of the location.
    *
    * @return string|null
    */
   public function getCountry()
   {
-    return $this->getProperty('country');
+      return $this->getProperty('country');
   }
 
   /**
-   * Returns the zipcode component of the location
+   * Returns the zipcode component of the location.
    *
    * @return string|null
    */
   public function getZip()
   {
-    return $this->getProperty('zip');
+      return $this->getProperty('zip');
   }
 
   /**
-   * Returns the latitude component of the location
+   * Returns the latitude component of the location.
    *
    * @return float|null
    */
   public function getLatitude()
   {
-    return $this->getProperty('latitude');
+      return $this->getProperty('latitude');
   }
 
   /**
-   * Returns the street component of the location
+   * Returns the street component of the location.
    *
    * @return float|null
    */
   public function getLongitude()
   {
-    return $this->getProperty('longitude');
+      return $this->getProperty('longitude');
   }
-
 }
