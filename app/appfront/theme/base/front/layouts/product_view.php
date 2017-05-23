@@ -9,7 +9,7 @@
 ?>
 <?php
 $jsOptions = [
-    # js config 1
+    // js config 1
     [
         'options' => [
             'position' => 'POS_END',
@@ -25,9 +25,9 @@ $jsOptions = [
     ],
 ];
 
-# css config
+// css config
 $cssOptions = [
-    # css config 1.
+    // css config 1.
     [
         'css' => [
             'css/style.css',

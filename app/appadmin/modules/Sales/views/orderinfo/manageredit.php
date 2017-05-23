@@ -9,7 +9,7 @@
 use fec\helpers\CRequest;
 use fecshop\app\appfront\helper\Format;
 
-/**
+/*
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -22,7 +22,7 @@ use fecshop\app\appfront\helper\Format;
 
 <div class="pageContent" style="background:#fff;"> 
 	<form  method="post" action="<?= $saveUrl ?>" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDoneCloseAndReflush);">
-		<?php echo CRequest::getCsrfInputHtml();  ?>	
+		<?php echo CRequest::getCsrfInputHtml(); ?>	
 		<div layouth="56" class="pageFormContent" style="height: 240px; overflow: auto;">
 			
 				<input type="hidden"  value="<?=  $product_id; ?>" size="30" name="product_id" class="textInput ">
@@ -61,7 +61,7 @@ use fecshop\app\appfront\helper\Format;
 							<label>订单货币简码：</label>
 							<span><?= $order['order_currency_code'] ?></span>
 						</p>
-						<?php $symbol = Yii::$service->page->currency->getSymbol($order['order_currency_code']);  ?>
+						<?php $symbol = Yii::$service->page->currency->getSymbol($order['order_currency_code']); ?>
 						<p class="edit_p">
 							<label>与基础货币汇率：</label>
 							<span><?= $order['order_to_base_rate'] ?></span>
@@ -265,8 +265,8 @@ use fecshop\app\appfront\helper\Format;
 											
 										</td>
 										<td>
-											<a href="<?=  Yii::$service->url->getUrl($product['redirect_url']) ; ?>">
-												<img src="<?= Yii::$service->product->image->getResize($product['image'], [100,100], false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
+											<a href="<?=  Yii::$service->url->getUrl($product['redirect_url']); ?>">
+												<img src="<?= Yii::$service->product->image->getResize($product['image'], [100, 100], false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
 											</a>
 										</td>
 										<td><?= $product['sku'] ?></td>

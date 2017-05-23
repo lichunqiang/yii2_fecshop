@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\widgets;
 
-use Yii;
 use fecshop\interfaces\block\BlockCache;
+use Yii;
 
 class Footer implements BlockCache
 {

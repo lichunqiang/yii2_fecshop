@@ -14,7 +14,7 @@
 		<div class="category_page">
 			<div class="category_img">
 				<a href="#">
-					<?=  $image ? '<img  style="width:100%;" src="' . $image . '"/>' : '';?>
+					<?=  $image ? '<img  style="width:100%;" src="' . $image . '"/>' : ''; ?>
 				<a>
 			</div>
 			<div class="category_description" >
@@ -58,7 +58,7 @@
 		<a href="#" class="close-popup">×</a></p>
 	</div>
 	<?php
-        # Refind By
+        // Refind By
         $parentThis = [
             'refine_by_info' => $refine_by_info,
         ];
@@ -68,7 +68,7 @@
         echo Yii::$service->page->widget->renderContent('category_product_filter_refine_by', $config, $parentThis);
     ?>
 	<?php
-        # Category Left Filter subCategory
+        // Category Left Filter subCategory
         $parentThis = [
             'filter_category' => $filter_category,
             'current_category' => $name,
@@ -79,7 +79,7 @@
         echo Yii::$service->page->widget->renderContent('category_product_filter_sub_category', $config, $parentThis);
     ?>
 	<?php
-        # Category Left Filter Product Attributes
+        // Category Left Filter Product Attributes
         $parentThis = [
             'filters' => $filter_info,
         ];
@@ -89,7 +89,7 @@
         echo Yii::$service->page->widget->renderContent('category_product_filter_attr', $config, $parentThis);
     ?>
 	<?php
-        # Category Left Filter Product Price
+        // Category Left Filter Product Price
         $parentThis = [
             'filter_price' => $filter_price,
         ];
@@ -206,4 +206,4 @@ $.init();
 
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['category_product_filter'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+<?php $this->registerJs($this->blocks['category_product_filter'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>

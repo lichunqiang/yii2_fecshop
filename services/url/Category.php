@@ -9,9 +9,9 @@
 
 namespace fecshop\services\url;
 
+use fecshop\services\Service;
 use Yii;
 use yii\base\InvalidValueException;
-use fecshop\services\Service;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -20,7 +20,7 @@ use fecshop\services\Service;
 class Category extends Service
 {
     /**
-     * 把属性值转换成url格式的字符串，用于生成url
+     * 把属性值转换成url格式的字符串，用于生成url.
      */
     protected function actionAttrValConvertUrlStr($strVal)
     {
@@ -59,11 +59,7 @@ class Category extends Service
     }
 
     /**
-     *
-     */
-
-    /**
-     * 在分类侧栏点击过滤属性，得到选择这个属性的url
+     * 在分类侧栏点击过滤属性，得到选择这个属性的url.
      * @property $attrUrlStr|string 属性的url处理后的字符串
      * @property $val|string 属性对应的值。未url处理的值
      * @property $p|string  在url中用来表示分页的参数，一般用p来标示。
@@ -141,7 +137,7 @@ class Category extends Service
     }
 
     /**
-     * 得到排序的url
+     * 得到排序的url.
      * @property $arr|array sort的字段和值  dir的字段和值
      * @property $p|string  在url中用来表示分页的参数，一般用p来标示。
      * @property $pageBackToOne|bool 是否让p的页数回归第一页
@@ -229,7 +225,7 @@ class Category extends Service
         }
     }
 
-    /**
+    /*
      * 得到不选择这个属性的url
      */
     /*

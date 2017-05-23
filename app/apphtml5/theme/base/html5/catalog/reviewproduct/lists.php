@@ -7,7 +7,7 @@
 					<div class="row">
 						<div class="col-20">
 							<a external href="<?= $url ?>">
-								<img src="<?= Yii::$service->product->image->getResize($main_img, [150,150], false) ?>">
+								<img src="<?= Yii::$service->product->image->getResize($main_img, [150, 150], false) ?>">
 							</a>
 						</div>
 						<div class="col-80">
@@ -39,11 +39,11 @@
 						<div style="margin:20px 0 0">
 							<div class="rbc_cold">
 								<span>
-									<span class="average_rating"><?= Yii::$service->page->translate->__('Average rating :');?></span>
+									<span class="average_rating"><?= Yii::$service->page->translate->__('Average rating :'); ?></span>
 									<span class="review_star review_star_<?= $reviw_rate_star_average ?>" style="font-weight:bold;" itemprop="average"></span>  
 									
-									<a rel="nofollow" href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/lists', ['spu' => $spu,'_id' => $_id]); ?>">
-										(<span itemprop="count"><?= $review_count ?> <?= Yii::$service->page->translate->__('reviews');?></span>)
+									<a rel="nofollow" href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/lists', ['spu' => $spu, '_id' => $_id]); ?>">
+										(<span itemprop="count"><?= $review_count ?> <?= Yii::$service->page->translate->__('reviews'); ?></span>)
 									</a>
 								</span>
 							</div>					
@@ -52,12 +52,12 @@
 								<div class="row">
 									<div class="col-50">
 										<a external href="<?= $url ?>"  class="submitbutton button  button-fill button-success">
-											<span><span> <?= Yii::$service->page->translate->__('Add To Cart');?></span></span> 
+											<span><span> <?= Yii::$service->page->translate->__('Add To Cart'); ?></span></span> 
 										</a>
 									</div>
 									<div class="col-50">
 										<a external style="margin-left:10px" href="<?= $addReviewUrl ?>" onclick="" class="submitbutton button  button-fill button-danger">
-											<span><span> <?= Yii::$service->page->translate->__('Add Review');?></span></span> 
+											<span><span> <?= Yii::$service->page->translate->__('Add Review'); ?></span></span> 
 										</a>
 									</div>
 								</div>
@@ -70,7 +70,7 @@
 				<div class="product-reviews"> 
 					<div class="clear"></div>
 					<div class="review_title">
-						<a external href="#"><?= Yii::$service->page->translate->__('Product Review');?></a>
+						<a external href="#"><?= Yii::$service->page->translate->__('Product Review'); ?></a>
 					</div>
 					
 						<?php  if (is_array($coll) && !empty($coll)) {

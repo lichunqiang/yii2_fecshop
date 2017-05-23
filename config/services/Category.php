@@ -10,7 +10,7 @@
 return [
     'category' => [
         'class' => 'fecshop\services\Category',
-        # 子服务
+        // 子服务
         'childService' => [
             'product' => [
                 'class' => 'fecshop\services\category\Product',
@@ -23,7 +23,7 @@ return [
                 'class' => 'fecshop\services\category\Image',
                 'imageFloder' => 'media/catalog/category',
                 //'allowImgType' 	=> ['image/jpeg','image/gif','image/png'],
-                'maxUploadMSize' => 5, #MB
+                'maxUploadMSize' => 5, //MB
 
             ],
         ],

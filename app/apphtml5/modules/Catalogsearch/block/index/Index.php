@@ -39,7 +39,7 @@ class Index
         $this->getNumPerPage();
         //echo Yii::$service->page->translate->__('fecshop,{username}', ['username' => 'terry']);
         $this->initSearch();
-        # change current layout File.
+        // change current layout File.
         //Yii::$service->page->theme->layoutFile = 'home.php';
 
         $productCollInfo = $this->getSearchProductColl();
@@ -331,10 +331,10 @@ class Index
     protected function getSearchProductColl()
     {
         $select = [
-            'sku','spu','name','image',
-            'price','special_price',
-            'special_from','special_to',
-            'url_key','score',
+            'sku', 'spu', 'name', 'image',
+            'price', 'special_price',
+            'special_from', 'special_to',
+            'url_key', 'score',
         ];
         $where = $this->_where;
         $search_text = Yii::$app->controller->module->params['search_query'];
@@ -419,7 +419,7 @@ class Index
         $this->_where = $this->initWhere();
     }
 
-    # 面包屑导航
+    // 面包屑导航
     protected function breadcrumbs()
     {
         if (Yii::$app->controller->module->params['search_breadcrumbs']) {

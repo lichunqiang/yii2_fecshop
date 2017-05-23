@@ -12,31 +12,31 @@ namespace fecshop\services\helper;
 use fecshop\services\Service;
 
 /**
- * Helper Captcha services
+ * Helper Captcha services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Captcha extends Service
 {
-    public $charset = 'abcdefghkmnprstuvwxyzABCDEFGHKMNPRSTUVWXYZ0123456789';//随机因子
-    public $codelen = 4;//验证码长度
-    public $width = 130;//宽度
-    public $height = 50;//高度
-    public $fontsize = 20;//指定字体大小
+    public $charset = 'abcdefghkmnprstuvwxyzABCDEFGHKMNPRSTUVWXYZ0123456789'; //随机因子
+    public $codelen = 4; //验证码长度
+    public $width = 130; //宽度
+    public $height = 50; //高度
+    public $fontsize = 20; //指定字体大小
     public $case_sensitive = false;
-    private $fontcolor        ;//指定字体颜色
-    private $code;//验证码
-    private $img;//图形资源句柄
-    private $font;//指定的字体
+    private $fontcolor; //指定字体颜色
+    private $code; //验证码
+    private $img; //图形资源句柄
+    private $font; //指定的字体
     private $_sessionKey = 'captcha_session_key';
 
     /**
-     *  1. 生成图片，
+     *  1. 生成图片，.
      */
     //构造方法初始化
     public function __construct()
     {
-        $this->font = dirname(__FILE__) . '/captcha/Elephant.ttf';//注意字体路径要写对，否则显示不了图片
+        $this->font = dirname(__FILE__) . '/captcha/Elephant.ttf'; //注意字体路径要写对，否则显示不了图片
         //echo $this->font;exit;
     }
 
@@ -44,7 +44,7 @@ class Captcha extends Service
     private function createCode()
     {
         $_len = strlen($this->charset) - 1;
-        for ($i = 0;$i < $this->codelen;$i++) {
+        for ($i = 0; $i < $this->codelen; $i++) {
             $this->code .= $this->charset[mt_rand(0, $_len)];
         }
     }
@@ -62,7 +62,7 @@ class Captcha extends Service
     {
         $_x = $this->width / $this->codelen;
 
-        for ($i = 0;$i < $this->codelen;$i++) {
+        for ($i = 0; $i < $this->codelen; $i++) {
             if (!$this->fontcolor) {
                 $fontcolor = imagecolorallocate($this->img, mt_rand(0, 156), mt_rand(0, 156), mt_rand(0, 156));
             } else {
@@ -76,12 +76,12 @@ class Captcha extends Service
     private function createLine()
     {
         //线条
-        for ($i = 0;$i < 6;$i++) {
+        for ($i = 0; $i < 6; $i++) {
             $color = imagecolorallocate($this->img, mt_rand(0, 156), mt_rand(0, 156), mt_rand(0, 156));
             imageline($this->img, mt_rand(0, $this->width), mt_rand(0, $this->height), mt_rand(0, $this->width), mt_rand(0, $this->height), $color);
         }
         //雪花
-        for ($i = 0;$i < 100;$i++) {
+        for ($i = 0; $i < 100; $i++) {
             $color = imagecolorallocate($this->img, mt_rand(200, 255), mt_rand(200, 255), mt_rand(200, 255));
             imagestring($this->img, mt_rand(1, 5), mt_rand(0, $this->width), mt_rand(0, $this->height), '*', $color);
         }
@@ -127,6 +127,6 @@ class Captcha extends Service
         $captchaData = $this->getCode($captchaData);
         $sessionCaptchaData = \Yii::$app->session->get($this->_sessionKey);
 
-        return ($captchaData === $sessionCaptchaData) ? true : false ;
+        return ($captchaData === $sessionCaptchaData) ? true : false;
     }
 }

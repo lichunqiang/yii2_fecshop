@@ -12,7 +12,7 @@ namespace fecshop\services;
 use Yii;
 
 /**
- * Shipping services
+ * Shipping services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */

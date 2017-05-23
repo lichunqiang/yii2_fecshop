@@ -9,8 +9,8 @@
 
 namespace fecshop\app\apphtml5\modules\Catalog\block\product;
 
-use Yii;
 use fecshop\app\apphtml5\modules\Catalog\helpers\Review as ReviewHelper;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -58,7 +58,7 @@ class Index
     protected function getSpuData($color, $size)
     {
         $spu = $this->_product['spu'];
-        $select = ['name','image','url_key'];
+        $select = ['name', 'image', 'url_key'];
         if ($color) {
             $select[] = $color;
         }
@@ -137,20 +137,20 @@ class Index
             }
         }
 
-        return [$all_attr1,$all_attr2,$attr1_2_attr2,$attr2_2_attr1 ];
+        return [$all_attr1, $all_attr2, $attr1_2_attr2, $attr2_2_attr1];
     }
 
     /**
      * 显示这个的前提是，该产品所在属性组对应的spu_attr 只有color 和size 两种
      * 也就是说，这个只针对服装做的一种方式，其他的会按照大众化的那种方式显示出来过滤。（下拉条）
      * 这个有点像定制化的范畴，目前我只做了color和size这类
-     * 衣服类产品需要用到的属性，对于其他的类似属性，就需要自己做定制修改了
+     * 衣服类产品需要用到的属性，对于其他的类似属性，就需要自己做定制修改了.
      * @return 返回和当前产品spu相同的其他产品，然后以颜色和尺码的方式罗列出来。
      */
     protected function getSameSpuInfo()
     {
 
-        # 查看spu属性的个数是否是1个，或者2个，否则退出。
+        // 查看spu属性的个数是否是1个，或者2个，否则退出。
         if (!Yii::$service->product->isCorrectSpuConfig($this->_product['attr_group'])) {
             return;
         }
@@ -159,7 +159,7 @@ class Index
         $attr1 = $arr[0];
         $attr2 = isset($arr[1]) ? $arr[1] : '';
 
-        # 开始逻辑处理
+        // 开始逻辑处理
         $current_attr1 = isset($this->_product[$attr1]) ? $this->_product[$attr1] : '';
         if ($attr2) {
             $current_attr2 = isset($this->_product[$attr2]) ? $this->_product[$attr2] : '';
@@ -170,7 +170,7 @@ class Index
         //echo $attr1;exit;
 
         if (!$current_attr2 && !$current_attr1) {
-            return ;
+            return;
         }
 
         $data = $this->getSpuData($attr1, $attr2);
@@ -179,7 +179,7 @@ class Index
             $all_attr2 = $this->sortSizeArr($all_attr2);
         }
         //var_dump([$current_color,$current_attr2,$all_color,$all_size,$color_2_size,$size_2_color,$attr1,$attr2]); exit;
-        return [$current_attr1,$current_attr2,$all_attr1,$all_attr2,$attr1_2_attr2,$attr2_2_attr1,$attr1,$attr2];
+        return [$current_attr1, $current_attr2, $all_attr1, $all_attr2, $attr1_2_attr2, $attr2_2_attr1, $attr1, $attr2];
     }
 
     /**
@@ -190,7 +190,7 @@ class Index
      */
     protected function sortSizeArr($data)
     {
-        # 对size排序一下
+        // 对size排序一下
         $size = [];
         $attr_group = $this->_product['attr_group'];
         $attrInfo = Yii::$service->product->getGroupAttrInfo($attr_group);
@@ -239,7 +239,7 @@ class Index
         $primaryVal = Yii::$app->request->get($primaryKey);
         $this->_primaryVal = $primaryVal;
         $product = Yii::$service->product->getByPrimaryKey($primaryVal);
-        $this->_product = $product ;
+        $this->_product = $product;
         Yii::$app->view->registerMetaTag([
             'name' => 'keywords',
             'content' => Yii::$service->store->getStoreAttrVal($product['meta_keywords'], 'meta_keywords'),
@@ -255,18 +255,18 @@ class Index
         Yii::$app->view->title = $this->_title;
         //$this->_where = $this->initWhere();
 
-        # 通过上面查询的属性组，得到属性组对应的属性列表
-        # 然后重新查询产品
+        // 通过上面查询的属性组，得到属性组对应的属性列表
+        // 然后重新查询产品
         $attr_group = $this->_product['attr_group'];
 
         Yii::$service->product->addGroupAttrs($attr_group);
 
-        # 重新查询产品信息。
+        // 重新查询产品信息。
         $product = Yii::$service->product->getByPrimaryKey($primaryVal);
-        $this->_product = $product ;
+        $this->_product = $product;
     }
 
-    # 面包屑导航
+    // 面包屑导航
     protected function breadcrumbs($name)
     {
         if (Yii::$app->controller->module->params['category_breadcrumbs']) {
@@ -275,7 +275,7 @@ class Index
                 foreach ($parent_info as $info) {
                     $parent_name = Yii::$service->store->getStoreAttrVal($info['name'], 'name');
                     $parent_url = Yii::$service->url->getUrl($info['url_key']);
-                    Yii::$service->page->breadcrumbs->addItems(['name' => $parent_name , 'url' => $parent_url  ]);
+                    Yii::$service->page->breadcrumbs->addItems(['name' => $parent_name, 'url' => $parent_url]);
                 }
             }
             Yii::$service->page->breadcrumbs->addItems(['name' => $name]);
@@ -291,12 +291,12 @@ class Index
             $skus = explode(',', $buy_also_buy_sku);
             if (is_array($skus) && !empty($skus)) {
                 $filter['select'] = [
-                    'sku','spu','name','image',
-                    'price','special_price',
-                    'special_from','special_to',
-                    'url_key','score',
+                    'sku', 'spu', 'name', 'image',
+                    'price', 'special_price',
+                    'special_from', 'special_to',
+                    'url_key', 'score',
                 ];
-                $filter['where'] = ['in','sku',$skus];
+                $filter['where'] = ['in', 'sku', $skus];
                 $products = Yii::$service->product->getProducts($filter);
                 //var_dump($products);
                 $products = Yii::$service->category->product->convertToCategoryInfo($products);

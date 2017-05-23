@@ -9,13 +9,13 @@
 
 namespace fecshop\app\appadmin\modules\Catalog\block\category;
 
-use Yii;
-use fecshop\app\appadmin\modules\AppadminbaseBlock;
 use fec\helpers\CRequest;
 use fecshop\app\appadmin\interfaces\base\AppadminbaseBlockInterface;
+use fecshop\app\appadmin\modules\AppadminbaseBlock;
+use Yii;
 
 /**
- * block cms\article
+ * block cms\article.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -24,7 +24,7 @@ class Product extends AppadminbaseBlock implements AppadminbaseBlockInterface
     protected $_select_id_arr;
 
     /**
-     * init param function ,execute in construct
+     * init param function ,execute in construct.
      */
     public function init()
     {
@@ -58,17 +58,17 @@ class Product extends AppadminbaseBlock implements AppadminbaseBlockInterface
     public function getLastData()
     {
 
-        # hidden section ,that storage page info
+        // hidden section ,that storage page info
         $pagerForm = $this->getPagerForm();
-        # search section
+        // search section
         $searchBar = $this->getSearchBar();
-        # edit button, delete button,
+        // edit button, delete button,
         $editBar = $this->getEditBar();
-        # table head
+        // table head
         $thead = $this->getTableThead();
-        # table body
+        // table body
         $tbody = $this->getTableTbody();
-        # paging section
+        // paging section
         $toolBar = $this->getToolBar($this->_param['numCount'], $this->_param['pageNum'], $this->_param['numPerPage']);
 
         return [
@@ -82,31 +82,31 @@ class Product extends AppadminbaseBlock implements AppadminbaseBlockInterface
     }
 
     /**
-     * get search bar Arr config
+     * get search bar Arr config.
      */
     public function getSearchArr()
     {
         $data = [
-            [    # 字符串类型
+            [    // 字符串类型
                 'type' => 'inputtext',
                 'title' => 'Name',
-                'name' => 'name' ,
+                'name' => 'name',
                 'columns_type' => 'string',
                 'lang' => true,
             ],
-            [    # 字符串类型
+            [    // 字符串类型
                 'type' => 'inputtext',
                 'title' => 'Spu',
-                'name' => 'spu' ,
+                'name' => 'spu',
                 'columns_type' => 'string',
             ],
-            [    # 字符串类型
+            [    // 字符串类型
                 'type' => 'inputtext',
                 'title' => 'Sku',
-                'name' => 'sku' ,
+                'name' => 'sku',
                 'columns_type' => 'string',
             ],
-            [    # 时间区间类型搜索
+            [    // 时间区间类型搜索
                 'type' => 'inputdatefilter',
                 'name' => 'updated_at',
                 'columns_type' => 'int',
@@ -184,7 +184,7 @@ class Product extends AppadminbaseBlock implements AppadminbaseBlockInterface
 
         ];
 
-        return $table_th_bar ;
+        return $table_th_bar;
     }
 
     public function initDataWhere($searchArr)
@@ -199,7 +199,7 @@ class Product extends AppadminbaseBlock implements AppadminbaseBlockInterface
                 if ($type == 'inputtext' || $type == 'select' || $type == 'chosen_select') {
                     if ($columns_type == 'string') {
                         if ($lang) {
-                            $langname = $name . '.' . \Yii::$service->fecshoplang->getDefaultLangAttrName($name) ;
+                            $langname = $name . '.' . \Yii::$service->fecshoplang->getDefaultLangAttrName($name);
                             $where[] = ['like', $langname, $this->_param[$name]];
                         } else {
                             $where[] = ['like', $name, $this->_param[$name]];
@@ -280,7 +280,7 @@ class Product extends AppadminbaseBlock implements AppadminbaseBlockInterface
         }
         $category_id = CRequest::param(Yii::$service->category->getPrimaryKey());
         $this->_select_id_arr = \Yii::$service->product->getCategoryProductIds($product_id_arr, $category_id);
-        # 如果选择
+        // 如果选择
         $product_select_info = CRequest::param('product_select_info');
         $product_unselect_info = CRequest::param('product_unselect_info');
 
@@ -300,7 +300,7 @@ class Product extends AppadminbaseBlock implements AppadminbaseBlockInterface
     }
 
     /**
-     * rewrite parent getTableTbodyHtml($data)
+     * rewrite parent getTableTbodyHtml($data).
      */
     public function getTableTbodyHtml($data)
     {
@@ -393,14 +393,14 @@ class Product extends AppadminbaseBlock implements AppadminbaseBlockInterface
             $str .= '</tr>';
         }
 
-        return $str ;
+        return $str;
     }
 
     public function getTableTheadHtml($table_th_bar)
     {
         $table_th_bar = $this->getTableTheadArrInit($table_th_bar);
         $this->_param['orderField'] = $this->_param['orderField'] ? $this->_param['orderField'] : $this->_primaryKey;
-        $this->_param['orderDirection'] = $this->_param['orderDirection'] ;
+        $this->_param['orderDirection'] = $this->_param['orderDirection'];
         foreach ($table_th_bar as $k => $field) {
             if ($field['orderField'] == $this->_param['orderField']) {
                 $table_th_bar[$k]['class'] = $this->_param['orderDirection'];

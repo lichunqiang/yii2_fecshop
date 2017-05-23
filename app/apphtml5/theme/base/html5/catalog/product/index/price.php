@@ -1,4 +1,4 @@
-<?php  $price_info = $parentThis['price_info'];   ?>
+<?php  $price_info = $parentThis['price_info']; ?>
 <?php if (isset($price_info['special_price']['value'])) {
     ?>			
 	<div class="special_price special_active">

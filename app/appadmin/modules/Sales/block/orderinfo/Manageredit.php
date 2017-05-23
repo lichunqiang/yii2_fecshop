@@ -9,11 +9,11 @@
 
 namespace fecshop\app\appadmin\modules\Sales\block\orderinfo;
 
-use Yii;
 use fec\helpers\CUrl;
+use Yii;
 
 /**
- * block cms\article
+ * block cms\article.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -27,7 +27,7 @@ class Manageredit
         //parent::init();
     }
 
-    # 传递给前端的数据 显示编辑form
+    // 传递给前端的数据 显示编辑form
     public function getLastData()
     {
         $order_id = Yii::$app->request->get('order_id');

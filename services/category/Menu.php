@@ -9,9 +9,9 @@
 
 namespace fecshop\services\category;
 
-use Yii;
-use fecshop\services\Service;
 use fecshop\models\mongodb\Category;
+use fecshop\services\Service;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -32,7 +32,7 @@ class Menu extends Service
             $parentId = $this->rootCategoryId;
         }
         $data = Category::find()->asArray()->select([
-            '_id','parent_id','name','url_key','menu_custom',
+            '_id', 'parent_id', 'name', 'url_key', 'menu_custom',
         ])->where([
             'parent_id' => $parentId,
         ])->all();

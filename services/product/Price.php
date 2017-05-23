@@ -9,8 +9,8 @@
 
 namespace fecshop\services\product;
 
-use Yii;
 use fecshop\services\Service;
+use Yii;
 
 /**
  * Product Service is the component that you can get product info from it.
@@ -54,7 +54,7 @@ class Price extends Service
     }
 
     /**
-     * 得到单个产品的最终价格。支持tier price 如果是tier price 需要把qty 以及tier Price传递过来
+     * 得到单个产品的最终价格。支持tier price 如果是tier price 需要把qty 以及tier Price传递过来.
      * @property  $price 		 | Float  产品的价格
      * @property  $special_price | Float  产品的特价
      * @property  $special_from  | Int    产品的特检开始时间
@@ -121,7 +121,7 @@ class Price extends Service
         }
     }
 
-    # 产品加入购物车，得到相应个数的最终价格。
+    // 产品加入购物车，得到相应个数的最终价格。
 
     /**
      * @property $format | Int , 返回的价格的格式，0代表为美元格式，1代表为当前货币格式，2代表美元和当前货币格式都有
@@ -145,7 +145,7 @@ class Price extends Service
         if ($format == 1) {
             $format_price = $this->formatPrice($return_price);
 
-            return $format_price   ;
+            return $format_price;
         } elseif ($format == 2) {
             $format_price = $this->formatPrice($return_price);
 
@@ -199,7 +199,7 @@ class Price extends Service
      * 判断产品的special_price是否有效，下面几种情况会无效
      * 1. $special_price为空
      * 2. 产品的$special_price 大于 $price，并且，ifSpecialPriceGtPriceFinalPriceEqPrice设置为true
-     * 3. 当前的时间不在 特价时间范围内
+     * 3. 当前的时间不在 特价时间范围内.
      * @property  $price 		 | Float  产品的价格
      * @property  $special_price | Float  产品的特价
      * @property  $special_from  | Int    产品的特检开始时间
@@ -232,7 +232,7 @@ class Price extends Service
     }
 
     /**
-     * 得到当前的货币信息，并保存到对象属性中，方便多次调用
+     * 得到当前的货币信息，并保存到对象属性中，方便多次调用.
      */
     protected function getCurrentInfo()
     {

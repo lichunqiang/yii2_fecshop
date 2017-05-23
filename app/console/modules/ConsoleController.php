@@ -10,8 +10,8 @@
 <?php
 namespace fecshop\app\console\modules;
 
-use Yii;
 use fec\controllers\FecController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -23,7 +23,7 @@ class ConsoleController extends FecController
 
     /**
      * get current block
-     * you can change $this->blockNamespace
+     * you can change $this->blockNamespace.
      */
     public function getBlock($blockName = '')
     {
@@ -40,6 +40,6 @@ class ConsoleController extends FecController
         $relativeFile = '\\' . $this->blockNamespace;
         $relativeFile .= '\\' . $this->id . '\\' . ucfirst($blockName);
 
-        return new $relativeFile;
+        return new $relativeFile();
     }
 }

@@ -2,8 +2,8 @@
 use fecshop\app\apphtml5\helper\Format;
 
 ?>
-<?php  $cart_info = $parentThis['cart_info'];   ?>
-<?php  $currency_info = $parentThis['currency_info'];   ?>
+<?php  $cart_info = $parentThis['cart_info']; ?>
+<?php  $currency_info = $parentThis['currency_info']; ?>
 <?php  if (is_array($cart_info) && !empty($cart_info)) {
     ?>
 <?php     $products = $cart_info['products']  ?>
@@ -24,7 +24,7 @@ use fecshop\app\apphtml5\helper\Format;
 			<tr>
 				<td class='image'>
 					<a href="<?= $product['url'] ?>" title="<?= $product['name'] ?>" class="product-image">
-						<img src="<?= Yii::$service->product->image->getResize($product['image'], [100,100], false) ?>" alt="2121" width="75" height="75">
+						<img src="<?= Yii::$service->product->image->getResize($product['image'], [100, 100], false) ?>" alt="2121" width="75" height="75">
 					</a>
 					
 				</td>

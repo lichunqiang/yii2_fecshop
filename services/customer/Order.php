@@ -12,7 +12,7 @@ namespace fecshop\services\customer;
 use fecshop\services\Service;
 
 /**
- * Order  child services
+ * Order  child services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */

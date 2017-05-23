@@ -12,14 +12,14 @@ namespace fecshop\services;
 use Yii;
 
 /**
- * Cart services
+ * Cart services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Cart extends Service
 {
     /**
-     * 将某个产品加入到购物车中
+     * 将某个产品加入到购物车中.
      * @property $item|array
      * $item = [
      *		'product_id' 		=> 22222,
@@ -32,7 +32,7 @@ class Cart extends Service
     protected function actionAddProductToCart($item)
     {
         $product = Yii::$service->product->getByPrimaryKey($item['product_id']);
-        # 根据传递的值，得到custom_option_sku的值。
+        // 根据传递的值，得到custom_option_sku的值。
         if (isset($item['custom_option_sku']) && !empty($item['custom_option_sku'])) {
             if (is_array($item['custom_option_sku'])) {
                 $custom_option_sku = Yii::$service->cart->info->getCustomOptionSku($item, $product);
@@ -45,21 +45,21 @@ class Cart extends Service
             }
             $item['custom_option_sku'] = $custom_option_sku;
         }
-        # 检查产品满足加入购物车的条件
+        // 检查产品满足加入购物车的条件
         $productValidate = Yii::$service->cart->info->checkProductBeforeAdd($item, $product);
         if (!$productValidate) {
             return false;
         }
-        # 开始加入购物车
-        # service 里面不允许有事务，请在调用层使用事务。
+        // 开始加入购物车
+        // service 里面不允许有事务，请在调用层使用事务。
         //$innerTransaction = Yii::$app->db->beginTransaction();
         //try {
 
         $beforeEventName = 'event_add_to_cart_before';
         $afterEventName = 'event_add_to_cart_after';
-        Yii::$service->event->trigger($beforeEventName, $item); # 触发事件 - 加购物车前事件
+        Yii::$service->event->trigger($beforeEventName, $item); // 触发事件 - 加购物车前事件
         Yii::$service->cart->quoteItem->addItem($item);
-        Yii::$service->event->trigger($afterEventName, $item);  # 触发事件 - 加购物车前事件
+        Yii::$service->event->trigger($afterEventName, $item);  // 触发事件 - 加购物车前事件
             //$innerTransaction->commit();
         //} catch (Exception $e) {
         //	$innerTransaction->rollBack();
@@ -67,7 +67,7 @@ class Cart extends Service
         return true;
     }
 
-    # 得到购物车中产品的个数
+    // 得到购物车中产品的个数
     protected function actionGetCartItemQty()
     {
         return Yii::$service->cart->quote->getCartItemCount();
@@ -189,20 +189,20 @@ class Cart extends Service
 
     /**
      * 清空购物车中的产品和优惠券
-     * 在生成订单的时候被调用
+     * 在生成订单的时候被调用.
      */
     protected function actionClearCartProductAndCoupon()
     {
         Yii::$service->cart->quoteItem->removeItemByCartId();
 
-        # 清空cart中的优惠券
+        // 清空cart中的优惠券
         $cart = Yii::$service->cart->quote->getCurrentCart();
         if (!$cart['cart_id']) {
             Yii::$service->helper->errors->add('current cart is empty');
 
             return false;
         }
-        # 如果购物车中存在优惠券，则清空优惠券。
+        // 如果购物车中存在优惠券，则清空优惠券。
         if ($cart->coupon_code) {
             $cart->coupon_code = null;
             $cart->save();

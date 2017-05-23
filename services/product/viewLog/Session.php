@@ -9,10 +9,10 @@
 
 namespace fecshop\services\product\viewLog;
 
-use fecshop\services\Service;
 use fec\helpers\CDate;
 use fec\helpers\CSession;
 use fec\helpers\CUser;
+use fecshop\services\Service;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -56,8 +56,8 @@ class Session extends Service
         if (!($session_history = CSession::get($this->_sessionKey))) {
             $session_history = [];
         } elseif (($count = count($session_history)) >= $this->_maxProductCount) {
-            $unsetMaxKey = $count - $this->_maxProductCount ;
-            for ($i = 0;$i <= $unsetMaxKey;$i++) {
+            $unsetMaxKey = $count - $this->_maxProductCount;
+            for ($i = 0; $i <= $unsetMaxKey; $i++) {
                 array_shift($session_history);
             }
         }

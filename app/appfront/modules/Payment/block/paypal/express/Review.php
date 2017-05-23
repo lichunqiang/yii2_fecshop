@@ -60,7 +60,7 @@ class Review
         }
         $currency_info = Yii::$service->page->currency->getCurrencyInfo();
         $this->initAddress();
-        $this->expressReview(); # 通过接口得到paypal的地址，覆盖到网站的地址。
+        $this->expressReview(); // 通过接口得到paypal的地址，覆盖到网站的地址。
         $this->initCountry();
         $this->initState();
         $shippings = $this->getShippings();
@@ -70,7 +70,7 @@ class Review
             'payments' => $this->getPayment(),
             'shippings' => $shippings,
             'current_payment_method' => $this->_payment_method,
-            'cart_info' => $last_cart_info ,
+            'cart_info' => $last_cart_info,
             'currency_info' => $currency_info,
             'address_view_file' => $this->_address_view_file,
             'cart_address' => $this->_address,
@@ -85,14 +85,14 @@ class Review
     /**
      * 初始化地址信息，首先从当前用户里面取值，然后从cart表中取数据覆盖
      * 1. 初始化 $this->_address，里面保存的各个地址信息。
-     * 2. 如果是登录用户，而且
+     * 2. 如果是登录用户，而且.
      */
     public function initAddress()
     {
         $this->_address_list = Yii::$service->customer->address->currentAddressList();
         if (is_array($this->_address_list) && !empty($this->_address_list)) {
-            # 用户存在地址列表，但是，cart中没有customer_address_id
-            # 这种情况下，从用户地址列表中取出来默认地址，然后设置成当前的地址。
+            // 用户存在地址列表，但是，cart中没有customer_address_id
+            // 这种情况下，从用户地址列表中取出来默认地址，然后设置成当前的地址。
             foreach ($this->_address_list as $adss_id => $info) {
                 if ($info['is_default'] == 1) {
                     $this->_address_id = $adss_id;
@@ -223,7 +223,7 @@ class Review
     }
 
     /**
-     * 当改变国家的时候，ajax获取省市信息
+     * 当改变国家的时候，ajax获取省市信息.
      */
     public function ajaxChangecountry()
     {
@@ -247,20 +247,20 @@ class Review
             $cart_info = Yii::$service->cart->getCartInfo($shipping_method, $country, $state);
             if (isset($cart_info['products']) && is_array($cart_info['products'])) {
                 foreach ($cart_info['products'] as $k => $product_one) {
-                    # 设置名字，得到当前store的语言名字。
+                    // 设置名字，得到当前store的语言名字。
                     $cart_info['products'][$k]['name'] = Yii::$service->store->getStoreAttrVal($product_one['product_name'], 'name');
-                    # 设置图片
+                    // 设置图片
                     if (isset($product_one['product_image']['main']['image'])) {
                         $cart_info['products'][$k]['image'] = $product_one['product_image']['main']['image'];
                     }
-                    # 产品的url
+                    // 产品的url
                     $cart_info['products'][$k]['url'] = Yii::$service->url->getUrl($product_one['product_url']);
                     $custom_option = isset($product_one['custom_option']) ? $product_one['custom_option'] : '';
                     $custom_option_sku = $product_one['custom_option_sku'];
-                    # 将在产品页面选择的颜色尺码等属性显示出来。
+                    // 将在产品页面选择的颜色尺码等属性显示出来。
                     $custom_option_info_arr = $this->getProductOptions($product_one, $custom_option_sku);
                     $cart_info['products'][$k]['custom_option_info'] = $custom_option_info_arr;
-                    # 设置相应的custom option 对应的图片
+                    // 设置相应的custom option 对应的图片
                     $custom_option_image = isset($custom_option[$custom_option_sku]['image']) ? $custom_option[$custom_option_sku]['image'] : '';
                     if ($custom_option_image) {
                         $cart_info['products'][$k]['image'] = $custom_option_image;
@@ -274,7 +274,7 @@ class Review
     }
 
     /**
-     * 将产品页面选择的颜色尺码等显示出来，包括custom option 和spu options部分的数据
+     * 将产品页面选择的颜色尺码等显示出来，包括custom option 和spu options部分的数据.
      */
     public function getProductOptions($product_one, $custom_option_sku)
     {
@@ -284,7 +284,7 @@ class Review
         if (isset($custom_option[$custom_option_sku]) && !empty($custom_option[$custom_option_sku])) {
             $custom_option_info = $custom_option[$custom_option_sku];
             foreach ($custom_option_info as $attr => $val) {
-                if (!in_array($attr, ['qty','sku','price','image'])) {
+                if (!in_array($attr, ['qty', 'sku', 'price', 'image'])) {
                     $attr = str_replace('_', ' ', $attr);
                     $attr = ucfirst($attr);
                     $custom_option_info_arr[$attr] = $val;
@@ -326,8 +326,8 @@ class Review
         $cartProductInfo = Yii::$service->cart->quoteItem->getCartProductInfo();
         //echo $country ;
         $product_weight = $cartProductInfo['product_weight'];
-        # 传递当前的货运方式，这个需要从cart中选取，
-        # 如果cart中没有shipping_method，那么该值为空
+        // 传递当前的货运方式，这个需要从cart中选取，
+        // 如果cart中没有shipping_method，那么该值为空
         //var_dump($this->_cart_info);
         $cartShippingMethod = $this->_cart_info['shipping_method'];
         //echo "$custom_shipping_method,$cartShippingMethod";
@@ -336,7 +336,7 @@ class Review
         $this->_shipping_method = $current_shipping_method;
         $shippingArr = $this->getShippingArr($product_weight, $current_shipping_method, $country, $region);
 
-        return $shippingArr ;
+        return $shippingArr;
     }
 
     /**
@@ -393,7 +393,7 @@ class Review
             foreach ($allshipping as $method => $shipping) {
                 $label = $shipping['label'];
                 $name = $shipping['name'];
-                # 得到运费的金额
+                // 得到运费的金额
                 //echo "$method,$weight,$country,$region";
                 // getShippingCostWithSymbols
                 $cost = Yii::$service->shipping->getShippingCost($method, $weight, $country, $region);

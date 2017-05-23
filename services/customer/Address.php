@@ -9,12 +9,12 @@
 
 namespace fecshop\services\customer;
 
-use Yii;
 use fecshop\models\mysqldb\customer\Address as MyAddress;
 use fecshop\services\Service;
+use Yii;
 
 /**
- * Address  child services
+ * Address  child services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -40,7 +40,7 @@ class Address extends Service
         if ($one[$primaryKey]) {
             return $one;
         } else {
-            return new MyAddress;
+            return new MyAddress();
         }
     }
 
@@ -97,9 +97,6 @@ class Address extends Service
     {
     }
 
-    /**
-     *
-     */
     protected function actionCurrentAddressList()
     {
         $arr = [];
@@ -146,7 +143,7 @@ class Address extends Service
                         ];
                     }
                     if (!$ii) {
-                        # 如果没有默认的地址，则取第一个当默认
+                        // 如果没有默认的地址，则取第一个当默认
                         foreach ($arr as $k => $v) {
                             $arr[$k]['is_default'] = 1;
                             break;
@@ -177,7 +174,7 @@ class Address extends Service
                 return;
             }
         } else {
-            $model = new MyAddress;
+            $model = new MyAddress();
             $model->created_at = time();
             if (isset(Yii::$app->user)) {
                 $user = Yii::$app->user;
@@ -197,8 +194,8 @@ class Address extends Service
         if ($one['is_default'] == 1) {
             $customer_id = $one['customer_id'];
             MyAddress::updateAll(
-                ['is_default' => 2],  # $attributes
-                'customer_id = ' . $customer_id . ' and  ' . $primaryKey . ' != ' . $primaryVal      # $condition
+                ['is_default' => 2],  // $attributes
+                'customer_id = ' . $customer_id . ' and  ' . $primaryKey . ' != ' . $primaryVal      // $condition
                 //[':customer_id' => $customer_id]
             );
         }
@@ -261,11 +258,11 @@ class Address extends Service
                 return false;
             }
         }
-        # 查看是否有默认地址？如果该用户存在记录，但是没有默认地址，
-        # 则查找用户是否存在非默认地址，如果存在，则取一个设置为默认地址
+        // 查看是否有默认地址？如果该用户存在记录，但是没有默认地址，
+        // 则查找用户是否存在非默认地址，如果存在，则取一个设置为默认地址
         if ($customer_id) {
             $addressOne = MyAddress::find()->asArray()
-                        ->where(['customer_id' => $customer_id,'is_default' => 1])
+                        ->where(['customer_id' => $customer_id, 'is_default' => 1])
                         ->one();
             if (!$addressOne['address_id']) {
                 $assOne = MyAddress::find()
@@ -282,7 +279,7 @@ class Address extends Service
         return true;
     }
 
-    # 删除购物车中的address部分。
+    // 删除购物车中的address部分。
     protected function removeCartAddress($customer_id, $address_id)
     {
         $cart = Yii::$service->cart->quote->getCartByCustomerId($customer_id);
@@ -294,7 +291,7 @@ class Address extends Service
         }
     }
 
-    /**
+    /*
      * @property $customer_id | int 用户的id
      * @return array Or ''
      *               得到customer的默认地址。

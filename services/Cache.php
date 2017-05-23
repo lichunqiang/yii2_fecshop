@@ -10,15 +10,15 @@
 namespace fecshop\services;
 
 /**
- * Cart services
+ * Cart services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Cache extends Service
 {
-    # 各个页面cache的配置
+    // 各个页面cache的配置
     public $cacheConfig;
-    # cache 总开关
+    // cache 总开关
     public $enable;
 
     /**

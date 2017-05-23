@@ -12,7 +12,7 @@ namespace fecshop\services\helper;
 use fecshop\services\Service;
 
 /**
- * Country services
+ * Country services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */

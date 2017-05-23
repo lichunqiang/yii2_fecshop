@@ -18,12 +18,12 @@ use Yii;
 class FecshopLang extends Service
 {
     /**
-     * all languages
+     * all languages.
      */
     public $allLangCode;
 
     /**
-     * default language
+     * default language.
      */
     public $defaultLangCode;
     protected $_allLangCode;

@@ -9,10 +9,9 @@
 
 namespace fecshop\services\product;
 
-use Yii;
-use fecshop\services\Service;
-
 use fecshop\models\mongodb\product\Favorite as FavoriteModel;
+use fecshop\services\Service;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -31,7 +30,7 @@ class Favorite extends Service
         if ($one[$this->getPrimaryKey()]) {
             return $one;
         } else {
-            return new FavoriteModel;
+            return new FavoriteModel();
         }
     }
 
@@ -57,11 +56,11 @@ class Favorite extends Service
         $user_id = (int) $user_id;
         $productPrimaryKey = Yii::$service->product->getPrimaryKey();
         $product = Yii::$service->product->getByPrimaryKey($product_id);
-        # 检查产品是否存在，如果不存在，输出报错信息。
+        // 检查产品是否存在，如果不存在，输出报错信息。
         if (!isset($product[$productPrimaryKey])) {
             Yii::$service->helper->errors->add('product is not exist!');
 
-            return ;
+            return;
         }
         //echo $product_id;exit;
         $favoritePrimaryKey = Yii::$service->product->favorite->getPrimaryKey();
@@ -76,14 +75,14 @@ class Favorite extends Service
 
             return true;
         }
-        $one = new FavoriteModel;
+        $one = new FavoriteModel();
         $one->product_id = $product_id;
         $one->user_id = $user_id;
         $one->created_at = time();
         $one->updated_at = time();
         $one->store = Yii::$service->store->currentStore;
         $one->save();
-        # 更新该用户总的收藏产品个数到用户表
+        // 更新该用户总的收藏产品个数到用户表
         $this->updateUserFavoriteCount($user_id);
         $this->updateProductFavoriteCount($product_id);
 
@@ -173,7 +172,5 @@ class Favorite extends Service
 
             return true;
         }
-
-        return;
     }
 }

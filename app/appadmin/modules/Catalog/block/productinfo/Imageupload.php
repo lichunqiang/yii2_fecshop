@@ -13,7 +13,7 @@ use Yii;
 use yii\base\InvalidValueException;
 
 /**
- * block cms\article
+ * block cms\article.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -29,7 +29,7 @@ class Imageupload
         if ($post['thisindex']) {
             $rel_index = $post['thisindex'];
         } else {
-            $rel_index = $index ;
+            $rel_index = $index;
         }
         $img_str = '';
         foreach ($_FILES as $FILE) {

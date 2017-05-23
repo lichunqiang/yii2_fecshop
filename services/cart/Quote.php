@@ -9,12 +9,12 @@
 
 namespace fecshop\services\cart;
 
-use Yii;
-use fecshop\services\Service;
 use fecshop\models\mysqldb\Cart as MyCart;
+use fecshop\services\Service;
+use Yii;
 
 /**
- * Cart services
+ * Cart services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -131,7 +131,7 @@ class Quote extends Service
                 if ($one['cart_id']) {
                     $this->_cart = $one;
                 } else {
-                    # 如果上面查询为空，则创建cart
+                    // 如果上面查询为空，则创建cart
                     $this->createCart();
                 }
             }
@@ -150,7 +150,7 @@ class Quote extends Service
     }
 
     /**
-     * 得到购物车中产品的个数。头部的ajax请求一般访问这个
+     * 得到购物车中产品的个数。头部的ajax请求一般访问这个.
      */
     public function getCartItemCount()
     {
@@ -184,7 +184,7 @@ class Quote extends Service
     }
 
     /**
-     * 得到购物车中 产品的总数
+     * 得到购物车中 产品的总数.
      */
     public function getCartItemsCount()
     {
@@ -224,7 +224,7 @@ class Quote extends Service
     }
 
     /**
-     * 完全与当前购物车脱节，如果产品添加购物车，会创建新的cart_id
+     * 完全与当前购物车脱节，如果产品添加购物车，会创建新的cart_id.
      */
     protected function actionClearCart()
     {
@@ -233,11 +233,11 @@ class Quote extends Service
 
     /**
      * 初始化创建cart信息，
-     * 在用户的第一个产品加入购物车时，会在数据库中创建购物车
+     * 在用户的第一个产品加入购物车时，会在数据库中创建购物车.
      */
     protected function actionCreateCart()
     {
-        $myCart = new MyCart;
+        $myCart = new MyCart();
         $myCart->store = Yii::$service->store->currentStore;
         $myCart->created_at = time();
         $myCart->updated_at = time();
@@ -316,7 +316,7 @@ class Quote extends Service
     }
 
     /**
-     * 得到购物车中的用户地址信息
+     * 得到购物车中的用户地址信息.
      */
     public function getCartAddress()
     {
@@ -419,23 +419,23 @@ class Quote extends Service
                     $base_grand_total = $base_product_total + $baseShippingCost - $baseDiscountCost;
 
                     $this->cartInfo[$cartInfoKey] = [
-                        'store' => $cart['store'],                # store nme
-                        'items_count' => $cart['items_count'],        # 购物车中的产品总数
-                        'coupon_code' => $coupon_code,                # coupon卷码
+                        'store' => $cart['store'],                // store nme
+                        'items_count' => $cart['items_count'],        // 购物车中的产品总数
+                        'coupon_code' => $coupon_code,                // coupon卷码
                         'shipping_method' => $shipping_method,
                         'payment_method' => $cart['payment_method'],
-                        'grand_total' => $curr_grand_total,            # 当前货币总金额
-                        'shipping_cost' => $currShippingCost,            # 当前货币，运费
-                        'coupon_cost' => $currDiscountCost,            # 当前货币，优惠券优惠金额
-                        'product_total' => $product_total,                # 当前货币，购物车中产品的总金额
+                        'grand_total' => $curr_grand_total,            // 当前货币总金额
+                        'shipping_cost' => $currShippingCost,            // 当前货币，运费
+                        'coupon_cost' => $currDiscountCost,            // 当前货币，优惠券优惠金额
+                        'product_total' => $product_total,                // 当前货币，购物车中产品的总金额
 
-                        'base_grand_total' => $base_grand_total,    # 基础货币总金额
-                        'base_shipping_cost' => $baseShippingCost,    # 基础货币，运费
-                        'base_coupon_cost' => $baseDiscountCost,    # 基础货币，优惠券优惠金额
-                        'base_product_total' => $base_product_total, # 基础货币，购物车中产品的总金额
+                        'base_grand_total' => $base_grand_total,    // 基础货币总金额
+                        'base_shipping_cost' => $baseShippingCost,    // 基础货币，运费
+                        'base_coupon_cost' => $baseDiscountCost,    // 基础货币，优惠券优惠金额
+                        'base_product_total' => $base_product_total, // 基础货币，购物车中产品的总金额
 
-                        'products' => $products,        #产品信息。
-                        'product_weight' => $product_weight,    #产品的总重量。
+                        'products' => $products,        //产品信息。
+                        'product_weight' => $product_weight,    //产品的总重量。
                     ];
                 }
             }
@@ -487,7 +487,7 @@ class Quote extends Service
     }
 
     /**
-     * 得到优惠券的折扣金额
+     * 得到优惠券的折扣金额.
      * @return array , example:
      *               [
      *               'baseCost' => $base_discount_cost, # 基础货币的优惠金额
@@ -548,10 +548,10 @@ class Quote extends Service
                 if ($cart_id) {
                     $cart = $this->getCart();
                     if ($cart) {
-                        $cart['customer_email'] = $email ;
-                        $cart['customer_id'] = $customer_id ;
-                        $cart['customer_firstname'] = $customer_firstname ;
-                        $cart['customer_lastname'] = $customer_lastname ;
+                        $cart['customer_email'] = $email;
+                        $cart['customer_id'] = $customer_id;
+                        $cart['customer_firstname'] = $customer_firstname;
+                        $cart['customer_lastname'] = $customer_lastname;
                         $cart['customer_is_guest'] = 2;
                         $cart->save();
                     }
@@ -562,22 +562,22 @@ class Quote extends Service
                     $cart_id = $customer_cart['cart_id'];
                     $this->setCartId($cart_id);
                 } else {
-                    # 将无用户产品（当前）和 购物车中的产品（登录用户对应的购物车）进行合并。
+                    // 将无用户产品（当前）和 购物车中的产品（登录用户对应的购物车）进行合并。
                     $new_cart_id = $customer_cart['cart_id'];
                     if ($cart['coupon_code']) {
-                        # 如果有优惠券则取消，以登录用户的购物车的优惠券为准。
+                        // 如果有优惠券则取消，以登录用户的购物车的优惠券为准。
                         Yii::$service->cart->coupon->cancelCoupon($cart['coupon_code']);
                     }
-                    # 将当前购物车产品表的cart_id 改成 登录用户对应的cart_id
+                    // 将当前购物车产品表的cart_id 改成 登录用户对应的cart_id
                     if ($new_cart_id && $cart_id && ($new_cart_id != $cart_id)) {
                         Yii::$service->cart->quoteItem->updateCartId($new_cart_id, $cart_id);
-                        # 当前的购物车删除掉
+                        // 当前的购物车删除掉
                         $cart->delete();
-                        # 设置当前的cart_id
+                        // 设置当前的cart_id
                         $this->setCartId($new_cart_id);
-                        # 设置当前的cart
+                        // 设置当前的cart
                         $this->setCart($customer_cart);
-                        # 重新计算购物车中产品的个数
+                        // 重新计算购物车中产品的个数
                         $this->computeCartInfo();
                     }
                 }

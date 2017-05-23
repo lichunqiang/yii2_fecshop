@@ -9,8 +9,8 @@
 
 namespace fecshop\app\apphtml5\modules\Customer\block\newsletter;
 
-use Yii;
 use fecshop\app\apphtml5\helper\mailer\Email;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -25,7 +25,7 @@ class Index
         $status = Yii::$service->customer->newsletter->subscribe($email);
         $message = Yii::$service->helper->errors->get();
         if (!$message) {
-            $arr = ['urlB' => '<a href="' . Yii::$service->url->homeUrl() . '">',  'urlE' => '</a>' ];
+            $arr = ['urlB' => '<a href="' . Yii::$service->url->homeUrl() . '">',  'urlE' => '</a>'];
             $message = Yii::$service->page->translate->__('Your subscribed email was successful, You can {urlB} click Here to Home Page {urlE}, Thank You.', $arr);
             $param['email'] = $email;
             Yii::$service->email->customer->sendNewsletterSubscribeEmail($param);

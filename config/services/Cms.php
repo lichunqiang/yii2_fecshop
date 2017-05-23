@@ -10,16 +10,16 @@
 return [
     'cms' => [
         'class' => 'fecshop\services\Cms',
-        # 子服务
+        // 子服务
         'childService' => [
             'article' => [
                 'class' => 'fecshop\services\cms\Article',
-                'storage' => 'mysqldb', # mysqldb or mongodb.
+                'storage' => 'mysqldb', // mysqldb or mongodb.
             ],
 
             'staticblock' => [
                 'class' => 'fecshop\services\cms\StaticBlock',
-                'storage' => 'mongodb', # mysqldb or mongodb.
+                'storage' => 'mongodb', // mysqldb or mongodb.
             ],
         ],
     ],

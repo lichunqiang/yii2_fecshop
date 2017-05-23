@@ -9,8 +9,8 @@
 
 namespace fecshop\app\apphtml5\modules\Site\controllers;
 
-use Yii;
 use fecshop\app\apphtml5\modules\AppfrontController;
+use Yii;
 
 class HelperController extends AppfrontController
 {

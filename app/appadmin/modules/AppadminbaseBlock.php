@@ -9,10 +9,10 @@
 
 namespace fecshop\app\appadmin\modules;
 
-use Yii;
 use fec\helpers\CUrl;
-use yii\base\Object;
 use fecshop\app\appadmin\interfaces\base\AppadminbaseBlockInterface;
+use Yii;
+use yii\base\Object;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -25,11 +25,11 @@ class AppadminbaseBlock extends Object
      */
     public $_param = [];
     /**
-     * fecshop service
+     * fecshop service.
      */
     public $_service;
     /**
-     * default pages number
+     * default pages number.
      */
     public $_pageNum = 1;
     /**
@@ -39,7 +39,7 @@ class AppadminbaseBlock extends Object
     /**
      * collection primary key.
      */
-    public $_primaryKey ;
+    public $_primaryKey;
 
     /**
      * collection sort direction , the default value is 'desc'.
@@ -48,15 +48,15 @@ class AppadminbaseBlock extends Object
     /**
      * collection sort field , the default value is primary key.
      */
-    public $_orderField ;
+    public $_orderField;
 
     public $_asArray = true;
     /**
-     * current url with param,like http://xxx.com?p=3&sort=desc
+     * current url with param,like http://xxx.com?p=3&sort=desc.
      */
     public $_currentParamUrl;
     /**
-     * current url with no param,like http://xxx.com
+     * current url with no param,like http://xxx.com.
      */
     public $_currentUrlKey;
     /**
@@ -84,19 +84,19 @@ class AppadminbaseBlock extends Object
         $param = \fec\helpers\CRequest::param();
         $this->_primaryKey = $this->_service->getPrimaryKey();
         if (empty($param['pageNum'])) {
-            $param['pageNum'] = $this->_pageNum ;
+            $param['pageNum'] = $this->_pageNum;
         }
         if (empty($param['numPerPage'])) {
-            $param['numPerPage'] = $this->_numPerPage ;
+            $param['numPerPage'] = $this->_numPerPage;
         }
         if (empty($param['orderField'])) {
-            $param['orderField'] = $this->_primaryKey ;
+            $param['orderField'] = $this->_primaryKey;
         }
         if (empty($param['orderDirection'])) {
-            $param['orderDirection'] = $this->_sortDirection ;
+            $param['orderDirection'] = $this->_sortDirection;
         }
         if (is_array($param) && !empty($param)) {
-            $this->_param = array_merge($this->_param, $param) ;
+            $this->_param = array_merge($this->_param, $param);
         }
         $currentUrl = CUrl::getCurrentUrlNoParam();
         $this->_currentParamUrl = CUrl::getCurrentUrl();
@@ -335,7 +335,7 @@ class AppadminbaseBlock extends Object
                 if ($type == 'inputtext' || $type == 'select' || $type == 'chosen_select') {
                     if ($columns_type == 'string') {
                         if ($lang) {
-                            $langname = $name . '.' . \Yii::$service->fecshoplang->getDefaultLangAttrName($name) ;
+                            $langname = $name . '.' . \Yii::$service->fecshoplang->getDefaultLangAttrName($name);
                             $where[] = ['like', $langname, $this->_param[$name]];
                         } else {
                             $where[] = ['like', $name, $this->_param[$name]];
@@ -444,7 +444,7 @@ class AppadminbaseBlock extends Object
     {
         $table_th_bar = $this->getTableTheadArrInit($table_th_bar);
         $this->_param['orderField'] = $this->_param['orderField'] ? $this->_param['orderField'] : $this->_primaryKey;
-        $this->_param['orderDirection'] = $this->_param['orderDirection'] ;
+        $this->_param['orderDirection'] = $this->_param['orderDirection'];
         foreach ($table_th_bar as $k => $field) {
             if ($field['orderField'] == $this->_param['orderField']) {
                 $table_th_bar[$k]['class'] = $this->_param['orderDirection'];
@@ -582,7 +582,7 @@ class AppadminbaseBlock extends Object
             $str .= '</tr>';
         }
 
-        return $str ;
+        return $str;
     }
 
     /*

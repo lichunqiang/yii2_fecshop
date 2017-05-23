@@ -1,7 +1,7 @@
-<?php  $payments = $parentThis['payments'];   ?>
-<?php  $current_payment_method = $parentThis['current_payment_method'];   ?>
+<?php  $payments = $parentThis['payments']; ?>
+<?php  $current_payment_method = $parentThis['current_payment_method']; ?>
 <div class="onestepcheckout-payment-method">
-	<p class="onestepcheckout-numbers onestepcheckout-numbers-3"><?= Yii::$service->page->translate->__('Payment Method');?></p>
+	<p class="onestepcheckout-numbers onestepcheckout-numbers-3"><?= Yii::$service->page->translate->__('Payment Method'); ?></p>
 	<div class="payment_info">
 		<div class="payment-methods">
 			<dl id="checkout-payment-method-load">
@@ -17,7 +17,7 @@
                             $checked = '';
                         } ?>	
 					<dt>
-						<input <?=  $checked; ?> style="display:inline" id="p_method_<?= $payment ?>" value="<?= $payment ?>" name="payment_method" title="<?= $info['label']; ?>" class="radio validate-one-required-by-name" <?=  ($current_payment_method == $payment) ? 'checked="checked"' : '' ; ?> type="radio">
+						<input <?=  $checked; ?> style="display:inline" id="p_method_<?= $payment ?>" value="<?= $payment ?>" name="payment_method" title="<?= $info['label']; ?>" class="radio validate-one-required-by-name" <?=  ($current_payment_method == $payment) ? 'checked="checked"' : ''; ?> type="radio">
 						<label for="p_method_<?= $payment ?>"><?= Yii::$service->page->translate->__($info['label']) ?></label>
 					</dt>
 					<dd id="container_payment_method_<?= $payment ?>" class="payment-method" style="">

@@ -9,8 +9,8 @@
 
 namespace fecshop\app\apphtml5\modules\Catalog\block\reviewproduct;
 
-use Yii;
 use fecshop\app\apphtml5\modules\Catalog\helpers\Review as ReviewHelper;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -63,7 +63,7 @@ class Lists
     {
         $this->initParam();
         if (!$this->spu || !$this->product_id) {
-            return ;
+            return;
         }
         $product = Yii::$service->product->getByPrimaryKey($this->product_id);
         if (!$product['spu']) {
@@ -77,7 +77,7 @@ class Lists
         $main_img = isset($image['main']['image']) ? $image['main']['image'] : '';
         $url_key = $product['url_key'];
         $name = Yii::$service->store->getStoreAttrVal($product['name'], 'name');
-        $addReviewUrl = Yii::$service->url->getUrl('catalog/reviewproduct/add', ['_id' => $this->product_id,'spu' => $spu]);
+        $addReviewUrl = Yii::$service->url->getUrl('catalog/reviewproduct/add', ['_id' => $this->product_id, 'spu' => $spu]);
         if ($this->filterBySpu) {
             $data = $this->getReviewsBySpu($this->spu);
             $count = $data['count'];
@@ -93,7 +93,7 @@ class Lists
                 'review_count' => $review_count,
                 'reviw_rate_star_average' => $reviw_rate_star_average,
                 'pageToolBar' => $pageToolBar,
-                'coll' => $coll ,
+                'coll' => $coll,
                 'noActiveStatus' => Yii::$service->product->review->noActiveStatus(),
                 'addReviewUrl' => $addReviewUrl,
                 'name' => $name,
@@ -111,7 +111,7 @@ class Lists
         $filter = [
             'numPerPage' => $this->numPerPage,
             'pageNum' => $this->pageNum,
-            'orderBy' => [ $this->filterOrderBy => SORT_DESC ],
+            'orderBy' => [$this->filterOrderBy => SORT_DESC],
             'where' => [
                 [
                     '$or' => [

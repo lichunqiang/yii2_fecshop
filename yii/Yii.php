@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
-
 $dir = __DIR__ . '/../../../yiisoft/yii2';
 require $dir . '/BaseYii.php';
 /**

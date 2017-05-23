@@ -9,8 +9,8 @@
 
 namespace fecshop\models\mongodb;
 
-use yii\mongodb\ActiveRecord;
 use yii\base\InvalidValueException;
+use yii\mongodb\ActiveRecord;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -50,12 +50,12 @@ class Search extends ActiveRecord
             'special_price',
             'special_from',
             'special_to',
-            'final_price',   # 算出来的最终价格。这个通过脚本赋值。
+            'final_price',   // 算出来的最终价格。这个通过脚本赋值。
             'image',
             'short_description',
             'description',
             'created_at',
-            'sync_updated_at',  # 同步产品表信息到搜索表的时间戳。
+            'sync_updated_at',  // 同步产品表信息到搜索表的时间戳。
         ];
         if (is_array(self::$_filterColumns) && !empty(self::$_filterColumns)) {
             $origin = array_merge($origin, self::$_filterColumns);

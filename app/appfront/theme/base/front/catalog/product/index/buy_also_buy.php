@@ -12,7 +12,7 @@
 					<div class="item">
 						<p class="tc pro_img">
 							<a style="" class="i_proImg" href="<?= $product['url'] ?>">
-								<img style="width:100%;" class="lazyOwl" data-src="<?= Yii::$service->product->image->getResize($product['image'], [180,200], false) ?>"  src="<?= Yii::$service->image->getImgUrl('images/lazyload1.gif', 'appfront') ; ?>">
+								<img style="width:100%;" class="lazyOwl" data-src="<?= Yii::$service->product->image->getResize($product['image'], [180, 200], false) ?>"  src="<?= Yii::$service->image->getImgUrl('images/lazyload1.gif', 'appfront'); ?>">
 							</a>
 						</p>
 						<!--
@@ -54,7 +54,7 @@ $(document).ready(function(){
 });
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['owl_fecshop_slider'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+<?php $this->registerJs($this->blocks['owl_fecshop_slider'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 <?php 
 }  ?>
 

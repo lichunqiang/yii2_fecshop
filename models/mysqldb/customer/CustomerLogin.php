@@ -10,8 +10,8 @@
 namespace fecshop\models\mysqldb\customer;
 
 use fecshop\models\mysqldb\Customer;
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -28,7 +28,7 @@ class CustomerLogin extends Model
     {
         return [
             [['email', 'password'], 'required'],
-            ['email','email'],
+            ['email', 'email'],
             ['password', 'validatePassword'],
         ];
     }

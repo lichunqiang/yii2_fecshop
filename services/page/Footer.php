@@ -9,11 +9,11 @@
 
 namespace fecshop\services\page;
 
-use Yii;
 use fecshop\services\Service;
+use Yii;
 
 /**
- * Breadcrumbs services
+ * Breadcrumbs services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */

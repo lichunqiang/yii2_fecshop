@@ -9,32 +9,32 @@
 
 namespace fecshop\app\appadmin\modules\Customer\block\account;
 
-use Yii;
-use fecshop\app\appadmin\modules\AppadminbaseBlock;
 use fec\helpers\CUrl;
 use fecshop\app\appadmin\interfaces\base\AppadminbaseBlockInterface;
+use fecshop\app\appadmin\modules\AppadminbaseBlock;
+use Yii;
 
 /**
- * block cms\article
+ * block cms\article.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
 {
     /**
-     * init param function ,execute in construct
+     * init param function ,execute in construct.
      */
     public function init()
     {
-        /**
+        /*
          * edit data url
          */
         $this->_editUrl = CUrl::getUrl('customer/account/manageredit');
-        /**
+        /*
          * delete data url
          */
         $this->_deleteUrl = CUrl::getUrl('customer/account/managerdelete');
-        /**
+        /*
          * service component, data provider
          */
         $this->_service = Yii::$service->customer;
@@ -44,17 +44,17 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
     public function getLastData()
     {
 
-        # hidden section ,that storage page info
+        // hidden section ,that storage page info
         $pagerForm = $this->getPagerForm();
-        # search section
+        // search section
         $searchBar = $this->getSearchBar();
-        # edit button, delete button,
+        // edit button, delete button,
         $editBar = $this->getEditBar();
-        # table head
+        // table head
         $thead = $this->getTableThead();
-        # table body
+        // table body
         $tbody = $this->getTableTbody();
-        # paging section
+        // paging section
         $toolBar = $this->getToolBar($this->_param['numCount'], $this->_param['pageNum'], $this->_param['numPerPage']);
 
         return [
@@ -68,7 +68,7 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
     }
 
     /**
-     * get search bar Arr config
+     * get search bar Arr config.
      */
     public function getSearchArr()
     {
@@ -76,42 +76,42 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
         $activeStatus = Yii::$service->customer->getStatusActive();
 
         $data = [
-            [    # selecit的Int 类型
+            [    // selecit的Int 类型
                 'type' => 'select',
                 'title' => '状态',
                 'name' => 'status',
-                'columns_type' => 'int',  # int使用标准匹配， string使用模糊查询
-                'value' => [                    # select 类型的值
+                'columns_type' => 'int',  // int使用标准匹配， string使用模糊查询
+                'value' => [                    // select 类型的值
                     $activeStatus => '激活',
                     $deleteStatus => '关闭',
                 ],
             ],
 
-            [    # 字符串类型
+            [    // 字符串类型
                 'type' => 'inputtext',
                 'title' => '邮箱',
-                'name' => 'email' ,
+                'name' => 'email',
                 'columns_type' => 'string',
             ],
-            [    # selecit的Int 类型
+            [    // selecit的Int 类型
                 'type' => 'select',
                 'title' => '订阅',
                 'name' => 'is_subscribed',
-                'columns_type' => 'int',  # int使用标准匹配， string使用模糊查询
-                'value' => [                    # select 类型的值
+                'columns_type' => 'int',  // int使用标准匹配， string使用模糊查询
+                'value' => [                    // select 类型的值
                     1 => '订阅',
                     2 => '不订阅',
                 ],
             ],
 
-            [    # 字符串类型
+            [    // 字符串类型
                 'type' => 'inputtext',
                 'title' => '密码重置token',
-                'name' => 'password_reset_token' ,
+                'name' => 'password_reset_token',
                 'columns_type' => 'string',
             ],
 
-            [    # 时间区间类型搜索
+            [    // 时间区间类型搜索
                 'type' => 'inputdatefilter',
                 'name' => 'created_at',
                 'columns_type' => 'int',
@@ -216,6 +216,6 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
 
         ];
 
-        return $table_th_bar ;
+        return $table_th_bar;
     }
 }

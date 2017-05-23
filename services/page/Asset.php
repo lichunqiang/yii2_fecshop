@@ -9,11 +9,11 @@
 
 namespace fecshop\services\page;
 
-use Yii;
 use fecshop\services\Service;
+use Yii;
 
 /**
- * page asset services
+ * page asset services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -24,17 +24,17 @@ class Asset extends Service
 
     public $jsVersion = 1;   //?v=115
     public $cssVersion = 1;   //?v=115
-    # js 和 css 如果想用独立的域名，可以在这里设置相应的域名。
+    // js 和 css 如果想用独立的域名，可以在这里设置相应的域名。
     public $jsCssDomain;
     /**
      * 在模板路径下的相对文件夹。
      * 譬如模板路径为@fecshop/app/theme/base/front
-     * 那么js,css路径默认为@fecshop/app/theme/base/front/assets
+     * 那么js,css路径默认为@fecshop/app/theme/base/front/assets.
      */
     public $defaultDir = 'assets';
 
     /**
-     * 文件路径默认放到模板路径下面的assets里面
+     * 文件路径默认放到模板路径下面的assets里面.
      */
     protected function actionRegister($view)
     {

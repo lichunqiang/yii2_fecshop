@@ -37,7 +37,7 @@ class Page
         $lastSpaceShow = false;
         $frontPage = [];
         $behindPage = [];
-        $endSpaceNum = $maxPageNum - $spaceShowNum + 1    ;
+        $endSpaceNum = $maxPageNum - $spaceShowNum + 1;
         $hiddenPageMaxCount = 2 * $spaceShowNum + 1;
         $hiddenFrontStr = '';
         $hiddenBehindStr = '';

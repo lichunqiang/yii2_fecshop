@@ -24,11 +24,11 @@ class Placeorder
 
     public $_address_id;
     /**
-     * 用户的货运方式
+     * 用户的货运方式.
      */
     public $_shipping_method;
     /**
-     * 用户的支付方式
+     * 用户的支付方式.
      */
     public $_payment_method;
 
@@ -37,29 +37,29 @@ class Placeorder
         $post = Yii::$app->request->post();
         if (is_array($post) && !empty($post)) {
             /**
-             * 对传递的数据，去除掉非法xss攻击部分内容（通过 \Yii::$service->helper->htmlEncode()）
+             * 对传递的数据，去除掉非法xss攻击部分内容（通过 \Yii::$service->helper->htmlEncode()）.
              */
             $post = \Yii::$service->helper->htmlEncode($post);
-            # 检查前台传递的数据的完整性
+            // 检查前台传递的数据的完整性
             if ($this->checkOrderInfoAndInit($post)) {
-                # 如果游客用户勾选了注册账号，则注册，登录，并把地址写入到用户的address中
+                // 如果游客用户勾选了注册账号，则注册，登录，并把地址写入到用户的address中
                 $gus_status = $this->guestCreateAndLoginAccount($post);
                 $save_address_status = $this->updateAddress($post);
                 if ($gus_status && $save_address_status) {
-                    # 更新Cart信息
+                    // 更新Cart信息
                     //$this->updateCart();
-                    # 设置checkout type
+                    // 设置checkout type
                     $serviceOrder = Yii::$service->order;
                     $checkout_type = $serviceOrder::CHECKOUT_TYPE_STANDARD;
                     $serviceOrder->setCheckoutType($checkout_type);
-                    # 将购物车数据，生成订单。
+                    // 将购物车数据，生成订单。
                     $genarateStatus = Yii::$service->order->generateOrderByCart($this->_billing, $this->_shipping_method, $this->_payment_method);
                     if ($genarateStatus) {
-                        # 得到当前的订单信息
+                        // 得到当前的订单信息
                         //$orderInfo = Yii::$service->order->getCurrentOrderInfo();
-                        # 发送新订单邮件
+                        // 发送新订单邮件
                         //Yii::$service->email->order->sendCreateEmail($orderInfo);
-                        # 得到支付跳转前的准备页面。
+                        // 得到支付跳转前的准备页面。
                         $startUrl = Yii::$service->payment->getStandardStartUrl();
                         Yii::$service->url->redirect($startUrl);
 
@@ -204,7 +204,7 @@ class Placeorder
             if (Yii::$app->user->isGuest) {
                 Yii::$service->helper->errors->add('address id can not use for guest');
 
-                return false; # address_id 这种情况，必须是登录用户。
+                return false; // address_id 这种情况，必须是登录用户。
             } else {
                 $customer_id = Yii::$app->user->identity->id;
                 if (!$customer_id) {
@@ -218,7 +218,7 @@ class Placeorder
 
                         return false;
                     } else {
-                        # 从address_id中取出来的字段，查看是否满足必写的要求。
+                        // 从address_id中取出来的字段，查看是否满足必写的要求。
                         if (!Yii::$service->order->checkRequiredAddressAttr($address_one)) {
                             return false;
                         }
@@ -231,7 +231,7 @@ class Placeorder
                 }
             }
         } elseif ($billing && is_array($billing)) {
-            # 检查address的必写字段是否都存在
+            // 检查address的必写字段是否都存在
             //var_dump($billing);exit;
             if (!Yii::$service->order->checkRequiredAddressAttr($billing)) {
                 return false;
@@ -240,7 +240,7 @@ class Placeorder
         }
         $shipping_method = isset($post['shipping_method']) ? $post['shipping_method'] : '';
         $payment_method = isset($post['payment_method']) ? $post['payment_method'] : '';
-        # 验证货运方式
+        // 验证货运方式
         if (!$shipping_method) {
             Yii::$service->helper->errors->add('shipping method can not empty');
 
@@ -252,7 +252,7 @@ class Placeorder
                 return false;
             }
         }
-        # 验证支付方式
+        // 验证支付方式
         if (!$payment_method) {
             Yii::$service->helper->errors->add('payment method can not empty');
 

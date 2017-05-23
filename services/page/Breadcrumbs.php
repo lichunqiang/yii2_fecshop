@@ -13,7 +13,7 @@ use fec\helpers\CUrl;
 use fecshop\services\Service;
 
 /**
- * Breadcrumbs services
+ * Breadcrumbs services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -38,7 +38,7 @@ class Breadcrumbs extends Service
     /**
      * property $items|Array. add $items to $this->_items.
      * $items format example.
-     * $items = ['name'=>'fashion handbag','url'=>'http://www.xxx.com'];
+     * $items = ['name'=>'fashion handbag','url'=>'http://www.xxx.com'];.
      */
     protected function actionAddItems($items)
     {
@@ -58,7 +58,7 @@ class Breadcrumbs extends Service
         }
     }
 
-    /**
+    /*
      * generate Breadcrumbs html ,before generate , you should use addItems function to add breadcrumbs items.
      */
     /*

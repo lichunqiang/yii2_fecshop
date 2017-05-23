@@ -9,13 +9,13 @@
 
 namespace fecshop\services\search;
 
-use Yii;
-use fecshop\services\Service;
 use fecshop\models\mongodb\Product;
 use fecshop\models\xunsearch\Search as XunSearchModel;
+use fecshop\services\Service;
+use Yii;
 
 /**
- * Search
+ * Search.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -27,24 +27,23 @@ class XunSearch extends Service implements SearchInterface
     public $synonyms = false;
 
     /**
-     * 初始化xunSearch索引
+     * 初始化xunSearch索引.
      */
     protected function actionInitFullSearchIndex()
     {
-        return;
     }
 
     /**
-     * 将产品信息同步到xunSearch引擎中
+     * 将产品信息同步到xunSearch引擎中.
      */
     protected function actionSyncProductInfo($product_ids, $numPerPage)
     {
         if (is_array($product_ids) && !empty($product_ids)) {
             $productPrimaryKey = Yii::$service->product->getPrimaryKey();
-            $XunSearchModel = new XunSearchModel;
+            $XunSearchModel = new XunSearchModel();
             $filter['select'] = $XunSearchModel->attributes();
             $filter['asArray'] = true;
-            $filter['where'][] = ['in',$productPrimaryKey,$product_ids];
+            $filter['where'][] = ['in', $productPrimaryKey, $product_ids];
             $filter['numPerPage'] = $numPerPage;
             $filter['pageNum'] = 1;
             $coll = Yii::$service->product->coll($filter);
@@ -66,7 +65,7 @@ class XunSearch extends Service implements SearchInterface
                             $serialize = true;
                             Yii::$service->helper->ar->save($XunSearchModel, $one, $serialize);
                             if ($errors = Yii::$service->helper->errors->get()) {
-                                # 报错。
+                                // 报错。
                                 echo  $errors;
                                 //return false;
                             }
@@ -81,20 +80,19 @@ class XunSearch extends Service implements SearchInterface
 
     protected function actionDeleteNotActiveProduct($nowTimeStamp)
     {
-        return;
     }
 
     /**
      * 删除在xunSearch的所有搜索数据，
      * 当您的产品有很多产品被删除了，但是在xunsearch 存在某些异常没有被删除
      * 您希望也被删除掉，那么，你可以通过这种方式批量删除掉产品
-     * 然后重新跑一边同步脚本
+     * 然后重新跑一边同步脚本.
      */
     protected function actionXunDeleteAllProduct($numPerPage, $i)
     {
         //var_dump($index);
         $dbName = XunSearchModel::projectName();
-        # 删除索引
+        // 删除索引
         Yii::$app->xunsearch->getDatabase($dbName)->getIndex()->clean();
         //$index = Yii::$app->xunsearch->getDatabase($dbName)->index;
 
@@ -110,7 +108,7 @@ class XunSearch extends Service implements SearchInterface
     }
 
     /**
-     * 得到搜索的sku列表
+     * 得到搜索的sku列表.
      */
     protected function actionGetSearchProductColl($select, $where, $pageNum, $numPerPage, $product_search_max_count)
     {
@@ -165,8 +163,7 @@ class XunSearch extends Service implements SearchInterface
         if (!empty($productIds)) {
             $query = Product::find()->asArray()
                     ->select($select)
-                    ->where(['_id' => ['$in' => $productIds]])
-                    ;
+                    ->where(['_id' => ['$in' => $productIds]]);
             $data = $query->all();
             /**
              * 下面的代码的作用：将结果按照上面in查询的顺序进行数组的排序，使结果和上面的搜索结果排序一致（_id）。
@@ -182,14 +179,14 @@ class XunSearch extends Service implements SearchInterface
             }
 
             return [
-                'coll' => $return_data ,
+                'coll' => $return_data,
                 'count' => $count,
             ];
         }
     }
 
     /**
-     * 得到搜索的sku列表侧栏的过滤
+     * 得到搜索的sku列表侧栏的过滤.
      */
     protected function actionGetFrontSearchFilter($filter_attr, $where)
     {
@@ -232,7 +229,7 @@ class XunSearch extends Service implements SearchInterface
     }
 
     /**
-     * 通过product_id删除搜索数据
+     * 通过product_id删除搜索数据.
      */
     protected function actionRemoveByProductId($product_id)
     {

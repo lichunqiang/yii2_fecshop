@@ -9,12 +9,12 @@
 
 namespace fecshop\services\customer;
 
-use Yii;
-use fecshop\services\Service;
 use fecshop\models\mongodb\customer\Newsletter as NewsletterModel;
+use fecshop\services\Service;
+use Yii;
 
 /**
- * Address  child services
+ * Address  child services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -56,7 +56,7 @@ class Newsletter extends Service
 
             return;
         }
-        $newsletterModel = new NewsletterModel;
+        $newsletterModel = new NewsletterModel();
         $newsletterModel->email = $emailAddress;
         $newsletterModel->created_at = time();
         $newsletterModel->status = NewsletterModel::ENABLE_STATUS;

@@ -6,11 +6,11 @@
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
-use yii\helpers\Html;
 use fec\helpers\CRequest;
 use fec\helpers\CUrl;
+use yii\helpers\Html;
 
-/**
+/*
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -191,7 +191,7 @@ function thissubmit(thiss){
 
 <div class="pageContent"> 
 	<form  method="post" action="<?= $saveUrl ?>" class="pageForm required-validate" onsubmit="return thissubmit(this, dialogAjaxDoneCloseAndReflush);">
-		<?php echo CRequest::getCsrfInputHtml();  ?>	
+		<?php echo CRequest::getCsrfInputHtml(); ?>	
 		<input type="hidden" name="operate"  value="<?=  $operate ?>" />
 		<input type="hidden" class="primary_info"  value="<?= $primaryInfo ?>" />
 		<div class="tabs" >

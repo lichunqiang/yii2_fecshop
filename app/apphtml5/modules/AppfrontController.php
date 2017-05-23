@@ -9,9 +9,9 @@
 
 namespace fecshop\app\apphtml5\modules;
 
-use Yii;
-use fec\helpers\CConfig;
 use fec\controllers\FecController;
+use fec\helpers\CConfig;
+use Yii;
 use yii\base\InvalidValueException;
 
 /**
@@ -35,18 +35,18 @@ class AppfrontController extends FecController
         if (!Yii::$service->page->theme->layoutFile) {
             Yii::$service->page->theme->layoutFile = CConfig::param('apphtml5BaseLayoutName');
         }
-        /**
+        /*
          *  set i18n translate category.
          */
         Yii::$service->page->translate->category = 'apphtml5';
-        /**
+        /*
          * 自定义Yii::$classMap,用于重写
          */
     }
 
     /**
      * get current block
-     * you can change $this->blockNamespace
+     * you can change $this->blockNamespace.
      */
     public function getBlock($blockName = '')
     {
@@ -64,7 +64,7 @@ class AppfrontController extends FecController
         $relativeFile = '\\' . $this->blockNamespace;
         $relativeFile .= '\\' . $viewId . '\\' . ucfirst($blockName);
 
-        return new $relativeFile;
+        return new $relativeFile();
     }
 
     /**
@@ -82,7 +82,7 @@ class AppfrontController extends FecController
     }
 
     /**
-     * Get current layoutFile absolute path from mutil theme dir by protity
+     * Get current layoutFile absolute path from mutil theme dir by protity.
      */
     public function findLayoutFile($view)
     {

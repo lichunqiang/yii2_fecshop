@@ -9,11 +9,11 @@
 
 namespace fecshop\services\page;
 
-use Yii;
 use fecshop\services\Service;
+use Yii;
 
 /**
- * Translate services
+ * Translate services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -22,12 +22,12 @@ class Translate extends Service
     /**
      * current i18n category. it will set in controller init .
      * example: fecshop\app\appfront\modules\AppfrontController
-     * code: 	Yii::$service->page->translate->category = 'appfront';
+     * code: 	Yii::$service->page->translate->category = 'appfront';.
      */
     public $category;
 
     /**
-     * Yii::$service->page->translate->__('Hello, {username}!', ['username' => $username]);
+     * Yii::$service->page->translate->__('Hello, {username}!', ['username' => $username]);.
      */
     public function __($text, $arr = [])
     {

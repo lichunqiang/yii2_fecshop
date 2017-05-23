@@ -9,8 +9,8 @@
 
 namespace fecshop\services\cms\staticblock;
 
-use Yii;
 use fecshop\models\mongodb\cms\StaticBlock;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -30,7 +30,7 @@ class StaticBlockMongodb implements StaticBlockInterface
         if ($primaryKey) {
             return StaticBlock::findOne($primaryKey);
         } else {
-            return new StaticBlock;
+            return new StaticBlock();
         }
     }
 
@@ -87,7 +87,7 @@ class StaticBlockMongodb implements StaticBlockInterface
                 return;
             }
         } else {
-            $model = new StaticBlock;
+            $model = new StaticBlock();
             $model->created_at = time();
             $model->created_user_id = \fec\helpers\CUser::getCurrentUserId();
             $primaryVal = new \MongoDB\BSON\ObjectId();
@@ -122,7 +122,7 @@ class StaticBlockMongodb implements StaticBlockInterface
     }
 
     /**
-     * remove Static Block
+     * remove Static Block.
      */
     public function remove($ids)
     {

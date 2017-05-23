@@ -9,9 +9,9 @@
 
 namespace fecshop\services\product;
 
+use fecshop\services\Service;
 use Yii;
 use yii\base\InvalidValueException;
-use fecshop\services\Service;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -20,15 +20,15 @@ use fecshop\services\Service;
 class Image extends Service
 {
     /**
-     * absolute image save floder
+     * absolute image save floder.
      */
     public $imageFloder = 'media/catalog/product';
     /**
-     * upload image max size
+     * upload image max size.
      */
     public $maxUploadMSize;
     /**
-     * allow image type
+     * allow image type.
      */
     public $allowImgType = [
         'image/jpeg',
@@ -44,7 +44,7 @@ class Image extends Service
     protected $_md5WaterImgPath;
 
     /**
-     * 得到保存产品图片所在相对根目录的url路径
+     * 得到保存产品图片所在相对根目录的url路径.
      */
     protected function actionGetBaseUrl()
     {
@@ -52,7 +52,7 @@ class Image extends Service
     }
 
     /**
-     * 得到保存产品图片所在相对根目录的文件夹路径
+     * 得到保存产品图片所在相对根目录的文件夹路径.
      */
     protected function actionGetBaseDir()
     {
@@ -60,7 +60,7 @@ class Image extends Service
     }
 
     /**
-     * 通过产品图片的相对路径得到产品图片的url
+     * 通过产品图片的相对路径得到产品图片的url.
      */
     protected function actionGetUrl($str)
     {
@@ -68,7 +68,7 @@ class Image extends Service
     }
 
     /**
-     * 通过产品图片的相对路径得到产品图片的绝对路径
+     * 通过产品图片的相对路径得到产品图片的绝对路径.
      */
     protected function actionGetDir($str)
     {
@@ -156,7 +156,7 @@ class Image extends Service
         }
 
         $imageArr = explode('/', $imageVal);
-        $dirArr = ['cache',$this->_md5WaterImgPath,$width,$height];
+        $dirArr = ['cache', $this->_md5WaterImgPath, $width, $height];
         foreach ($imageArr as $igf) {
             if ($igf && !strstr($igf, '.')) {
                 $dirArr[] = $igf;
@@ -166,6 +166,6 @@ class Image extends Service
         $newPath = $this->getBaseDir() . $baseDir . '/' . $width . '/' . $height . $imageVal;
         $newUrl = $this->getBaseUrl() . $baseDir . '/' . $width . '/' . $height . $imageVal;
 
-        return [$newPath,$newUrl];
+        return [$newPath, $newUrl];
     }
 }

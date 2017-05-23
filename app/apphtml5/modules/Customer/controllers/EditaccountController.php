@@ -9,8 +9,8 @@
 
 namespace fecshop\app\apphtml5\modules\Customer\controllers;
 
-use Yii;
 use fecshop\app\apphtml5\modules\AppfrontController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -28,9 +28,6 @@ class EditaccountController extends AppfrontController
         parent::init();
     }
 
-    /**
-     *
-     */
     public function actionIndex()
     {
         $editForm = Yii::$app->request->post('editForm');

@@ -7,13 +7,13 @@
  * @license http://www.fecshop.com/license/
  */
 
-# 本文件在app/web/index.php 处引入。
-# fecshop - appfront 的核心模块
+// 本文件在app/web/index.php 处引入。
+// fecshop - appfront 的核心模块
 $modules = [];
 foreach (glob(__DIR__ . '/modules/*.php') as $filename) {
     $modules = array_merge($modules, require($filename));
 }
-# 此处也可以重写fecshop的组件。供调用。
+// 此处也可以重写fecshop的组件。供调用。
 return [
     'modules' => $modules,
     /* only config in front web */
@@ -24,7 +24,7 @@ return [
         //'appfrontBaseLayoutName'=> 'main.php',
         'appName' => 'appserver',
     ],
-    # language config.
+    // language config.
     'components' => [
         'i18n' => [
             'translations' => [
@@ -35,7 +35,7 @@ return [
                         '@fecshop/app/appserver/languages',
                         '@appserver/languages',
                     ],
-                    'sourceLanguage' => 'en_US', # 如果 en_US 也想翻译，那么可以改成en_XX。
+                    'sourceLanguage' => 'en_US', // 如果 en_US 也想翻译，那么可以改成en_XX。
                 ],
             ],
         ],

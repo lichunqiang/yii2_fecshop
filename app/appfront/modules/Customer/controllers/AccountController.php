@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Customer\controllers;
 
-use Yii;
 use fecshop\app\appfront\modules\AppfrontController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -28,7 +28,7 @@ class AccountController extends AppfrontController
     }
 
     /**
-     * 账户中心
+     * 账户中心.
      */
     public function actionIndex()
     {
@@ -41,11 +41,11 @@ class AccountController extends AppfrontController
     }
 
     /**
-     * 登录
+     * 登录.
      */
     public function actionLogin()
     {
-        /**
+        /*
          exit;
          */
         if (!Yii::$app->user->isGuest) {
@@ -64,7 +64,7 @@ class AccountController extends AppfrontController
     }
 
     /**
-     * 注册
+     * 注册.
      */
     public function actionRegister()
     {
@@ -78,12 +78,12 @@ class AccountController extends AppfrontController
             //echo $registerStatus;exit;
             if ($registerStatus) {
                 $params_register = Yii::$app->getModule('customer')->params['register'];
-                # 注册成功后，是否自动登录
+                // 注册成功后，是否自动登录
                 if (isset($params_register['successAutoLogin']) && $params_register['successAutoLogin']) {
                     Yii::$service->customer->login($param);
                 }
                 if (!Yii::$app->user->isGuest) {
-                    # 注册成功后，跳转的页面，如果值为false， 则不跳转。
+                    // 注册成功后，跳转的页面，如果值为false， 则不跳转。
                     $urlKey = 'customer/account';
                     if (isset($params_register['loginSuccessRedirectUrlKey']) && $params_register['loginSuccessRedirectUrlKey']) {
                         $urlKey = $params_register['loginSuccessRedirectUrlKey'];
@@ -99,7 +99,7 @@ class AccountController extends AppfrontController
     }
 
     /**
-     * 登出账户
+     * 登出账户.
      */
     public function actionLogout()
     {
@@ -119,7 +119,7 @@ class AccountController extends AppfrontController
     }
 
     /**
-     * ajax 请求 ，得到是否登录账户的信息
+     * ajax 请求 ，得到是否登录账户的信息.
      */
     public function actionLogininfo()
     {
@@ -171,7 +171,7 @@ class AccountController extends AppfrontController
         if (!empty($editForm)) {
             $resetStatus = $this->getBlock()->resetPassword($editForm);
             if ($resetStatus) {
-                # 重置成功，跳转
+                // 重置成功，跳转
                 $resetSuccessUrl = Yii::$service->url->getUrl('customer/account/resetpasswordsuccess');
                 Yii::$service->url->redirect($resetSuccessUrl);
             }

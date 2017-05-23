@@ -118,7 +118,7 @@
                                         $is_require = $option['is_require'];   //$is_require==1 ? 'selected="selected"' : ''
                                         $sort_order = $option['sort_order'];
                                         $data = $option['data'];
-                                        $i ++;
+                                        $i++;
                                         $str .= '<div rel="' . $i . '" class="one_option">
 											<div class="close_panl">
 												<img src="' . \Yii::$service->image->getImgUrl('/images/bkg_btn-close2.gif') . '">	

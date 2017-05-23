@@ -10,7 +10,7 @@
 return [
     'helper' => [
         'class' => 'fecshop\services\Helper',
-        # 子服务
+        // 子服务
         'childService' => [
             'ar' => [
                 'class' => 'fecshop\services\helper\AR',
@@ -18,17 +18,17 @@ return [
             'log' => [
                 'class' => 'fecshop\services\helper\Log',
                 'log_config' => [
-                    # service log config
+                    // service log config
                     'services' => [
-                        # if enable is false , all services will be close
+                        // if enable is false , all services will be close
                         'enable' => false,
-                        # print log info to db.
+                        // print log info to db.
                         'dbprint' => false,
-                        # print log info to front html
+                        // print log info to front html
                         'htmlprint' => false,
-                        # print log
+                        // print log
                         'htmlprintbyparam' => [
-                            # like :http://fecshop.appfront.fancyecommerce.com/cn/?servicelog=xxxxxxxx
+                            // like :http://fecshop.appfront.fancyecommerce.com/cn/?servicelog=xxxxxxxx
                             'enable' => false,
                             'paramKey' => 'servicelog',
                             'paramVal' => 'xxxxxxxx',
@@ -46,10 +46,10 @@ return [
                 'class' => 'fecshop\services\helper\Captcha',
                 'charset' => '023456789', //随机因子
                 'codelen' => 4,  //验证码长度
-                'width' => 130,//宽度
+                'width' => 130, //宽度
                 'height' => 50, //高度
                 'fontsize' => 20, //子体大小
-                'case_sensitive' => false , // 是否区分大小写，false代表不区分
+                'case_sensitive' => false, // 是否区分大小写，false代表不区分
             ],
 
             'country' => [

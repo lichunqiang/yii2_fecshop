@@ -17,7 +17,7 @@ use fecshop\app\apphtml5\modules\AppfrontController;
  */
 class FavoriteproductController extends AppfrontController
 {
-    # 增加收藏
+    // 增加收藏
     public function actionAdd()
     {
         $data = $this->getBlock()->getLastData();

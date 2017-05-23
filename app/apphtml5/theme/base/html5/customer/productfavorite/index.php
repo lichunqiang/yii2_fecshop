@@ -27,7 +27,7 @@
 							<tr>
 								<td>
 									<a external href="<?= Yii::$service->url->getUrl($one['url_key'])  ?>">
-										<p style="text-align:center;"><img src="<?= Yii::$service->product->image->getResize($main_img, [80,80], false) ?>"></p>
+										<p style="text-align:center;"><img src="<?= Yii::$service->product->image->getResize($main_img, [80, 80], false) ?>"></p>
 									</a>
 								</td>
 								<td>
@@ -58,7 +58,7 @@
 								</td>
 								<td>
 									<div class="favorite-Operation addressbook " style="display:inline-block;float:right; margin-top: 0px;">
-										<a external href="<?= Yii::$service->url->getUrl('customer/productfavorite', ['type' => 'remove','favorite_id' => $one['favorite_id']]); ?>">
+										<a external href="<?= Yii::$service->url->getUrl('customer/productfavorite', ['type' => 'remove', 'favorite_id' => $one['favorite_id']]); ?>">
 											<span class="icon icon-remove"></span>
 										</a>
 									</div>

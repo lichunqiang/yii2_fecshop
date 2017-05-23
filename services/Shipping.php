@@ -12,14 +12,14 @@ namespace fecshop\services;
 use Yii;
 
 /**
- * Shipping services
+ * Shipping services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Shipping extends Service
 {
     public $shippingConfig;
-    public $shippingCsvDir; # 存放运费csv表格的文件路径。
+    public $shippingCsvDir; // 存放运费csv表格的文件路径。
     public $defaultShippingMethod;
 
     /**
@@ -85,7 +85,7 @@ class Shipping extends Service
         }
     }
 
-    # 通过方法，重量，国家，省，得到美元状态的运费金额
+    // 通过方法，重量，国家，省，得到美元状态的运费金额
 
     /**
      * @proeprty $shipping_method 货运方式的key
@@ -152,10 +152,10 @@ class Shipping extends Service
         //var_dump($m );exit;
         if (!empty($m) && is_array($m)) {
             $cost = $m['cost'];
-            # csv方式
+            // csv方式
             if ($cost === 'csv') {
 
-                #通过 运费方式，重量，国家，得到美元的运费
+                //通过 运费方式，重量，国家，得到美元的运费
                 $usdCost = $this->getShippingCostByCsvWeight($shipping_method, $weight, $country, $region);
                 //echo $usdCost;
                 $currentCost = Yii::$service->page->currency->getCurrentCurrencyPrice($usdCost);
@@ -164,10 +164,10 @@ class Shipping extends Service
                     'currCost' => $currentCost,
                     'baseCost' => $usdCost,
                 ];
-            # $cost = 0 代表为free shipping方式
+            // $cost = 0 代表为free shipping方式
             } elseif ($cost == 0) {
                 return [
-                    'currCost' => number_format(0, 2) ,
+                    'currCost' => number_format(0, 2),
                     'baseCost' => number_format(0, 2),
                 ];
             }
@@ -205,7 +205,7 @@ class Shipping extends Service
                 $Region = $arr[1];
                 $Weight = $arr[3];
                 $ShippingPrice = $arr[4];
-                $shippingArr[$country][$Region][] = [$Weight,$ShippingPrice];
+                $shippingArr[$country][$Region][] = [$Weight, $ShippingPrice];
             }
             $i++;
         }

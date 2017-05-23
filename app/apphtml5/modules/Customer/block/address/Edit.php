@@ -38,7 +38,7 @@ class Edit
                 $identity = Yii::$app->user->identity;
                 $customer_id = $identity['id'];
                 if ($addressModel['address_id']) {
-                    # 该id必须是当前用户的
+                    // 该id必须是当前用户的
                     if ($customer_id == $addressModel['customer_id']) {
                         foreach ($addressModel as $k => $v) {
                             $this->_address[$k] = $v;
@@ -59,17 +59,17 @@ class Edit
         if (!isset($this->_address['email']) || empty($this->_address['email'])) {
             $identity = Yii::$app->user->identity;
             $email = $identity['email'];
-            $this->_address['email'] = $email ;
+            $this->_address['email'] = $email;
         }
         if (!isset($this->_address['first_name']) || empty($this->_address['first_name'])) {
             $identity = Yii::$app->user->identity;
             $first_name = $identity['firstname'];
-            $this->_address['first_name'] = $first_name ;
+            $this->_address['first_name'] = $first_name;
         }
         if (!isset($this->_address['last_name']) || empty($this->_address['last_name'])) {
             $identity = Yii::$app->user->identity;
             $last_name = $identity['lastname'];
-            $this->_address['last_name'] = $last_name ;
+            $this->_address['last_name'] = $last_name;
         }
     }
 

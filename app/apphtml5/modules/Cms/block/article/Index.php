@@ -9,8 +9,8 @@
 
 namespace fecshop\app\apphtml5\modules\cms\block\article;
 
-use Yii;
 use fec\helpers\CRequest;
+use Yii;
 
 class Index
 {
@@ -22,7 +22,7 @@ class Index
 
         //echo Yii::$service->page->translate->__('fecshop,{username}', ['username' => 'terry']);
         $this->initHead();
-        # change current layout File.
+        // change current layout File.
         //Yii::$service->page->theme->layoutFile = 'home.php';
         return [
             'title' => $this->_title,
@@ -36,7 +36,7 @@ class Index
         $primaryKey = Yii::$service->cms->article->getPrimaryKey();
         $primaryVal = CRequest::param($primaryKey);
         $article = Yii::$service->cms->article->getByPrimaryKey($primaryVal);
-        $this->_artile = $article ;
+        $this->_artile = $article;
 
         Yii::$app->view->registerMetaTag([
             'name' => 'keywords',

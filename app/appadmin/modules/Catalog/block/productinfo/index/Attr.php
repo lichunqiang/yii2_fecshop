@@ -9,12 +9,12 @@
 
 namespace fecshop\app\appadmin\modules\Catalog\block\productinfo\index;
 
-use Yii;
 use fec\helpers\CRequest;
 use fecshop\app\appadmin\modules\Catalog\helper\Product as ProductHelper;
+use Yii;
 
 /**
- * block catalog/productinfo
+ * block catalog/productinfo.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */

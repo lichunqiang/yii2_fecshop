@@ -8,7 +8,7 @@
  */
 ?>
 
-<?php $items = Yii::$service->page->breadcrumbs->getItems();    ?>
+<?php $items = Yii::$service->page->breadcrumbs->getItems(); ?>
 <?php if (is_array($items) && !empty($items)) {
     ?>
 	<div class="breadcrumbs">

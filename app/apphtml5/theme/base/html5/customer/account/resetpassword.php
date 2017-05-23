@@ -130,7 +130,7 @@
 	});
 	<?php $this->endBlock(); ?>  
 	</script>  
-	<?php $this->registerJs($this->blocks['customer_account_reset'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+	<?php $this->registerJs($this->blocks['customer_account_reset'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 
 <?php 
@@ -138,7 +138,7 @@
     ?>
 	<div>
 		<?php
-            $param = ['logUrlB' => '<a href="' . $forgotPasswordUrl . '">','logUrlE' => '</a> ']; ?>
+            $param = ['logUrlB' => '<a href="' . $forgotPasswordUrl . '">', 'logUrlE' => '</a> ']; ?>
 		<?= Yii::$service->page->translate->__('Your Reset Password Token is Expired, You can {logUrlB} click here {logUrlE} to retrieve it ', $param); ?>
 		
 	</div>

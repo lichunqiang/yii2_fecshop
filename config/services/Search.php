@@ -22,7 +22,7 @@ return [
                     'name' => 10,
                     'description' => 5,
                 ],
-                #more : https://docs.mongodb.com/manual/reference/text-search-languages/#text-search-languages
+                //more : https://docs.mongodb.com/manual/reference/text-search-languages/#text-search-languages
                 /* example:
                 'searchLang'  => [
                     'en' => 'english',

@@ -9,13 +9,13 @@
 
 namespace fecshop\services\cms;
 
-use Yii;
-use fecshop\services\Service;
-use fecshop\services\cms\staticblock\StaticBlockMysqldb;
 use fecshop\services\cms\staticblock\StaticBlockMongodb;
+use fecshop\services\cms\staticblock\StaticBlockMysqldb;
+use fecshop\services\Service;
+use Yii;
 
 /**
- * Cms StaticBlock services
+ * Cms StaticBlock services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -30,15 +30,15 @@ class StaticBlock extends Service
     public function init()
     {
         if ($this->storage == 'mongodb') {
-            $this->_static_block = new StaticBlockMongodb;
+            $this->_static_block = new StaticBlockMongodb();
         } elseif ($this->storage == 'mysqldb') {
-            $this->_static_block = new StaticBlockMysqldb;
+            $this->_static_block = new StaticBlockMysqldb();
         }
     }
 
     /**
      * get store static block content by identify
-     * example <?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('home-big-img','appfront') ?>
+     * example <?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('home-big-img','appfront') ?>.
      */
     protected function actionGetStoreContentByIdentify($identify, $app = 'common')
     {

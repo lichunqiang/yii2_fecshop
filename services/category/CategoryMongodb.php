@@ -9,8 +9,8 @@
 
 namespace fecshop\services\category;
 
-use Yii;
 use fecshop\models\mongodb\Category;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -36,7 +36,7 @@ class CategoryMongodb implements CategoryInterface
         if ($primaryKey) {
             return Category::findOne($primaryKey);
         } else {
-            return new Category;
+            return new Category();
         }
     }
 
@@ -66,7 +66,7 @@ class CategoryMongodb implements CategoryInterface
     }
 
     /**
-     *  得到总数
+     *  得到总数.
      */
     public function collCount($filter = '')
     {
@@ -94,14 +94,14 @@ class CategoryMongodb implements CategoryInterface
             }
             $parent_id = $model['parent_id'];
         } else {
-            $model = new Category;
+            $model = new Category();
             $model->created_at = time();
             $model->created_user_id = \fec\helpers\CUser::getCurrentUserId();
             $primaryVal = new \MongoDB\BSON\ObjectId();
             $model->{$this->getPrimaryKey()} = $primaryVal;
             $parent_id = $one['parent_id'];
         }
-        # 增加分类的级别字段level，从1级级别开始依次类推。
+        // 增加分类的级别字段level，从1级级别开始依次类推。
         if ($parent_id === '0') {
             $model['level'] = 1;
         } else {
@@ -171,7 +171,7 @@ class CategoryMongodb implements CategoryInterface
     /**
      *  得到分类的树数组。
      *  数组中只有  id  name(default language), child(子分类) 等数据。
-     *  目前此函数仅仅用于后台对分类的编辑使用。 appadmin
+     *  目前此函数仅仅用于后台对分类的编辑使用。 appadmin.
      */
     public function getTreeArr($rootCategoryId = '', $lang = '')
     {

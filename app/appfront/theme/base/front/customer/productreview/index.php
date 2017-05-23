@@ -5,7 +5,7 @@
 		<div class="account_review_product">
 			<div style="margin:4px 0 0">
 				<div class="page-title">
-					<h2><?= Yii::$service->page->translate->__('Product Review');?></h2>
+					<h2><?= Yii::$service->page->translate->__('Product Review'); ?></h2>
 				</div>
 				<div style="width:100%;min-height:500px;">
 					<div style="width:100%;">
@@ -23,7 +23,7 @@
 											<?php $main_image = isset($one['image']['main']['image']) ? $one['image']['main']['image'] : '' ?>
 											<div class="review_description_left">
 												<a class="product_img" href="<?= Yii::$service->url->getUrl($one['url_key']); ?>">
-													<img src="<?= Yii::$service->product->image->getResize($main_image, [120,120], false) ?>" />
+													<img src="<?= Yii::$service->product->image->getResize($main_image, [120, 120], false) ?>" />
 												</a>
 												<a  href="#" class="review_star review_star_<?= $one['rate_star'] ?>" onclick="javascript:return false;"></a>
 												

@@ -9,11 +9,11 @@
 
 namespace fecshop\services\page;
 
-use Yii;
 use fecshop\services\Service;
+use Yii;
 
 /**
- * Breadcrumbs services
+ * Breadcrumbs services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -23,7 +23,7 @@ class Message extends Service
     protected $_errorName = 'error_message';
 
     /**
-     * 增加 correct message
+     * 增加 correct message.
      * @property $message | String
      */
     protected function actionAddCorrect($message)
@@ -43,7 +43,7 @@ class Message extends Service
     }
 
     /**
-     * 增加 error message
+     * 增加 error message.
      * @property $message | String
      */
     protected function actionAddError($message)
@@ -86,7 +86,7 @@ class Message extends Service
     }
 
     /**
-     * 获取 correct message
+     * 获取 correct message.
      * @return array
      */
     protected function actionGetCorrects()
@@ -95,7 +95,7 @@ class Message extends Service
     }
 
     /**
-     * 获取 error message
+     * 获取 error message.
      * @return array
      */
     protected function actionGetErrors()

@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appadmin\modules\Cms\controllers;
 
-use Yii;
 use fecshop\app\appadmin\modules\Cms\CmsController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -44,7 +44,7 @@ class StaticblockController extends CmsController
         $this->getBlock('manageredit')->delete();
     }
 
-    # cms/staticblock/imageupload
+    // cms/staticblock/imageupload
     public function actionImageupload()
     {
         //$imgUrl = 'http://fecshop.appadmin.fancyecommerce.com/assets/9e150533/dwz_jui-master/themes/default/images/logo.png';

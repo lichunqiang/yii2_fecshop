@@ -23,7 +23,7 @@ use fecshop\app\apphtml5\helper\Format;
 							<div class="row">
 								<div class="col-20">
 									<a external href="<?= $product_one['url'] ?>" title="<?= $product_one['name'] ?>" class="product-image">
-										<img src="<?= Yii::$service->product->image->getResize($product_one['image'], [150,150], false) ?>" alt="<?= $product_one['name'] ?>" width="75" height="75">
+										<img src="<?= Yii::$service->product->image->getResize($product_one['image'], [150, 150], false) ?>" alt="<?= $product_one['name'] ?>" width="75" height="75">
 									</a>
 								</div>
 								<div class="col-80">
@@ -139,7 +139,7 @@ use fecshop\app\apphtml5\helper\Format;
     ?>
 		<div class="empty_cart">
 		<?php
-            $param = ['urlB' => '<a  external rel="nofollow" href="' . Yii::$service->url->getUrl('customer/account/login') . '">','urlE' => '</a>']; ?>	
+            $param = ['urlB' => '<a  external rel="nofollow" href="' . Yii::$service->url->getUrl('customer/account/login') . '">', 'urlE' => '</a>']; ?>	
 		
 		<div id="empty_cart_info">
 			<?= Yii::$service->page->translate->__('Your Shopping Cart is empty'); ?>
@@ -273,5 +273,5 @@ $(document).ready(function(){
 });
 
 <?php $this->endBlock(); ?> 
-<?php $this->registerJs($this->blocks['changeCartInfo'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+<?php $this->registerJs($this->blocks['changeCartInfo'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 </script>

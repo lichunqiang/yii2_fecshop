@@ -20,29 +20,29 @@ class Store extends Service
 {
     /**
      * init by config file.
-     * all stores config . include : domain,language,theme,themePackage
+     * all stores config . include : domain,language,theme,themePackage.
      */
     public $stores;
 
     public $store;
     /**
-     * current store language,for example: en_US,fr_FR
+     * current store language,for example: en_US,fr_FR.
      */
     public $currentLang;
     /**
-     * current store language name
+     * current store language name.
      */
     public $currentLangName;
     /**
-     * current store theme package
+     * current store theme package.
      */
     //public $currentThemePackage = 'default';
     /**
-     * current store theme
+     * current store theme.
      */
     //public $currentTheme = 'default';
     /**
-     * 当前store的key，也就是当前的store
+     * 当前store的key，也就是当前的store.
      */
     public $currentStore;
     /**
@@ -79,21 +79,21 @@ class Store extends Service
                     if (isset($store['theme']) && !empty($store['theme'])) {
                         Yii::$service->store->currentTheme = $store['theme'];
                     }
-                    /**
+                    /*
                      * set local theme dir.
                      */
                     if (isset($store['localThemeDir']) && $store['localThemeDir']) {
                         //Yii::$service->page->theme->localThemeDir = $store['localThemeDir'];
                         Yii::$service->page->theme->setLocalThemeDir($store['localThemeDir']);
                     }
-                    /**
+                    /*
                      * set third theme dir.
                      */
                     if (isset($store['thirdThemeDir']) && $store['thirdThemeDir']) {
                         //Yii::$service->page->theme->thirdThemeDir = $store['thirdThemeDir'];
                         Yii::$service->page->theme->setThirdThemeDir($store['thirdThemeDir']);
                     }
-                    /**
+                    /*
                      * init store currency.
                      */
                     if (isset($store['currency']) && !empty($store['currency'])) {
@@ -125,12 +125,12 @@ class Store extends Service
             return;
         }
         $mobileDetect = Yii::$service->helper->mobileDetect;
-        $enable = isset($store['mobile']['enable']) ? $store['mobile']['enable'] : false ;
+        $enable = isset($store['mobile']['enable']) ? $store['mobile']['enable'] : false;
         if (!$enable) {
             return;
         }
-        $condition = isset($store['mobile']['condition']) ? $store['mobile']['condition'] : false ;
-        $redirectDomain = isset($store['mobile']['redirectDomain']) ? $store['mobile']['redirectDomain'] : false ;
+        $condition = isset($store['mobile']['condition']) ? $store['mobile']['condition'] : false;
+        $redirectDomain = isset($store['mobile']['redirectDomain']) ? $store['mobile']['redirectDomain'] : false;
         if (is_array($condition) && !empty($condition) && !empty($redirectDomain)) {
             if (in_array('phone', $condition) && in_array('tablet', $condition)) {
                 if ($mobileDetect->isMobile()) {

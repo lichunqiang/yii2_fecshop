@@ -12,16 +12,16 @@ namespace fecshop\services;
 use Yii;
 
 /**
- * Payment services
+ * Payment services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Payment extends Service
 {
     public $paymentConfig;
-    # 不需要释放库存的支付方式。譬如货到付款，在系统中
-    # pending订单，如果一段时间未付款，会释放产品库存，但是货到付款类型的订单不会释放，
-    # 如果需要释放产品库存，客服在后台取消订单即可释放产品库存。
+    // 不需要释放库存的支付方式。譬如货到付款，在系统中
+    // pending订单，如果一段时间未付款，会释放产品库存，但是货到付款类型的订单不会释放，
+    // 如果需要释放产品库存，客服在后台取消订单即可释放产品库存。
 
     public $noRelasePaymentMethod;
     protected $_currentPaymentMethod;
@@ -262,9 +262,9 @@ class Payment extends Service
         }
     }
 
-    ####################
-    ## Express 部分   ##
-    ####################
+    //###################
+    //# Express 部分   ##
+    //###################
 
     /**
      * @property $payment_method | String 支付方式。

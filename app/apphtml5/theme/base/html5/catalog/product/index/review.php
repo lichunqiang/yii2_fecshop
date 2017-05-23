@@ -50,10 +50,10 @@
 			<div class="clear"></div>
 			
 			<p class="buttons-row">
-				<a external href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/add', ['spu' => $spu,'_id' => $_id]); ?>" class="button button-round">
+				<a external href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/add', ['spu' => $spu, '_id' => $_id]); ?>" class="button button-round">
 					<?= Yii::$service->page->translate->__('Add Review'); ?>
 				</a>
-				<a external href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/lists', ['spu' => $spu,'_id' => $_id]); ?>" class="button button-round">
+				<a external href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/lists', ['spu' => $spu, '_id' => $_id]); ?>" class="button button-round">
 					<?= Yii::$service->page->translate->__('View  All Review'); ?>(<?= $review_count; ?>) 
 				</a>
 			</p>

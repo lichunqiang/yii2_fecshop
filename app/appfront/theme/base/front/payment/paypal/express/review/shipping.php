@@ -2,7 +2,7 @@
 use fecshop\app\appfront\helper\Format;
 
 ?>
-<?php  $shippings = $parentThis['shippings'];   ?>
+<?php  $shippings = $parentThis['shippings']; ?>
 <div class="onestepcheckout-shipping-method">
 	<p class="onestepcheckout-numbers onestepcheckout-numbers-2"><?= Yii::$service->page->translate->__('Shipping Method') ?></p>
 	<div class="onestepcheckout-shipping-method-block">    

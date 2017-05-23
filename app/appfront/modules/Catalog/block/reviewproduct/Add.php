@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Catalog\block\reviewproduct;
 
-use Yii;
 use fecshop\app\appfront\modules\Catalog\helpers\Review as ReviewHelper;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -111,7 +111,7 @@ class Add
 
             return;
         }
-        # captcha validate
+        // captcha validate
         $captcha = isset($editForm['captcha']) ? $editForm['captcha'] : '';
         if ($add_captcha && !$captcha) {
             Yii::$service->page->message->addError(['Captcha can not empty']);
@@ -126,7 +126,7 @@ class Add
         if (!$product['spu']) {
             Yii::$service->page->message->addError('product _id:' . $product_id . '  is not exist in product collection');
 
-            return ;
+            return;
         }
         $editForm['spu'] = $product['spu'];
         $editForm['status'] = $product['spu'];

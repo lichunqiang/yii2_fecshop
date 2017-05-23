@@ -21,5 +21,5 @@
 </div>
 
 <div class="account_footer">
-	<a   external  href="<?= Yii::$service->url->getUrl('customer/account/logout');?> " class="button button-fill button-bbb">Logout</a>
+	<a   external  href="<?= Yii::$service->url->getUrl('customer/account/logout'); ?> " class="button button-fill button-bbb">Logout</a>
 </div>

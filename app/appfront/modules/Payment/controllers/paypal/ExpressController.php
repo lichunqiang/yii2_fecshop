@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Payment\controllers\paypal;
 
-use Yii;
 use fecshop\app\appfront\modules\AppfrontController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -25,7 +25,7 @@ class ExpressController extends AppfrontController
         $data = $this->getBlock()->startExpress();
     }
 
-    # 2.Review  从paypal确认后返回
+    // 2.Review  从paypal确认后返回
     public function actionReview()
     {
         $_csrf = Yii::$app->request->post('_csrf');

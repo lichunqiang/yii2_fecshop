@@ -47,7 +47,7 @@ class UrlrewriteController extends Controller
     }
 
     /**
-     * 处理产品的重写
+     * 处理产品的重写.
      */
     public function actionProduct($pageNum)
     {
@@ -80,7 +80,7 @@ class UrlrewriteController extends Controller
     }
 
     /**
-     * 处理分类的重写
+     * 处理分类的重写.
      */
     public function actionCategory($pageNum)
     {
@@ -95,7 +95,7 @@ class UrlrewriteController extends Controller
     }
 
     /**
-     * 删除时间小于nowtime的
+     * 删除时间小于nowtime的.
      */
     public function actionClearnoactive($nowtime)
     {

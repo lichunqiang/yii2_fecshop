@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Customer\controllers;
 
-use Yii;
 use fecshop\app\appfront\modules\AppfrontController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -39,7 +39,7 @@ class GoogleController extends AppfrontController
         $redirectUrl = Yii::$service->url->getUrl($urlKey);
         $Social_obj = new \Social($redirectUrl);
         $user = $Social_obj->google();
-        # 服务器放到国外才行。不然上面无法返回数据。
+        // 服务器放到国外才行。不然上面无法返回数据。
         if (is_array($user) && !empty($user)) {
             $fullname = $user['name'];
             $email = $user['email'];
@@ -50,7 +50,7 @@ class GoogleController extends AppfrontController
     }
 
     /**
-     * google账户登录
+     * google账户登录.
      */
     public function accountLogin($full_name, $email)
     {

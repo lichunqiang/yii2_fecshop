@@ -20,7 +20,7 @@ class CustomOption
     public $custom_option;
     public $attr_group;
     public $product_id;
-    public $middle_img_width; # 图片的宽度。
+    public $middle_img_width; // 图片的宽度。
     protected $_custom_option_arr;
 
     public function getLastData()
@@ -28,7 +28,7 @@ class CustomOption
         $items = $this->getAllItems();
         //var_dump($items);exit;
         return [
-            'items' => $items ,
+            'items' => $items,
             'product_id' => $this->product_id,
             'custom_option_arr' => json_encode($this->_custom_option_arr),
             'middle_img_width' => $this->middle_img_width,
@@ -39,10 +39,10 @@ class CustomOption
     {
         $custom_option_attr_info = Yii::$service->product->getCustomOptionAttrInfo($this->attr_group);
 
-        ##########
+        //#########
         $my_arr = [];
         $arr = [];
-        ##在custom_option里面第一个属性
+        //#在custom_option里面第一个属性
         $img_attr = '';
         if (is_array($custom_option_attr_info) && !empty($custom_option_attr_info)) {
             foreach ($custom_option_attr_info as $attr => $info) {

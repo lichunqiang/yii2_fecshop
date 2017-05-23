@@ -9,13 +9,13 @@
 
 namespace fecshop\services;
 
-use Yii;
-use fecshop\models\mysqldb\customer\CustomerRegister;
-use fecshop\models\mysqldb\customer\CustomerLogin;
 use fecshop\models\mysqldb\Customer as CustomerModel;
+use fecshop\models\mysqldb\customer\CustomerLogin;
+use fecshop\models\mysqldb\customer\CustomerRegister;
+use Yii;
 
 /**
- * Customer service
+ * Customer service.
  * @property Image|\fecshop\services\Product\Image $image ,This property is read-only.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
@@ -26,7 +26,7 @@ class Customer extends Service
     const USER_LOGIN_SUCCESS_REDIRECT_URL_KEY = 'usr_login_success_redirect_url';
 
     /**
-     * 注册用户名字的最小长度
+     * 注册用户名字的最小长度.
      */
     protected function actionGetRegisterNameMinLength()
     {
@@ -36,7 +36,7 @@ class Customer extends Service
     }
 
     /**
-     * 注册用户名字的最大长度
+     * 注册用户名字的最大长度.
      */
     protected function actionGetRegisterNameMaxLength()
     {
@@ -46,7 +46,7 @@ class Customer extends Service
     }
 
     /**
-     * 注册用户密码的最小长度
+     * 注册用户密码的最小长度.
      */
     protected function actionGetRegisterPassMinLength()
     {
@@ -56,7 +56,7 @@ class Customer extends Service
     }
 
     /**
-     * 注册用户密码的最大长度
+     * 注册用户密码的最大长度.
      */
     protected function actionGetRegisterPassMaxLength()
     {
@@ -71,13 +71,13 @@ class Customer extends Service
      */
     protected function actionLogin($data)
     {
-        $model = new CustomerLogin;
+        $model = new CustomerLogin();
         $model->email = $data['email'];
         $model->password = $data['password'];
         $loginStatus = $model->login();
         $errors = $model->errors;
         if (empty($errors)) {
-            # 合并购物车数据
+            // 合并购物车数据
             Yii::$service->cart->mergeCartAfterUserLogin();
         } else {
             Yii::$service->helper->errors->addByModelErrors($errors);
@@ -95,7 +95,7 @@ class Customer extends Service
      */
     protected function actionRegister($param)
     {
-        $model = new CustomerRegister;
+        $model = new CustomerRegister();
         $model->attributes = $param;
         if ($model->validate()) {
             $model->created_at = time();
@@ -179,11 +179,11 @@ class Customer extends Service
     }
 
     /**
-     * 得到category model的全名
+     * 得到category model的全名.
      */
     protected function actionGetModelName()
     {
-        $model = new CustomerModel;
+        $model = new CustomerModel();
 
         return get_class($model);
     }
@@ -196,7 +196,7 @@ class Customer extends Service
             if ($one[$primaryKey]) {
                 return $one;
             } else {
-                return new CustomerModel;
+                return new CustomerModel();
             }
         }
     }
@@ -248,7 +248,7 @@ class Customer extends Service
     }
 
     /**
-     * get CustomerModel by Email address
+     * get CustomerModel by Email address.
      */
     protected function actionGetUserIdentityByEmail($email)
     {
@@ -285,7 +285,7 @@ class Customer extends Service
     }
 
     /**
-     * 通过PasswordResetToken 得到user
+     * 通过PasswordResetToken 得到user.
      */
     protected function actionFindByPasswordResetToken($token)
     {
@@ -319,8 +319,8 @@ class Customer extends Service
         $url = $this->getLoginSuccessRedirectUrl();
 
         if ($url) {
-            # 这个优先级最高
-            # 在跳转之前，去掉这个session存储的值。跳转后，这个值必须失效。
+            // 这个优先级最高
+            // 在跳转之前，去掉这个session存储的值。跳转后，这个值必须失效。
             Yii::$app->session->remove($this::USER_LOGIN_SUCCESS_REDIRECT_URL_KEY);
             //echo Yii::$app->session->get($this::USER_LOGIN_SUCCESS_REDIRECT_URL_KEY);
             //exit;
@@ -367,7 +367,7 @@ class Customer extends Service
         $arr = [];
         if (is_array($user_ids) && !empty($user_ids)) {
             $data = CustomerModel::find()->where([
-                'in','id',$user_ids,
+                'in', 'id', $user_ids,
             ])->all();
             if (is_array($data) && !empty($data)) {
                 foreach ($data as $one) {
@@ -379,7 +379,7 @@ class Customer extends Service
         return $arr;
     }
 
-    #2. 创建第三方用户的账户，密码自动生成
+    //2. 创建第三方用户的账户，密码自动生成
 
     /**
      * @property  $user | Array ,example:
@@ -392,7 +392,7 @@ class Customer extends Service
         if (!(isset($user['password']) && $user['password'])) {
             $user['password'] = $this->getRandomPassword();
         }
-        # 查看邮箱是否存在
+        // 查看邮箱是否存在
         $email = $user['email'];
         $customer_one = Yii::$service->customer->getUserIdentityByEmail($email);
         if ($customer_one) {
@@ -400,7 +400,7 @@ class Customer extends Service
             if ($loginStatus) {
                 return true;
             }
-        # 不存在，注册。
+        // 不存在，注册。
         } else {
             $registerData = [
                 'email' => $email,
@@ -421,13 +421,13 @@ class Customer extends Service
         return false;
     }
 
-    # 生成账户密码
+    // 生成账户密码
     protected function getRandomPassword()
     {
-        srand((float) microtime() * 1000000);//create a random number feed.
+        srand((float) microtime() * 1000000); //create a random number feed.
         $ychar = '0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z';
         $list = explode(',', $ychar);
-        for ($i = 0;$i < 6;$i++) {
+        for ($i = 0; $i < 6; $i++) {
             $randnum = rand(0, 35); // 10+26;
             $authnum .= $list[$randnum];
         }

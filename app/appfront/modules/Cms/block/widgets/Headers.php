@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Cms\block\widgets;
 
-use Yii;
 use fecshop\interfaces\block\BlockCache;
+use Yii;
 
 class Headers implements BlockCache
 {

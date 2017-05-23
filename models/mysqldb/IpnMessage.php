@@ -15,7 +15,7 @@ use yii\db\ActiveRecord;
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
-# use fecshop\models\mysqldb\IpnMessage;
+// use fecshop\models\mysqldb\IpnMessage;
 class IpnMessage extends ActiveRecord
 {
     public static function tableName()

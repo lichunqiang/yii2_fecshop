@@ -9,11 +9,10 @@
 
 namespace fecshop\services\product;
 
+use fecshop\models\mongodb\product\Review as ReviewModel;
+use fecshop\services\Service;
 use Yii;
 use yii\base\InvalidValueException;
-use fecshop\services\Service;
-
-use fecshop\models\mongodb\product\Review as ReviewModel;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -54,7 +53,7 @@ class Review extends Service
     protected function actionInitReviewAttr($arr)
     {
         if (!empty($arr) && is_array($arr)) {
-            $ReviewModel = new ReviewModel;
+            $ReviewModel = new ReviewModel();
             $attr_arr = $ReviewModel->attributes(true);
             $arr_keys = array_keys($arr);
             $attrs = array_diff($arr_keys, $attr_arr);
@@ -96,12 +95,12 @@ class Review extends Service
      * 		],
      * 		'asArray' => true,
      * ]
-     * 通过spu找到评论listing
+     * 通过spu找到评论listing.
      */
     protected function actionGetListBySpu($filter)
     {
         if ($this->filterByLang && ($currentLangCode = Yii::$service->store->currentLangCode)) {
-            $filter['where'][] = ['lang_code' => $currentLangCode ];
+            $filter['where'][] = ['lang_code' => $currentLangCode];
         }
         $query = ReviewModel::find();
         $query = Yii::$service->helper->ar->getCollByFilter($query, $filter);
@@ -120,7 +119,7 @@ class Review extends Service
     protected function actionAddReview($review_data)
     {
         //$this->initReviewAttr($review_data);
-        $model = new ReviewModel;
+        $model = new ReviewModel();
         if (isset($review_data[$this->getPrimaryKey()])) {
             unset($review_data[$this->getPrimaryKey()]);
         }
@@ -133,7 +132,7 @@ class Review extends Service
         if (!Yii::$app->user->isGuest) {
             $identity = Yii::$app->user->identity;
             $user_id = $identity['id'];
-            $review_data['user_id'] = $user_id ;
+            $review_data['user_id'] = $user_id;
         }
 
         $review_data['ip'] = \fec\helpers\CFunc::get_real_ip();
@@ -201,7 +200,7 @@ class Review extends Service
         if ($primaryKey) {
             return ReviewModel::findOne($primaryKey);
         } else {
-            return new ReviewModel;
+            return new ReviewModel();
         }
     }
 
@@ -247,7 +246,7 @@ class Review extends Service
                 return;
             }
         } else {
-            $model = new ReviewModel;
+            $model = new ReviewModel();
             $model->created_admin_user_id = \fec\helpers\CUser::getCurrentUserId();
             $primaryVal = new \MongoDB\BSON\ObjectId();
             $model->{$this->getPrimaryKey()} = $primaryVal;
@@ -257,7 +256,7 @@ class Review extends Service
         unset($one[$this->getPrimaryKey()]);
         $saveStatus = Yii::$service->helper->ar->save($model, $one);
         $model->save();
-        # 更新评论信息到产品表中。
+        // 更新评论信息到产品表中。
         $this->updateProductSpuReview($model['product_spu'], $model['lang_code']);
 
         return true;
@@ -276,7 +275,7 @@ class Review extends Service
                 if (isset($model[$this->getPrimaryKey()]) && !empty($model[$this->getPrimaryKey()])) {
                     $product_spu = $model['product_spu'];
                     $model->delete();
-                    # 更新评论信息到产品表中。
+                    // 更新评论信息到产品表中。
                     $this->updateProductSpuReview($product_spu, $model['lang_code']);
                 } else {
                     //throw new InvalidValueException("ID:$id is not exist.");
@@ -316,7 +315,7 @@ class Review extends Service
                     $model->audit_date = time();
                     $model->status = ReviewModel::ACTIVE_STATUS;
                     $model->save();
-                    # 更新评论信息到产品表中。
+                    // 更新评论信息到产品表中。
                     $this->updateProductSpuReview($model['product_spu'], $model['lang_code']);
                 }
             }
@@ -339,7 +338,7 @@ class Review extends Service
                     $model->audit_date = time();
                     $model->status = ReviewModel::REFUSE_STATUS;
                     $model->save();
-                    # 更新评论的信息到产品表
+                    // 更新评论的信息到产品表
                     $this->updateProductSpuReview($model['product_spu'], $model['lang_code']);
                 }
             }

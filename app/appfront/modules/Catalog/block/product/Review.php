@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Catalog\block\product;
 
-use Yii;
 use fecshop\app\appfront\modules\Catalog\helpers\Review as ReviewHelper;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -25,14 +25,14 @@ class Review
 
     public function __construct()
     {
-        # 初始化当前appfront的设置，覆盖service的初始设置。
+        // 初始化当前appfront的设置，覆盖service的初始设置。
         ReviewHelper::initReviewConfig();
     }
 
     public function getLastData()
     {
         if (!$this->spu || !$this->product_id) {
-            return ;
+            return;
         }
         if ($this->filterBySpu) {
             $data = $this->getReviewsBySpu($this->spu);
@@ -43,7 +43,7 @@ class Review
                 '_id' => $this->product_id,
                 'spu' => $this->spu,
                 'review_count' => $count,
-                'coll' => $coll ,
+                'coll' => $coll,
                 'noActiveStatus' => Yii::$service->product->review->noActiveStatus(),
             ];
         }
@@ -57,7 +57,7 @@ class Review
         $filter = [
             'numPerPage' => $productPageReviewCount,
             'pageNum' => 1,
-            'orderBy' => [ $this->filterOrderBy => SORT_DESC ],
+            'orderBy' => [$this->filterOrderBy => SORT_DESC],
             'where' => [
                 [
                     '$or' => [
@@ -75,7 +75,7 @@ class Review
             ],
         ];
 
-        # 调出来 review 信息。
+        // 调出来 review 信息。
         return Yii::$service->product->review->getListBySpu($filter);
     }
 }

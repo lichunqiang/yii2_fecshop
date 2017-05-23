@@ -5,7 +5,7 @@
 		<div class="std">
 			<div style="margin:4px 0 0">
 				<div class="page-title">
-					<h2><?= Yii::$service->page->translate->__('My Favorite');?></h2>
+					<h2><?= Yii::$service->page->translate->__('My Favorite'); ?></h2>
 				</div>
 				<div style="width:100%;min-height:500px;">
 					<div style="width:100%;">
@@ -18,7 +18,7 @@
 							<li style="width:100%;min-height:160px;">
 								<div class="review_description_left">
 									<a target="_blank" href="<?= Yii::$service->url->getUrl($one['url_key'])  ?>">
-									<p style="text-align:center;"><img src="<?= Yii::$service->product->image->getResize($main_img, [120,120], false) ?>"></p>
+									<p style="text-align:center;"><img src="<?= Yii::$service->product->image->getResize($main_img, [120, 120], false) ?>"></p>
 									</a>
 								</div>
 								<div class="review_description_right" style="width:600px;">
@@ -41,7 +41,7 @@
         echo Yii::$service->page->widget->renderContent('category_product_price', $config); ?>
 										</div>
 										<div class="favorite-Operation" style="display:inline-block;float:right; margin-top: 0px;">
-											<a href="<?= Yii::$service->url->getUrl('customer/productfavorite', ['type' => 'remove','favorite_id' => $one['favorite_id']]); ?>">
+											<a href="<?= Yii::$service->url->getUrl('customer/productfavorite', ['type' => 'remove', 'favorite_id' => $one['favorite_id']]); ?>">
 												<?= Yii::$service->page->translate->__('Delete'); ?>
 											</a>
 										</div>

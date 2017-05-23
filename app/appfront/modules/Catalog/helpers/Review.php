@@ -17,10 +17,10 @@ use Yii;
  */
 class Review
 {
-    # 初始化当前appfront的设置，覆盖service的初始设置。
+    // 初始化当前appfront的设置，覆盖service的初始设置。
     public static function initReviewConfig()
     {
-        # 用当前的配置，覆盖service的公用配置。
+        // 用当前的配置，覆盖service的公用配置。
         $reviewParam = Yii::$app->getModule('catalog')->params['review'];
 
         if (isset($reviewParam['filterByLang'])) {
@@ -37,8 +37,8 @@ class Review
      */
     public static function getReviewAndStarCount($product)
     {
-        # 这个是是否通过语言进行过滤评论，可以通过上面的函数 self::initReviewConfig进行初始化，
-        # 也就是通过当前模块的配置，来覆盖service的配置
+        // 这个是是否通过语言进行过滤评论，可以通过上面的函数 self::initReviewConfig进行初始化，
+        // 也就是通过当前模块的配置，来覆盖service的配置
         $filterByLang = Yii::$service->product->review->filterByLang;
         if ($filterByLang) {
             $langCode = Yii::$service->store->currentLangCode;
@@ -56,13 +56,13 @@ class Review
                     $reviw_rate_star_average_lang = $reviw_rate_star_average_lang ? $reviw_rate_star_average_lang : 0;
                 }
 
-                return [$review_count_lang,$reviw_rate_star_average_lang];
+                return [$review_count_lang, $reviw_rate_star_average_lang];
             }
         } else {
             $review_count = $product['review_count'] ? $product['review_count'] : 0;
             $reviw_rate_star_average = $product['reviw_rate_star_average'] ? $product['reviw_rate_star_average'] : 0;
 
-            return [$review_count,$reviw_rate_star_average];
+            return [$review_count, $reviw_rate_star_average];
         }
     }
 }

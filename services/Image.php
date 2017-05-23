@@ -9,27 +9,27 @@
 
 namespace fecshop\services;
 
+use fec\helpers\CDir;
 use Yii;
 use yii\base\InvalidValueException;
-use fec\helpers\CDir;
 
 /**
- * Image services
+ * Image services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Image extends Service
 {
     /**
-     * absolute image save floder
+     * absolute image save floder.
      */
     public $imageFloder = 'media/upload';
     /**
-     * upload image max size (MB)
+     * upload image max size (MB).
      */
     public $maxUploadMSize = 2;
     /**
-     * allow image type
+     * allow image type.
      */
     public $allowImgType = [
         'image/jpeg',
@@ -43,7 +43,7 @@ class Image extends Service
     public $appbase;
 
     /**
-     *  1.1 app front image  Dir
+     *  1.1 app front image  Dir.
      */
     protected function actionGetImgDir($str = '', $app = 'common')
     {
@@ -61,7 +61,7 @@ class Image extends Service
     /**
      *  1.2 app front image  Url*
      *  example : <?= Yii::$service->image->getImgUrl('custom/logo.png','appfront'); ?>
-     *  it will find image in @appimage/$app
+     *  it will find image in @appimage/$app.
      */
     protected function actionGetImgUrl($str, $app = 'common')
     {
@@ -75,12 +75,10 @@ class Image extends Service
                 return $appbase[$app]['basedomain'];
             }
         }
-
-        return ;
     }
 
     /**
-     *  2.1 app front image base dir
+     *  2.1 app front image base dir.
      */
     protected function actionGetBaseImgDir($app = 'common')
     {
@@ -88,7 +86,7 @@ class Image extends Service
     }
 
     /**
-     *  2.2 app front image base Url
+     *  2.2 app front image base Url.
      */
     protected function actionGetBaseImgUrl($app = 'common')
     {
@@ -96,7 +94,7 @@ class Image extends Service
     }
 
     /**
-     * 设置上传图片的最大的size
+     * 设置上传图片的最大的size.
      */
     protected function actionSetMaxUploadSize($uploadSize)
     {
@@ -104,7 +102,7 @@ class Image extends Service
     }
 
     /**
-     * 得到上传图片的最大的size
+     * 得到上传图片的最大的size.
      */
     protected function actionGetMaxUploadSize()
     {
@@ -118,7 +116,7 @@ class Image extends Service
     }
 
     /**
-     * 得到保存图片所在相对根目录的url路径
+     * 得到保存图片所在相对根目录的url路径.
      */
     protected function actionGetCurrentBaseImgUrl()
     {
@@ -126,7 +124,7 @@ class Image extends Service
     }
 
     /**
-     * 得到保存图片所在相对根目录的文件夹路径
+     * 得到保存图片所在相对根目录的文件夹路径.
      */
     protected function actionGetCurrentBaseImgDir()
     {
@@ -134,7 +132,7 @@ class Image extends Service
     }
 
     /**
-     * 通过图片的相对路径得到产品图片的url
+     * 通过图片的相对路径得到产品图片的url.
      */
     protected function actionGetUrlByRelativePath($str)
     {
@@ -142,7 +140,7 @@ class Image extends Service
     }
 
     /**
-     * 通过图片的相对路径得到产品图片的绝对路径
+     * 通过图片的相对路径得到产品图片的绝对路径.
      */
     protected function actionGetDirByRelativePath()
     {
@@ -179,7 +177,7 @@ class Image extends Service
             $imgUrl = $this->getUrlByRelativePath($imgSavedRelativePath);
             $imgPath = $this->getDirByRelativePath($imgSavedRelativePath);
 
-            return [$imgSavedRelativePath,$imgUrl,$imgPath];
+            return [$imgSavedRelativePath, $imgUrl, $imgPath];
         } else {
             return false;
         }
@@ -188,7 +186,7 @@ class Image extends Service
     /**
      * get Image save file path, if floder is not exist, this function will create floder.
      * if image file is exsit , image file name will be change  to a not existed file name( by add radom string to file name ).
-     * return image saved relative path , like /a/d/advert.jpg
+     * return image saved relative path , like /a/d/advert.jpg.
      */
     protected function getImgSavedRelativePath($name)
     {
@@ -202,7 +200,7 @@ class Image extends Service
         $first_str = substr($imgName, 0, 1);
         $two_str = substr($imgName, 1, 2);
 
-        $imgSaveFloder = CDir::createFloder($this->GetCurrentBaseImgDir(), [$first_str,$two_str]);
+        $imgSaveFloder = CDir::createFloder($this->GetCurrentBaseImgDir(), [$first_str, $two_str]);
         if ($imgSaveFloder) {
             $imgName = $this->getUniqueImgNameInPath($imgSaveFloder, $imgName, $imgType);
             $relative_floder = '/' . $first_str . '/' . $two_str . '/';

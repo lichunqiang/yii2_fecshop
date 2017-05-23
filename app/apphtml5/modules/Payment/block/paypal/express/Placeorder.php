@@ -24,11 +24,11 @@ class Placeorder
 
     public $_address_id;
     /**
-     * 用户的货运方式
+     * 用户的货运方式.
      */
     public $_shipping_method;
     /**
-     * 用户的支付方式
+     * 用户的支付方式.
      */
     public $_payment_method;
 
@@ -36,43 +36,43 @@ class Placeorder
     {
         $post = Yii::$app->request->post();
         if (is_array($post) && !empty($post)) {
-            # post 是二维数组，需要多层处理
+            // post 是二维数组，需要多层处理
             $post = \Yii::$service->helper->htmlEncode($post);
-            # 设置paypal快捷支付
+            // 设置paypal快捷支付
             $post['payment_method'] = Yii::$service->payment->paypal->express_payment_method;
-            # 检查前台传递的数据的完整性
+            // 检查前台传递的数据的完整性
             if ($this->checkOrderInfoAndInit($post)) {
-                # 如果游客用户勾选了注册账号，则注册，登录，并把地址写入到用户的address中
+                // 如果游客用户勾选了注册账号，则注册，登录，并把地址写入到用户的address中
                 $save_address_status = $this->updateAddress($post);
                 //echo 1;
                 if ($save_address_status) {
-                    # 更新Cart信息
+                    // 更新Cart信息
                     //$this->updateCart();
-                    # 设置checkout type
+                    // 设置checkout type
                     $serviceOrder = Yii::$service->order;
                     $checkout_type = $serviceOrder::CHECKOUT_TYPE_EXPRESS;
                     $serviceOrder->setCheckoutType($checkout_type);
-                    # 将购物车数据，生成订单,生成订单后，不清空购物车，不扣除库存，在支付成功后在清空购物车。
+                    // 将购物车数据，生成订单,生成订单后，不清空购物车，不扣除库存，在支付成功后在清空购物车。
                     $genarateStatus = Yii::$service->order->generateOrderByCart($this->_billing, $this->_shipping_method, $this->_payment_method, false);
                     //echo 22;
                     if ($genarateStatus) {
-                        # 得到当前的订单信息
+                        // 得到当前的订单信息
                         $doExpressCheckoutReturn = $this->doExpressCheckoutPayment();
                         //echo 333;
                         if ($doExpressCheckoutReturn) {
                             $ExpressOrderPayment = Yii::$service->payment->paypal->updateExpressOrderPayment($doExpressCheckoutReturn);
-                            # 如果支付成功，并把信息更新到了订单数据中，则进行下面的操作。
+                            // 如果支付成功，并把信息更新到了订单数据中，则进行下面的操作。
                             //echo 444;
                             if ($ExpressOrderPayment) {
-                                # 支付成功后，在清空购物车数据。而不是在生成订单的时候。
+                                // 支付成功后，在清空购物车数据。而不是在生成订单的时候。
                                 Yii::$service->cart->clearCartProductAndCoupon();
-                                # 支付成功后，扣除库存。
+                                // 支付成功后，扣除库存。
                                 Yii::$service->product->stock->deduct();
                                 //echo 555;
-                                # 发送新订单邮件
-                                # 扣除库存和优惠券
+                                // 发送新订单邮件
+                                // 扣除库存和优惠券
                                 // 在生成订单的时候已经扣除了。参看order service GenerateOrderByCart() function
-                                # 得到支付跳转前的准备页面。
+                                // 得到支付跳转前的准备页面。
                                 $paypal_express = Yii::$service->payment->paypal->express_payment_method;
                                 $successRedirectUrl = Yii::$service->payment->getExpressSuccessRedirectUrl($paypal_express);
                                 Yii::$service->url->redirect($successRedirectUrl);
@@ -81,7 +81,7 @@ class Placeorder
                             }
                         }
                     }
-                    # 如果订单支付过程中失败，将订单取消掉
+                    // 如果订单支付过程中失败，将订单取消掉
                     if (!$doExpressCheckoutReturn || !$ExpressOrderPayment) {
                         Yii::$service->order->cancel();
                     }
@@ -108,7 +108,7 @@ class Placeorder
         } else {
             if ($DoExpressCheckoutReturn['ACK'] == 'Failure') {
                 $message = $DoExpressCheckoutReturn['L_LONGMESSAGE0'];
-                # 添加报错信息。
+                // 添加报错信息。
                 //Message::error($message);
                 Yii::$service->helper->errors->add($message);
             } else {
@@ -160,7 +160,7 @@ class Placeorder
 
         $shipping_method = isset($post['shipping_method']) ? $post['shipping_method'] : '';
         $payment_method = isset($post['payment_method']) ? $post['payment_method'] : '';
-        # 验证货运方式
+        // 验证货运方式
         if (!$shipping_method) {
             Yii::$service->helper->errors->add('shipping method can not empty');
 

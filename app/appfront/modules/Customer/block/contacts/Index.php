@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Customer\block\contacts;
 
-use Yii;
 use fecshop\app\appfront\helper\mailer\Email;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>

@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Payment\controllers;
 
-use Yii;
 use fecshop\app\appfront\modules\Payment\PaymentController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -21,7 +21,7 @@ class CheckmoneyController extends PaymentController
     public $enableCsrfValidation = true;
 
     /**
-     * 支付开始页面
+     * 支付开始页面.
      */
     public function actionStart()
     {
@@ -29,7 +29,7 @@ class CheckmoneyController extends PaymentController
         if ($payment_method) {
             $complateUrl = Yii::$service->payment->getStandardSuccessRedirectUrl($payment_method);
             if ($complateUrl) {
-                # 登录用户，在支付前清空购物车。
+                // 登录用户，在支付前清空购物车。
                 //if(!Yii::$app->user->isGuest){
                 //	Yii::$service->cart->clearCartProductAndCoupon();
                 //}
@@ -43,18 +43,18 @@ class CheckmoneyController extends PaymentController
     }
 
     /**
-     * 成功支付页面
+     * 成功支付页面.
      */
     public function actionSuccess()
     {
         $data = [
             'increment_id' => $this->_increment_id,
         ];
-        # 清理购物车中的产品。(游客用户的购物车在成功页面清空)
+        // 清理购物车中的产品。(游客用户的购物车在成功页面清空)
         if (Yii::$app->user->isGuest) {
             Yii::$service->cart->clearCartProductAndCoupon();
         }
-        # 清理session中的当前的increment_id
+        // 清理session中的当前的increment_id
         Yii::$service->order->removeSessionIncrementId();
 
         return $this->render('../../payment/checkmoney/success', $data);

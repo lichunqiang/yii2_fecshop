@@ -30,7 +30,7 @@ class Index
         $filter = [
             'numPerPage' => $this->numPerPage,
             'pageNum' => $this->pageNum,
-            'orderBy' => ['review_date' => SORT_DESC ],
+            'orderBy' => ['review_date' => SORT_DESC],
             'where' => [
                 ['user_id' => $user_id],
             ],

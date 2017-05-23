@@ -26,11 +26,11 @@ class Favorite extends ActiveRecord
     {
         $origin = [
             '_id',
-            'product_id',    # 产品id 字符串
-            'user_id',        # 用户id int类型
-            'created_at',    # 创建时间 int
-            'updated_at',    # 更新时间 int
-            'store',            # Store 当前store
+            'product_id',    // 产品id 字符串
+            'user_id',        // 用户id int类型
+            'created_at',    // 创建时间 int
+            'updated_at',    // 更新时间 int
+            'store',            // Store 当前store
         ];
 
         return $origin;

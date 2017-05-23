@@ -9,11 +9,11 @@
 
 namespace fecshop\app\appadmin\modules;
 
-use Yii;
 use fec\helpers\CRequest;
 use fec\helpers\CUrl;
-use yii\base\Object;
 use fecshop\app\appadmin\interfaces\base\AppadminbaseBlockEditInterface;
+use Yii;
+use yii\base\Object;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -28,7 +28,7 @@ class AppadminbaseBlockEdit extends Object
     public $_textareas;
     public $_lang_attr;
     /**
-     * html input or text etc. ,  html name like: <input name="XXXX" />
+     * html input or text etc. ,  html name like: <input name="XXXX" />.
      */
     protected $_editFormData;
 

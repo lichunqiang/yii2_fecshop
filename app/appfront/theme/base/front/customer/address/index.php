@@ -3,20 +3,20 @@
 		<div class="std">
 			<div style="margin:4px 0 0">
 				<div class="page-title">
-					<h2><?= Yii::$service->page->translate->__('Customer Address');?></h2>
+					<h2><?= Yii::$service->page->translate->__('Customer Address'); ?></h2>
 				</div>
 				<table class="addressbook" width="100%" cellspacing="0" cellpadding="0" border="0">
 					<thead>
 						<tr class="ress_tit">
-							<th width="76" valign="middle" align="center" height="31"><?= Yii::$service->page->translate->__('First Name');?></th>  
-							<th width="72" valign="middle" align="center" height="31"><?= Yii::$service->page->translate->__('Last Name');?></th>                                                                                       
-							<th width="167" valign="middle" align="center"><?= Yii::$service->page->translate->__('Email Address');?></th>
-							<th width="67" valign="middle" align="center"><?= Yii::$service->page->translate->__('Country');?></th>
-							<th width="79" valign="middle" align="center"><?= Yii::$service->page->translate->__('State');?></th>
+							<th width="76" valign="middle" align="center" height="31"><?= Yii::$service->page->translate->__('First Name'); ?></th>  
+							<th width="72" valign="middle" align="center" height="31"><?= Yii::$service->page->translate->__('Last Name'); ?></th>                                                                                       
+							<th width="167" valign="middle" align="center"><?= Yii::$service->page->translate->__('Email Address'); ?></th>
+							<th width="67" valign="middle" align="center"><?= Yii::$service->page->translate->__('Country'); ?></th>
+							<th width="79" valign="middle" align="center"><?= Yii::$service->page->translate->__('State'); ?></th>
 							
-							<th width="81" valign="middle" align="center"> <?= Yii::$service->page->translate->__('Zip Code');?> </th>
-							<th width="101" valign="middle" align="center"><?= Yii::$service->page->translate->__('Telephone');?> </th>
-							<th class="th3" width="71" valign="middle" align="center"><?= Yii::$service->page->translate->__('Operation');?></th>
+							<th width="81" valign="middle" align="center"> <?= Yii::$service->page->translate->__('Zip Code'); ?> </th>
+							<th width="101" valign="middle" align="center"><?= Yii::$service->page->translate->__('Telephone'); ?> </th>
+							<th class="th3" width="71" valign="middle" align="center"><?= Yii::$service->page->translate->__('Operation'); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -49,7 +49,7 @@
 					</tbody>
 				</table>
 				<div class="product-Reviews">
-					<input onclick="javascript:window.location.href='<?= Yii::$service->url->getUrl('customer/address/edit') ?>'" class="submitbutton addnew cpointer" value="<?= Yii::$service->page->translate->__('Add New Address');?>" name="" type="button">
+					<input onclick="javascript:window.location.href='<?= Yii::$service->url->getUrl('customer/address/edit') ?>'" class="submitbutton addnew cpointer" value="<?= Yii::$service->page->translate->__('Add New Address'); ?>" name="" type="button">
 					
 				</div>
 			</div>

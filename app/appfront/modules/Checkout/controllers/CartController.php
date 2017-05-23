@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Checkout\controllers;
 
-use Yii;
 use fecshop\app\appfront\modules\AppfrontController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -70,12 +70,12 @@ class CartController extends AppfrontController
     }
 
     /**
-     * 购物车中添加优惠券
+     * 购物车中添加优惠券.
      */
     public function actionAddcoupon()
     {
         if (Yii::$app->user->isGuest) {
-            # 记忆一下登录成功返回购物车页面
+            // 记忆一下登录成功返回购物车页面
             $cartUrl = Yii::$service->url->getUrl('checkout/cart');
             Yii::$service->customer->setLoginSuccessRedirectUrl($cartUrl);
             echo json_encode([
@@ -114,12 +114,12 @@ class CartController extends AppfrontController
     }
 
     /**
-     * 购物车中取消优惠券
+     * 购物车中取消优惠券.
      */
     public function actionCancelcoupon()
     {
         if (Yii::$app->user->isGuest) {
-            # 记忆一下登录成功返回购物车页面
+            // 记忆一下登录成功返回购物车页面
             $cartUrl = Yii::$service->url->getUrl('checkout/cart');
             Yii::$service->customer->setLoginSuccessRedirectUrl($cartUrl);
             echo json_encode([

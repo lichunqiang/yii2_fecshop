@@ -1,14 +1,14 @@
 <div class="shopping-cart-img">
 	<?= Yii::$service->page->translate->__('Register'); ?>
 	
-	<a external href="<?= Yii::$service->url->getUrl('customer/account/login');  ?>" class="f-right">
+	<a external href="<?= Yii::$service->url->getUrl('customer/account/login'); ?>" class="f-right">
 		<?= Yii::$service->page->translate->__('Login'); ?>
 	</a>
 </div>
 <?= Yii::$service->page->widget->render('flashmessage'); ?>	
 <div class="list-block customer-login  customer-register">
 	<form action="<?= Yii::$service->url->getUrl('customer/account/register'); ?>" method="post" id="register-form" class="account-form">
-		<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+		<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 		<ul>
 			<li>
 				<div class="item-content">
@@ -87,7 +87,7 @@
 					});
 					<?php $this->endBlock(); ?>  
 					</script>  
-					<?php $this->registerJs($this->blocks['register_captcha_onclick_refulsh'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+					<?php $this->registerJs($this->blocks['register_captcha_onclick_refulsh'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 				</li>	
 			<?php 
@@ -218,7 +218,7 @@ $(document).ready(function(){
 });
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['customer_account_register'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+<?php $this->registerJs($this->blocks['customer_account_register'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 
 

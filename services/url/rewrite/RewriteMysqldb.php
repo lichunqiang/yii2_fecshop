@@ -9,9 +9,9 @@
 
 namespace fecshop\services\url\rewrite;
 
+use fecshop\models\mysqldb\url\UrlRewrite;
 use Yii;
 use yii\base\InvalidValueException;
-use fecshop\models\mysqldb\url\UrlRewrite;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -35,8 +35,6 @@ class RewriteMysqldb implements RewriteInterface
         if ($UrlData['custom_url_key']) {
             return $UrlData['origin_url'];
         }
-
-        return ;
     }
 
     public function getPrimaryKey()
@@ -58,7 +56,7 @@ class RewriteMysqldb implements RewriteInterface
 
             return $one;
         } else {
-            return new UrlRewrite;
+            return new UrlRewrite();
         }
     }
 
@@ -113,7 +111,7 @@ class RewriteMysqldb implements RewriteInterface
                 return;
             }
         } else {
-            $model = new UrlRewrite;
+            $model = new UrlRewrite();
         }
         unset($one['_id']);
         $saveStatus = Yii::$service->helper->ar->save($model, $one);
@@ -179,7 +177,7 @@ class RewriteMysqldb implements RewriteInterface
     {
         if ($time) {
             UrlRewrite::deleteAll([
-                '<','updated_at',$time,
+                '<', 'updated_at', $time,
             ]);
         }
     }
@@ -196,6 +194,6 @@ class RewriteMysqldb implements RewriteInterface
 
     public function newModel()
     {
-        return new UrlRewrite;
+        return new UrlRewrite();
     }
 }

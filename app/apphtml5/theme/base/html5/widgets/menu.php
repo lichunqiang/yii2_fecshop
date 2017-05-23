@@ -105,7 +105,7 @@
 			<ul>
 				<li class="item-content">
 					<div class="item-inner">
-						<div class="item-title"><a href="<?= Yii::$service->url->homeUrl();  ?>" external>Home</a></div>
+						<div class="item-title"><a href="<?= Yii::$service->url->homeUrl(); ?>" external>Home</a></div>
 					</div>
 				</li>
 				<li class="item-content">

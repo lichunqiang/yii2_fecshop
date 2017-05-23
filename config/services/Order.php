@@ -10,7 +10,7 @@
 return [
     'order' => [
         'class' => 'fecshop\services\Order',
-        # 子服务
+        // 子服务
         'childService' => [
             'item' => [
                 'class' => 'fecshop\services\order\Item',

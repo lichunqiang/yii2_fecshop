@@ -9,9 +9,9 @@
 
 namespace fecshop\services\cms\article;
 
+use fecshop\models\mongodb\cms\Article;
 use Yii;
 use yii\base\InvalidValueException;
-use fecshop\models\mongodb\cms\Article;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -31,7 +31,7 @@ class ArticleMongodb implements ArticleInterface
         if ($primaryKey) {
             return Article::findOne($primaryKey);
         } else {
-            return new Article;
+            return new Article();
         }
     }
 
@@ -76,7 +76,7 @@ class ArticleMongodb implements ArticleInterface
                 return;
             }
         } else {
-            $model = new Article;
+            $model = new Article();
             $model->created_at = time();
             $model->created_user_id = \fec\helpers\CUser::getCurrentUserId();
             $primaryVal = new \MongoDB\BSON\ObjectId();
@@ -96,7 +96,7 @@ class ArticleMongodb implements ArticleInterface
     }
 
     /**
-     * remove article
+     * remove article.
      */
     public function remove($ids)
     {

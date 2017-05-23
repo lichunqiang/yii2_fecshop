@@ -10,7 +10,7 @@
 namespace fecshop\services\cms\staticblock;
 
 /**
- * Cms Article services
+ * Cms Article services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */

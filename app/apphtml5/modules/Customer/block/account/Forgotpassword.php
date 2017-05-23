@@ -9,8 +9,8 @@
 
 namespace fecshop\app\apphtml5\modules\Customer\block\account;
 
-use Yii;
 use fecshop\app\apphtml5\helper\mailer\Email;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -33,7 +33,7 @@ class Forgotpassword
         $captcha = $editForm['captcha'];
         $forgotPasswordParam = \Yii::$app->getModule('customer')->params['forgotPassword'];
         $forgotCaptcha = isset($forgotPasswordParam['forgotCaptcha']) ? $forgotPasswordParam['forgotCaptcha'] : false;
-        # 如果开启了验证码，但是验证码验证不正确就报错返回。
+        // 如果开启了验证码，但是验证码验证不正确就报错返回。
         if ($forgotCaptcha && !$captcha) {
             Yii::$service->page->message->addError(['Captcha can not empty']);
 
@@ -43,9 +43,9 @@ class Forgotpassword
 
             return;
         }
-        #判断该邮箱是否存在
+        //判断该邮箱是否存在
         if ($identity = $this->getUserIdentity($editForm)) {
-            # 生成重置密码的 passwordResetToken
+            // 生成重置密码的 passwordResetToken
 
             $passwordResetToken = Yii::$service->customer->generatePasswordResetToken($identity);
 
@@ -63,7 +63,7 @@ class Forgotpassword
     }
 
     /**
-     * 发送忘记密码邮件
+     * 发送忘记密码邮件.
      */
     public function sendForgotPasswordEmail($identity)
     {

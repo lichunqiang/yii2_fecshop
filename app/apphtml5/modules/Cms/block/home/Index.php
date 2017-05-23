@@ -16,7 +16,7 @@ class Index
     public function getLastData()
     {
         $this->initHead();
-        # change current layout File.
+        // change current layout File.
         //Yii::$service->page->theme->layoutFile = 'home.php';
         return [
             //'bestSellerProducts' => $this->getBestSellerProduct(),
@@ -45,12 +45,12 @@ class Index
     {
         if (is_array($skus) && !empty($skus)) {
             $filter['select'] = [
-                'sku','spu','name','image',
-                'price','special_price',
-                'special_from','special_to',
-                'url_key','score',
+                'sku', 'spu', 'name', 'image',
+                'price', 'special_price',
+                'special_from', 'special_to',
+                'url_key', 'score',
             ];
-            $filter['where'] = ['in','sku',$skus];
+            $filter['where'] = ['in', 'sku', $skus];
             $products = Yii::$service->product->getProducts($filter);
             //var_dump($products);
             $products = Yii::$service->category->product->convertToCategoryInfo($products);

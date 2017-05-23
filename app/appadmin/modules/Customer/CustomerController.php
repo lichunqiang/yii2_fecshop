@@ -9,12 +9,12 @@
 
 namespace fecshop\app\appadmin\modules\Customer;
 
-/**
+/*
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
-use Yii;
 use fecadmin\FecadminbaseController;
+use Yii;
 
 class CustomerController extends FecadminbaseController
 {

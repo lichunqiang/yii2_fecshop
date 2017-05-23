@@ -34,7 +34,7 @@ class ViewLog extends ActiveRecord
         return [
         '_id', 'date_time',
         'product_id',
-        'sku', 'image' ,
+        'sku', 'image',
         'name', 'user_id',
        ];
     }

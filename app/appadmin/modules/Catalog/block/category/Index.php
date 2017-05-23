@@ -9,11 +9,11 @@
 
 namespace fecshop\app\appadmin\modules\Catalog\block\category;
 
-use Yii;
-use fecshop\app\appadmin\modules\AppadminbaseBlockEdit;
-use fec\helpers\CUrl;
 use fec\helpers\CRequest;
+use fec\helpers\CUrl;
 use fecshop\app\appadmin\interfaces\base\AppadminbaseBlockEditInterface;
+use fecshop\app\appadmin\modules\AppadminbaseBlockEdit;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -22,7 +22,7 @@ use fecshop\app\appadmin\interfaces\base\AppadminbaseBlockEditInterface;
 class Index extends AppadminbaseBlockEdit implements AppadminbaseBlockEditInterface
 {
     /**
-     * init param function ,execute in construct
+     * init param function ,execute in construct.
      */
     public function init()
     {
@@ -315,7 +315,7 @@ class Index extends AppadminbaseBlockEdit implements AppadminbaseBlockEditInterf
     }
 
     /**
-     * config edit array
+     * config edit array.
      */
     public function getEditArr()
     {

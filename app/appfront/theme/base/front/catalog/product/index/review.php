@@ -46,13 +46,13 @@
 } ?>
 			</div>
 			<div class="clear"></div>
-			<a class="submitbutton" href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/add', ['spu' => $spu,'_id' => $_id]); ?>" >
+			<a class="submitbutton" href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/add', ['spu' => $spu, '_id' => $_id]); ?>" >
 				<?= Yii::$service->page->translate->__('Add Review'); ?>
 			</a>
 			<div class="clear"></div>
 			
 			<div class="view_all_review">
-				<a href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/lists', ['spu' => $spu,'_id' => $_id]); ?>" >
+				<a href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/lists', ['spu' => $spu, '_id' => $_id]); ?>" >
 					<?= Yii::$service->page->translate->__('View  All Review'); ?>(<?= $review_count; ?>) 
 				</a>
 			</div>

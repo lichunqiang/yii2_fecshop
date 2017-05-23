@@ -10,11 +10,11 @@
 namespace fecshop\services\helper;
 
 use fec\helpers\CRequest;
-use fecshop\services\Service;
 use fecshop\models\mongodb\FecshopServiceLog;
+use fecshop\services\Service;
 
 /**
- * AR services
+ * AR services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -41,7 +41,7 @@ class Log extends Service
     }
 
     /**
-     * ServiceLog：是否开启service log
+     * ServiceLog：是否开启service log.
      */
     public function isServiceLogEnable()
     {
@@ -60,7 +60,7 @@ class Log extends Service
     }
 
     /**
-     * ServiceLog：保存serviceLog
+     * ServiceLog：保存serviceLog.
      */
     public function printServiceLog($log_info)
     {
@@ -82,7 +82,7 @@ class Log extends Service
                 }
             }
             $str .= '</table><br>#################################<br><br>';
-            echo $str ;
+            echo $str;
         }
     }
 
@@ -108,7 +108,7 @@ class Log extends Service
     }
 
     /**
-     * ServiceLog：在前台打印servicelog是否开启
+     * ServiceLog：在前台打印servicelog是否开启.
      */
     protected function isServiceLogHtmlPrint()
     {
@@ -129,7 +129,7 @@ class Log extends Service
     }
 
     /**
-     * ServiceLog：通过参数，在前台打印servicelog是否开启
+     * ServiceLog：通过参数，在前台打印servicelog是否开启.
      */
     protected function isServiceLogDbPrintByParam()
     {
@@ -163,9 +163,9 @@ class Log extends Service
         if (function_exists('com_create_guid')) {
             return com_create_guid();
         } else {
-            mt_srand((float) microtime() * 10000);//optional for php 4.2.0 and up.
+            mt_srand((float) microtime() * 10000); //optional for php 4.2.0 and up.
             $charid = strtoupper(md5(uniqid(rand(), true)));
-            $hyphen = chr(45);// "-"
+            $hyphen = chr(45); // "-"
             $uuid = //chr(123)// "{"
                  substr($charid, 0, 8) . $hyphen
                 . substr($charid, 8, 4) . $hyphen
@@ -173,7 +173,7 @@ class Log extends Service
                 . substr($charid, 16, 4) . $hyphen
                 . substr($charid, 20, 12)
                 //.chr(125)// "}"
-                ;
+;
 
             return $uuid;
         }

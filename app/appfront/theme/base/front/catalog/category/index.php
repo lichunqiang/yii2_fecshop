@@ -14,7 +14,7 @@
 		<?= Yii::$service->page->widget->render('breadcrumbs', $this); ?>
 		<div class="menu_category">
 			<div class="category_img">
-				<a href="#"><?=  $image ? '<img style="width:980px;" src="' . $image . '"/>' : '';?><a>
+				<a href="#"><?=  $image ? '<img style="width:980px;" src="' . $image . '"/>' : ''; ?><a>
 			</div>
 			<div class="category_description">
 				<h1><?=  $name ?></h1>
@@ -50,7 +50,7 @@
 							<li>
 								<div class="c_img">
 									<a href="<?= $product['url'] ?>">
-										<img class="js_lazy" src="<?= Yii::$service->image->getImgUrl('images/lazyload.gif'); ?>" data-original="<?= Yii::$service->product->image->getResize($product['image'], [230,230], false) ?>"  />
+										<img class="js_lazy" src="<?= Yii::$service->image->getImgUrl('images/lazyload.gif'); ?>" data-original="<?= Yii::$service->product->image->getResize($product['image'], [230, 230], false) ?>"  />
 									</a>
 								</div>
 								<div class="c_name">
@@ -98,7 +98,7 @@
 	<div class="col-left ">
 		
 		<?php
-            # Refind By
+            // Refind By
             $parentThis = [
                 'refine_by_info' => $refine_by_info,
             ];
@@ -108,7 +108,7 @@
             echo Yii::$service->page->widget->renderContent('category_product_filter_refine_by', $config, $parentThis);
         ?>
 		<?php
-            # Category Left Filter subCategory
+            // Category Left Filter subCategory
             $parentThis = [
                 'filter_category' => $filter_category,
                 'current_category' => $name,
@@ -119,7 +119,7 @@
             echo Yii::$service->page->widget->renderContent('category_product_filter_sub_category', $config, $parentThis);
         ?>
 		<?php
-            # Category Left Filter Product Attributes
+            // Category Left Filter Product Attributes
             $parentThis = [
                 'filters' => $filter_info,
             ];
@@ -129,7 +129,7 @@
             echo Yii::$service->page->widget->renderContent('category_product_filter_attr', $config, $parentThis);
         ?>
 		<?php
-            # Category Left Filter Product Price
+            // Category Left Filter Product Price
             $parentThis = [
                 'filter_price' => $filter_price,
             ];
@@ -164,4 +164,4 @@ $(document).ready(function(){
 });
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['category_product_filter'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+<?php $this->registerJs($this->blocks['category_product_filter'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>

@@ -9,9 +9,9 @@
 
 namespace fecshop\services\email\widgets\customer\account\register;
 
-use Yii;
 use fecshop\app\appfront\helper\mailer\Email;
 use fecshop\services\email\widgets\BodyBase;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>

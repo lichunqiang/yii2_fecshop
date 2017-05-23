@@ -12,17 +12,17 @@ namespace fecshop\services;
 use Yii;
 
 /**
- * AdminUser services
+ * AdminUser services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class AdminUser extends Service
 {
-    #Yii::$service->adminUser->getIdAndNameArrByIds($ids)
+    //Yii::$service->adminUser->getIdAndNameArrByIds($ids)
     protected function actionGetIdAndNameArrByIds($ids)
     {
-        $user_coll = \fecadmin\models\AdminUser::find()->asArray()->select(['id','username'])->where([
-            'in','id',$ids,
+        $user_coll = \fecadmin\models\AdminUser::find()->asArray()->select(['id', 'username'])->where([
+            'in', 'id', $ids,
         ])->all();
         $users = [];
         foreach ($user_coll as $one) {

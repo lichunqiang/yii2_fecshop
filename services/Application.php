@@ -28,7 +28,7 @@ class Application
     }
 
     /**
-     * 得到services 里面配置的子服务childService的实例
+     * 得到services 里面配置的子服务childService的实例.
      */
     public function getChildService($childServiceName)
     {
@@ -45,9 +45,6 @@ class Application
         return $this->_childService[$childServiceName];
     }
 
-    /**
-     *
-     */
     public function __get($attr)
     {
         return $this->getChildService($attr);
