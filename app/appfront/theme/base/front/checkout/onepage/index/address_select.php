@@ -12,18 +12,21 @@
 		<li>
 			<div>
 				<select name="address_id" class="address_list">
-					<?php  	if(is_array($address_list) && !empty($address_list)){    ?>
-					<?php  	foreach($address_list as $address_id => $info){  ?>
-					<?php  	if($cart_address_id == $address_id ){ 
-								$str = 'selected="true;"';
-							}else{  
-								$str = ''; 
-							}
-					?>
+					<?php     if (is_array($address_list) && !empty($address_list)) {
+    ?>
+					<?php     foreach ($address_list as $address_id => $info) {
+        ?>
+					<?php     if ($cart_address_id == $address_id) {
+            $str = 'selected="true;"';
+        } else {
+            $str = '';
+        } ?>
 					<option <?= $str  ?> value="<?= $address_id ?>"><?= $info['address'] ?></option>
 					
-					<?php  }  ?>
-					<?php  }  ?>
+					<?php 
+    } ?>
+					<?php 
+}  ?>
 					<option value=""> <?= Yii::$service->page->translate->__('New Address');?> </option>
 				</select>
 				<ul id="billing_address_list" class="billing_address_list_new" style="display:none;">			

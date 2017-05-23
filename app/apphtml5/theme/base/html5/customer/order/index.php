@@ -25,35 +25,38 @@
 						</tr>
 					</thead>
 					<tbody>
-					<?php  if(is_array($order_list) && !empty($order_list)){  ?>
-						<?php foreach($order_list as $order){ 
-							$currencyCode = $order['order_currency_code'];
-							$symbol = Yii::$service->page->currency->getSymbol($currencyCode);
-							
-						?>
+					<?php  if (is_array($order_list) && !empty($order_list)) {
+    ?>
+						<?php foreach ($order_list as $order) {
+        $currencyCode = $order['order_currency_code'];
+        $symbol = Yii::$service->page->currency->getSymbol($currencyCode); ?>
 							<tr class="first odd">
 								<td>
 									<b><?= $order['increment_id'] ?></b><br/>
 									<span class="order-status <?= Yii::$service->page->translate->__($order['order_status']); ?>"><?= Yii::$service->page->translate->__($order['order_status']); ?></span>
 								</td>
-								<td><span class="nobr"><?= date('Y-m-d H:i:s',$order['created_at']) ?></span></td>
+								<td><span class="nobr"><?= date('Y-m-d H:i:s', $order['created_at']) ?></span></td>
 								<td class="a-center last">
-									<span class="nobr"><a external href="<?=  Yii::$service->url->getUrl('customer/order/view',['order_id' => $order['order_id']]);?>"><?= Yii::$service->page->translate->__('View Order');?></a>
-									<span class="separator">|</span> <a external class="link-reorder" href="<?=  Yii::$service->url->getUrl('customer/order/reorder',['order_id' => $order['order_id']]);?>"><?= Yii::$service->page->translate->__('Reorder');?></a>
+									<span class="nobr"><a external href="<?=  Yii::$service->url->getUrl('customer/order/view', ['order_id' => $order['order_id']]); ?>"><?= Yii::$service->page->translate->__('View Order'); ?></a>
+									<span class="separator">|</span> <a external class="link-reorder" href="<?=  Yii::$service->url->getUrl('customer/order/reorder', ['order_id' => $order['order_id']]); ?>"><?= Yii::$service->page->translate->__('Reorder'); ?></a>
 									</span>
 								</td>
 							</tr>
 						
-						<?php } ?>
-					<?php } ?>
+						<?php 
+    } ?>
+					<?php 
+} ?>
 						
 					</tbody>
 				</table>
-				<?php if($pageToolBar){ ?>
+				<?php if ($pageToolBar) {
+    ?>
 					<div class="pageToolbar">
-						<label class="title"><?= Yii::$service->page->translate->__('Page:');?></label><?= $pageToolBar ?>
+						<label class="title"><?= Yii::$service->page->translate->__('Page:'); ?></label><?= $pageToolBar ?>
 					</div>
-				<?php } ?>
+				<?php 
+} ?>
 			</div>
 		</div>
 	</div>

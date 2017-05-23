@@ -16,7 +16,7 @@
 			<div class="buttons-set">
 				<button type="button" class="button" title="Continue Shopping" onclick="window.location='<?= Yii::$service->url->homeUrl();  ?>'"><span><span><?= Yii::$service->page->translate->__('Continue Shopping'); ?></span></span></button>
 			</div>
-			<?php // var_dump($order); ?>
+			<?php // var_dump($order);?>
 		</div>
 	</div>
 </div>

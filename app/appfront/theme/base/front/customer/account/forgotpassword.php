@@ -18,7 +18,8 @@
 						</div>
 					</li>
 					
-					<?php  if($forgotCaptcha){   ?>
+					<?php  if ($forgotCaptcha) {
+    ?>
 					<li>
 						<div class="field">
                             <label for="captcha" class="required"><em>*</em><?= Yii::$service->page->translate->__('Captcha'); ?></label>
@@ -37,12 +38,13 @@
 							});
 							<?php $this->endBlock(); ?>  
 							</script>  
-							<?php $this->registerJs($this->blocks['forgot_password_captcha_onclick_refulsh'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+							<?php $this->registerJs($this->blocks['forgot_password_captcha_onclick_refulsh'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
 
                         </div>
 						
                     </li>
-					<?php }  ?>
+					<?php 
+}  ?>
 				</ul>
 			</div>
 			
@@ -58,8 +60,8 @@
 	</div>
 </div>
 <?php 
-$requiredValidate 			= 'This is a required field.';
-$emailFormatValidate 		= 'Please enter a valid email address. For example johndoe@domain.com.';
+$requiredValidate = 'This is a required field.';
+$emailFormatValidate = 'Please enter a valid email address. For example johndoe@domain.com.';
 
 ?>
 <script>
@@ -102,7 +104,7 @@ $(document).ready(function(){
 });
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['forgot_password'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+<?php $this->registerJs($this->blocks['forgot_password'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
 
 
 

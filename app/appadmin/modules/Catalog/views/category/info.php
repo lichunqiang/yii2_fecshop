@@ -1,5 +1,6 @@
 <?php
 use fec\helpers\CUrl;
+
 ?>
 <div class="tabs" >
 	<div class="tabsHeader">

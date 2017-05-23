@@ -1,5 +1,6 @@
 <?php
 use fecshop\app\appfront\helper\Format;
+
 ?>
 <body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
 	<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
@@ -47,7 +48,7 @@ use fecshop\app\appfront\helper\Format;
 									<tr>
 										<td valign="top" style="padding:7px 9px 9px;font-size:12px;border-right-color:rgb(234,234,234);border-bottom-color:rgb(234,234,234);border-left-color:rgb(234,234,234);border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-right-style:solid;border-bottom-style:solid;border-left-style:solid">
 												<?= $name ?><br> 
-												<?= $order['customer_address_street1']." ".$order['customer_address_street2']?><br>
+												<?= $order['customer_address_street1'] . ' ' . $order['customer_address_street2']?><br>
 												<?= $order['customer_address_city']; ?>, <?= $stateName; ?>, <span data="36137" onclick="return false;" t="7" style="border-bottom:1px dashed #ccc;z-index:1"><?= $order['customer_address_zip']; ?></span><br>
 												<?= $countryName; ?><br>
 												T: <span data="<?= $order['customer_telephone']; ?>" onclick="return false;" t="7" style="border-bottom:1px dashed #ccc;z-index:1"><?= $order['customer_telephone']; ?></span>
@@ -75,7 +76,7 @@ use fecshop\app\appfront\helper\Format;
 									<tr>
 										<td valign="top" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
 											<?= $name ?><br> 
-												<?= $order['customer_address_street1']." ".$order['customer_address_street2']?><br>
+												<?= $order['customer_address_street1'] . ' ' . $order['customer_address_street2']?><br>
 												<?= $order['customer_address_city']; ?>, <?= $stateName; ?>, <span data="36137" onclick="return false;" t="7" style="border-bottom:1px dashed #ccc;z-index:1"><?= $order['customer_address_zip']; ?></span><br>
 												<?= $countryName; ?><br>
 												T: <span data="<?= $order['customer_telephone']; ?>" onclick="return false;" t="7" style="border-bottom:1px dashed #ccc;z-index:1"><?= $order['customer_telephone']; ?></span>
@@ -102,36 +103,44 @@ use fecshop\app\appfront\helper\Format;
 											</tr>
 										</thead>
 										
-										<?php if(is_array($order['products']) && !empty($order['products'])){  ?>
-										<?php foreach($order['products'] as $product){ ?>
+										<?php if (is_array($order['products']) && !empty($order['products'])) {
+    ?>
+										<?php foreach ($order['products'] as $product) {
+        ?>
 											
 											<tbody>
 												
 												<tr>
 													<td valign="top" align="left" style="padding:3px 9px;font-size:11px;border-bottom-color:rgb(204,204,204);border-bottom-width:1px;border-bottom-style:dotted">
 														<a href="<?=  Yii::$service->url->getUrl($product['redirect_url']) ; ?>">
-															<img src="<?= Yii::$service->product->image->getResize($product['image'],[100,100],false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
+															<img src="<?= Yii::$service->product->image->getResize($product['image'], [100,100], false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
 														</a>
 													</td>
 													<td valign="top" align="left" style="padding:3px 9px;font-size:11px;border-bottom-color:rgb(204,204,204);border-bottom-width:1px;border-bottom-style:dotted">
 													<b style="font-size:11px">
 													<?= $product['name'] ?></b>
-													<?php  if(is_array($product['custom_option_info'])){  ?>
+													<?php  if (is_array($product['custom_option_info'])) {
+            ?>
 														<ul>
-															<?php foreach($product['custom_option_info'] as $label => $val){  ?>
+															<?php foreach ($product['custom_option_info'] as $label => $val) {
+                ?>
 																
-																<li><?= Yii::$service->page->translate->__($label.':') ?><?= Yii::$service->page->translate->__($val) ?> </li>
+																<li><?= Yii::$service->page->translate->__($label . ':') ?><?= Yii::$service->page->translate->__($val) ?> </li>
 																
-															<?php }  ?>
+															<?php 
+            } ?>
 														</ul>
-													<?php }  ?>
+													<?php 
+        } ?>
 													</td>
 													<td valign="top" align="left" style="padding:3px 9px;font-size:11px;border-bottom-color:rgb(204,204,204);border-bottom-width:1px;border-bottom-style:dotted"><?= $product['sku'] ?></td>
 													<td valign="top" align="center" style="padding:3px 9px;font-size:11px;border-bottom-color:rgb(204,204,204);border-bottom-width:1px;border-bottom-style:dotted"><?= $product['qty'] ?></td>
 													<td valign="top" align="right" style="padding:3px 9px;font-size:11px;border-bottom-color:rgb(204,204,204);border-bottom-width:1px;border-bottom-style:dotted"><span><?= $order['currency_symbol'] ?><?= Format::price($product['row_total']); ?></span></td>
 												</tr>
 											</tbody>
-										<?php } } ?>
+										<?php 
+    }
+} ?>
 										<tbody>
 											<tr>
 												<td align="right" style="padding:3px 9px" colspan="4">Subtotal</td>

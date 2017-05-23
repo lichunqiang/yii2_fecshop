@@ -6,12 +6,8 @@
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
+
 namespace fecshop\services;
-use Yii;
-use yii\base\InvalidValueException;
-use yii\base\InvalidConfigException;
-use fec\helpers\CSession;
-use fec\helpers\CUrl;
 
 /**
  * Page services
@@ -20,6 +16,4 @@ use fec\helpers\CUrl;
  */
 class Page extends Service
 {
-	
-	
 }

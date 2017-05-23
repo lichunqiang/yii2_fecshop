@@ -11,50 +11,50 @@
 				<div class="onestepcheckout-threecolumns checkoutcontainer onestepcheckout-skin-generic onestepcheckout-enterprise">
 					<div class="onestepcheckout-column-left">
 						<?php # address 部门
-							//echo $address_view_file;
-							$addressView = [
-								'view'	=> $address_view_file,
-							];
-							//var_dump($address_list);
-							$addressParam = [
-								'cart_address_id' 	=> $cart_address_id,
-								'address_list'	  	=> $address_list,
-								'customer_info'	  	=> $customer_info,
-								'country_select'  	=> $country_select,
-								'state_html'  	  	=> $state_html,
-								'cart_address'		=> $cart_address,
-								//'payments' => $payments,
-								//'current_payment_mothod' => $current_payment_mothod,
-							];
-						?>
-						<?= Yii::$service->page->widget->render($addressView,$addressParam); ?>
+                            //echo $address_view_file;
+                            $addressView = [
+                                'view' => $address_view_file,
+                            ];
+                            //var_dump($address_list);
+                            $addressParam = [
+                                'cart_address_id' => $cart_address_id,
+                                'address_list' => $address_list,
+                                'customer_info' => $customer_info,
+                                'country_select' => $country_select,
+                                'state_html' => $state_html,
+                                'cart_address' => $cart_address,
+                                //'payments' => $payments,
+                                //'current_payment_mothod' => $current_payment_mothod,
+                            ];
+                        ?>
+						<?= Yii::$service->page->widget->render($addressView, $addressParam); ?>
 					
 					</div>
 
 					<div class="onestepcheckout-column-middle">
 						<div class="shipping_method_html">
 							<?php # shipping部分
-								$shippingView = [
-									'view'	=> 'checkout/onepage/index/shipping.php'
-								];
-								$shippingParam = [
-									'shippings' => $shippings,
-								];
-							?>
-							<?= Yii::$service->page->widget->render($shippingView,$shippingParam); ?>
+                                $shippingView = [
+                                    'view' => 'checkout/onepage/index/shipping.php',
+                                ];
+                                $shippingParam = [
+                                    'shippings' => $shippings,
+                                ];
+                            ?>
+							<?= Yii::$service->page->widget->render($shippingView, $shippingParam); ?>
 						</div>
 				
 				
 						<?php # payment部分
-							$paymentView = [
-								'view'	=> 'checkout/onepage/index/payment.php'
-							];
-							$paymentParam = [
-								'payments' => $payments,
-								'current_payment_mothod' => $current_payment_mothod,
-							];
-						?>
-						<?= Yii::$service->page->widget->render($paymentView,$paymentParam); ?>
+                            $paymentView = [
+                                'view' => 'checkout/onepage/index/payment.php',
+                            ];
+                            $paymentParam = [
+                                'payments' => $payments,
+                                'current_payment_mothod' => $current_payment_mothod,
+                            ];
+                        ?>
+						<?= Yii::$service->page->widget->render($paymentView, $paymentParam); ?>
 					
 							
 						<div class="onestepcheckout-coupons">
@@ -76,15 +76,15 @@
 					<div class="onestepcheckout-column-right">
 						<div class="review_order_view">
 							<?php # review order部分
-								$reviewOrderView = [
-									'view'	=> 'checkout/onepage/index/review_order.php'
-								];
-								$reviewOrderParam = [
-									'cart_info' => $cart_info,
-									'currency_info' => $currency_info,
-								];
-							?>
-							<?= Yii::$service->page->widget->render($reviewOrderView,$reviewOrderParam); ?>
+                                $reviewOrderView = [
+                                    'view' => 'checkout/onepage/index/review_order.php',
+                                ];
+                                $reviewOrderParam = [
+                                    'cart_info' => $cart_info,
+                                    'currency_info' => $currency_info,
+                                ];
+                            ?>
+							<?= Yii::$service->page->widget->render($reviewOrderView, $reviewOrderParam); ?>
 							
 						</div>
 						<div class="onestepcheckout-place-order">
@@ -299,16 +299,16 @@
 					//alert(new_user_pass.length);
 					//alert(new_user_pass_cm);
 					<?php 
-						$passwdMinLength = Yii::$service->customer->getRegisterPassMinLength();
-						$passwdMaxLength = Yii::$service->customer->getRegisterPassMaxLength();
-					?>
+                        $passwdMinLength = Yii::$service->customer->getRegisterPassMinLength();
+                        $passwdMaxLength = Yii::$service->customer->getRegisterPassMaxLength();
+                    ?>
 					passwdMinLength = "<?= $passwdMinLength ?>";
 					passwdMaxLength = "<?= $passwdMaxLength ?>";
 					if(new_user_pass.length < passwdMinLength){
-						$(".customer_password").after('<div style=""  class="validation-advice"><?= Yii::$service->page->translate->__('Password length must be greater than or equal to {passwdMinLength}',['passwdMinLength' => $passwdMinLength]);?></div>');
+						$(".customer_password").after('<div style=""  class="validation-advice"><?= Yii::$service->page->translate->__('Password length must be greater than or equal to {passwdMinLength}', ['passwdMinLength' => $passwdMinLength]);?></div>');
 						i++;
 					}else if(new_user_pass.length > passwdMaxLength){
-						$(".customer_password").after('<div style=""  class="validation-advice"><?= Yii::$service->page->translate->__('Password length must be less than or equal to {passwdMaxLength}',['passwdMaxLength' => $passwdMaxLength]);?></div>');
+						$(".customer_password").after('<div style=""  class="validation-advice"><?= Yii::$service->page->translate->__('Password length must be less than or equal to {passwdMaxLength}', ['passwdMaxLength' => $passwdMaxLength]);?></div>');
 						i++;
 					}else if(new_user_pass != new_user_pass_cm){
 						$(".customer_confirm_password").after('<div style=""  class="validation-advice"><?= Yii::$service->page->translate->__('The passwords are inconsistent');?></div>');
@@ -408,7 +408,7 @@
 	});	
 	//ajaxreflush();
 <?php $this->endBlock(); ?> 
-<?php $this->registerJs($this->blocks['placeOrder'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+<?php $this->registerJs($this->blocks['placeOrder'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
 
 </script>
     

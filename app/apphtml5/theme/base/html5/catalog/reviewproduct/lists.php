@@ -7,7 +7,7 @@
 					<div class="row">
 						<div class="col-20">
 							<a external href="<?= $url ?>">
-								<img src="<?= Yii::$service->product->image->getResize($main_img,[150,150],false) ?>">
+								<img src="<?= Yii::$service->product->image->getResize($main_img, [150,150], false) ?>">
 							</a>
 						</div>
 						<div class="col-80">
@@ -18,14 +18,14 @@
 							<div class="product_info review_add_price">
 								<div class="price_info">
 									<?php 
-										$priceView = [
-											'view'	=> 'catalog/product/index/price.php'
-										];
-										$priceParam = [
-											'price_info' => $price_info,
-										];
-									?>
-									<?= Yii::$service->page->widget->render($priceView,$priceParam); ?>
+                                        $priceView = [
+                                            'view' => 'catalog/product/index/price.php',
+                                        ];
+                                        $priceParam = [
+                                            'price_info' => $price_info,
+                                        ];
+                                    ?>
+									<?= Yii::$service->page->widget->render($priceView, $priceParam); ?>
 								</div>
 							</div>
 						</div>
@@ -42,7 +42,7 @@
 									<span class="average_rating"><?= Yii::$service->page->translate->__('Average rating :');?></span>
 									<span class="review_star review_star_<?= $reviw_rate_star_average ?>" style="font-weight:bold;" itemprop="average"></span>  
 									
-									<a rel="nofollow" href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/lists',['spu'=>$spu,'_id'=>$_id]); ?>">
+									<a rel="nofollow" href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/lists', ['spu' => $spu,'_id' => $_id]); ?>">
 										(<span itemprop="count"><?= $review_count ?> <?= Yii::$service->page->translate->__('reviews');?></span>)
 									</a>
 								</span>
@@ -73,9 +73,11 @@
 						<a external href="#"><?= Yii::$service->page->translate->__('Product Review');?></a>
 					</div>
 					
-						<?php  if(is_array($coll) && !empty($coll)){  ?>
+						<?php  if (is_array($coll) && !empty($coll)) {
+                                        ?>
 						
-							<?php foreach($coll as $one){  ?>
+							<?php foreach ($coll as $one) {
+                                            ?>
 								<div class="card">
 									<div class="fec-card-header">
 										<?= $one['summary'] ?>
@@ -87,15 +89,19 @@
 											</div>
 												
 											<div class="moderation">
-											<?php if($one['status'] == $noActiveStatus){ ?>  
-												<?= Yii::$service->page->translate->__('Your Review is awaiting moderation...');?>
-											<?php }else if($one['status'] == $refuseStatus){ ?>
-												<?= Yii::$service->page->translate->__('Your Review is refused.');?>
-											<?php } ?>
+											<?php if ($one['status'] == $noActiveStatus) {
+                                                ?>  
+												<?= Yii::$service->page->translate->__('Your Review is awaiting moderation...'); ?>
+											<?php 
+                                            } elseif ($one['status'] == $refuseStatus) {
+                                                ?>
+												<?= Yii::$service->page->translate->__('Your Review is refused.'); ?>
+											<?php 
+                                            } ?>
 											</div>
 											<div class="review_list_remark">
-												<p><?= Yii::$service->page->translate->__('By');?> <?= $one['name'] ?></p>
-												<span><?= $one['review_date'] ? date('Y-m-d H:i:s',$one['review_date']) : '' ?></span>
+												<p><?= Yii::$service->page->translate->__('By'); ?> <?= $one['name'] ?></p>
+												<span><?= $one['review_date'] ? date('Y-m-d H:i:s', $one['review_date']) : '' ?></span>
 											</div>
 										</div>
 									</div>
@@ -103,15 +109,19 @@
 										<a href="#" class="review_star review_star_<?= $one['rate_star'] ?>" onclick="javascript:return false;"></a>
 									</div>
 								</div>
-							<?php  } ?>
+							<?php 
+                                        } ?>
 						
-						<?php } ?>
+						<?php 
+                                    } ?>
 					
-					<?php if($pageToolBar){ ?>
+					<?php if ($pageToolBar) {
+                                        ?>
 					<div class="pageToolbar">
-						<label class="title"><?= Yii::$service->page->translate->__('Page:');?></label><?= $pageToolBar ?>
+						<label class="title"><?= Yii::$service->page->translate->__('Page:'); ?></label><?= $pageToolBar ?>
 					</div>
-					<?php } ?>
+					<?php 
+                                    } ?>
 				</div>
 			</div>
 		</div>

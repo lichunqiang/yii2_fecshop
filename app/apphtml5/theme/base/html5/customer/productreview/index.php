@@ -1,5 +1,5 @@
 <?php
-use fecshop\app\apphtml5\helper\Format;
+
 ?>
 <div class="account-ds">
 	<div class="bar bar-nav account-top-m">
@@ -18,15 +18,17 @@ use fecshop\app\apphtml5\helper\Format;
 				<div style="width:100%;min-height:500px;">
 					<div style="width:100%;">
 						<div>
-							<?php  if(is_array($coll) && !empty($coll)){  ?>
+							<?php  if (is_array($coll) && !empty($coll)) {
+    ?>
 							<table class="product-Reviews"> 
-								<?php foreach($coll as $one){  ?>
+								<?php foreach ($coll as $one) {
+        ?>
 									<tr>
 										<td>
 											<?php $main_image = isset($one['image']['main']['image']) ? $one['image']['main']['image'] : '' ?>
 											<div class="review_description_left">
-												<a external class="product_img" href="<?= Yii::$service->url->getUrl($one['url_key']);  ?>">
-													<img src="<?= Yii::$service->product->image->getResize($main_image,[80,80],false) ?>" />
+												<a external class="product_img" href="<?= Yii::$service->url->getUrl($one['url_key']); ?>">
+													<img src="<?= Yii::$service->product->image->getResize($main_image, [80,80], false) ?>" />
 												</a>
 												<a external href="#" class="review_star review_star_<?= $one['rate_star'] ?>" onclick="javascript:return false;"></a>
 												
@@ -38,37 +40,49 @@ use fecshop\app\apphtml5\helper\Format;
 												<?= $one['review_content'] ?>
 											</div>
 											
-											<?php if($one['status'] == $noActiveStatus){ ?>  
+											<?php if ($one['status'] == $noActiveStatus) {
+            ?>  
 											<div class="review_moderation">
-												<?= Yii::$service->page->translate->__('Your Review is awaiting moderation...');?>
+												<?= Yii::$service->page->translate->__('Your Review is awaiting moderation...'); ?>
 											</div>
-											<?php }else if($one['status'] == $refuseStatus){ ?>
+											<?php 
+        } elseif ($one['status'] == $refuseStatus) {
+            ?>
 											<div class="review_refuse">
-												<?= Yii::$service->page->translate->__('Your Review is refused.');?>
+												<?= Yii::$service->page->translate->__('Your Review is refused.'); ?>
 											</div>
-											<?php }else if($one['status'] == $activeStatus){ ?>
+											<?php 
+        } elseif ($one['status'] == $activeStatus) {
+            ?>
 											<div class="review_accept">
-												<?= Yii::$service->page->translate->__('Your Review is accept.');?>
+												<?= Yii::$service->page->translate->__('Your Review is accept.'); ?>
 											</div>
-											<?php } ?>
+											<?php 
+        } ?>
 										</td>
 										<td>
-											<span class="review_date_time"><?= $one['review_date'] ? date('Y-m-d H:i:s',$one['review_date']) : '' ?></span>
+											<span class="review_date_time"><?= $one['review_date'] ? date('Y-m-d H:i:s', $one['review_date']) : '' ?></span>
 											
 										</td>
 									</tr>
 									
-								<?php } ?>
+								<?php 
+    } ?>
 							</table>	
-							<?php if($pageToolBar){ ?>
+							<?php if ($pageToolBar) {
+        ?>
 							<div class="pageToolbar">
-								<label class="title"><?= Yii::$service->page->translate->__('Page:');?></label><?= $pageToolBar ?>
+								<label class="title"><?= Yii::$service->page->translate->__('Page:'); ?></label><?= $pageToolBar ?>
 							</div>
-							<?php } ?>
+							<?php 
+    } ?>
 						</div>
-						<?php }else{ ?>
-							<?= Yii::$service->page->translate->__('You have submitted no reviews');?>.
-						<?php } ?>
+						<?php 
+} else {
+    ?>
+							<?= Yii::$service->page->translate->__('You have submitted no reviews'); ?>.
+						<?php 
+} ?>
 					</div>
 				</div>
 			</div>

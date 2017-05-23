@@ -1,5 +1,6 @@
 <?php
 use fecshop\app\appfront\helper\Format;
+
 ?>
 <div class="main container two-columns-left">
 	<div class="col-main account_center">
@@ -9,7 +10,7 @@ use fecshop\app\appfront\helper\Format;
 					<div class="page-title title-buttons">
 						<h1><?= Yii::$service->page->translate->__('Order #');?><?=  $increment_id ?>				<?= Yii::$service->page->translate->__($order_status);?>				</h1>
 					</div>
-					<p class="order-date"><?=  date('Y-m-d H:i:s',$created_at); ?></p>
+					<p class="order-date"><?=  date('Y-m-d H:i:s', $created_at); ?></p>
 					<div class="col2-set order-info-box">
 						<div class="col-1">
 							<div class="box">
@@ -91,8 +92,10 @@ use fecshop\app\appfront\helper\Format;
 								</tr>
 							</tfoot>
 							<tbody class="odd">
-								<?php if(is_array($products) && !empty($products)){  ?>
-									<?php foreach($products as $product){ ?>
+								<?php if (is_array($products) && !empty($products)) {
+    ?>
+									<?php foreach ($products as $product) {
+        ?>
 									<tr id="order-item-row" class="border first">	
 										<td>
 											<a href="<?=  Yii::$service->url->getUrl($product['redirect_url']) ; ?>">
@@ -100,15 +103,19 @@ use fecshop\app\appfront\helper\Format;
 													<?= $product['name'] ?>
 												</h3>
 											</a>
-											<?php  if(is_array($product['custom_option_info'])){  ?>
+											<?php  if (is_array($product['custom_option_info'])) {
+            ?>
 											<ul>
-												<?php foreach($product['custom_option_info'] as $label => $val){  ?>
+												<?php foreach ($product['custom_option_info'] as $label => $val) {
+                ?>
 													
-													<li><?= Yii::$service->page->translate->__($label.':') ?><?= Yii::$service->page->translate->__($val) ?> </li>
+													<li><?= Yii::$service->page->translate->__($label . ':') ?><?= Yii::$service->page->translate->__($val) ?> </li>
 													
-												<?php }  ?>
+												<?php 
+            } ?>
 											</ul>
-											<?php }  ?>
+											<?php 
+        } ?>
 											<dl class="item-options">
 												
 											</dl>
@@ -116,7 +123,7 @@ use fecshop\app\appfront\helper\Format;
 										</td>
 										<td>
 											<a href="<?=  Yii::$service->url->getUrl($product['redirect_url']) ; ?>">
-												<img src="<?= Yii::$service->product->image->getResize($product['image'],[100,100],false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
+												<img src="<?= Yii::$service->product->image->getResize($product['image'], [100,100], false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
 											</a>
 										</td>
 										<td><?= $product['sku'] ?></td>
@@ -141,8 +148,10 @@ use fecshop\app\appfront\helper\Format;
 											<br>
 										</td>
 									</tr>
-									<?php } ?>
-								<?php } ?>
+									<?php 
+    } ?>
+								<?php 
+} ?>
 								</tbody>								   
 						</table>
 						<br/>
@@ -159,12 +168,12 @@ use fecshop\app\appfront\helper\Format;
 	
 	<div class="col-left ">
 		<?php
-			$leftMenu = [
-				'class' => 'fecshop\app\appfront\modules\Customer\block\LeftMenu',
-				'view'	=> 'customer/leftmenu.php'
-			];
-		?>
-		<?= Yii::$service->page->widget->render($leftMenu,$this); ?>
+            $leftMenu = [
+                'class' => 'fecshop\app\appfront\modules\Customer\block\LeftMenu',
+                'view' => 'customer/leftmenu.php',
+            ];
+        ?>
+		<?= Yii::$service->page->widget->render($leftMenu, $this); ?>
 	</div>
 	<div class="clear"></div>
 </div>

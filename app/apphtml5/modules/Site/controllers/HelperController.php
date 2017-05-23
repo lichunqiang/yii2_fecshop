@@ -1,8 +1,17 @@
 <?php
+/**
+ * FecShop file.
+ *
+ * @link http://www.fecshop.com/
+ * @copyright Copyright (c) 2016 FecShop Software LLC
+ * @license http://www.fecshop.com/license/
+ */
+
 namespace fecshop\app\apphtml5\modules\Site\controllers;
+
 use Yii;
-use fec\helpers\CModule;
 use fecshop\app\apphtml5\modules\AppfrontController;
+
 class HelperController extends AppfrontController
 {
     public function actions()
@@ -17,27 +26,17 @@ class HelperController extends AppfrontController
             //],
         ];
     }
-	
-	public function actionCaptcha(){
-		Yii::$service->helper->captcha->height = 30;
-		Yii::$service->helper->captcha->fontsize = 18;
-		Yii::$service->helper->captcha->doimg();
-		exit;
-	}
-	//public function actionVcaptcha(){
-	//	$code = 'byvh';
-	//	echo Yii::$service->helper->captcha->validateCaptcha($code);
-	//}	
+
+    public function actionCaptcha()
+    {
+        Yii::$service->helper->captcha->height = 30;
+        Yii::$service->helper->captcha->fontsize = 18;
+        Yii::$service->helper->captcha->doimg();
+        exit;
+    }
+
+    //public function actionVcaptcha(){
+    //	$code = 'byvh';
+    //	echo Yii::$service->helper->captcha->validateCaptcha($code);
+    //}
 }
-
-
-
-
-
-
-
-
-
-
-
-

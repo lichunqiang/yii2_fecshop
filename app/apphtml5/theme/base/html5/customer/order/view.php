@@ -1,5 +1,6 @@
 <?php
 use fecshop\app\apphtml5\helper\Format;
+
 ?>
 <div class="account-ds">
 	<div class="bar bar-nav account-top-m">
@@ -21,7 +22,7 @@ use fecshop\app\apphtml5\helper\Format;
 						<tbody>
 							<tr><td><?= Yii::$service->page->translate->__('Order# :');?></td><td><?=  $increment_id ?>	</td></tr>		
 							<tr><td><?= Yii::$service->page->translate->__('Order Status:');?></td><td><?= Yii::$service->page->translate->__($order_status);?></td></tr>		
-							<tr><td><?= Yii::$service->page->translate->__('Order Date:');?></td><td><?=  date('Y-m-d H:i:s',$created_at); ?></td></tr>								
+							<tr><td><?= Yii::$service->page->translate->__('Order Date:');?></td><td><?=  date('Y-m-d H:i:s', $created_at); ?></td></tr>								
 						</tbody>
 					</table>
 					<div class="col2-set order-info-box">
@@ -116,25 +117,31 @@ use fecshop\app\apphtml5\helper\Format;
 								</tr>
 							</tfoot>
 							<tbody class="odd">
-								<?php if(is_array($products) && !empty($products)){  ?>
-									<?php foreach($products as $product){ ?>
+								<?php if (is_array($products) && !empty($products)) {
+    ?>
+									<?php foreach ($products as $product) {
+        ?>
 									<tr id="order-item-row" class="border first">	
 										<td>
 											<a href="<?=  Yii::$service->url->getUrl($product['redirect_url']) ; ?>">
-												<img src="<?= Yii::$service->product->image->getResize($product['image'],[100,100],false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
+												<img src="<?= Yii::$service->product->image->getResize($product['image'], [100,100], false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
 											</a>
 										</td>
 										<td>
 											<div><?= Yii::$service->page->translate->__('sku')?>:<?= $product['sku'] ?></div>
-											<?php  if(is_array($product['custom_option_info'])){  ?>
+											<?php  if (is_array($product['custom_option_info'])) {
+            ?>
 											
-												<?php foreach($product['custom_option_info'] as $label => $val){  ?>
+												<?php foreach ($product['custom_option_info'] as $label => $val) {
+                ?>
 													<div>
-														<?= Yii::$service->page->translate->__($label.':') ?><?= Yii::$service->page->translate->__($val) ?>
+														<?= Yii::$service->page->translate->__($label . ':') ?><?= Yii::$service->page->translate->__($val) ?>
 													</div>
-												<?php }  ?>
+												<?php 
+            } ?>
 											
-											<?php }  ?>
+											<?php 
+        } ?>
 											
 											<dl class="item-options">
 											</dl>
@@ -153,8 +160,10 @@ use fecshop\app\apphtml5\helper\Format;
 											<br>
 										</td>
 									</tr>
-									<?php } ?>
-								<?php } ?>
+									<?php 
+    } ?>
+								<?php 
+} ?>
 								</tbody>								   
 						</table>
 					</div>

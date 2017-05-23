@@ -84,12 +84,12 @@
 	
 	<div class="col-left ">
 		<?php
-			$leftMenu = [
-				'class' => 'fecshop\app\appfront\modules\Customer\block\LeftMenu',
-				'view'	=> 'customer/leftmenu.php'
-			];
-		?>
-		<?= Yii::$service->page->widget->render($leftMenu,$this); ?>
+            $leftMenu = [
+                'class' => 'fecshop\app\appfront\modules\Customer\block\LeftMenu',
+                'view' => 'customer/leftmenu.php',
+            ];
+        ?>
+		<?= Yii::$service->page->widget->render($leftMenu, $this); ?>
 	</div>
 	<div class="clear"></div>
 </div>
@@ -212,6 +212,6 @@
     } 
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['customer_account_info_update'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+<?php $this->registerJs($this->blocks['customer_account_info_update'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
 
 	

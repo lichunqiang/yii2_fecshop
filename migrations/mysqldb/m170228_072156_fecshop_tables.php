@@ -1,4 +1,11 @@
 <?php
+/**
+ * FecShop file.
+ *
+ * @link http://www.fecshop.com/
+ * @copyright Copyright (c) 2016 FecShop Software LLC
+ * @license http://www.fecshop.com/license/
+ */
 
 use yii\db\Migration;
 
@@ -6,8 +13,8 @@ class m170228_072156_fecshop_tables extends Migration
 {
     public function safeUp()
     {
-		$arr = [
-			"CREATE TABLE IF NOT EXISTS `admin_config` (
+        $arr = [
+            'CREATE TABLE IF NOT EXISTS `admin_config` (
 			  `id` int(20) NOT NULL AUTO_INCREMENT,
 			  `label` varchar(150) DEFAULT NULL,
 			  `key` varchar(255) DEFAULT NULL,
@@ -19,7 +26,7 @@ class m170228_072156_fecshop_tables extends Migration
 			  KEY `key` (`key`),
 			  PRIMARY KEY (`id`)
 			) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
-			","
+			',"
 			INSERT INTO `admin_config` (`id`, `label`, `key`, `value`, `description`, `created_at`, `updated_at`, `created_person`) VALUES
 			(10, '11', '111', '111', '111', '2016-10-07 15:42:01', '2016-10-07 15:42:01', 'admin'),
 			(11, '11', '11', '11', '11', '2016-10-07 15:42:14', '2016-10-07 15:42:14', 'admin');
@@ -80,7 +87,7 @@ class m170228_072156_fecshop_tables extends Migration
 			(4, 'admin', '超级用户'),
 			(12, '账户管理员', '账户管理员'),
 			(13, 'ceshi', 'ceshi');
-			","
+			",'
 			CREATE TABLE IF NOT EXISTS `admin_role_menu` (
 			  `id` int(15) NOT NULL AUTO_INCREMENT,
 			  `menu_id` int(15) NOT NULL,
@@ -90,7 +97,7 @@ class m170228_072156_fecshop_tables extends Migration
 			  KEY `role_id` (`role_id`),
 			  PRIMARY KEY (`id`)
 			) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=124 ;
-			","
+			',"
 			INSERT INTO `admin_role_menu` (`id`, `menu_id`, `role_id`, `created_at`, `updated_at`) VALUES
 			(4, 164, 4, '2016-01-16 11:19:15', '2016-01-16 11:19:15'),
 			(38, 165, 4, '2016-01-16 14:46:17', '2016-01-16 14:46:17'),
@@ -171,9 +178,9 @@ class m170228_072156_fecshop_tables extends Migration
 			) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 			","
 			INSERT INTO `admin_user` (`id`, `username`, `password_hash`, `password_reset_token`, `email`, `person`, `code`, `auth_key`, `status`, `created_at`, `updated_at`, `password`, `access_token`, `allowance`, `allowance_updated_at`, `created_at_datetime`, `updated_at_datetime`, `birth_date`) VALUES
-			(1, 'terry', '".'$2y$13$EyK1HyJtv4A/19Jb8gB5y.4SQm5y93eMeHjUf35ryLyd2dWPJlh8y'."', NULL, 'zqy234@126.com', '', '3333', 'HH-ZlZXirlG-egyz8OTtl9EVj9fvKW00', 1, 1441763620, 1475825406, '', 'yrYWR7kY-A9bUAP6UUZgCR3yi3ALtUh-', 599, 1452491877, '2016-01-12 09:41:44', '2016-10-07 15:30:06', NULL),
-			(2, 'admin', '".'$2y$13$T5ZFrLpJdTEkAoAdnC6A/u8lh/pG.6M0qAZBo1lKE.6x6o3V6yvVG'."', NULL, '3727@qq.com', '超级管理员', '111', '_PYjb4PdIIY332LquBRC5tClZUXV0zm_', 1, NULL, 1468917063, '', '1Gk6ZNn-QaBaKFI4uE2bSw0w3N7ej72q', NULL, NULL, '2016-01-11 09:41:52', '2016-06-26 01:40:55', NULL);
-			","
+			(1, 'terry', '" . '$2y$13$EyK1HyJtv4A/19Jb8gB5y.4SQm5y93eMeHjUf35ryLyd2dWPJlh8y' . "', NULL, 'zqy234@126.com', '', '3333', 'HH-ZlZXirlG-egyz8OTtl9EVj9fvKW00', 1, 1441763620, 1475825406, '', 'yrYWR7kY-A9bUAP6UUZgCR3yi3ALtUh-', 599, 1452491877, '2016-01-12 09:41:44', '2016-10-07 15:30:06', NULL),
+			(2, 'admin', '" . '$2y$13$T5ZFrLpJdTEkAoAdnC6A/u8lh/pG.6M0qAZBo1lKE.6x6o3V6yvVG' . "', NULL, '3727@qq.com', '超级管理员', '111', '_PYjb4PdIIY332LquBRC5tClZUXV0zm_', 1, NULL, 1468917063, '', '1Gk6ZNn-QaBaKFI4uE2bSw0w3N7ej72q', NULL, NULL, '2016-01-11 09:41:52', '2016-06-26 01:40:55', NULL);
+			",'
 			CREATE TABLE IF NOT EXISTS `admin_user_role` (
 			  `id` int(20) NOT NULL AUTO_INCREMENT,
 			  `user_id` int(30) NOT NULL,
@@ -181,12 +188,12 @@ class m170228_072156_fecshop_tables extends Migration
 			  KEY `user_id` (`user_id`),
 			  PRIMARY KEY (`id`)
 			) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
-			","
+			','
 			INSERT INTO `admin_user_role` (`id`, `user_id`, `role_id`) VALUES
 			(1, 2, 4),
 			(2, 2, 12),
 			(7, 1, 12);
-			","
+			',"
 			CREATE TABLE IF NOT EXISTS `admin_visit_log` (
 			  `id` int(15) NOT NULL AUTO_INCREMENT,
 			  `account` varchar(25) DEFAULT NULL COMMENT '操作账号',
@@ -308,7 +315,7 @@ class m170228_072156_fecshop_tables extends Migration
 			  KEY `coupon_id` (`coupon_id`),
 			  KEY `customer_id` (`customer_id`)
 			) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
-			","
+			",'
 			INSERT INTO `sales_coupon_usage` (`id`, `coupon_id`, `customer_id`, `times_used`) VALUES
 			(1, 4, 16, 2),
 			(7, 4, 37, 0),
@@ -316,7 +323,7 @@ class m170228_072156_fecshop_tables extends Migration
 			(9, 4, 39, 4),
 			(10, 4, 45, 1),
 			(11, 4, 46, 1);
-			","
+			',"
 			CREATE TABLE IF NOT EXISTS `sales_flat_cart` (
 			  `cart_id` int(15) unsigned NOT NULL AUTO_INCREMENT,
 			  `store` varchar(100) DEFAULT NULL COMMENT 'store name',
@@ -423,12 +430,11 @@ class m170228_072156_fecshop_tables extends Migration
 			  
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 			",
-			
-			
-			"ALTER TABLE `sales_flat_order` CHANGE `order_status` `order_status` VARCHAR( 80 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单状态'",
-			"ALTER TABLE `sales_flat_order` ADD INDEX oupload_at_order_status ( `updated_at`, `order_status`, `if_is_return_stock` )",
 
-			"
+            "ALTER TABLE `sales_flat_order` CHANGE `order_status` `order_status` VARCHAR( 80 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单状态'",
+            'ALTER TABLE `sales_flat_order` ADD INDEX oupload_at_order_status ( `updated_at`, `order_status`, `if_is_return_stock` )',
+
+            "
 			CREATE TABLE IF NOT EXISTS `sales_flat_order_item` (
 			  `item_id` int(15) unsigned NOT NULL AUTO_INCREMENT,
 			  `store` varchar(100) DEFAULT NULL COMMENT 'store name',
@@ -451,7 +457,7 @@ class m170228_072156_fecshop_tables extends Migration
 			  PRIMARY KEY (`item_id`),
 			  KEY `order_id` (`order_id`)
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-			","
+			",'
 
 			CREATE TABLE IF NOT EXISTS `static_block` (
 			  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -465,7 +471,7 @@ class m170228_072156_fecshop_tables extends Migration
 			  KEY `identify` (`identify`),
 			  PRIMARY KEY (`id`)
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-			","
+			',"
 
 			CREATE TABLE IF NOT EXISTS `url_rewrite` (
 			  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -500,15 +506,14 @@ class m170228_072156_fecshop_tables extends Migration
 			(21, 'system', '/1111en-66254841', '/catalog/category/index?_id=57aacbe3f656f22e0be25ca4'),
 			(22, 'system', '/2222222', '/catalog/category/index?_id=57aacc35f656f22e0be25ca5'),
 			(23, 'system', '/1111', '/catalog/category/index?_id=57aacdf0f656f2b00ee25ca3'),
-			(45, 'system', '/1111111111111111', '/catalog/product/index?_id=57b5936af656f2ff293bf56e');"
+			(45, 'system', '/1111111111111111', '/catalog/product/index?_id=57b5936af656f2ff293bf56e');",
 
-		];
-		//  ALTER TABLE `admin_role_menu` ADD INDEX ( `created_at` ) 
-		
-		foreach($arr as $sql){
-			$this->execute($sql);
-		}
-	
+        ];
+        //  ALTER TABLE `admin_role_menu` ADD INDEX ( `created_at` )
+
+        foreach ($arr as $sql) {
+            $this->execute($sql);
+        }
     }
 
     public function safeDown()

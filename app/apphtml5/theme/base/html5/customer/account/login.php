@@ -5,7 +5,7 @@
 </div>
 <?= Yii::$service->page->widget->render('flashmessage'); ?>	
 <div class="list-block customer-login">
-	<form action="<?= Yii::$service->url->getUrl("customer/account/login");  ?>" method="post" id="login-form" class="account-form">
+	<form action="<?= Yii::$service->url->getUrl('customer/account/login');  ?>" method="post" id="login-form" class="account-form">
 		<ul>
 			
 			<li>
@@ -28,7 +28,8 @@
 					</div>
 				</div>
 			</li>
-			<?php if($loginPageCaptcha){  ?>
+			<?php if ($loginPageCaptcha) {
+    ?>
 			<li>
 				<div class="item-content">
 					<div class="item-media"><i class="icon icon-form-password"></i></div>
@@ -48,9 +49,10 @@
 				});
 				<?php $this->endBlock(); ?>  
 				</script>  
-				<?php $this->registerJs($this->blocks['login_captcha_onclick_refulsh'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+				<?php $this->registerJs($this->blocks['login_captcha_onclick_refulsh'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
 			</li>
-			<?php } ?>
+			<?php 
+} ?>
 		</ul>
 		
 		<div class="clear"></div>
@@ -62,8 +64,8 @@
 		<div class="clear"></div>
 		<div class="third_login">
 			<div class="fago_login">
-				<img onclick="facebooklogin()" src="<?= Yii::$service->image->getImgUrl("images/facebook.jpg") ?>" /><br/>
-				<img onclick="googlelogin()"src="<?=Yii::$service->image->getImgUrl("images/google.jpg") ?>" /><br/>
+				<img onclick="facebooklogin()" src="<?= Yii::$service->image->getImgUrl('images/facebook.jpg') ?>" /><br/>
+				<img onclick="googlelogin()"src="<?=Yii::$service->image->getImgUrl('images/google.jpg') ?>" /><br/>
 			</div>
 			<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
 			<div class="col2-set">
@@ -134,7 +136,7 @@
 	}
 	
  <?php $this->endBlock(); ?>  
-	<?php $this->registerJs($this->blocks['customer_login'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+	<?php $this->registerJs($this->blocks['customer_login'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
 </script> 
  
  

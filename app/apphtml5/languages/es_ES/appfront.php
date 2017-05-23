@@ -6,6 +6,7 @@
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
+
 return [
- 'fecshop'  => 'es_ES app fecshop',
+ 'fecshop' => 'es_ES app fecshop',
 ];

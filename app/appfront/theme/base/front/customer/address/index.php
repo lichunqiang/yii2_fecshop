@@ -20,8 +20,10 @@
 						</tr>
 					</thead>
 					<tbody>
-					<?php   if(is_array($coll) && !empty($coll)){   ?>
-					<?php 		foreach($coll as $one){ ?>
+					<?php   if (is_array($coll) && !empty($coll)) {
+    ?>
+					<?php         foreach ($coll as $one) {
+        ?>
 						<tr class="">
 							<td valign="top" align="center"><?= $one['first_name'] ?></td>
 							<td valign="top" align="center"><?= $one['last_name'] ?></td>
@@ -31,15 +33,19 @@
 							<td valign="top" align="center"><?= $one['zip'] ?></td>
 							<td valign="top" align="center"><?= $one['telephone'] ?></td>
 							<td class="ltp" valign="top ltp" align="center">
-								<input onclick="javascript:window.location.href='<?= Yii::$service->url->getUrl('customer/address/edit',['address_id' => $one['address_id']]); ?>'" class="cpointer" value="<?= Yii::$service->page->translate->__('Modify');?>" name="" type="button">
-								<a href="javascript:deleteAddress(<?= $one['address_id'] ?>)"><?= Yii::$service->page->translate->__('Delete');?></a>
-								<?php  if($one['is_default'] == 1){ ?>
-								<span style=" color:#cc0000"><?= Yii::$service->page->translate->__('Default');?></span> 
-								<?php  } ?>								
+								<input onclick="javascript:window.location.href='<?= Yii::$service->url->getUrl('customer/address/edit', ['address_id' => $one['address_id']]); ?>'" class="cpointer" value="<?= Yii::$service->page->translate->__('Modify'); ?>" name="" type="button">
+								<a href="javascript:deleteAddress(<?= $one['address_id'] ?>)"><?= Yii::$service->page->translate->__('Delete'); ?></a>
+								<?php  if ($one['is_default'] == 1) {
+            ?>
+								<span style=" color:#cc0000"><?= Yii::$service->page->translate->__('Default'); ?></span> 
+								<?php 
+        } ?>								
 							</td>
 						</tr>	
-					<?php 		} ?>
-					<?php 	} ?>
+					<?php 
+    } ?>
+					<?php 
+} ?>
 					</tbody>
 				</table>
 				<div class="product-Reviews">
@@ -64,12 +70,12 @@
 	
 	<div class="col-left ">
 		<?php
-			$leftMenu = [
-				'class' => 'fecshop\app\appfront\modules\Customer\block\LeftMenu',
-				'view'	=> 'customer/leftmenu.php'
-			];
-		?>
-		<?= Yii::$service->page->widget->render($leftMenu,$this); ?>
+            $leftMenu = [
+                'class' => 'fecshop\app\appfront\modules\Customer\block\LeftMenu',
+                'view' => 'customer/leftmenu.php',
+            ];
+        ?>
+		<?= Yii::$service->page->widget->render($leftMenu, $this); ?>
 	</div>
 	<div class="clear"></div>
 </div>

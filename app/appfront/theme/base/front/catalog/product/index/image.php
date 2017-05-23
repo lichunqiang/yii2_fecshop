@@ -4,47 +4,44 @@ $media_size = $parentThis['media_size'];
 $image = $parentThis['image'];
 $productImgMagnifier = $parentThis['productImgMagnifier'];
 
-
- 
-	$small_img_width = $media_size['small_img_width'];
-	$small_img_height = $media_size['small_img_height'];
-	$middle_img_width = $media_size['middle_img_width'];
+    $small_img_width = $media_size['small_img_width'];
+    $small_img_height = $media_size['small_img_height'];
+    $middle_img_width = $media_size['middle_img_width'];
 ?>
 <?php  $main_img = isset($image['main']['image']) ? $image['main']['image'] : '' ?>
 <div class="product-main-img">
-	<img id="zoom_03" src="<?= Yii::$service->product->image->getResize($main_img,$middle_img_width,false) ?>" data-zoom-image="<?= Yii::$service->product->image->getUrl($main_img);  ?>"/>
+	<img id="zoom_03" src="<?= Yii::$service->product->image->getResize($main_img, $middle_img_width, false) ?>" data-zoom-image="<?= Yii::$service->product->image->getUrl($main_img);  ?>"/>
 </div>
 <?php
-	if(isset($image['gallery']) && is_array($image['gallery']) && !empty($image['gallery'])){
-		$gallerys = $image['gallery'];
-		$gallerys = \fec\helpers\CFunc::array_sort($gallerys,'sort_order',$dir='asc');
-		if(is_array($image['main']) && !empty($image['main'])){
-			$main_arr[] = $image['main'];
-			$gallerys = array_merge($main_arr,$gallerys);
-		}	
-	}else if(is_array($image['main']) && !empty($image['main'])){
-		$main_arr[] = $image['main'];
-		$gallerys = $main_arr;
-	}
-	if(is_array($gallerys) && !empty($gallerys)){
-?>
+    if (isset($image['gallery']) && is_array($image['gallery']) && !empty($image['gallery'])) {
+        $gallerys = $image['gallery'];
+        $gallerys = \fec\helpers\CFunc::array_sort($gallerys, 'sort_order', $dir = 'asc');
+        if (is_array($image['main']) && !empty($image['main'])) {
+            $main_arr[] = $image['main'];
+            $gallerys = array_merge($main_arr, $gallerys);
+        }
+    } elseif (is_array($image['main']) && !empty($image['main'])) {
+        $main_arr[] = $image['main'];
+        $gallerys = $main_arr;
+    }
+    if (is_array($gallerys) && !empty($gallerys)) {
+        ?>
 		<div class="product-img-box">
 			<div class="gallery-img">
 				<a href="javascript:;" class="pre_images"></a>
 				<div class="box-img" id="gal1">
 					<div class="list-img" >
 		<?php	
-			foreach($gallerys as $gallery){
-				$image		= $gallery['image'];
-				$sort_order = $gallery['sort_order'];
-				$label 		= $gallery['label'];
-		?>
-						<a href="#" data-image="<?= Yii::$service->product->image->getResize($image,$middle_img_width,false) ?>" data-zoom-image="<?= Yii::$service->product->image->getUrl($image);  ?>">
-							<img class="elevateZoom lazyOwl" id="img_01" src="<?= Yii::$service->product->image->getResize($image,[$small_img_width,$small_img_height],false) ?>" />
+            foreach ($gallerys as $gallery) {
+                $image = $gallery['image'];
+                $sort_order = $gallery['sort_order'];
+                $label = $gallery['label']; ?>
+						<a href="#" data-image="<?= Yii::$service->product->image->getResize($image, $middle_img_width, false) ?>" data-zoom-image="<?= Yii::$service->product->image->getUrl($image); ?>">
+							<img class="elevateZoom lazyOwl" id="img_01" src="<?= Yii::$service->product->image->getResize($image, [$small_img_width,$small_img_height], false) ?>" />
 						</a>
 		<?php
-			}
-		?>
+
+            } ?>
 					</div>
 				</div>
 				<a href="javascript:;" class="next_images"></a>
@@ -52,7 +49,8 @@ $productImgMagnifier = $parentThis['productImgMagnifier'];
 			</div>
 		</div>
 	<div class="clear"></div>
-<?php } ?>
+<?php 
+    } ?>
 
 
 
@@ -69,10 +67,12 @@ $(document).ready(function(){
 			imageCrossfade: true,
 			//preloading: 1,
 			loadingIcon: '<?= Yii::$service->image->getImgUrl('images/lazyload.gif'); ?>',  
-		<?php if(!$productImgMagnifier){  ?>
+		<?php if (!$productImgMagnifier) {
+        ?>
 			zoomType:"inner",
 			cursor: "crosshair"
-		<?php }  ?>
+		<?php 
+    }  ?>
 	}); 
 
 	//pass the images to Fancybox
@@ -124,7 +124,7 @@ $(document).ready(function(){
 });
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['product_view_zoom'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+<?php $this->registerJs($this->blocks['product_view_zoom'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
 
 <style>
 .owl-theme .owl-controls{display:none}
