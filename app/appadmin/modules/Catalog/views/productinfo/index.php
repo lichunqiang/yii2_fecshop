@@ -7,7 +7,8 @@
  * @license http://www.fecshop.com/license/
  */
 use fec\helpers\CRequest;
-/** 
+
+/*
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -17,13 +18,13 @@ use fec\helpers\CRequest;
 .grid .gridTbody td div{height:auto;}
 .grid .gridTbody td div span{display:block;white-space:normal}
 </style>
-<form id="pagerForm" method="post" action="<?= \fec\helpers\CUrl::getCurrentUrl();  ?>">
-	<?=  CRequest::getCsrfInputHtml();  ?>
-	<?=  $pagerForm;  ?>
+<form id="pagerForm" method="post" action="<?= \fec\helpers\CUrl::getCurrentUrl(); ?>">
+	<?=  CRequest::getCsrfInputHtml(); ?>
+	<?=  $pagerForm; ?>
 </form>
 <div class="pageHeader">
-	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="<?= \fec\helpers\CUrl::getCurrentUrl();  ?>" method="post">
-		<?php echo CRequest::getCsrfInputHtml();  ?>
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="<?= \fec\helpers\CUrl::getCurrentUrl(); ?>" method="post">
+		<?php echo CRequest::getCsrfInputHtml(); ?>
 		<div class="searchBar">
 			<?php  echo $searchBar; ?>
 		</div>
@@ -31,7 +32,7 @@ use fec\helpers\CRequest;
 </div>
 <div class="pageContent">
 	<div class="panelBar">
-		<?= $editBar;  ?>
+		<?= $editBar; ?>
 	</div>
 	<div class="panelBar">
 		<?= $toolBar; ?>

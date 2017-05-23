@@ -6,7 +6,7 @@
 				<div class="row">
 					<div class="col-20">
 						<a external href="<?= $url ?>">
-							<img src="<?= Yii::$service->product->image->getResize($main_img,[150,150],false) ?>">
+							<img src="<?= Yii::$service->product->image->getResize($main_img, [150, 150], false) ?>">
 						</a>
 					</div>
 					<div class="col-80">
@@ -17,14 +17,14 @@
 						<div class="product_info review_add_price">
 							<div class="price_info">
 								<?php 
-									$priceView = [
-										'view'	=> 'catalog/product/index/price.php'
-									];
-									$priceParam = [
-										'price_info' => $price_info,
-									];
-								?>
-								<?= Yii::$service->page->widget->render($priceView,$priceParam); ?>
+                                    $priceView = [
+                                        'view'    => 'catalog/product/index/price.php',
+                                    ];
+                                    $priceParam = [
+                                        'price_info' => $price_info,
+                                    ];
+                                ?>
+								<?= Yii::$service->page->widget->render($priceView, $priceParam); ?>
 							</div>
 						</div>
 					</div>
@@ -33,7 +33,7 @@
 			</div>
 			<div class="product-Reviews_bottom">
 				<form method="post" action="">
-					<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+					<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 					<input name="editForm[product_spu]" value="<?= $spu ?>" id="product_spu" type="hidden">
 					<input name="editForm[product_id]" value="<?= $product_id ?>" id="product_id" type="hidden">
 						
@@ -46,7 +46,7 @@
 									</div>
 									<div class="item-inner">
 										<div class="item-title label">
-											<?= Yii::$service->page->translate->__('Name');?><em class="product-description_em">*</em>
+											<?= Yii::$service->page->translate->__('Name'); ?><em class="product-description_em">*</em>
 										</div>
 										<input name="editForm[name]" id="review_email_field" type="text" placeholder="Your name"  class="input-text  review-input-text required-entry" value="<?=  $editForm['name'] ? $editForm['name'] : $customer_name ?>">
 									</div>
@@ -60,7 +60,7 @@
 									</div>
 									<div class="item-inner">
 										<div class="item-title label">
-											<?= Yii::$service->page->translate->__('Summary');?><em class="product-description_em">*</em>
+											<?= Yii::$service->page->translate->__('Summary'); ?><em class="product-description_em">*</em>
 										</div>
 										<input placeholder=" Summary of Your Review*" name="editForm[summary]" id="review_title_field" class="input-text  review-input-text required-entry" value="<?=  $editForm['summary'] ?>" type="text">
 									
@@ -73,7 +73,7 @@
 								  <div class="item-media"><i class="icon icon-form-name"></i></div>
 								  <div class="item-inner">
 									<div class="item-title label">
-										<?= Yii::$service->page->translate->__('Rate');?></strong><em class="product-description_em">*</em>
+										<?= Yii::$service->page->translate->__('Rate'); ?></strong><em class="product-description_em">*</em>
 									</div>
 									<div class="lh30_f">
 										<input name="editForm[rate_star]" value="5" id="review_price_field" type="hidden">
@@ -97,12 +97,13 @@
 										<i class="icon icon-form-comment"></i>
 									</div>
 									<div class="item-inner">
-										<div class="item-title label"><?= Yii::$service->page->translate->__('Review');?></div>
+										<div class="item-title label"><?= Yii::$service->page->translate->__('Review'); ?></div>
 											<textarea placeholder="Your review content" name="editForm[review_content]" id="review_review_field"><?=  $editForm['review_content'] ?></textarea>
 									</div>
 								</div>
 							</li>
-							<?php if($add_captcha){  ?>
+							<?php if ($add_captcha) {
+                                    ?>
 							<li>
 								<div class="item-content">
 									<div class="item-media">
@@ -110,7 +111,7 @@
 									</div>
 									<div class="item-inner">
 										<div class="item-title label">
-											<?= Yii::$service->page->translate->__('Captcha');?><em class="product-description_em">*</em>
+											<?= Yii::$service->page->translate->__('Captcha'); ?><em class="product-description_em">*</em>
 										</div>
 										<div class="input-box login-captcha">
 											<input type="text" name="editForm[captcha]" value="" size=10 class="login-captcha-input"> 
@@ -127,15 +128,16 @@
 										});
 										<?php $this->endBlock(); ?>  
 										</script>  
-										<?php $this->registerJs($this->blocks['login_captcha_onclick_refulsh'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+										<?php $this->registerJs($this->blocks['login_captcha_onclick_refulsh'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 									</div>
 								</div>
 							</li>
-							<?php }  ?>
+							<?php 
+                                }  ?>
 						</ul>
 						<div class="review_submit">
-							<button type="submit" title="Submit Review" class="button" id="m_top_10" onclick="return check_review()"><span><span><?= Yii::$service->page->translate->__('Submit');?></span></span></button>
+							<button type="submit" title="Submit Review" class="button" id="m_top_10" onclick="return check_review()"><span><span><?= Yii::$service->page->translate->__('Submit'); ?></span></span></button>
 						</div>
 					</div>
 				</form>
@@ -164,6 +166,6 @@
 	});
 	 
 	<?php $this->endBlock(); ?>  
-	<?php $this->registerJs($this->blocks['product_review_rate'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+	<?php $this->registerJs($this->blocks['product_review_rate'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 </script> 

@@ -20,9 +20,11 @@
 				<dt><span class="current_lang" rel="<?= $currentStore ?>"><?= $currentStoreLang ?></span></dt>
 				<dd class="lang_list">
 					<ul>
-						<?php foreach($stores as $store=> $langName){   ?>
+						<?php foreach ($stores as $store=> $langName) {
+    ?>
 							<li  class="store_lang"  rel="<?= $store ?>"><a href="javascript:void(0)"><?= $langName ?></a></li>
-						<?php } ?>
+						<?php 
+} ?>
 						</ul>
 				</dd>
 			</dl>
@@ -32,9 +34,11 @@
 				<dd class="currency_list">
 					<ul>
 					
-					<?php foreach($currencys as $c){    ?>
+					<?php foreach ($currencys as $c) {
+    ?>
 						<li rel="<?= $c['code'] ?>"><label><?= $c['symbol'] ?></label><?= $c['code'] ?></li>
-					<?php } ?>							
+					<?php 
+} ?>							
 					</ul>
 				</dd>
 			</dl>
@@ -87,11 +91,11 @@
 	<div class="top_main_inner pr">
 		<div class="top_header clearfix">
 			<div class="topSeachForm">
-				<?= Yii::$service->page->widget->render('topsearch',$this); ?>
+				<?= Yii::$service->page->widget->render('topsearch', $this); ?>
 			</div>
 			
 			<div class="logo"><a titel="fecshop logo" href="<?= $homeUrl ?>" style="">
-				<img src="<?= Yii::$service->image->getImgUrl('custom/logo.png','appfront'); ?>"  />
+				<img src="<?= Yii::$service->image->getImgUrl('custom/logo.png', 'appfront'); ?>"  />
 			</a></div>
 		</div><!--end .top_header-->
 
