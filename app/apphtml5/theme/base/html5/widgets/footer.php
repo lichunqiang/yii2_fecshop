@@ -11,7 +11,7 @@
 	<div class="footer-top sidebar">
 		<div class="container">
 			<div class="row">
-				<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('social','apphtml5') ?>
+				<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('social', 'apphtml5') ?>
 				
 				<div class="col-xs-12 col-sm-6 col-md-3 newsletter widget links">
 					<header>
@@ -30,7 +30,7 @@
 						</div>
 					</form>
 				</div>
-				<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('links_and_account','apphtml5') ?>
+				<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('links_and_account', 'apphtml5') ?>
 				
 				<div class="clear"></div>
 			</div>
@@ -38,7 +38,7 @@
 	</div>
 	
 	<div class="footer-bottom">
-		<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('copy_right','apphtml5') ?>
+		<?=  Yii::$service->cms->staticblock->getStoreContentByIdentify('copy_right', 'apphtml5') ?>
 	</div>
 </footer>
 	
