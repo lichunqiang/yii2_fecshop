@@ -6,11 +6,10 @@
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
-use yii\helpers\Html;
 use fec\helpers\CRequest;
-use fecadmin\models\AdminRole;
 use fecshop\app\appfront\helper\Format;
-/** 
+
+/*
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -23,7 +22,7 @@ use fecshop\app\appfront\helper\Format;
 
 <div class="pageContent" style="background:#fff;"> 
 	<form  method="post" action="<?= $saveUrl ?>" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDoneCloseAndReflush);">
-		<?php echo CRequest::getCsrfInputHtml();  ?>	
+		<?php echo CRequest::getCsrfInputHtml(); ?>	
 		<div layouth="56" class="pageFormContent" style="height: 240px; overflow: auto;">
 			
 				<input type="hidden"  value="<?=  $product_id; ?>" size="30" name="product_id" class="textInput ">
@@ -62,7 +61,7 @@ use fecshop\app\appfront\helper\Format;
 							<label>订单货币简码：</label>
 							<span><?= $order['order_currency_code'] ?></span>
 						</p>
-						<?php $symbol = Yii::$service->page->currency->getSymbol($order['order_currency_code']);  ?>
+						<?php $symbol = Yii::$service->page->currency->getSymbol($order['order_currency_code']); ?>
 						<p class="edit_p">
 							<label>与基础货币汇率：</label>
 							<span><?= $order['order_to_base_rate'] ?></span>
@@ -78,12 +77,14 @@ use fecshop\app\appfront\helper\Format;
 							<span><?= $order['payment_method'] ?></span>
 						</p>
 						
-						<?php  if($order['remote_ip']){  ?>
+						<?php  if ($order['remote_ip']) {
+    ?>
 						<p class="edit_p">
 							<label>IP：</label>
 							<span><?= $order['remote_ip'] ?></span>
 						</p>
-						<?php  }  ?>
+						<?php 
+}  ?>
 						
 						<p class="edit_p">
 							<label>订单总金额：</label>
@@ -94,31 +95,37 @@ use fecshop\app\appfront\helper\Format;
 							<span><?= $symbol.$order['subtotal'] ?></span>
 						</p>
 						
-						<?php  if($order['subtotal_with_discount']){  ?>
+						<?php  if ($order['subtotal_with_discount']) {
+    ?>
 						<p class="edit_p">
 							<label>优惠券：</label>
 							<span><?= $symbol.$order['coupon_code'] ?></span>
 						</p>
-						<?php }  ?>
+						<?php 
+}  ?>
 						
-						<?php  if($order['subtotal_with_discount']){  ?>
+						<?php  if ($order['subtotal_with_discount']) {
+    ?>
 						<p class="edit_p">
 							<label>订单折扣：</label>
 							<span><?= $symbol.$order['subtotal_with_discount'] ?></span>
 						</p>
-						<?php  }  ?>
+						<?php 
+}  ?>
 						
 						<p class="edit_p">
 							<label>订单运费：</label>
 							<span><?= $symbol.$order['shipping_total'] ?></span>
 						</p>
 						
-						<?php  if($order['payment_fee'] == 1){  ?>
+						<?php  if ($order['payment_fee'] == 1) {
+    ?>
 						<p class="edit_p">
 							<label>payment_fee：</label>
 							<span><?= $order['payment_fee'] ?></span>
 						</p>
-						<?php  }  ?>
+						<?php 
+}  ?>
 						
 					</div>
 				</fieldset>
@@ -135,22 +142,26 @@ use fecshop\app\appfront\helper\Format;
 							<label>LastName：</label>
 							<span><?= $order['customer_lastname'] ?></span>
 						</p>
-						<?php  if($order['customer_is_guest'] == 1){  ?>
+						<?php  if ($order['customer_is_guest'] == 1) {
+    ?>
 						<p class="edit_p">
 							<label>游客下单？</label>
 							<span><?= '是' ?></span>
 						</p>
-						<?php } ?>
+						<?php 
+} ?>
 						<p class="edit_p">
 							<label>Email：</label>
 							<span><?= $order['customer_email'] ?></span>
 						</p>
-						<?php  if($order['customer_id']){  ?>
+						<?php  if ($order['customer_id']) {
+    ?>
 						<p class="edit_p">
 							<label>customer_id：</label>
 							<span><?= $order['customer_id'] ?></span>
 						</p>
-						<?php } ?>
+						<?php 
+} ?>
 					</div>
 				</fieldset>
 				
@@ -224,32 +235,38 @@ use fecshop\app\appfront\helper\Format;
 							</thead>
 							
 							<tbody class="odd">
-								<?php if(is_array($order['products']) && !empty($order['products'])){  ?>
-									<?php foreach($order['products'] as $product){ ?>
+								<?php if (is_array($order['products']) && !empty($order['products'])) {
+    ?>
+									<?php foreach ($order['products'] as $product) {
+        ?>
 									<tr id="order-item-row" class="border first">	
 										<td>
-											<a href="<?= '#' //Yii::$service->url->getUrl($product['redirect_url']) ; ?>">
+											<a href="<?= '#' //Yii::$service->url->getUrl($product['redirect_url']) ;?>">
 												<h3 class="product-name">
 													<?= $product['name'] ?>
 												</h3>
 											</a>
-											<?php  if(is_array($product['custom_option_info'])){  ?>
+											<?php  if (is_array($product['custom_option_info'])) {
+            ?>
 											<ul>
-												<?php foreach($product['custom_option_info'] as $label => $val){  ?>
+												<?php foreach ($product['custom_option_info'] as $label => $val) {
+                ?>
 													
 													<li><?= $label ?>:<?= $val ?> </li>
 													
-												<?php }  ?>
+												<?php 
+            } ?>
 											</ul>
-											<?php }  ?>
+											<?php 
+        } ?>
 											<dl class="item-options">
 												
 											</dl>
 											
 										</td>
 										<td>
-											<a href="<?=  Yii::$service->url->getUrl($product['redirect_url']) ; ?>">
-												<img src="<?= Yii::$service->product->image->getResize($product['image'],[100,100],false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
+											<a href="<?=  Yii::$service->url->getUrl($product['redirect_url']); ?>">
+												<img src="<?= Yii::$service->product->image->getResize($product['image'], [100, 100], false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
 											</a>
 										</td>
 										<td><?= $product['sku'] ?></td>
@@ -274,8 +291,10 @@ use fecshop\app\appfront\helper\Format;
 											<br>
 										</td>
 									</tr>
-									<?php } ?>
-								<?php } ?>
+									<?php 
+    } ?>
+								<?php 
+} ?>
 							</tbody>	
 
 							<tfoot>
