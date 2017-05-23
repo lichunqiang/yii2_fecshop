@@ -109,7 +109,7 @@ $(document).ready(function(){
 	});
 	
 	$(".del-category").off("click").on("click",".delcategory",function(){
-		delCateUrl = "<?= CUrl::getUrl('catalog/category/remove');  ?>";
+		delCateUrl = "<?= CUrl::getUrl('catalog/category/remove'); ?>";
 		delCateId  = $(".treeFolder .selected > .category_one").attr("key");
 		if(!delCateId){
 			alertMsg.warn('请选择您要删除的分类');
@@ -154,10 +154,10 @@ $(document).ready(function(){
 					</ul>
 				</div>
 			</div>
-			<?=  $category_tree ;?>
+			<?=  $category_tree; ?>
 		</div>
 		
-		<?php echo CRequest::getCsrfInputHtml();  ?>	
+		<?php echo CRequest::getCsrfInputHtml(); ?>	
 		<div id="jbsxBox">
 			
 		</div>

@@ -9,15 +9,15 @@
 
 namespace fecshop\app\appadmin\modules\Catalog\block\productinfo;
 
-use Yii;
-use fecshop\app\appadmin\modules\AppadminbaseBlockEdit;
-use fec\helpers\CUrl;
 use fec\helpers\CRequest;
+use fec\helpers\CUrl;
 use fecshop\app\appadmin\interfaces\base\AppadminbaseBlockEditInterface;
+use fecshop\app\appadmin\modules\AppadminbaseBlockEdit;
 use fecshop\app\appadmin\modules\Catalog\block\productinfo\index\Attr;
+use Yii;
 
 /**
- * block catalog/productinfo
+ * block catalog/productinfo.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -51,7 +51,7 @@ class Manageredit extends AppadminbaseBlockEdit implements AppadminbaseBlockEdit
         return '';
     }
 
-    # 传递给前端的数据 显示编辑form
+    // 传递给前端的数据 显示编辑form
     public function getLastData()
     {
         return [
@@ -298,7 +298,7 @@ class Manageredit extends AppadminbaseBlockEdit implements AppadminbaseBlockEdit
     public function save()
     {
         $this->initParamType();
-        /**
+        /*
          * if attribute is date or date time , db storage format is int ,by frontend pass param is int ,
          * you must convert string datetime to time , use strtotime function.
          */
@@ -428,7 +428,7 @@ class Manageredit extends AppadminbaseBlockEdit implements AppadminbaseBlockEdit
             }
             $this->_param['image']['gallery'] = $gallery_af;
         }
-        # 自定义属性 也就是在 @common\config\fecshop_local_services\Product.php 产品服务的 customAttrGroup 配置的产品属性。
+        // 自定义属性 也就是在 @common\config\fecshop_local_services\Product.php 产品服务的 customAttrGroup 配置的产品属性。
         $custom_attr = \Yii::$service->product->getGroupAttrInfo($this->_param['attr_group']);
         if (is_array($custom_attr) && !empty($custom_attr)) {
             foreach ($custom_attr as $attrInfo) {
@@ -447,7 +447,7 @@ class Manageredit extends AppadminbaseBlockEdit implements AppadminbaseBlockEdit
                                 }
                             }
                         } else {
-                            $this->_param[$attr] = (Int) $this->_param[$attr];
+                            $this->_param[$attr] = (int) $this->_param[$attr];
                         }
                     }
                     if ($dbtype == 'Float') {
@@ -462,14 +462,14 @@ class Manageredit extends AppadminbaseBlockEdit implements AppadminbaseBlockEdit
                                 }
                             }
                         } else {
-                            $this->_param[$attr] = (Float) $this->_param[$attr];
+                            $this->_param[$attr] = (float) $this->_param[$attr];
                         }
                     }
                 }
             }
         }
 
-        #tier price
+        //tier price
         $tier_price = $this->_param['tier_price'];
         $tier_price_arr = [];
         if ($tier_price) {
@@ -492,7 +492,7 @@ class Manageredit extends AppadminbaseBlockEdit implements AppadminbaseBlockEdit
         $this->_param['tier_price'] = $tier_price_arr;
     }
 
-    # 批量删除
+    // 批量删除
     public function delete()
     {
         $ids = '';

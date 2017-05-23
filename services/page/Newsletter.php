@@ -9,18 +9,18 @@
 
 namespace fecshop\services\page;
 
-use fecshop\services\Service;
 use fecshop\models\mongodb\customer\Newsletter as MongoNewsletter;
+use fecshop\services\Service;
 
 /**
- * Page Newsletter services
+ * Page Newsletter services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Newsletter extends Service
 {
     /**
-     * newsletter subscription
+     * newsletter subscription.
      */
     protected function actionSubscription($email)
     {

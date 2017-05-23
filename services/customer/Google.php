@@ -9,12 +9,11 @@
 
 namespace fecshop\services\customer;
 
+use fecshop\services\Service;
 use Yii;
 
-use fecshop\services\Service;
-
 /**
- * Address  child services
+ * Address  child services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -23,7 +22,7 @@ class Google extends Service
     protected $currentCountry;
     protected $currentState;
 
-    # 得到谷歌登录的url
+    // 得到谷歌登录的url
     public function getLoginUrl($urlKey)
     {
         global $googleapiinfo;

@@ -9,14 +9,14 @@
 
 namespace fecshop\app\appadmin\modules\Catalog\block\productinfo;
 
-use Yii;
-use fecshop\app\appadmin\modules\AppadminbaseBlock;
 use fec\helpers\CUrl;
-use fecshop\app\appadmin\modules\Catalog\helper\Product as ProductHelper;
 use fecshop\app\appadmin\interfaces\base\AppadminbaseBlockInterface;
+use fecshop\app\appadmin\modules\AppadminbaseBlock;
+use fecshop\app\appadmin\modules\Catalog\helper\Product as ProductHelper;
+use Yii;
 
 /**
- * block cms\article
+ * block cms\article.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -25,20 +25,20 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
     protected $_copyUrl;
 
     /**
-     * init param function ,execute in construct
+     * init param function ,execute in construct.
      */
     public function init()
     {
-        /**
+        /*
          * edit data url
          */
         $this->_editUrl = CUrl::getUrl('catalog/productinfo/manageredit');
-        /**
+        /*
          * delete data url
          */
         $this->_deleteUrl = CUrl::getUrl('catalog/productinfo/managerdelete');
         $this->_copyUrl = CUrl::getUrl('catalog/productinfo/manageredit', ['operate' => 'copy']);
-        /**
+        /*
          * service component, data provider
          */
         $this->_service = Yii::$service->product;
@@ -48,17 +48,17 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
     public function getLastData()
     {
 
-        # hidden section ,that storage page info
+        // hidden section ,that storage page info
         $pagerForm = $this->getPagerForm();
-        # search section
+        // search section
         $searchBar = $this->getSearchBar();
-        # edit button, delete button,
+        // edit button, delete button,
         $editBar = $this->getEditBar();
-        # table head
+        // table head
         $thead = $this->getTableThead();
-        # table body
+        // table body
         $tbody = $this->getTableTbody();
-        # paging section
+        // paging section
         $toolBar = $this->getToolBar($this->_param['numCount'], $this->_param['pageNum'], $this->_param['numPerPage']);
 
         return [
@@ -72,45 +72,45 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
     }
 
     /**
-     * get search bar Arr config
+     * get search bar Arr config.
      */
     public function getSearchArr()
     {
         $data = [
-            [    # selecit的Int 类型
+            [    // selecit的Int 类型
                 'type' => 'select',
                 'title' => '状态',
                 'name' => 'status',
-                'columns_type' => 'int',  # int使用标准匹配， string使用模糊查询
+                'columns_type' => 'int',  // int使用标准匹配， string使用模糊查询
                 'value' => ProductHelper::getStatusArr(),
             ],
-            [    # selecit的Int 类型
+            [    // selecit的Int 类型
                 'type' => 'select',
                 'title' => '库存状态',
                 'name' => 'is_in_stock',
-                'columns_type' => 'int',  # int使用标准匹配， string使用模糊查询
+                'columns_type' => 'int',  // int使用标准匹配， string使用模糊查询
                 'value' => ProductHelper::getInStockArr(),
             ],
-            [    # 字符串类型
+            [    // 字符串类型
                 'type' => 'inputtext',
                 'title' => '产品名称',
-                'name' => 'name' ,
+                'name' => 'name',
                 'columns_type' => 'string',
                 'lang' => true,
             ],
-            [    # 字符串类型
+            [    // 字符串类型
                 'type' => 'inputtext',
                 'title' => 'Spu',
-                'name' => 'spu' ,
+                'name' => 'spu',
                 'columns_type' => 'string',
             ],
-            [    # 字符串类型
+            [    // 字符串类型
                 'type' => 'inputtext',
                 'title' => 'Sku',
-                'name' => 'sku' ,
+                'name' => 'sku',
                 'columns_type' => 'string',
             ],
-            [    # 时间区间类型搜索
+            [    // 时间区间类型搜索
                 'type' => 'inputdatefilter',
                 'name' => 'updated_at',
                 'columns_type' => 'int',
@@ -119,7 +119,7 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
                     'lt' => '更新时间结束',
                 ],
             ],
-            [    # 时间区间类型搜索
+            [    // 时间区间类型搜索
                 'type' => 'inputfilter',
                 'name' => 'qty',
                 'columns_type' => 'int',
@@ -238,11 +238,11 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
 
         ];
 
-        return $table_th_bar ;
+        return $table_th_bar;
     }
 
     /**
-     * rewrite parent getTableTbodyHtml($data)
+     * rewrite parent getTableTbodyHtml($data).
      */
     public function getTableTbodyHtml($data)
     {
@@ -351,6 +351,6 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
             $str .= '</tr>';
         }
 
-        return $str ;
+        return $str;
     }
 }

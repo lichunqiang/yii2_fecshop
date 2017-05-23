@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Customer\controllers;
 
-use Yii;
 use fecshop\app\appfront\modules\AppfrontController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -29,9 +29,6 @@ class AddressController extends AppfrontController
         parent::init();
     }
 
-    /**
-     *
-     */
     public function actionIndex()
     {
         $data = $this->getBlock()->getLastData();

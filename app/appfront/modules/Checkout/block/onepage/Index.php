@@ -47,7 +47,7 @@ class Index
             'payments' => $this->getPayment(),
             'shippings' => $shippings,
             'current_payment_method' => $this->_payment_method,
-            'cart_info' => $last_cart_info ,
+            'cart_info' => $last_cart_info,
             'currency_info' => $currency_info,
             'address_view_file' => $this->_address_view_file,
             'cart_address' => $this->_address,
@@ -62,7 +62,7 @@ class Index
     /**
      * 初始化地址信息，首先从当前用户里面取值，然后从cart表中取数据覆盖
      * 1. 初始化 $this->_address，里面保存的各个地址信息。
-     * 2. 如果是登录用户，而且
+     * 2. 如果是登录用户，而且.
      */
     public function initAddress()
     {
@@ -121,8 +121,8 @@ class Index
         $this->_address = $address_info;
         $this->_address_list = Yii::$service->customer->address->currentAddressList();
         //var_dump($this->_address_list);
-        # 如果购物车存在customer_address_id，而且用户地址中也存在customer_address_id
-        # 则执行if{}内代码。
+        // 如果购物车存在customer_address_id，而且用户地址中也存在customer_address_id
+        // 则执行if{}内代码。
         if ($address_id && isset($this->_address_list[$address_id]) && !empty($this->_address_list[$address_id])) {
             $this->_address_id = $address_id;
             $this->_address_view_file = 'checkout/onepage/index/address_select.php';
@@ -164,8 +164,8 @@ class Index
                 $this->_address['zip'] = $addressModel['zip'];
             }
         } elseif (is_array($this->_address_list) && !empty($this->_address_list)) {
-            # 用户存在地址列表，但是，cart中没有customer_address_id
-            # 这种情况下，从用户地址列表中取出来默认地址，然后设置成当前的地址。
+            // 用户存在地址列表，但是，cart中没有customer_address_id
+            // 这种情况下，从用户地址列表中取出来默认地址，然后设置成当前的地址。
             foreach ($this->_address_list as $adss_id => $info) {
                 if ($info['is_default'] == 1) {
                     $this->_address_id = $adss_id;
@@ -212,7 +212,7 @@ class Index
             }
         } else {
             $this->_address_view_file = 'checkout/onepage/index/address.php';
-            # 从购物车里面取出来数据。 $_cartAddress
+            // 从购物车里面取出来数据。 $_cartAddress
             //$cart_info = Yii::$service->cart->getCartInfo();
         }
         if (!$this->_country) {
@@ -250,7 +250,7 @@ class Index
     }
 
     /**
-     * 当改变国家的时候，ajax获取省市信息
+     * 当改变国家的时候，ajax获取省市信息.
      */
     public function ajaxChangecountry()
     {
@@ -274,20 +274,20 @@ class Index
             $cart_info = Yii::$service->cart->getCartInfo($shipping_method, $country, $state);
             if (isset($cart_info['products']) && is_array($cart_info['products'])) {
                 foreach ($cart_info['products'] as $k => $product_one) {
-                    # 设置名字，得到当前store的语言名字。
+                    // 设置名字，得到当前store的语言名字。
                     $cart_info['products'][$k]['name'] = Yii::$service->store->getStoreAttrVal($product_one['product_name'], 'name');
-                    # 设置图片
+                    // 设置图片
                     if (isset($product_one['product_image']['main']['image'])) {
                         $cart_info['products'][$k]['image'] = $product_one['product_image']['main']['image'];
                     }
-                    # 产品的url
+                    // 产品的url
                     $cart_info['products'][$k]['url'] = Yii::$service->url->getUrl($product_one['product_url']);
                     $custom_option = isset($product_one['custom_option']) ? $product_one['custom_option'] : '';
                     $custom_option_sku = $product_one['custom_option_sku'];
-                    # 将在产品页面选择的颜色尺码等属性显示出来。
+                    // 将在产品页面选择的颜色尺码等属性显示出来。
                     $custom_option_info_arr = $this->getProductOptions($product_one, $custom_option_sku);
                     $cart_info['products'][$k]['custom_option_info'] = $custom_option_info_arr;
-                    # 设置相应的custom option 对应的图片
+                    // 设置相应的custom option 对应的图片
                     $custom_option_image = isset($custom_option[$custom_option_sku]['image']) ? $custom_option[$custom_option_sku]['image'] : '';
                     if ($custom_option_image) {
                         $cart_info['products'][$k]['image'] = $custom_option_image;
@@ -301,7 +301,7 @@ class Index
     }
 
     /**
-     * 将产品页面选择的颜色尺码等显示出来，包括custom option 和spu options部分的数据
+     * 将产品页面选择的颜色尺码等显示出来，包括custom option 和spu options部分的数据.
      */
     public function getProductOptions($product_one, $custom_option_sku)
     {
@@ -311,7 +311,7 @@ class Index
         if (isset($custom_option[$custom_option_sku]) && !empty($custom_option[$custom_option_sku])) {
             $custom_option_info = $custom_option[$custom_option_sku];
             foreach ($custom_option_info as $attr => $val) {
-                if (!in_array($attr, ['qty','sku','price','image'])) {
+                if (!in_array($attr, ['qty', 'sku', 'price', 'image'])) {
                     $attr = str_replace('_', ' ', $attr);
                     $attr = ucfirst($attr);
                     $custom_option_info_arr[$attr] = $val;
@@ -353,8 +353,8 @@ class Index
         $cartProductInfo = Yii::$service->cart->quoteItem->getCartProductInfo();
         //echo $country ;
         $product_weight = $cartProductInfo['product_weight'];
-        # 传递当前的货运方式，这个需要从cart中选取，
-        # 如果cart中没有shipping_method，那么该值为空
+        // 传递当前的货运方式，这个需要从cart中选取，
+        // 如果cart中没有shipping_method，那么该值为空
         //var_dump($this->_cart_info);
         $cartShippingMethod = $this->_cart_info['shipping_method'];
         //echo "$custom_shipping_method,$cartShippingMethod";
@@ -363,7 +363,7 @@ class Index
         $this->_shipping_method = $current_shipping_method;
         $shippingArr = $this->getShippingArr($product_weight, $current_shipping_method, $country, $region);
 
-        return $shippingArr ;
+        return $shippingArr;
     }
 
     /**
@@ -429,7 +429,7 @@ class Index
             foreach ($allshipping as $method => $shipping) {
                 $label = $shipping['label'];
                 $name = $shipping['name'];
-                # 得到运费的金额
+                // 得到运费的金额
                 //echo "$method,$weight,$country,$region";
                 // getShippingCostWithSymbols
                 $cost = Yii::$service->shipping->getShippingCost($method, $weight, $country, $region);
@@ -512,7 +512,7 @@ class Index
             /**
              * 下面是Fecshop的widget，通过一个一个数据数组+第一个view文件
              * 组合得到对应的html代码，返回给$shippingHtml
-             * 由于fecshop多多模板系统，预先从高级别的模板路径中依次查找view文件，存在则使用该view文件
+             * 由于fecshop多多模板系统，预先从高级别的模板路径中依次查找view文件，存在则使用该view文件.
              */
             $shippingView = [
                 'view' => 'checkout/onepage/index/shipping.php',
@@ -537,7 +537,7 @@ class Index
              * 下面通过当前的货币，购物车信息等数组数据，+上view文件
              * 返回order部分的html内容。
              */
-            # 得到当前货币
+            // 得到当前货币
             $currency_info = Yii::$service->page->currency->getCurrencyInfo();
             $reviewOrderView = [
                 'view' => 'checkout/onepage/index/review_order.php',

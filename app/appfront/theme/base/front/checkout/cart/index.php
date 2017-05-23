@@ -53,7 +53,7 @@ use fecshop\app\appfront\helper\Format;
 								<tr class="first last odd">
 									<td>
 										<a href="<?= $product_one['url'] ?>" title="<?= $product_one['name'] ?>" class="product-image">
-										<img src="<?= Yii::$service->product->image->getResize($product_one['image'], [100,100], false) ?>" alt="<?= $product_one['name'] ?>" width="75" height="75">
+										<img src="<?= Yii::$service->product->image->getResize($product_one['image'], [100, 100], false) ?>" alt="<?= $product_one['name'] ?>" width="75" height="75">
 										</a>
 									</td>
 									
@@ -124,11 +124,11 @@ use fecshop\app\appfront\helper\Format;
 									<div class="discount-form">
 										<label for="coupon_code"><?= Yii::$service->page->translate->__('Enter your coupon code if you have one.'); ?></label>
 										<div class="input-box">
-											<input type="hidden" class="couponType"  value="<?= $cart_info['coupon_code'] ? 1 : 2 ; ?>"  />
+											<input type="hidden" class="couponType"  value="<?= $cart_info['coupon_code'] ? 1 : 2; ?>"  />
 											<input style="color:#777;" class="input-text" id="coupon_code" name="coupon_code" value="<?= $cart_info['coupon_code']; ?>">
 										</div>
 										<div class="buttons-cou">
-											<a href="javascript:void(0)" class="add_coupon_submit submitbutton"><span><span><?= Yii::$service->page->translate->__($cart_info['coupon_code'] ? 'Cancel Coupon' : 'Add Coupon') ; ?></span></span> </a>
+											<a href="javascript:void(0)" class="add_coupon_submit submitbutton"><span><span><?= Yii::$service->page->translate->__($cart_info['coupon_code'] ? 'Cancel Coupon' : 'Add Coupon'); ?></span></span> </a>
 											
 										</div>
 										<div class="clear"></div>
@@ -204,7 +204,7 @@ use fecshop\app\appfront\helper\Format;
     ?>
 		<div class="empty_cart">
 		<?php
-            $param = ['urlB' => '<a rel="nofollow" href="' . Yii::$service->url->getUrl('customer/account/login') . '">','urlE' => '</a>']; ?>	
+            $param = ['urlB' => '<a rel="nofollow" href="' . Yii::$service->url->getUrl('customer/account/login') . '">', 'urlE' => '</a>']; ?>	
 		
 		<div id="empty_cart_info">
 			<?= Yii::$service->page->translate->__('Your Shopping Cart is empty'); ?>
@@ -338,5 +338,5 @@ $(document).ready(function(){
 });
 
 <?php $this->endBlock(); ?> 
-<?php $this->registerJs($this->blocks['changeCartInfo'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+<?php $this->registerJs($this->blocks['changeCartInfo'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 </script>

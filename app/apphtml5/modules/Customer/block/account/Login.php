@@ -9,8 +9,8 @@
 
 namespace fecshop\app\apphtml5\modules\Customer\block\account;
 
-use Yii;
 use fecshop\app\apphtml5\helper\mailer\Email;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -48,19 +48,17 @@ class Login
         }
         if (is_array($param) && !empty($param)) {
             if (Yii::$service->customer->login($param)) {
-                # 发送邮件
+                // 发送邮件
                 if ($param['email']) {
                     $this->sendLoginEmail($param);
                 }
             }
         }
         Yii::$service->page->message->addByHelperErrors();
-
-        return;
     }
 
     /**
-     * 发送登录邮件
+     * 发送登录邮件.
      */
     public function sendLoginEmail($param)
     {

@@ -9,9 +9,9 @@
 
 namespace fecshop\services\url\rewrite;
 
+use fecshop\models\mongodb\url\UrlRewrite;
 use Yii;
 use yii\base\InvalidValueException;
-use fecshop\models\mongodb\url\UrlRewrite;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -29,8 +29,6 @@ class RewriteMongodb implements RewriteInterface
         if ($UrlData['custom_url_key']) {
             return $UrlData['origin_url'];
         }
-
-        return ;
     }
 
     public function getPrimaryKey()
@@ -43,7 +41,7 @@ class RewriteMongodb implements RewriteInterface
         if ($primaryKey) {
             return UrlRewrite::findOne($primaryKey);
         } else {
-            return new UrlRewrite;
+            return new UrlRewrite();
         }
     }
 
@@ -87,7 +85,7 @@ class RewriteMongodb implements RewriteInterface
                 return;
             }
         } else {
-            $model = new UrlRewrite;
+            $model = new UrlRewrite();
         }
         unset($one['_id']);
         $saveStatus = Yii::$service->helper->ar->save($model, $one);
@@ -165,6 +163,6 @@ class RewriteMongodb implements RewriteInterface
 
     public function newModel()
     {
-        return new UrlRewrite;
+        return new UrlRewrite();
     }
 }

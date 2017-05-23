@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
-
 class m170228_072455_fecshop_tables extends \yii\mongodb\Migration
 {
     public function up()

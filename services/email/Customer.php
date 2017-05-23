@@ -18,7 +18,7 @@ use Yii;
 class Customer
 {
     /**
-     * 邮件模板部分配置
+     * 邮件模板部分配置.
      */
     public $emailTheme;
 

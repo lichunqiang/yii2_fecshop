@@ -9,13 +9,13 @@
 
 namespace fecshop\services\page;
 
-use Yii;
-use yii\base\InvalidConfigException;
 use fec\helpers\CSession;
 use fecshop\services\Service;
+use Yii;
+use yii\base\InvalidConfigException;
 
 /**
- * Currency
+ * Currency.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -35,18 +35,18 @@ class Currency extends Service
      * 			'rate' 		=> 6.3,
      * 			'symbol' 	=> 'гд',
      * 		],
-     * ]
+     * ].
      */
     public $currencys;
     /**
      * 基础货币，产品的价格，填写的都是基础货币的价格。
-     * 该值需要在配置文件中进行配置
+     * 该值需要在配置文件中进行配置.
      */
-    public $baseCurrecy ;
+    public $baseCurrecy;
     /**
      * 网站的默认货币，需要注意的是，默认货币不要和基础货币混淆，举例：
      * 后台产品统一使用的美元填写产品价格，但是我的网站前端的默认货币为人民币。
-     * 该值需要在配置文件中进行配置
+     * 该值需要在配置文件中进行配置.
      */
     public $defaultCurrency = 'USD';
     /**
@@ -69,9 +69,9 @@ class Currency extends Service
         if (!$this->_currencys) {
             foreach ($this->currencys as $code => $info) {
                 $this->_currencys[$code] = [
-                    'code' => $code ,
-                    'rate' => $info['rate'] ,
-                    'symbol' => $info['symbol'] ,
+                    'code' => $code,
+                    'rate' => $info['rate'],
+                    'symbol' => $info['symbol'],
                 ];
             }
         }
@@ -119,7 +119,7 @@ class Currency extends Service
                 return ceil($price * $rate * 100) / 100;
             }
         }
-        /**
+        /*
          * 如果上面出现错误，当前的货币在货币配置中找不到，则会使用默认货币
          * 这种情况可能出现在货币配置调整的过程中，找不到则会被强制改成默认货币。
          */

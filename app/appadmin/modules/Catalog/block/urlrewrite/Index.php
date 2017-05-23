@@ -9,10 +9,10 @@
 
 namespace fecshop\app\appadmin\modules\Catalog\block\urlrewrite;
 
-use Yii;
-use fecshop\app\appadmin\modules\AppadminbaseBlock;
 use fec\helpers\CUrl;
 use fecshop\app\appadmin\interfaces\base\AppadminbaseBlockInterface;
+use fecshop\app\appadmin\modules\AppadminbaseBlock;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -21,19 +21,19 @@ use fecshop\app\appadmin\interfaces\base\AppadminbaseBlockInterface;
 class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
 {
     /**
-     * init param function ,execute in construct
+     * init param function ,execute in construct.
      */
     public function init()
     {
-        /**
+        /*
          * edit data url
          */
         $this->_editUrl = CUrl::getUrl('catalog/urlrewrite/manageredit');
-        /**
+        /*
          * delete data url
          */
         $this->_deleteUrl = CUrl::getUrl('catalog/urlrewrite/managerdelete');
-        /**
+        /*
          * service component, data provider
          */
         $this->_service = Yii::$service->url->rewrite;
@@ -43,17 +43,17 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
     public function getLastData()
     {
 
-        # hidden section ,that storage page info
+        // hidden section ,that storage page info
         $pagerForm = $this->getPagerForm();
-        # search section
+        // search section
         $searchBar = $this->getSearchBar();
-        # edit button, delete button,
+        // edit button, delete button,
         $editBar = $this->getEditBar();
-        # table head
+        // table head
         $thead = $this->getTableThead();
-        # table body
+        // table body
         $tbody = $this->getTableTbody();
-        # paging section
+        // paging section
         $toolBar = $this->getToolBar($this->_param['numCount'], $this->_param['pageNum'], $this->_param['numPerPage']);
 
         return [
@@ -67,22 +67,22 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
     }
 
     /**
-     * get search bar Arr config
+     * get search bar Arr config.
      */
     public function getSearchArr()
     {
         $data = [
 
-            [    # 字符串类型
+            [    // 字符串类型
                 'type' => 'inputtext',
                 'title' => '原始url',
-                'name' => 'origin_url' ,
+                'name' => 'origin_url',
                 'columns_type' => 'string',
             ],
-            [    # 字符串类型
+            [    // 字符串类型
                 'type' => 'inputtext',
                 'title' => '自定义url',
-                'name' => 'custom_url_key' ,
+                'name' => 'custom_url_key',
                 'columns_type' => 'string',
             ],
 
@@ -126,11 +126,11 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
 
         ];
 
-        return $table_th_bar ;
+        return $table_th_bar;
     }
 
     /**
-     * rewrite parent getTableTbodyHtml($data)
+     * rewrite parent getTableTbodyHtml($data).
      */
     public function getTableTbodyHtml($data)
     {
@@ -211,14 +211,14 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
             $str .= '</tr>';
         }
 
-        return $str ;
+        return $str;
     }
 
     public function getTableTheadHtml($table_th_bar)
     {
         $table_th_bar = $this->getTableTheadArrInit($table_th_bar);
         $this->_param['orderField'] = $this->_param['orderField'] ? $this->_param['orderField'] : $this->_primaryKey;
-        $this->_param['orderDirection'] = $this->_param['orderDirection'] ;
+        $this->_param['orderDirection'] = $this->_param['orderDirection'];
         foreach ($table_th_bar as $k => $field) {
             if ($field['orderField'] == $this->_param['orderField']) {
                 $table_th_bar[$k]['class'] = $this->_param['orderDirection'];

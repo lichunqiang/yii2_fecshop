@@ -10,11 +10,11 @@
 namespace fecshop\services\url;
 
 use fecshop\services\Service;
-use fecshop\services\url\rewrite\RewriteMysqldb;
 use fecshop\services\url\rewrite\RewriteMongodb;
+use fecshop\services\url\rewrite\RewriteMysqldb;
 
 /**
- * Url Rewrite services
+ * Url Rewrite services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -26,9 +26,9 @@ class Rewrite extends Service
     public function init()
     {
         if ($this->storage == 'mongodb') {
-            $this->_urlRewrite = new RewriteMongodb;
+            $this->_urlRewrite = new RewriteMongodb();
         } elseif ($this->storage == 'mysqldb') {
-            $this->_urlRewrite = new RewriteMysqldb;
+            $this->_urlRewrite = new RewriteMysqldb();
         }
     }
 

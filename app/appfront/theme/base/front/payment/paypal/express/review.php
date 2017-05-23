@@ -5,11 +5,11 @@
 		<form action="<?= Yii::$service->url->getCurrentUrl(); ?>" method="post" id="onestepcheckout-form">
 			<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 			<fieldset style="margin: 0;" class="group-select">
-				<p class="onestepcheckout-description"><?= Yii::$service->page->translate->__('Welcome to the checkout,Fill in the fields below to complete your purchase');?> !</p>
+				<p class="onestepcheckout-description"><?= Yii::$service->page->translate->__('Welcome to the checkout,Fill in the fields below to complete your purchase'); ?> !</p>
 				
 				<div class="onestepcheckout-threecolumns checkoutcontainer onestepcheckout-skin-generic onestepcheckout-enterprise">
 					<div class="onestepcheckout-column-left">
-						<?php # address 部门
+						<?php // address 部门
                             //echo $address_view_file;
                             $addressView = [
                                 'view' => 'payment/paypal/express/review/address.php',
@@ -32,7 +32,7 @@
 
 					<div class="onestepcheckout-column-middle">
 						<div class="shipping_method_html">
-							<?php # shipping部分
+							<?php // shipping部分
                                 $shippingView = [
                                     'view' => 'payment/paypal/express/review/shipping.php',
                                 ];
@@ -48,13 +48,13 @@
 							
 						<div class="onestepcheckout-coupons">
 							<div style="display: none;" id="coupon-notice"></div>
-							<div class="op_block_title"><?= Yii::$service->page->translate->__('Coupon codes (optional)');?></div>
-							<label for="id_couponcode"><?= Yii::$service->page->translate->__('Enter your coupon code if you have one.');?></label>
+							<div class="op_block_title"><?= Yii::$service->page->translate->__('Coupon codes (optional)'); ?></div>
+							<label for="id_couponcode"><?= Yii::$service->page->translate->__('Enter your coupon code if you have one.'); ?></label>
 							
-							<input type="hidden" class="couponType"  value="<?= $cart_info['coupon_code'] ? 1 : 2 ; ?>"  />
+							<input type="hidden" class="couponType"  value="<?= $cart_info['coupon_code'] ? 1 : 2; ?>"  />
 							<input style="color:#777;" class="input-text" id="id_couponcode" name="coupon_code" value="<?= $cart_info['coupon_code']; ?>">
 							<br>
-							<button style="" type="button" class="submitbutton add_coupon_submit" id="onestepcheckout-coupon-add"><?= Yii::$service->page->translate->__($cart_info['coupon_code'] ? 'Cancel Coupon' : 'Add Coupon') ; ?></button>
+							<button style="" type="button" class="submitbutton add_coupon_submit" id="onestepcheckout-coupon-add"><?= Yii::$service->page->translate->__($cart_info['coupon_code'] ? 'Cancel Coupon' : 'Add Coupon'); ?></button>
 							<div class="clear"></div>
 							<div class="coupon_add_log"></div>
 						</div>
@@ -64,7 +64,7 @@
 
 					<div class="onestepcheckout-column-right">
 						<div class="review_order_view">
-							<?php # review order部分
+							<?php // review order部分
                                 $reviewOrderView = [
                                     'view' => 'payment/paypal/express/review/review_order.php',
                                 ];
@@ -77,8 +77,8 @@
 							
 						</div>
 						<div class="onestepcheckout-place-order">
-							<a class="large orange onestepcheckout-button" href="javascript:void(0)" id="onestepcheckout-place-order"><?= Yii::$service->page->translate->__('Place order now');?></a>
-							<div class="onestepcheckout-place-order-loading"><img src="<?= Yii::$service->image->getImgUrl('images/opc-ajax-loader.gif'); ?>">&nbsp;&nbsp;<?= Yii::$service->page->translate->__('Please wait, processing your order...');?></div>
+							<a class="large orange onestepcheckout-button" href="javascript:void(0)" id="onestepcheckout-place-order"><?= Yii::$service->page->translate->__('Place order now'); ?></a>
+							<div class="onestepcheckout-place-order-loading"><img src="<?= Yii::$service->image->getImgUrl('images/opc-ajax-loader.gif'); ?>">&nbsp;&nbsp;<?= Yii::$service->page->translate->__('Please wait, processing your order...'); ?></div>
 						</div>
 					</div>
 					<div style="clear: both;">&nbsp;</div>
@@ -106,7 +106,7 @@
 			$(".onestepcheckout-summary").html('<div style="text-align:center;min-height:40px;"><img src="<?= Yii::$service->image->getImgUrl('images/ajax-loader.gif'); ?>"  /></div>');
 			$(".onestepcheckout-shipping-method-block").html('<div style="text-align:center;min-height:40px;"><img src="<?= Yii::$service->image->getImgUrl('images/ajax-loader.gif'); ?>"  /></div>');
 				
-			ajaxurl = "<?= Yii::$service->url->getUrl('checkout/onepage/ajaxupdateorder');  ?>";
+			ajaxurl = "<?= Yii::$service->url->getUrl('checkout/onepage/ajaxupdateorder'); ?>";
 			
 			
 			$.ajax({
@@ -169,14 +169,14 @@
 						$(".couponType").val($succ_coupon_type);
 						hml = $('.add_coupon_submit').html();
 						if(hml == 'Add Coupon'){
-							$('.add_coupon_submit').html('<?= Yii::$service->page->translate->__('Cancel Coupon');?>');
+							$('.add_coupon_submit').html('<?= Yii::$service->page->translate->__('Cancel Coupon'); ?>');
 						}else{
-							$('.add_coupon_submit').html('<?= Yii::$service->page->translate->__('Add Coupon');?>');
+							$('.add_coupon_submit').html('<?= Yii::$service->page->translate->__('Add Coupon'); ?>');
 						}
 						$(".coupon_add_log").html("");
 						ajaxreflush();
 					}else if(data.content == 'nologin'){
-						$(".coupon_add_log").html("<?= Yii::$service->page->translate->__('you must login your account before you use coupon');?>");
+						$(".coupon_add_log").html("<?= Yii::$service->page->translate->__('you must login your account before you use coupon'); ?>");
 					}else{
 						$(".coupon_add_log").html(data.content);
 					}
@@ -193,12 +193,12 @@
 				email = $("input[name='billing[email]']").val();
 				if(!email){
 					$(this).prop('checked', false);
-					$(".label_create_account").html(" <?= Yii::$service->page->translate->__('email address is empty, you must Fill in email');?>");
+					$(".label_create_account").html(" <?= Yii::$service->page->translate->__('email address is empty, you must Fill in email'); ?>");
 				}else{
 					thischeckbox = this;
 					if(!validateEmail(email)){
 						$(this).prop('checked', false);
-						$(".label_create_account").html(" <?= Yii::$service->page->translate->__('email address format is incorrect');?>");
+						$(".label_create_account").html(" <?= Yii::$service->page->translate->__('email address format is incorrect'); ?>");
 						
 					}else{
 						// ajax  get if  email is register
@@ -217,7 +217,7 @@
 					
 								}else{
 									$(thischeckbox).prop('checked', false);
-									$(".label_create_account").html(" <?= Yii::$service->page->translate->__('This email is registered , you must fill in another email');?>");
+									$(".label_create_account").html(" <?= Yii::$service->page->translate->__('This email is registered , you must fill in another email'); ?>");
 								}
 							},
 							error:function (XMLHttpRequest, textStatus, errorThrown){}
@@ -241,7 +241,7 @@
 			shipment_method = $(".onestepcheckout-shipping-method-block input[name='shipping_method']:checked").val();
 			//alert(shipment_method);
 			if(!shipment_method){
-				$(".shipment-methods").after('<div style=""  class="validation-advice"><?= Yii::$service->page->translate->__('This is a required field.');?></div>');
+				$(".shipment-methods").after('<div style=""  class="validation-advice"><?= Yii::$service->page->translate->__('This is a required field.'); ?></div>');
 				j = 1;
 			}
 			
@@ -252,12 +252,12 @@
 				value = $(this).val();
 				if(!value){
 					i++;
-					$(this).after('<div style=""  class="validation-advice"><?= Yii::$service->page->translate->__('This is a required field.');?></div>');
+					$(this).after('<div style=""  class="validation-advice"><?= Yii::$service->page->translate->__('This is a required field.'); ?></div>');
 				}
 			});
 			user_email = $("#billing_address .validate-email").val();
 			if(user_email && !validateEmail(user_email)){
-				$("#billing_address .validate-email").after('<div style=""  class="validation-advice"><?= Yii::$service->page->translate->__('email address format is incorrect');?></div>');
+				$("#billing_address .validate-email").after('<div style=""  class="validation-advice"><?= Yii::$service->page->translate->__('email address format is incorrect'); ?></div>');
 				i++;
 			}
 			
@@ -334,7 +334,7 @@
 	});	
 	//ajaxreflush();
 <?php $this->endBlock(); ?> 
-<?php $this->registerJs($this->blocks['placeOrder'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+<?php $this->registerJs($this->blocks['placeOrder'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 </script>
     

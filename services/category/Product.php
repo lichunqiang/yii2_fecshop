@@ -9,8 +9,8 @@
 
 namespace fecshop\services\category;
 
-use Yii;
 use fecshop\services\Service;
+use Yii;
 
 /**
  * 分类对应的产品的一些操作。
@@ -21,7 +21,7 @@ class Product extends Service
 {
     public $pageNum = 1;
     public $numPerPage = 50;
-    public $allowedNumPerPage ;
+    public $allowedNumPerPage;
 
     /**
      * @property $filter | Array   example:
@@ -43,7 +43,7 @@ class Product extends Service
         if (!$category_id) {
             Yii::$service->helper->errors->add('category id is empty');
 
-            return ;
+            return;
         } else {
             unset($filter['category_id']);
             $filter['where'][] = ['category' => $category_id];
@@ -52,7 +52,7 @@ class Product extends Service
             $filter['pageNum'] = 1;
         }
         if (!isset($filter['numPerPage']) || !$filter['numPerPage']) {
-            $filter['numPerPage'] = $this->numPerPage ;
+            $filter['numPerPage'] = $this->numPerPage;
         }
         if (isset($filter['orderBy']) && !empty($filter['orderBy'])) {
             if (!is_array($filter['orderBy'])) {
@@ -120,14 +120,14 @@ class Product extends Service
     }
 
     /**
-     * 处理，得到产品价格信息
+     * 处理，得到产品价格信息.
      */
     protected function getPrices($price, $special_price, $special_from, $special_to)
     {
         if (Yii::$service->product->price->specialPriceisActive($price, $special_price, $special_from, $special_to)) {
-            return [$price,$special_price];
+            return [$price, $special_price];
         }
 
-        return [$price,0];
+        return [$price, 0];
     }
 }

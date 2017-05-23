@@ -36,13 +36,13 @@ class Index
 
     public function getLastData()
     {
-        # 每页显示的产品个数，进行安全验证，如果个数不在预先设置的值内，则会报错。
-        # 这样是为了防止恶意攻击，也就是发送很多不同的页面个数的链接，绕开缓存。
+        // 每页显示的产品个数，进行安全验证，如果个数不在预先设置的值内，则会报错。
+        // 这样是为了防止恶意攻击，也就是发送很多不同的页面个数的链接，绕开缓存。
         $this->getNumPerPage();
         //echo Yii::$service->page->translate->__('fecshop,{username}', ['username' => 'terry']);
         $this->initCategory();
 
-        # change current layout File.
+        // change current layout File.
         //Yii::$service->page->theme->layoutFile = 'home.php';
 
         $productCollInfo = $this->getCategoryProductColl();
@@ -160,7 +160,7 @@ class Index
                 //var_dump($urlInfo);
                 //exit;
                 $frontSort[] = [
-                    'label' => $label ,
+                    'label' => $label,
                     'value' => $np,
                     'url' => $urlInfo['url'],
                     'selected' => $urlInfo['selected'],
@@ -363,10 +363,10 @@ class Index
     protected function getCategoryProductColl()
     {
         $select = [
-                'sku','spu','name','image',
-                'price','special_price',
-                'special_from','special_to',
-                'url_key','score',
+                'sku', 'spu', 'name', 'image',
+                'price', 'special_price',
+                'special_from', 'special_to',
+                'url_key', 'score',
             ];
         $category_query = Yii::$app->getModule('catalog')->params['category_query'];
         if (is_array($category_query['sort'])) {
@@ -415,7 +415,7 @@ class Index
         $primaryVal = Yii::$app->request->get($primaryKey);
         $this->_primaryVal = $primaryVal;
         $category = Yii::$service->category->getByPrimaryKey($primaryVal);
-        $this->_category = $category ;
+        $this->_category = $category;
         Yii::$app->view->registerMetaTag([
             'name' => 'keywords',
             'content' => Yii::$service->store->getStoreAttrVal($category['meta_keywords'], 'meta_keywords'),
@@ -432,7 +432,7 @@ class Index
         $this->_where = $this->initWhere();
     }
 
-    # 面包屑导航
+    // 面包屑导航
     protected function breadcrumbs($name)
     {
         if (Yii::$app->controller->module->params['category_breadcrumbs']) {
@@ -441,7 +441,7 @@ class Index
                 foreach ($parent_info as $info) {
                     $parent_name = Yii::$service->store->getStoreAttrVal($info['name'], 'name');
                     $parent_url = Yii::$service->url->getUrl($info['url_key']);
-                    Yii::$service->page->breadcrumbs->addItems(['name' => $parent_name , 'url' => $parent_url  ]);
+                    Yii::$service->page->breadcrumbs->addItems(['name' => $parent_name, 'url' => $parent_url]);
                 }
             }
             Yii::$service->page->breadcrumbs->addItems(['name' => $name]);

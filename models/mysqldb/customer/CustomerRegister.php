@@ -32,13 +32,13 @@ class CustomerRegister extends Customer
         $current_rules = [
 
             ['email', 'filter', 'filter' => 'trim'],
-            ['email','email'],
-            ['email','validateEmail'],
+            ['email', 'email'],
+            ['email', 'validateEmail'],
 
             ['password', 'filter', 'filter' => 'trim'],
 
             ['firstname', 'filter', 'filter' => 'trim'],
-            ['lastname' , 'filter', 'filter' => 'trim'],
+            ['lastname', 'filter', 'filter' => 'trim'],
             ['is_subscribed', 'validateIsSubscribed'],
         //    ['email', 'required'],
         //    ['email', 'email'],
@@ -57,9 +57,9 @@ class CustomerRegister extends Customer
 
         ];
 
-        $rules = array_merge($parent_rules, $current_rules) ;
+        $rules = array_merge($parent_rules, $current_rules);
         if (is_array($this->_rules)) {
-            $rules = array_merge($rules, $this->_rules) ;
+            $rules = array_merge($rules, $this->_rules);
         }
 
         return $rules;
@@ -76,7 +76,7 @@ class CustomerRegister extends Customer
     {
         if ($this->id) {
             $one = Customer::find()
-                ->where(' id != :id AND email = :email ', [':id' => $this->id,':email' => $this->email])
+                ->where(' id != :id AND email = :email ', [':id' => $this->id, ':email' => $this->email])
                 ->one();
             if ($one['id']) {
                 $this->addError($attribute, 'this email is exist!');
@@ -99,19 +99,19 @@ class CustomerRegister extends Customer
         }
     }
 
-    # 重写保存方法
+    // 重写保存方法
     public function save($runValidation = true, $attributeNames = null)
     {
 
-        # 如果auth_key为空，则重置
+        // 如果auth_key为空，则重置
         if (!$this->auth_key) {
             $this->generateAuthKey();
         }
-        # 如果access_token为空，则重置
+        // 如果access_token为空，则重置
         if (!$this->access_token) {
             $this->generateAccessToken();
         }
-        # 设置password
+        // 设置password
         $this->setPassword($this->password);
         parent::save($runValidation, $attributeNames);
     }

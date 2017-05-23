@@ -9,10 +9,10 @@
 
 namespace fecshop\services\product\viewLog;
 
-use fecshop\services\Service;
 use fec\helpers\CDate;
 use fec\helpers\CUser;
 use fecshop\models\mongodb\product\ViewLog as MongodbViewLog;
+use fecshop\services\Service;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -24,7 +24,7 @@ class Mongodb extends Service
     public $_defaultCollection = 'log_product_view';
     public $_maxProductCount = 10;
 
-    # init
+    // init
     public function init()
     {
         if (!$this->collection) {
@@ -34,7 +34,7 @@ class Mongodb extends Service
     }
 
     /**
-     *	get product history log
+     *	get product history log.
      */
     public function getHistory($user_id = '', $count = '')
     {
@@ -45,7 +45,7 @@ class Mongodb extends Service
             $user_id = CUser::getCurrentUserId();
         }
         if (!$user_id) {
-            return ;
+            return;
         }
         $coll = MongodbViewLog::find()->where([
                 'user_id' => $user_id,
@@ -59,7 +59,7 @@ class Mongodb extends Service
     }
 
     /**
-     *	save product history log
+     *	save product history log.
      */
     public function setHistory($productOb)
     {

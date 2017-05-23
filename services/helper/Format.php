@@ -12,11 +12,11 @@ namespace fecshop\services\helper;
 use fecshop\services\Service;
 
 /**
- * AR services
+ * AR services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
-# use \fecshop\services\helper\Format;
+// use \fecshop\services\helper\Format;
 class Format extends Service
 {
     /**

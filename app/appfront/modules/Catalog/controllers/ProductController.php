@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Catalog\controllers;
 
-use Yii;
 use fecshop\app\appfront\modules\AppfrontController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -24,7 +24,7 @@ class ProductController extends AppfrontController
         Yii::$service->page->theme->layoutFile = 'product_view.php';
     }
 
-    # 网站信息管理
+    // 网站信息管理
     public function actionIndex()
     {
         //$data = Yii::$service->product->apicoll();
@@ -46,7 +46,7 @@ class ProductController extends AppfrontController
             $cacheUrlParam = Yii::$service->cache->cacheUrlParam($cacheName);
             $get_str = '';
             $get = Yii::$app->request->get();
-            # 存在无缓存参数，则关闭缓存
+            // 存在无缓存参数，则关闭缓存
             if (isset($get[$disableUrlParam])) {
                 return [
                     [
@@ -76,7 +76,7 @@ class ProductController extends AppfrontController
                     'only' => ['index'],
                     'duration' => $timeout,
                     'variations' => [
-                        $store,$currency,$get_str,$product_id,
+                        $store, $currency, $get_str, $product_id,
                     ],
                     //'dependency' => [
                     //	'class' => 'yii\caching\DbDependency',
@@ -89,7 +89,7 @@ class ProductController extends AppfrontController
         return [];
     }
 
-    # ajax 得到产品加入购物车的价格。
+    // ajax 得到产品加入购物车的价格。
     public function actionGetcoprice()
     {
         $custom_option_sku = Yii::$app->request->get('custom_option_sku');

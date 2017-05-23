@@ -9,9 +9,9 @@
 
 namespace fecshop\services\product;
 
-use Yii;
-use fecshop\services\Service;
 use fecshop\models\mongodb\Product;
+use fecshop\services\Service;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -19,11 +19,11 @@ use fecshop\models\mongodb\Product;
  */
 class Stock extends Service
 {
-    # product model arr
+    // product model arr
     protected $_product_arr;
-    # product items（譬如购物车信息）
+    // product items（譬如购物车信息）
     protected $_product_items;
-    # 是否已经检查产品是否有库存。
+    // 是否已经检查产品是否有库存。
     protected $_checkItemsStockStatus;
     //protected $CheckItemsStock
 
@@ -45,7 +45,7 @@ class Stock extends Service
      */
     protected function actionDeduct($items = '')
     {
-        if (!$items) { #如果$items为空，则去购物车取数据。
+        if (!$items) { //如果$items为空，则去购物车取数据。
             $cartInfo = Yii::$service->cart->getCartInfo();
             $items = isset($cartInfo['products']) ? $cartInfo['products'] : '';
         }
@@ -57,7 +57,7 @@ class Stock extends Service
 
         $product_arr = $this->_product_arr;
         $product_items = $this->_product_items;
-        # 开始扣除库存。
+        // 开始扣除库存。
         if (is_array($product_items) && !empty($product_items)) {
             foreach ($product_items as $k => $item) {
                 $sku = $item['sku'];
@@ -108,7 +108,7 @@ class Stock extends Service
         $product_arr = [];
         $i = 0;
         $product_items = [];
-        # 首先检查，库存是否满足，不满足则返回false
+        // 首先检查，库存是否满足，不满足则返回false
         if (is_array($items) && !empty($items)) {
             foreach ($items as $item) {
                 //var_dump($item);
@@ -166,7 +166,7 @@ class Stock extends Service
      */
     protected function actionReturnQty($product_items)
     {
-        # 开始扣除库存。
+        // 开始扣除库存。
         if (is_array($product_items) && !empty($product_items)) {
             foreach ($product_items as $k => $item) {
                 $sku = $item['sku'];

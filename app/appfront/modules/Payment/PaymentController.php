@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Payment;
 
-use Yii;
 use fecshop\app\appfront\modules\AppfrontController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>

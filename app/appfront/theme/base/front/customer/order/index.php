@@ -5,16 +5,16 @@
 		<div class="std">
 			<div style="margin:4px 0 0">
 				<div class="page-title">
-					<h2><?= Yii::$service->page->translate->__('Customer Order');?></h2>
+					<h2><?= Yii::$service->page->translate->__('Customer Order'); ?></h2>
 				</div>
 				<table id="my-orders-table" class="edit_order">
 					<thead>
 						<tr class="first last">
-							<th><?= Yii::$service->page->translate->__('Order #');?> </th>
-							<th><?= Yii::$service->page->translate->__('Date');?></th>
-							<th><?= Yii::$service->page->translate->__('Ship To');?></th>
-							<th><span class="nobr"><?= Yii::$service->page->translate->__('Order Total');?></span></th>
-							<th><span class="nobr"><?= Yii::$service->page->translate->__('Order Status');?></span></th>
+							<th><?= Yii::$service->page->translate->__('Order #'); ?> </th>
+							<th><?= Yii::$service->page->translate->__('Date'); ?></th>
+							<th><?= Yii::$service->page->translate->__('Ship To'); ?></th>
+							<th><span class="nobr"><?= Yii::$service->page->translate->__('Order Total'); ?></span></th>
+							<th><span class="nobr"><?= Yii::$service->page->translate->__('Order Status'); ?></span></th>
 							<th>&nbsp;</th>
 						</tr>
 					</thead>

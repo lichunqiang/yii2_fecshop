@@ -70,22 +70,22 @@ return [
 
         ],
         */
-        # 子服务
+        // 子服务
         'childService' => [
             'image' => [
                 'class' => 'fecshop\services\product\Image',
                 'imageFloder' => 'media/catalog/product',
                 //'allowImgType' 	=> ['image/jpeg','image/gif','image/png'],
-                'maxUploadMSize' => 5, #MB
+                'maxUploadMSize' => 5, //MB
 
             ],
             'price' => [
                 'class' => 'fecshop\services\product\Price',
-                'ifSpecialPriceGtPriceFinalPriceEqPrice' => true, # 设置为true后，如果产品的special_price > price， 则 special_price无效，价格为price
+                'ifSpecialPriceGtPriceFinalPriceEqPrice' => true, // 设置为true后，如果产品的special_price > price， 则 special_price无效，价格为price
             ],
             'review' => [
                 'class' => 'fecshop\services\product\Review',
-                'filterByLang' => false,    # 是否通过语言进行评论过滤？
+                'filterByLang' => false,    // 是否通过语言进行评论过滤？
             ],
             'favorite' => [
                 'class' => 'fecshop\services\product\Favorite',

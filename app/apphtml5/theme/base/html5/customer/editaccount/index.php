@@ -11,7 +11,7 @@
 
 <div class="list-block customer-login  customer-register">
 	<form method="post" id="form-validate" autocomplete="off" action="<?=  $actionUrl ?>">
-		<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+		<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 		<ul>
 			<li>
 				<div class="item-content">
@@ -20,7 +20,7 @@
 					</div>
 					<div class="item-inner">
 						<div class="item-input">
-							<input type="text" placeholder="<?= Yii::$service->page->translate->__('Email Address');?>"  style="color:#ccc;" readonly="true" id="customer_email" name="editForm[email]" value="<?= $email ?>" title="Email"  class="input-text required-entry" />
+							<input type="text" placeholder="<?= Yii::$service->page->translate->__('Email Address'); ?>"  style="color:#ccc;" readonly="true" id="customer_email" name="editForm[email]" value="<?= $email ?>" title="Email"  class="input-text required-entry" />
 						</div>
 					</div>
 				</div>
@@ -33,7 +33,7 @@
 					<div class="item-inner">
 						<div class="item-input">
 							<input  placeholder="First name" id="firstname" name="editForm[firstname]" value="<?= $firstname ?>" title="First Name"  class="input-text required-entry" type="text"  />
-							<div class="validation-advice" id="required_current_firstname" style="display:none;"><?= Yii::$service->page->translate->__('This is a required field.');?></div>
+							<div class="validation-advice" id="required_current_firstname" style="display:none;"><?= Yii::$service->page->translate->__('This is a required field.'); ?></div>
 						</div>
 					</div>
 				</div>
@@ -46,7 +46,7 @@
 					<div class="item-inner">
 						<div class="item-input">
 							<input  type="text" placeholder="Last name" id="lastname" name="editForm[lastname]" value="<?= $lastname ?>" title="Last Name" maxlength="255" class="input-text required-entry" />
-							<div class="validation-advice" id="required_current_lastname" style="display:none;"><?= Yii::$service->page->translate->__('This is a required field.');?></div>
+							<div class="validation-advice" id="required_current_lastname" style="display:none;"><?= Yii::$service->page->translate->__('This is a required field.'); ?></div>
 						</div>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 			<li class="control">
 				<div class="change_password_label item-content">
 					<input name="editForm[change_password]" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="Change Password" class="checkbox" type="checkbox">
-					<label for="change_password"><?= Yii::$service->page->translate->__('Change Password');?></label>
+					<label for="change_password"><?= Yii::$service->page->translate->__('Change Password'); ?></label>
 				</div>
 			</li>
 			
@@ -67,7 +67,7 @@
 					<div class="item-inner">
 						<div class="item-input">
 							<input placeholder="current password" title="Current Password" class="input-text required-entry" name="editForm[current_password]" id="current_password" type="password" />
-							<div class="validation-advice" id="required_current_password" style="display:none;"><?= Yii::$service->page->translate->__('This is a required field.');?></div>
+							<div class="validation-advice" id="required_current_password" style="display:none;"><?= Yii::$service->page->translate->__('This is a required field.'); ?></div>
 								
 						</div>
 					</div>
@@ -82,7 +82,7 @@
 					<div class="item-inner">
 						<div class="item-input">
 							<input placeholder="New password" title="New Password" class="input-text validate-password required-entry" name="editForm[password]" id="password" type="password" />
-							<div class="validation-advice" id="required_new_password" style="display:none;"><?= Yii::$service->page->translate->__('This is a required field.');?></div>	
+							<div class="validation-advice" id="required_new_password" style="display:none;"><?= Yii::$service->page->translate->__('This is a required field.'); ?></div>	
 						</div>
 					</div>
 				</div>
@@ -96,7 +96,7 @@
 					<div class="item-inner">
 						<div class="item-input">
 							<input placeholder="Confirm New Password"  title="Confirm New Password" class="input-text validate-cpassword required-entry" name="editForm[confirmation]" id="confirmation" type="password"  />
-							<div class="validation-advice" id="required_confirm_password" style="display:none;"><?= Yii::$service->page->translate->__('This is a required field.');?></div>
+							<div class="validation-advice" id="required_confirm_password" style="display:none;"><?= Yii::$service->page->translate->__('This is a required field.'); ?></div>
 						</div>
 					</div>
 				</div>
@@ -240,6 +240,6 @@
 	});
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['customer_account_info_update'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+<?php $this->registerJs($this->blocks['customer_account_info_update'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 	

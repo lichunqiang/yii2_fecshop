@@ -17,7 +17,7 @@ use Yii;
  */
 class Index
 {
-    public $pageNum ;
+    public $pageNum;
     public $numPerPage = 20;
     public $_page = 'p';
 
@@ -53,33 +53,33 @@ class Index
         $product_arr = $this->getProductInfo($coll);
 
         return [
-            'coll' => $product_arr ,
+            'coll' => $product_arr,
             'pageToolBar' => $pageToolBar,
         ];
     }
 
-    # 得到产品的一些信息，来显示Favorite 的产品列表。
+    // 得到产品的一些信息，来显示Favorite 的产品列表。
     public function getProductInfo($coll)
     {
         $product_ids = [];
         $favorites = [];
         foreach ($coll as $one) {
             $p_id = $one['product_id'];
-            $product_ids[] = new \MongoDB\BSON\ObjectId($p_id) ;
+            $product_ids[] = new \MongoDB\BSON\ObjectId($p_id);
             $favorites[$p_id] = [
                 'updated_at' => $one['updated_at'],
                 'favorite_id' => (string) $one['_id'],
             ];
         }
-        # 得到产品的信息
+        // 得到产品的信息
         $product_filter = [
             'where' => [
-                ['in','_id',$product_ids],
+                ['in', '_id', $product_ids],
             ],
             'select' => [
-                'name','image',
-                'price','special_price',
-                'special_from','special_to',
+                'name', 'image',
+                'price', 'special_price',
+                'special_from', 'special_to',
                 'url_key',
             ],
             'asArray' => true,
@@ -104,8 +104,6 @@ class Index
     public function remove($favorite_id)
     {
         Yii::$service->product->favorite->currentUserRemove($favorite_id);
-
-        return;
     }
 
     protected function getProductPage($countTotal)

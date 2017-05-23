@@ -10,7 +10,7 @@
 namespace fecshop\services\search;
 
 /**
- * Product services interface
+ * Product services interface.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */

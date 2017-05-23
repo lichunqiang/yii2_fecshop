@@ -10,9 +10,9 @@
 namespace fecshop\services;
 
 use Yii;
-use yii\base\Object;
-use yii\base\InvalidConfigException;
 use yii\base\InvalidCallException;
+use yii\base\InvalidConfigException;
+use yii\base\Object;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -27,9 +27,6 @@ class Service extends Object
     protected $_beginCallCode;
     protected $_callFuncLog;
 
-    /**
-     *
-     */
     public function __get($attr)
     {
         return $this->getChildService($attr);
@@ -48,7 +45,7 @@ class Service extends Object
         }
         if (method_exists($this, $method)) {
             $this->beginCall($originMethod, $arguments);
-            $return = call_user_func_array([$this,$method], $arguments);
+            $return = call_user_func_array([$this, $method], $arguments);
             $this->endCall($originMethod, $arguments);
 
             return $return;
@@ -58,7 +55,7 @@ class Service extends Object
     }
 
     /**
-     * 得到services 里面配置的子服务childService的实例
+     * 得到services 里面配置的子服务childService的实例.
      */
     protected function getChildService($childServiceName)
     {
@@ -102,7 +99,7 @@ class Service extends Object
     {
         if (Yii::$service->helper->log->isServiceLogEnable()) {
             list($logTrace, $isCalledByThis) = $this->debugBackTrace();
-            /**
+            /*
              * if function is called by $this ,not log it to mongodb.
              */
             if ($isCalledByThis) {
@@ -123,14 +120,14 @@ class Service extends Object
                 'service_uid' => $serviceLogUid,
                 'current_url' => Yii::$service->url->getCurrentUrl(),
                 'home_url' => Yii::$service->url->homeUrl(),
-                'service_file' => get_class($this) ,
-                'service_method' => $originMethod ,
-                'service_method_argument' => $arguments  ,
-                'begin_microtime' => $begin_microtime ,
-                'end_microtime' => $endCallTime ,
-                'used_time' => $used_time ,
+                'service_file' => get_class($this),
+                'service_method' => $originMethod,
+                'service_method_argument' => $arguments,
+                'begin_microtime' => $begin_microtime,
+                'end_microtime' => $endCallTime,
+                'used_time' => $used_time,
 
-                'process_date_time' => date('Y-m-d H:i:s') ,
+                'process_date_time' => date('Y-m-d H:i:s'),
                 'log_trace' => $logTrace,
             ];
 
@@ -153,7 +150,7 @@ class Service extends Object
         $isCalledByThis = false;
         $d = debug_backtrace();
         $funcNotContainArr = [
-            '__call','endCall','debugBackTrace','call_user_func_array',
+            '__call', 'endCall', 'debugBackTrace', 'call_user_func_array',
         ];
         $thisClass = get_class($this);
         //echo '**'.$thisClass.'**';
@@ -180,6 +177,6 @@ class Service extends Object
             $isCalledByThis = true;
         }
 
-        return [$arr,$isCalledByThis];
+        return [$arr, $isCalledByThis];
     }
 }

@@ -9,7 +9,7 @@
 ?>
 <?php
 $jsOptions = [
-    # js config 1
+    // js config 1
     [
         'options' => [
             'position' => 'POS_END',
@@ -22,7 +22,7 @@ $jsOptions = [
             'js/js.js',
         ],
     ],
-    # js config 2
+    // js config 2
     [
         'options' => [
             'condition' => 'lt IE 9',
@@ -33,9 +33,9 @@ $jsOptions = [
     ],
 ];
 
-# css config
+// css config
 $cssOptions = [
-    # css config 1.
+    // css config 1.
     [
         'css' => [
             'css/style.css',
@@ -43,7 +43,7 @@ $cssOptions = [
         ],
     ],
 
-    # css config 2.
+    // css config 2.
     [
         'options' => [
             'condition' => 'lt IE 9',

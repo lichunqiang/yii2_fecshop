@@ -75,7 +75,7 @@
 							});
 							<?php $this->endBlock(); ?>  
 							</script>  
-							<?php $this->registerJs($this->blocks['register_captcha_onclick_refulsh'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+							<?php $this->registerJs($this->blocks['register_captcha_onclick_refulsh'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
                         </div>
 						<?php 
@@ -87,7 +87,7 @@
 						
 				</ul>
 			</div>
-			<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+			<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 			<div class="buttons-set">
 				
 				<button type="button" id="js_registBtn" class="redBtn"><em><span><i></i><?= Yii::$service->page->translate->__('Submit'); ?></span></em></button>
@@ -205,7 +205,7 @@ $(document).ready(function(){
 });
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['customer_account_register'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+<?php $this->registerJs($this->blocks['customer_account_register'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 
 

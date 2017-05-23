@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Customer\controllers;
 
-use Yii;
 use fecshop\app\appfront\modules\AppfrontController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -19,7 +19,7 @@ use fecshop\app\appfront\modules\AppfrontController;
 class AjaxController extends AppfrontController
 {
     /**
-     * ajax 请求 ，得到是否登录账户的信息
+     * ajax 请求 ，得到是否登录账户的信息.
      */
     public function actionIndex()
     {
@@ -42,7 +42,7 @@ class AjaxController extends AppfrontController
                 }
             }
             if ($product_id) {
-                # 添加csrf数据
+                // 添加csrf数据
                 $csrfName = \fec\helpers\CRequest::getCsrfName();
                 $csrfVal = \fec\helpers\CRequest::getCsrfValue();
                 $result_arr['csrfName'] = $csrfName;

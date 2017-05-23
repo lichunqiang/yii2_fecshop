@@ -112,8 +112,8 @@ use fecshop\app\appfront\helper\Format;
 												
 												<tr>
 													<td valign="top" align="left" style="padding:3px 9px;font-size:11px;border-bottom-color:rgb(204,204,204);border-bottom-width:1px;border-bottom-style:dotted">
-														<a href="<?=  Yii::$service->url->getUrl($product['redirect_url']) ; ?>">
-															<img src="<?= Yii::$service->product->image->getResize($product['image'], [100,100], false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
+														<a href="<?=  Yii::$service->url->getUrl($product['redirect_url']); ?>">
+															<img src="<?= Yii::$service->product->image->getResize($product['image'], [100, 100], false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
 														</a>
 													</td>
 													<td valign="top" align="left" style="padding:3px 9px;font-size:11px;border-bottom-color:rgb(204,204,204);border-bottom-width:1px;border-bottom-style:dotted">

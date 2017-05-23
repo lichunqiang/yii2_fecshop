@@ -1,4 +1,4 @@
-<?php  $tier_price = $parentThis['tier_price'];   ?>
+<?php  $tier_price = $parentThis['tier_price']; ?>
 
 <?php  if (is_array($tier_price) && !empty($tier_price)) {
     ?>

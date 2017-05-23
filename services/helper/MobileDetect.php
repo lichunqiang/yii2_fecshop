@@ -63,7 +63,7 @@ class MobileDetect
     const VERSION_TYPE_FLOAT = 'float';
 
     /**
-     * A cache for resolved matches
+     * A cache for resolved matches.
      * @var array
      */
     protected $cache = [];
@@ -574,7 +574,7 @@ class MobileDetect
         // http://en.wikipedia.org/wiki/NetFront
         'NetFront' => 'NetFront/[VER]',
         'NokiaBrowser' => 'NokiaBrowser/[VER]',
-        'Opera' => [ ' OPR/[VER]', 'Opera Mini/[VER]', 'Version/[VER]' ],
+        'Opera' => [' OPR/[VER]', 'Opera Mini/[VER]', 'Version/[VER]'],
         'Opera Mini' => 'Opera Mini/[VER]',
         'Opera Mobi' => 'Version/[VER]',
         'UC Browser' => 'UC Browser[VER]',
@@ -585,7 +585,7 @@ class MobileDetect
         'Iron' => 'Iron/[VER]',
         // @note: Safari 7534.48.3 is actually Version 5.1.
         // @note: On BlackBerry the Version is overwriten by the OS.
-        'Safari' => [ 'Version/[VER]', 'Safari/[VER]' ],
+        'Safari' => ['Version/[VER]', 'Safari/[VER]'],
         'Skyfire' => 'Skyfire/[VER]',
         'Tizen' => 'Tizen/[VER]',
         'Webkit' => 'webkit[ /][VER]',
@@ -603,7 +603,7 @@ class MobileDetect
         'Java' => 'Java/[VER]',
         // @reference: http://windowsteamblog.com/windows_phone/b/wpdev/archive/2011/08/29/introducing-the-ie9-on-windows-phone-mango-user-agent-string.aspx
         // @reference: http://en.wikipedia.org/wiki/Windows_NT#Releases
-        'Windows Phone OS' => [ 'Windows Phone OS [VER]', 'Windows Phone [VER]'],
+        'Windows Phone OS' => ['Windows Phone OS [VER]', 'Windows Phone [VER]'],
         'Windows Phone' => 'Windows Phone [VER]',
         'Windows CE' => 'Windows CE/[VER]',
         // http://social.msdn.microsoft.com/Forums/en-US/windowsdeveloperpreviewgeneral/thread/6be392da-4d2f-41b4-8354-8dcee20c85cd
@@ -1023,7 +1023,7 @@ class MobileDetect
 
     /**
      * Check if the device is mobile.
-     * Returns true if any type of mobile device detected, including special ones
+     * Returns true if any type of mobile device detected, including special ones.
      * @param  null $userAgent   deprecated
      * @param  null $httpHeaders deprecated
      * @return bool
@@ -1154,7 +1154,7 @@ class MobileDetect
 
     /**
      * Check the version of the given property in the User-Agent.
-     * Will return a float number. (eg. 2_0 will return 2.0, 4.3.1 will return 4.31)
+     * Will return a float number. (eg. 2_0 will return 2.0, 4.3.1 will return 4.31).
      *
      * @param string $propertyName The name of the property. See self::getProperties() array
      *                             keys for all possible properties.

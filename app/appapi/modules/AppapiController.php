@@ -10,12 +10,12 @@
 namespace fecshop\app\appapi\modules;
 
 use Yii;
-use yii\web\Response;
-use yii\rest\ActiveController;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\HttpBearerAuth;
 use yii\filters\auth\QueryParamAuth;
+use yii\rest\ActiveController;
+use yii\web\Response;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -53,7 +53,7 @@ class AppapiController extends ActiveController
             'class' => HttpBasicAuth::className(),
         ];
 
-        #定义返回格式是：JSON
+        //定义返回格式是：JSON
         $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;
 
         return $behaviors;
@@ -61,7 +61,7 @@ class AppapiController extends ActiveController
 
     /**
      * get current block
-     * you can change $this->blockNamespace
+     * you can change $this->blockNamespace.
      */
     public function getBlock($blockName = '')
     {
@@ -78,6 +78,6 @@ class AppapiController extends ActiveController
         $relativeFile = '\\' . $this->blockNamespace;
         $relativeFile .= '\\' . $this->id . '\\' . ucfirst($blockName);
 
-        return new $relativeFile;
+        return new $relativeFile();
     }
 }

@@ -9,8 +9,8 @@
 
 namespace fecshop\services\cms\staticblock;
 
-use Yii;
 use fecshop\models\mysqldb\cms\StaticBlock;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -44,7 +44,7 @@ class StaticBlockMysqldb implements StaticBlockInterface
 
             return $one;
         } else {
-            return new StaticBlock;
+            return new StaticBlock();
         }
     }
 
@@ -117,7 +117,7 @@ class StaticBlockMysqldb implements StaticBlockInterface
                 return;
             }
         } else {
-            $model = new StaticBlock;
+            $model = new StaticBlock();
             $model->created_at = time();
             $model->created_user_id = \fec\helpers\CUser::getCurrentUserId();
         }
@@ -145,7 +145,7 @@ class StaticBlockMysqldb implements StaticBlockInterface
         $query = StaticBlock::find()->asArray();
         $query->where(['identify' => $identify]);
         if ($primaryVal) {
-            $query->andWhere(['<>',$id,$primaryVal]);
+            $query->andWhere(['<>', $id, $primaryVal]);
         }
         $one = $query->one();
         if (!empty($one)) {

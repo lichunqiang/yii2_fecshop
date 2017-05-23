@@ -9,13 +9,12 @@
 
 namespace fecshop\app\appfront\modules\Customer\controllers;
 
-use Yii;
-use fecshop\app\appfront\modules\AppfrontController;
-
-use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookRequest;
 use Facebook\FacebookRequestException;
+use Facebook\FacebookSession;
+use fecshop\app\appfront\modules\AppfrontController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -23,7 +22,7 @@ use Facebook\FacebookRequestException;
  */
 class FacebookController extends AppfrontController
 {
-    # http://fecshop.appfront.fancyecommerce.com/customer/facebook/loginv
+    // http://fecshop.appfront.fancyecommerce.com/customer/facebook/loginv
 
     /**
      * facebook 账号在facebook确认后，返回网站的url地址。
@@ -68,7 +67,7 @@ class FacebookController extends AppfrontController
         }
     }
 
-    # facebook账户登录
+    // facebook账户登录
     public function accountLogin()
     {
         $fb_id = $_SESSION['FBID'];

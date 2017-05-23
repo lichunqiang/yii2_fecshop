@@ -9,14 +9,14 @@
 
 namespace fecshop\app\appadmin\modules\cms\block\staticblock;
 
-use Yii;
-use fecshop\app\appadmin\modules\AppadminbaseBlockEdit;
-use fec\helpers\CUrl;
 use fec\helpers\CRequest;
+use fec\helpers\CUrl;
 use fecshop\app\appadmin\interfaces\base\AppadminbaseBlockEditInterface;
+use fecshop\app\appadmin\modules\AppadminbaseBlockEdit;
+use Yii;
 
 /**
- * block cms\staticblock
+ * block cms\staticblock.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -30,7 +30,7 @@ class Manageredit extends AppadminbaseBlockEdit implements AppadminbaseBlockEdit
         parent::init();
     }
 
-    # 传递给前端的数据 显示编辑form
+    // 传递给前端的数据 显示编辑form
     public function getLastData()
     {
         return [
@@ -103,7 +103,7 @@ class Manageredit extends AppadminbaseBlockEdit implements AppadminbaseBlockEdit
     {
         $request_param = CRequest::param();
         $this->_param = $request_param[$this->_editFormData];
-        /**
+        /*
          * if attribute is date or date time , db storage format is int ,by frontend pass param is int ,
          * you must convert string datetime to time , use strtotime function.
          */
@@ -124,7 +124,7 @@ class Manageredit extends AppadminbaseBlockEdit implements AppadminbaseBlockEdit
         }
     }
 
-    # 批量删除
+    // 批量删除
     public function delete()
     {
         $ids = '';

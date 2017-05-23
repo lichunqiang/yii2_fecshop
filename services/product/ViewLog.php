@@ -17,7 +17,7 @@ use fecshop\services\Service;
  */
 class ViewLog extends Service
 {
-    /**
+    /*
      *	data:
      */
 }

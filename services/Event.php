@@ -11,15 +11,15 @@ namespace fecshop\services;
 
 use Yii;
 
-#use yii\base\Component;
-#use fecshop\services\event\FecshopEvent;
+//use yii\base\Component;
+//use fecshop\services\event\FecshopEvent;
 /**
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Event extends Service
 {
-    public $eventList; # Array
+    public $eventList; // Array
 
     /**
      * @property $eventName | String , 时间的名字

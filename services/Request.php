@@ -9,9 +9,9 @@
 
 namespace fecshop\services;
 
+use fecshop\models\mongodb\UrlRewrite;
 use Yii;
 use yii\base\InvalidConfigException;
-use fecshop\models\mongodb\UrlRewrite;
 
 /**
  * rewrite class \yii\web\Request
@@ -25,7 +25,7 @@ use fecshop\models\mongodb\UrlRewrite;
 class Request extends \yii\web\Request
 {
     /**
-     * rewrite yii\web\Request  resolveRequestUri()
+     * rewrite yii\web\Request  resolveRequestUri().
      */
     protected function resolveRequestUri()
     {
@@ -45,7 +45,7 @@ class Request extends \yii\web\Request
             throw new InvalidConfigException('Unable to determine the request URI.');
         }
 
-        /**
+        /*
          * Replace Code
          * //return $requestUri;
          * To:
@@ -54,7 +54,7 @@ class Request extends \yii\web\Request
     }
 
     /**
-     * get module request url by db ;
+     * get module request url by db ;.
      */
     protected function getRewriteUri($requestUri)
     {
@@ -106,7 +106,7 @@ class Request extends \yii\web\Request
 
     /**
      * after get urlPath from db, if urlPath has get param ,
-     * set the param to $_GET
+     * set the param to $_GET.
      */
     public function setRequestParam($originUrlPath)
     {
@@ -131,7 +131,5 @@ class Request extends \yii\web\Request
         if ($UrlData['custom_url_key']) {
             return $UrlData['origin_url'];
         }
-
-        return ;
     }
 }

@@ -20,7 +20,7 @@ class Add
     public function getLastData()
     {
         $product_id = Yii::$app->request->get('product_id');
-        #没有登录的用户跳转到登录页面
+        //没有登录的用户跳转到登录页面
         if (Yii::$app->user->isGuest) {
             $url = Yii::$service->url->getCurrentUrl();
             Yii::$service->customer->setLoginSuccessRedirectUrl($url);
@@ -36,7 +36,7 @@ class Add
             Yii::$service->page->message->addByHelperErrors();
         }
         $favoriteParam = Yii::$app->getModule('catalog')->params['favorite'];
-        # 跳转。
+        // 跳转。
         if (isset($favoriteParam['addSuccessRedirectFavoriteList']) && $favoriteParam['addSuccessRedirectFavoriteList']) {
             return Yii::$service->url->redirectByUrlKey('customer/productfavorite');
         } else {

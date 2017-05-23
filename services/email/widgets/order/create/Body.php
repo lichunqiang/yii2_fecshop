@@ -9,8 +9,8 @@
 
 namespace fecshop\services\email\widgets\order\create;
 
-use Yii;
 use fecshop\services\email\widgets\BodyBase;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>

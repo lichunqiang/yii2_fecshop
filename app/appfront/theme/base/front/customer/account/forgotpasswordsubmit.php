@@ -10,7 +10,7 @@
 
 		<p><?= Yii::$service->page->translate->__('Check your bulk or junk email folder.'); ?></p>
 		<?php
-            $param = ['logUrlB' => '<a href="' . $contactUrl . ' ">','logUrlE' => '</a> ']; ?>
+            $param = ['logUrlB' => '<a href="' . $contactUrl . ' ">', 'logUrlE' => '</a> ']; ?>
 		<p><?= Yii::$service->page->translate->__('Confirm your identity to reset password ,If you still can\'t find it, click {logUrlB} support center {logUrlE} for help', $param); ?></p>
 	</div>
 <?php 
@@ -18,7 +18,7 @@
     ?>
 	<div>
 		<?php
-            $param = ['logUrlB' => '<a href="' . $forgotPasswordUrl . ' ">','logUrlE' => '</a> ']; ?>
+            $param = ['logUrlB' => '<a href="' . $forgotPasswordUrl . ' ">', 'logUrlE' => '</a> ']; ?>
 		<?= Yii::$service->page->translate->__('Email address do not exist, please {logUrlB} click here {logUrlE} to re-enter!'); ?> 
 	</div>
 	<div>

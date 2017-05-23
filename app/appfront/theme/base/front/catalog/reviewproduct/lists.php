@@ -6,7 +6,7 @@
 				<div class="review_list_product" style="width:100%">
 					<div style="width:170px;float:left;">
 						<a href="<?= $url ?>">
-							<img src="<?= Yii::$service->product->image->getResize($main_img, [150,150], false) ?>">
+							<img src="<?= Yii::$service->product->image->getResize($main_img, [150, 150], false) ?>">
 						</a>
 					</div>
 					
@@ -17,7 +17,7 @@
 						</a> </div>
 						<div class="product_info review_add_price">
 							<div class="price_info">
-								<?php # 浠锋牸閮ㄥ垎
+								<?php // 浠锋牸閮ㄥ垎
                                     $priceView = [
                                         'view' => 'catalog/product/index/price.php',
                                     ];
@@ -31,20 +31,20 @@
 						<div style="margin:20px 0 0">
 							<div class="rbc_cold">
 								<span>
-									<span class="average_rating"><?= Yii::$service->page->translate->__('Average rating :');?></span>
+									<span class="average_rating"><?= Yii::$service->page->translate->__('Average rating :'); ?></span>
 									<span class="review_star review_star_<?= $reviw_rate_star_average ?>" style="font-weight:bold;" itemprop="average"></span>  
 									
-									<a rel="nofollow" href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/lists', ['spu' => $spu,'_id' => $_id]); ?>">
-										(<span itemprop="count"><?= $review_count ?> <?= Yii::$service->page->translate->__('reviews');?></span>)
+									<a rel="nofollow" href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/lists', ['spu' => $spu, '_id' => $_id]); ?>">
+										(<span itemprop="count"><?= $review_count ?> <?= Yii::$service->page->translate->__('reviews'); ?></span>)
 									</a>
 								</span>
 							</div>					
 							<a href="<?= $url ?>"  class="submitbutton">
-								<span><span> <?= Yii::$service->page->translate->__('Add To Cart');?></span></span> 
+								<span><span> <?= Yii::$service->page->translate->__('Add To Cart'); ?></span></span> 
 							</a>
 							
 							<a style="margin-left:10px" href="<?= $addReviewUrl ?>" onclick="" class="submitbutton">
-								<span><span> <?= Yii::$service->page->translate->__('Add Review');?></span></span> 
+								<span><span> <?= Yii::$service->page->translate->__('Add Review'); ?></span></span> 
 							</a>	 
 						</div>
 					</div>
@@ -53,7 +53,7 @@
 				<div class="product-Reviews"> 
 					<div class="clear"></div>
 					<div class="scroll_left">
-						<a href=""><?= Yii::$service->page->translate->__('Product Review');?></a>
+						<a href=""><?= Yii::$service->page->translate->__('Product Review'); ?></a>
 					</div>
 					<div class="product-Reviews_top">
 						<?php  if (is_array($coll) && !empty($coll)) {

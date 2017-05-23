@@ -36,7 +36,7 @@ class Start
         }
     }
 
-    # 首先验证购物车中是否存在产品
+    // 首先验证购物车中是否存在产品
     //public function validateCart(){
 
     //}

@@ -9,7 +9,7 @@
 ?>
 <header class="bar bar-nav">
 	<a class="icon icon-menu pull-left open-panel" data-panel="#panel-left-menu"></a>
-	<a href="<?= Yii::$service->url->homeUrl();  ?>"  external>
+	<a href="<?= Yii::$service->url->homeUrl(); ?>"  external>
 		<h1 class='title header_logo'>
 			<img src="<?= Yii::$service->image->getImgUrl('/custom/logo.png', 'appfront') ?>"  />
 		</h1>

@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Catalog\controllers;
 
-use Yii;
 use fecshop\app\appfront\modules\AppfrontController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -24,7 +24,7 @@ class ReviewproductController extends AppfrontController
         Yii::$service->page->theme->layoutFile = 'product_view.php';
     }
 
-    # 增加评论
+    // 增加评论
     public function actionAdd()
     {
         $reviewParam = Yii::$app->getModule('catalog')->params['review'];
@@ -33,7 +33,7 @@ class ReviewproductController extends AppfrontController
             $currentUrl = Yii::$service->url->getCurrentUrl();
             Yii::$service->customer->setLoginSuccessRedirectUrl($currentUrl);
 
-            # 如果评论产品必须登录用户，则跳转到用户登录页面
+            // 如果评论产品必须登录用户，则跳转到用户登录页面
             return Yii::$service->url->redirectByUrlKey('customer/account/login');
         }
         $editForm = Yii::$app->request->post('editForm');
@@ -46,7 +46,7 @@ class ReviewproductController extends AppfrontController
                 $spu = \Yii::$service->helper->htmlEncode($spu);
                 $_id = \Yii::$service->helper->htmlEncode($_id);
                 if ($spu && $_id) {
-                    $url = Yii::$service->url->getUrl('catalog/reviewproduct/lists', ['spu' => $spu,'_id' => $_id]);
+                    $url = Yii::$service->url->getUrl('catalog/reviewproduct/lists', ['spu' => $spu, '_id' => $_id]);
                     $this->redirect($url);
                 }
             }

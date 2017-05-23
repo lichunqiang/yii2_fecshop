@@ -9,9 +9,9 @@
 
 namespace fecshop\services\product;
 
-use Yii;
-use fecshop\services\Service;
 use fecshop\models\mongodb\Product;
+use fecshop\services\Service;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -50,7 +50,7 @@ class Info extends Service
     public function validateProductCustomOption($custom_option, $product_custom_option)
     {
         if (empty($product_custom_option) && empty($custom_option)) {
-            return true; # 都为空，说明不需要验证。
+            return true; // 都为空，说明不需要验证。
         }
         if ($custom_option) {
             $co_sku = $this->getCustomOptionSkuByValue($custom_option);
@@ -72,11 +72,11 @@ class Info extends Service
     }
 
     /**
-     * 通过返回的值，得到product custom option 的sku key
+     * 通过返回的值，得到product custom option 的sku key.
      */
 
     /**
-     * 通过前台传递的custom option 得到customOptionSku
+     * 通过前台传递的custom option 得到customOptionSku.
      */
     public function getProductCOSku($custom_option_sku, $product_custom_option)
     {

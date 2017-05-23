@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appapi\modules\V1\controllers;
 
-use Yii;
 use fecshop\app\appapi\modules\AppapiController;
+use Yii;
 
 class ProductController extends AppapiController
 {
@@ -19,10 +19,10 @@ class ProductController extends AppapiController
     public $numPerPage = 20;
 
     /**
-     * 得到产品的数据list
+     * 得到产品的数据list.
      */
-    # http://fecshop.appapi.fancyecommerce.com/v1/products?page=2&access-token=1Gk6ZNn-QaBaKFI4uE2bSw0w3N7ej72q
-    # http://fecshop.appapi.fancyecommerce.com/v1/products?page=2
+    // http://fecshop.appapi.fancyecommerce.com/v1/products?page=2&access-token=1Gk6ZNn-QaBaKFI4uE2bSw0w3N7ej72q
+    // http://fecshop.appapi.fancyecommerce.com/v1/products?page=2
     public function actionCustomindex()
     {
         $page = Yii::$app->request->get('page');
@@ -37,13 +37,12 @@ class ProductController extends AppapiController
         $count = $data['count'];
 
         $pageCount = ceil($count / $this->numPerPage);
-        $serializer = new \yii\rest\Serializer;
+        $serializer = new \yii\rest\Serializer();
         Yii::$app->response->getHeaders()
             ->set($serializer->totalCountHeader, $count)
             ->set($serializer->pageCountHeader, $pageCount)
             ->set($serializer->currentPageHeader, $page)
-            ->set($serializer->perPageHeader, $this->numPerPage)
-            ;
+            ->set($serializer->perPageHeader, $this->numPerPage);
 
         return [
             'status' => 'success',

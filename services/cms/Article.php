@@ -9,13 +9,13 @@
 
 namespace fecshop\services\cms;
 
-use Yii;
-use fecshop\services\Service;
-use fecshop\services\cms\article\ArticleMysqldb;
 use fecshop\services\cms\article\ArticleMongodb;
+use fecshop\services\cms\article\ArticleMysqldb;
+use fecshop\services\Service;
+use Yii;
 
 /**
- * Cms Article services
+ * Cms Article services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -27,9 +27,9 @@ class Article extends Service
     public function init()
     {
         if ($this->storage == 'mongodb') {
-            $this->_article = new ArticleMongodb;
+            $this->_article = new ArticleMongodb();
         } elseif ($this->storage == 'mysqldb') {
-            $this->_article = new ArticleMysqldb;
+            $this->_article = new ArticleMysqldb();
         }
     }
 
@@ -58,7 +58,7 @@ class Article extends Service
     }
 
     /**
-     * 得到category model的全名
+     * 得到category model的全名.
      */
     protected function actionGetModelName()
     {

@@ -9,17 +9,17 @@
 
 namespace fecshop\services\helper;
 
-use Yii;
 use fecshop\services\Service;
+use Yii;
 
 /**
- * Helper Errors services
+ * Helper Errors services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Errors extends Service
 {
-    protected $_errors = false ;
+    protected $_errors = false;
     public $status = true;
 
     /**

@@ -9,8 +9,8 @@
 
 namespace fecshop\services\product;
 
-use Yii;
 use fecshop\models\mongodb\Product;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -30,7 +30,7 @@ class ProductMongodb implements ProductInterface
         if ($primaryKey) {
             return Product::findOne($primaryKey);
         } else {
-            return new Product;
+            return new Product();
         }
     }
 
@@ -47,12 +47,11 @@ class ProductMongodb implements ProductInterface
             if ($returnArr) {
                 $product = Product::find()->asArray()
                     ->where(['sku' => $sku])
-                    ->one()
-                    ;
+                    ->one();
             } else {
                 $product = Product::findOne(['sku' => $sku]);
             }
-            $primaryKey = $this->getPrimaryKey() ;
+            $primaryKey = $this->getPrimaryKey();
             if (isset($product[$primaryKey]) && !empty($product[$primaryKey])) {
                 return $product;
             }
@@ -118,7 +117,7 @@ class ProductMongodb implements ProductInterface
         $count = $collection->count();
         $arr = [];
         foreach ($cursor as $k => $v) {
-            $v['_id'] = (string) $v['_id'] ;
+            $v['_id'] = (string) $v['_id'];
             $arr[$k] = $v;
         }
 
@@ -166,7 +165,7 @@ class ProductMongodb implements ProductInterface
     }
 
     /**
-     *  得到总数
+     *  得到总数.
      */
     public function collCount($filter = '')
     {
@@ -193,7 +192,7 @@ class ProductMongodb implements ProductInterface
                 $mongoIds[] = new \MongoDB\BSON\ObjectId($id);
             }
             //var_dump($mongoIds);
-            $query->where(['in',$this->getPrimaryKey(),$mongoIds]);
+            $query->where(['in', $this->getPrimaryKey(), $mongoIds]);
             $query->andWhere(['category' => $category_id]);
             $data = $query->all();
             if (is_array($data) && !empty($data)) {
@@ -242,9 +241,9 @@ class ProductMongodb implements ProductInterface
                 return;
             }
 
-            #验证sku 是否重复
+            //验证sku 是否重复
             $product_one = Product::find()->asArray()->where([
-                '<>',$this->getPrimaryKey(),(new \MongoDB\BSON\ObjectId($primaryVal)),
+                '<>', $this->getPrimaryKey(), (new \MongoDB\BSON\ObjectId($primaryVal)),
             ])->andWhere([
                 'sku' => $one['sku'],
             ])->one();
@@ -254,12 +253,12 @@ class ProductMongodb implements ProductInterface
                 return;
             }
         } else {
-            $model = new Product;
+            $model = new Product();
             $model->created_at = time();
             $model->created_user_id = \fec\helpers\CUser::getCurrentUserId();
             $primaryVal = new \MongoDB\BSON\ObjectId();
             $model->{$this->getPrimaryKey()} = $primaryVal;
-            #验证sku 是否重复
+            //验证sku 是否重复
             $product_one = Product::find()->asArray()->where([
                 'sku' => $one['sku'],
             ])->one();
@@ -270,7 +269,7 @@ class ProductMongodb implements ProductInterface
             }
         }
         $model->updated_at = time();
-        /**
+        /*
          * 计算出来产品的最终价格。
          */
         $one['final_price'] = Yii::$service->product->price->getFinalPrice($one['price'], $one['special_price'], $one['special_from'], $one['special_to']);
@@ -280,7 +279,7 @@ class ProductMongodb implements ProductInterface
          * 保存产品
          */
         $saveStatus = Yii::$service->helper->ar->save($model, $one);
-        /**
+        /*
          * 自定义url部分
          */
         if ($originUrlKey) {
@@ -294,7 +293,7 @@ class ProductMongodb implements ProductInterface
         /**
          * 更新产品信息到搜索表。
          */
-        $product_ids = [$model->{$this->getPrimaryKey()} ];
+        $product_ids = [$model->{$this->getPrimaryKey()}];
         Yii::$service->search->syncProductInfo($product_ids);
 
         return true;
@@ -350,9 +349,9 @@ class ProductMongodb implements ProductInterface
                 $model = Product::findOne($id);
                 if (isset($model[$this->getPrimaryKey()]) && !empty($model[$this->getPrimaryKey()])) {
                     $url_key = $model['url_key'];
-                    # 删除在重写url里面的数据。
+                    // 删除在重写url里面的数据。
                     Yii::$service->url->removeRewriteUrlKey($url_key);
-                    # 删除在搜索表（各个语言）里面的数据
+                    // 删除在搜索表（各个语言）里面的数据
                     Yii::$service->search->removeByProductId($model[$this->getPrimaryKey()]);
                     $model->delete();
                     //$this->removeChildCate($id);
@@ -367,9 +366,9 @@ class ProductMongodb implements ProductInterface
             $model = Product::findOne($id);
             if (isset($model[$this->getPrimaryKey()]) && !empty($model[$this->getPrimaryKey()])) {
                 $url_key = $model['url_key'];
-                # 删除在重写url里面的数据。
+                // 删除在重写url里面的数据。
                 Yii::$service->url->removeRewriteUrlKey($url_key);
-                # 删除在搜索里面的数据
+                // 删除在搜索里面的数据
                 Yii::$service->search->removeByProductId($model[$this->getPrimaryKey()]);
                 $model->delete();
                 //$this->removeChildCate($id);
@@ -391,7 +390,7 @@ class ProductMongodb implements ProductInterface
      */
     public function addAndDeleteProductCategory($category_id, $addCateProductIdArr, $deleteCateProductIdArr)
     {
-        # 在 addCategoryIdArr 查看哪些产品，分类id在product中已经存在，
+        // 在 addCategoryIdArr 查看哪些产品，分类id在product中已经存在，
         $idKey = $this->getPrimaryKey();
         //var_dump($addCateProductIdArr);
         if (is_array($addCateProductIdArr) && !empty($addCateProductIdArr) && $category_id) {
@@ -483,7 +482,7 @@ class ProductMongodb implements ProductInterface
      *   处理后的结果不能大约32MB，因此，如果一个分类下面的产品几十万的时候可能就会出现问题，
      *   这种情况可以用专业的搜索引擎做聚合工具。
      *   不过，对于一般的用户来说，这个不会成为瓶颈问题，一般一个分类下的产品不会出现几十万的情况。
-     * 4.最后就得到spu唯一的产品列表（多个spu相同，sku不同的产品，只要score最高的那个）
+     * 4.最后就得到spu唯一的产品列表（多个spu相同，sku不同的产品，只要score最高的那个）.
      */
     public function getFrontCategoryProducts($filter)
     {
@@ -617,12 +616,12 @@ class ProductMongodb implements ProductInterface
                 $one['reviw_rate_star_average'] = $avag_rate;
                 $one['review_count'] = $count;
                 $a = $one['reviw_rate_star_average_lang'];
-                $a[$review_star_lang] = $avag_lang_rate ;
+                $a[$review_star_lang] = $avag_lang_rate;
                 $b = $one['review_count_lang'];
-                $b[$review_count_lang] = $lang_count ;
+                $b[$review_count_lang] = $lang_count;
                 $one['reviw_rate_star_average_lang'] = $a;
                 $one['review_count_lang'] = $b;
-                $one->save() ;
+                $one->save();
             }
         }
     }

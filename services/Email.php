@@ -25,8 +25,8 @@ class Email extends Service
      */
     public $defaultObMethod = 'getLastData';
 
-    protected $_mailer;  # Array
-    protected $_mailer_from; #Array
+    protected $_mailer;  // Array
+    protected $_mailer_from; //Array
     protected $_from;
 
     /**
@@ -41,7 +41,7 @@ class Email extends Service
     }
 
     /**
-     * 在邮箱中显示的 商城名字(Store Name)
+     * 在邮箱中显示的 商城名字(Store Name).
      */
     public function storeName()
     {
@@ -53,7 +53,7 @@ class Email extends Service
 
     /**
      * 在邮件中显示的 联系手机号
-     * Yii::$service->email->customer->contactsPhone();
+     * Yii::$service->email->customer->contactsPhone();.
      */
     public function contactsPhone()
     {
@@ -64,7 +64,7 @@ class Email extends Service
     }
 
     /**
-     * 得到MailConfig
+     * 得到MailConfig.
      */
     protected function getMailerConfig($key = 'default')
     {
@@ -80,7 +80,7 @@ class Email extends Service
     }
 
     /**
-     * 默认的默认form。邮件from
+     * 默认的默认form。邮件from.
      */
     protected function defaultForm($mailerConfig)
     {
@@ -89,8 +89,6 @@ class Email extends Service
                 return $mailerConfig['transport']['username'];
             }
         }
-
-        return ;
     }
 
     /**
@@ -244,13 +242,13 @@ class Email extends Service
         if (!$langCode) {
             Yii::$service->helper->errors->add('langCode is empty');
 
-            return ;
+            return;
         }
         $defaultLangCode = Yii::$service->fecshoplang->defaultLangCode;
-        # 得到body部分的配置数组
+        // 得到body部分的配置数组
         $bodyViewFile = $viewPath . '/body_' . $langCode . '.php';
         $bodyViewFilePath = Yii::getAlias($bodyViewFile);
-        if (!file_exists($bodyViewFilePath)) { #如果当前语言的模板不存在，则使用默认语言的模板。
+        if (!file_exists($bodyViewFilePath)) { //如果当前语言的模板不存在，则使用默认语言的模板。
             $bodyViewFile = $viewPath . '/body_' . $defaultLangCode . '.php';
             $bodyViewFilePath = Yii::getAlias($bodyViewFile);
         }
@@ -261,7 +259,7 @@ class Email extends Service
         if (!empty($params)) {
             $bodyConfig['params'] = $params;
         }
-        # 得到subject部分的配置数组
+        // 得到subject部分的配置数组
         $subjectViewFile = $viewPath . '/subject_' . $langCode . '.php';
         $subjectViewFilePath = Yii::getAlias($subjectViewFile);
         if (!file_exists($subjectViewFilePath)) {
@@ -279,7 +277,7 @@ class Email extends Service
         $emailSubject = $this->getHtmlContent($subjectConfig);
         $emailBody = $this->getHtmlContent($bodyConfig);
 
-        return [$emailSubject,$emailBody];
+        return [$emailSubject, $emailBody];
         //$emailSubject = Yii::$service->page->widget->render($subjectConfigKey,$parentThis);
         //$emailBody = Yii::$service->page->widget->render($bodyConfigKey,$parentThis);
     }

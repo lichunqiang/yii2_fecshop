@@ -9,13 +9,13 @@
 
 namespace fecshop\services\page;
 
-use Yii;
 use fec\helpers\CUrl;
-use fecshop\services\Service;
 use fecshop\models\mongodb\Category;
+use fecshop\services\Service;
+use Yii;
 
 /**
- * Menu services
+ * Menu services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -39,7 +39,7 @@ class Menu extends Service
     /**
      * return menu array data, contains:
      * home,frontCustomMenu,productCategory,behindCustomMenu.
-     * example:
+     * example:.
      */
     protected function actionGetMenuData()
     {

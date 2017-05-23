@@ -8,18 +8,18 @@
  */
 use fec\helpers\CRequest;
 
-/**
+/*
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 ?>
-<form id="pagerForm" method="post" action="<?= \fec\helpers\CUrl::getCurrentUrl();  ?>">
-	<?=  CRequest::getCsrfInputHtml();  ?>
-	<?=  $pagerForm;  ?>
+<form id="pagerForm" method="post" action="<?= \fec\helpers\CUrl::getCurrentUrl(); ?>">
+	<?=  CRequest::getCsrfInputHtml(); ?>
+	<?=  $pagerForm; ?>
 </form>
 <div class="pageHeader">
-	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="<?= \fec\helpers\CUrl::getCurrentUrl();  ?>" method="post">
-		<?php echo CRequest::getCsrfInputHtml();  ?>
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="<?= \fec\helpers\CUrl::getCurrentUrl(); ?>" method="post">
+		<?php echo CRequest::getCsrfInputHtml(); ?>
 		<div class="searchBar">
 			<?php  echo $searchBar; ?>
 		</div>

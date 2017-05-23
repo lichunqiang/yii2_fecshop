@@ -10,11 +10,11 @@
 namespace fecshop\services;
 
 /**
- * Page services
+ * Page services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Systemhelper extends Service
 {
-    public $controllerNameSpace ;
+    public $controllerNameSpace;
 }

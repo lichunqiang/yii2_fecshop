@@ -9,9 +9,9 @@
 
 namespace fecshop\services;
 
-use Yii;
-use fecshop\services\category\CategoryMysqldb;
 use fecshop\services\category\CategoryMongodb;
+use fecshop\services\category\CategoryMysqldb;
+use Yii;
 
 /**
  * Category Service is the component that you can get category info from it.
@@ -24,12 +24,12 @@ class Category extends Service
     protected $_category;
 
     /**
-     * init function , 初始化category，使用哪一个category service
+     * init function , 初始化category，使用哪一个category service.
      */
     public function init()
     {
         if ($this->storage == 'mongodb') {
-            $this->_category = new CategoryMongodb;
+            $this->_category = new CategoryMongodb();
         //}else if($this->storage == 'mysqldb'){
             //$this->_category = new CategoryMysqldb;
         }
@@ -44,7 +44,7 @@ class Category extends Service
     //}
 
     /**
-     * 得到当前的category service 对应的主键名称，譬如如果是mongo，返回的是 _id
+     * 得到当前的category service 对应的主键名称，譬如如果是mongo，返回的是 _id.
      */
     protected function actionGetPrimaryKey()
     {
@@ -52,7 +52,7 @@ class Category extends Service
     }
 
     /**
-     * 得到category model的全名
+     * 得到category model的全名.
      */
     protected function actionGetModelName()
     {
@@ -98,7 +98,7 @@ class Category extends Service
     /**
      *  得到分类的树数组。
      *  数组中只有  id  name(default language), child(子分类) 等数据。
-     *  目前此函数仅仅用于后台对分类的编辑使用。 appadmin
+     *  目前此函数仅仅用于后台对分类的编辑使用。 appadmin.
      */
     protected function actionGetTreeArr($rootCategoryId = 0)
     {

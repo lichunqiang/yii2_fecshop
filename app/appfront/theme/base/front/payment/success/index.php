@@ -14,7 +14,7 @@
 			<p><?= Yii::$service->page->translate->__('You will receive an order confirmation email with details of your order and a link to track its progress.'); ?></p>
 
 			<div class="buttons-set">
-				<button type="button" class="button" title="Continue Shopping" onclick="window.location='<?= Yii::$service->url->homeUrl();  ?>'"><span><span><?= Yii::$service->page->translate->__('Continue Shopping'); ?></span></span></button>
+				<button type="button" class="button" title="Continue Shopping" onclick="window.location='<?= Yii::$service->url->homeUrl(); ?>'"><span><span><?= Yii::$service->page->translate->__('Continue Shopping'); ?></span></span></button>
 			</div>
 			<?php // var_dump($order);?>
 		</div>

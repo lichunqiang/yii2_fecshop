@@ -12,7 +12,7 @@ namespace fecshop\services;
 use Yii;
 
 /**
- * Helper services
+ * Helper services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -21,7 +21,7 @@ class Helper extends Service
     protected $_app_name;
 
     /**
-     * 得到当前的app入口的名字，譬如 appfront apphtml5  appserver等
+     * 得到当前的app入口的名字，譬如 appfront apphtml5  appserver等.
      */
     public function getAppName()
     {

@@ -9,12 +9,12 @@
 
 namespace fecshop\services\page;
 
+use fecshop\services\Service;
 use Yii;
 use yii\base\InvalidValueException;
-use fecshop\services\Service;
 
 /**
- * Breadcrumbs services
+ * Breadcrumbs services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */

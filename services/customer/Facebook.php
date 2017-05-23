@@ -9,13 +9,13 @@
 
 namespace fecshop\services\customer;
 
-use Yii;
-use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
+use Facebook\FacebookSession;
 use fecshop\services\Service;
+use Yii;
 
 /**
- * Address  child services
+ * Address  child services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -37,7 +37,7 @@ class Facebook extends Service
         }
     }
 
-    # 得到facebook登录的url。
+    // 得到facebook登录的url。
     public function getLoginUrl($urlKey)
     {
         $this->initParam();

@@ -28,7 +28,7 @@
 											<?php $main_image = isset($one['image']['main']['image']) ? $one['image']['main']['image'] : '' ?>
 											<div class="review_description_left">
 												<a external class="product_img" href="<?= Yii::$service->url->getUrl($one['url_key']); ?>">
-													<img src="<?= Yii::$service->product->image->getResize($main_image, [80,80], false) ?>" />
+													<img src="<?= Yii::$service->product->image->getResize($main_image, [80, 80], false) ?>" />
 												</a>
 												<a external href="#" class="review_star review_star_<?= $one['rate_star'] ?>" onclick="javascript:return false;"></a>
 												

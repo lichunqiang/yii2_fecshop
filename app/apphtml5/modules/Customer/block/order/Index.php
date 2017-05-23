@@ -24,7 +24,7 @@ class Index
     protected $_page = 'p';
 
     /**
-     * 初始化类变量
+     * 初始化类变量.
      */
     public function initParam()
     {
@@ -34,7 +34,7 @@ class Index
         }
         $this->pageNum = (int) Yii::$app->request->get('p');
         $this->pageNum = ($this->pageNum >= 1) ? $this->pageNum : 1;
-        $this->orderBy = ['created_at' => SORT_DESC ];
+        $this->orderBy = ['created_at' => SORT_DESC];
     }
 
     public function getLastData()
@@ -44,7 +44,7 @@ class Index
         if ($this->customer_id) {
             $filter = [
                 'numPerPage' => $this->numPerPage,
-                'pageNum' => $this->pageNum ,
+                'pageNum' => $this->pageNum,
                 'orderBy' => $this->orderBy,
                 'where' => [
                     ['customer_id' => $this->customer_id],

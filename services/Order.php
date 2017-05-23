@@ -9,17 +9,17 @@
 
 namespace fecshop\services;
 
-use Yii;
 use fecshop\models\mysqldb\Order as MyOrder;
+use Yii;
 
 /**
- * Order services
+ * Order services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Order extends Service
 {
-    public $requiredAddressAttr; # 必填的订单字段。
+    public $requiredAddressAttr; // 必填的订单字段。
     //public $paymentStatus; # 订单支付状态。
 
     public $payment_status_pending = 'pending';
@@ -28,7 +28,7 @@ class Order extends Service
     public $payment_status_complete = 'complete';
     public $payment_status_holded = 'holded';
     public $payment_status_suspected_fraud = 'suspected_fraud';
-    # $this->payment_status_pending
+    // $this->payment_status_pending
 
     public $increment_id = 1000000000;
     public $minuteBeforeThatReturnPendingStock = 60;
@@ -42,7 +42,7 @@ class Order extends Service
 
     protected function actionSetCheckoutType($checkout_type)
     {
-        $arr = [self::CHECKOUT_TYPE_STANDARD,self::CHECKOUT_TYPE_EXPRESS];
+        $arr = [self::CHECKOUT_TYPE_STANDARD, self::CHECKOUT_TYPE_EXPRESS];
         if (in_array($checkout_type, $arr)) {
             $this->checkout_type = $checkout_type;
 
@@ -95,7 +95,7 @@ class Order extends Service
         if ($one[$primaryKey]) {
             return $one;
         } else {
-            return new MyOrder;
+            return new MyOrder();
         }
     }
 
@@ -124,12 +124,12 @@ class Order extends Service
     {
         $one = $this->getByIncrementId($increment_id);
         if (!$one) {
-            return ;
+            return;
         }
 
         $primaryKey = $this->getPrimaryKey();
         if (!isset($one[$primaryKey]) || empty($one[$primaryKey])) {
-            return ;
+            return;
         }
         $order_info = [];
         foreach ($one as $k => $v) {
@@ -152,12 +152,12 @@ class Order extends Service
     protected function actionGetOrderInfoById($order_id)
     {
         if (!$order_id) {
-            return ;
+            return;
         }
         $one = MyOrder::findOne($order_id);
         $primaryKey = $this->getPrimaryKey();
         if (!isset($one[$primaryKey]) || empty($one[$primaryKey])) {
-            return ;
+            return;
         }
         $order_info = [];
         foreach ($one as $k => $v) {
@@ -222,7 +222,7 @@ class Order extends Service
                 return;
             }
         } else {
-            $model = new MyOrder;
+            $model = new MyOrder();
             $model->created_at = time();
             /*
             if(isset(Yii::$app->user)){
@@ -320,7 +320,7 @@ class Order extends Service
 
             return $orderInfo;
         } else {
-            return ;
+            return;
         }
     }
 
@@ -345,13 +345,13 @@ class Order extends Service
         $state = $address['state'];
         //echo "$shipping_method,$country,$state";exit;
         $cartInfo = Yii::$service->cart->getCartInfo($shipping_method, $country, $state);
-        # 检查cartInfo中是否存在产品
+        // 检查cartInfo中是否存在产品
         if (!is_array($cartInfo) && empty($cartInfo)) {
             Yii::$service->helper->errors->add('current cart product is empty');
 
             return false;
         }
-        # 检查产品是否有库存，如果没有库存则返回false
+        // 检查产品是否有库存，如果没有库存则返回false
         $deductStatus = Yii::$service->product->stock->checkItemsStock($cartInfo['products']);
         if (!$deductStatus) {
             return false;
@@ -359,7 +359,7 @@ class Order extends Service
         $beforeEventName = 'event_generate_order_before';
         $afterEventName = 'event_generate_order_after';
         Yii::$service->event->trigger($beforeEventName, $cartInfo);
-        $myOrder = new MyOrder;
+        $myOrder = new MyOrder();
         $myOrder['order_status'] = $this->payment_status_pending;
         $myOrder['store'] = $cartInfo['store'];
         $myOrder['created_at'] = time();
@@ -411,22 +411,22 @@ class Order extends Service
         $orderModel = $this->getByPrimaryKey($order_id);
         Yii::$service->event->trigger($afterEventName, $orderModel);
         if ($orderModel[$this->getPrimaryKey()]) {
-            $orderModel['increment_id'] = $increment_id ;
+            $orderModel['increment_id'] = $increment_id;
             $orderModel->save();
             Yii::$service->order->item->saveOrderItems($cartInfo['products'], $order_id, $cartInfo['store']);
             $this->setSessionIncrementId($increment_id);
-            # 扣除库存。（订单生成后，库存产品库存。）
-            #     （备注）需要另起一个脚本，用来处理半个小时后，还没有支付的订单，将订单取消，然后将订单里面的产品库存返还。
-            # 			如果是无限库存（没有库存就去采购的方式），那么不需要跑这个脚本，将库存设置的非常大即可。
+            // 扣除库存。（订单生成后，库存产品库存。）
+            //     （备注）需要另起一个脚本，用来处理半个小时后，还没有支付的订单，将订单取消，然后将订单里面的产品库存返还。
+            // 			如果是无限库存（没有库存就去采购的方式），那么不需要跑这个脚本，将库存设置的非常大即可。
             if ($clearCartAndDeductStock) {
                 Yii::$service->product->stock->deduct($cartInfo['products']);
             }
-            # 优惠券
+            // 优惠券
             // 优惠券是在购物车页面添加的，添加后，优惠券的使用次数会被+1，
             // 因此在生成订单部分，是没有优惠券使用次数操作的（在购物车添加优惠券已经被执行该操作）
             // 生成订单后，购物车的数据会被清空，其中包括优惠券信息的清空。
 
-            # 如果是登录用户，那么，在生成订单后，需要清空购物车中的产品和coupon。
+            // 如果是登录用户，那么，在生成订单后，需要清空购物车中的产品和coupon。
             if (!Yii::$app->user->isGuest && $clearCartAndDeductStock) {
                 Yii::$service->cart->clearCartProductAndCoupon();
             }
@@ -449,7 +449,7 @@ class Order extends Service
     }
 
     /**
-     * 从session中取出来订单号
+     * 从session中取出来订单号.
      */
     protected function actionGetSessionIncrementId()
     {
@@ -457,7 +457,7 @@ class Order extends Service
     }
 
     /**
-     * 从session中销毁订单号
+     * 从session中销毁订单号.
      */
     protected function actionRemoveSessionIncrementId()
     {
@@ -524,18 +524,18 @@ class Order extends Service
         $minute = $this->minuteBeforeThatReturnPendingStock;
         $begin_time = strtotime(date('Y-m-d H:i:s') . ' -' . $minute . ' minutes ');
 
-        # 不需要释放库存的支付方式。譬如货到付款，在系统中
-        # pending订单，如果一段时间未付款，会释放产品库存，但是货到付款类型的订单不会释放，
-        # 如果需要释放产品库存，客服在后台取消订单即可释放产品库存。
+        // 不需要释放库存的支付方式。譬如货到付款，在系统中
+        // pending订单，如果一段时间未付款，会释放产品库存，但是货到付款类型的订单不会释放，
+        // 如果需要释放产品库存，客服在后台取消订单即可释放产品库存。
         $noRelasePaymentMethod = Yii::$service->payment->noRelasePaymentMethod;
         $where = [
-            ['<','updated_at',$begin_time],
+            ['<', 'updated_at', $begin_time],
             ['order_status' => $this->payment_status_pending],
             ['if_is_return_stock' => 2],
 
         ];
         if ($noRelasePaymentMethod) {
-            $where[] = ['<>','payment_method',$noRelasePaymentMethod];
+            $where[] = ['<>', 'payment_method', $noRelasePaymentMethod];
         }
 
         $filter = [
@@ -555,7 +555,7 @@ class Order extends Service
                 $product_items = Yii::$service->order->item->getByOrderId($order_id, true);
                 Yii::$service->product->stock->returnQty($product_items);
                 $one->if_is_return_stock = 1;
-                # 将订单取消掉。取消后的订单不能再次支付。
+                // 将订单取消掉。取消后的订单不能再次支付。
                 $one->order_status = $this->payment_status_canceled;
                 $one->save();
             }

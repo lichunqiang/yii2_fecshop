@@ -1,11 +1,11 @@
 <div class="shopping-cart-img">
 	<?= Yii::$service->page->translate->__('Login'); ?>
 	
-	<a external href="<?= Yii::$service->url->getUrl('customer/account/register');  ?>" class="f-right"><?= Yii::$service->page->translate->__('Resister'); ?></a>
+	<a external href="<?= Yii::$service->url->getUrl('customer/account/register'); ?>" class="f-right"><?= Yii::$service->page->translate->__('Resister'); ?></a>
 </div>
 <?= Yii::$service->page->widget->render('flashmessage'); ?>	
 <div class="list-block customer-login">
-	<form action="<?= Yii::$service->url->getUrl('customer/account/login');  ?>" method="post" id="login-form" class="account-form">
+	<form action="<?= Yii::$service->url->getUrl('customer/account/login'); ?>" method="post" id="login-form" class="account-form">
 		<ul>
 			
 			<li>
@@ -49,7 +49,7 @@
 				});
 				<?php $this->endBlock(); ?>  
 				</script>  
-				<?php $this->registerJs($this->blocks['login_captcha_onclick_refulsh'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+				<?php $this->registerJs($this->blocks['login_captcha_onclick_refulsh'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 			</li>
 			<?php 
 } ?>
@@ -58,7 +58,7 @@
 		<div class="clear"></div>
 		<div class="buttons-set">
 			<p><a external href="#"  id="js_registBtn" class="button button-fill"><?= Yii::$service->page->translate->__('Sign In'); ?></a></p>
-			<a external href="<?= Yii::$service->url->getUrl('customer/account/forgotpassword');  ?>" class="f-left"><?= Yii::$service->page->translate->__('Forgot Your Password?'); ?></a>
+			<a external href="<?= Yii::$service->url->getUrl('customer/account/forgotpassword'); ?>" class="f-left"><?= Yii::$service->page->translate->__('Forgot Your Password?'); ?></a>
 			
 		</div>
 		<div class="clear"></div>
@@ -67,7 +67,7 @@
 				<img onclick="facebooklogin()" src="<?= Yii::$service->image->getImgUrl('images/facebook.jpg') ?>" /><br/>
 				<img onclick="googlelogin()"src="<?=Yii::$service->image->getImgUrl('images/google.jpg') ?>" /><br/>
 			</div>
-			<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+			<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 			<div class="col2-set">
 				<div class="col-1 new-users">
 					<div class="buttons-set">
@@ -136,7 +136,7 @@
 	}
 	
  <?php $this->endBlock(); ?>  
-	<?php $this->registerJs($this->blocks['customer_login'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+	<?php $this->registerJs($this->blocks['customer_login'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 </script> 
  
  

@@ -9,18 +9,18 @@
 
 namespace fecshop\services\cart;
 
-use Yii;
-use fecshop\services\Service;
 use fecshop\models\mysqldb\cart\Item as MyCartItem;
+use fecshop\services\Service;
+use Yii;
 
 /**
- * Cart services
+ * Cart services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class QuoteItem extends Service
 {
-    protected $_my_cart_item;    # 购物车cart item 对象
+    protected $_my_cart_item;    // 购物车cart item 对象
     protected $_cart_product_info;
 
     /**
@@ -40,7 +40,7 @@ class QuoteItem extends Service
             Yii::$service->cart->quote->createCart();
             $cart_id = Yii::$service->cart->quote->getCartId();
         }
-        # 查看是否存在此产品，如果存在，则相加个数
+        // 查看是否存在此产品，如果存在，则相加个数
         $item_one = MyCartItem::find()->where([
             'cart_id' => $cart_id,
             'product_id' => $item['product_id'],
@@ -49,10 +49,10 @@ class QuoteItem extends Service
         if ($item_one['cart_id']) {
             $item_one->qty = $item['qty'] + $item_one['qty'];
             $item_one->save();
-            # 重新计算购物车的数量
+            // 重新计算购物车的数量
             Yii::$service->cart->quote->computeCartInfo();
         } else {
-            $item_one = new MyCartItem;
+            $item_one = new MyCartItem();
             $item_one->store = Yii::$service->store->currentStore;
             $item_one->cart_id = $cart_id;
             $item_one->created_at = time();
@@ -61,7 +61,7 @@ class QuoteItem extends Service
             $item_one->qty = $item['qty'];
             $item_one->custom_option_sku = $item['custom_option_sku'];
             $item_one->save();
-            # 重新计算购物车的数量
+            // 重新计算购物车的数量
             Yii::$service->cart->quote->computeCartInfo();
         }
     }
@@ -79,7 +79,7 @@ class QuoteItem extends Service
     public function changeItemQty($item)
     {
         $cart_id = Yii::$service->cart->quote->getCartId();
-        # 查看是否存在此产品，如果存在，则更改
+        // 查看是否存在此产品，如果存在，则更改
         $item_one = MyCartItem::find()->where([
             'cart_id' => $cart_id,
             'product_id' => $item['product_id'],
@@ -88,7 +88,7 @@ class QuoteItem extends Service
         if ($item_one['cart_id']) {
             $item_one->qty = $item['qty'];
             $item_one->save();
-            # 重新计算购物车的数量
+            // 重新计算购物车的数量
             Yii::$service->cart->quote->computeCartInfo();
 
             return true;
@@ -167,16 +167,16 @@ class QuoteItem extends Service
                             $productSpuOptions = $this->getProductSpuOptions($product_one);
                             $products[] = [
                                 'item_id' => $one['item_id'],
-                                'product_id' => $product_id ,
+                                'product_id' => $product_id,
                                 'sku' => $product_one['sku'],
                                 'name' => Yii::$service->store->getStoreAttrVal($product_one['name'], 'name'),
-                                'qty' => $qty ,
-                                'custom_option_sku' => $custom_option_sku ,
-                                'product_price' => $product_price ,
-                                'product_row_price' => $product_row_price ,
+                                'qty' => $qty,
+                                'custom_option_sku' => $custom_option_sku,
+                                'product_price' => $product_price,
+                                'product_row_price' => $product_row_price,
 
-                                'base_product_price' => $base_product_price ,
-                                'base_product_row_price' => $base_product_row_price ,
+                                'base_product_price' => $base_product_price,
+                                'base_product_row_price' => $base_product_row_price,
 
                                 'product_name' => $product_one['name'],
                                 'product_weight' => $product_one['weight'],
@@ -232,7 +232,7 @@ class QuoteItem extends Service
             }
         }
 
-        return $custom_option_info_arr ;
+        return $custom_option_info_arr;
     }
 
     /**
@@ -251,7 +251,7 @@ class QuoteItem extends Service
             if ($one['item_id']) {
                 $one['qty'] = $one['qty'] + 1;
                 $one->save();
-                # 重新计算购物车的数量
+                // 重新计算购物车的数量
                 Yii::$service->cart->quote->computeCartInfo();
 
                 return true;
@@ -278,7 +278,7 @@ class QuoteItem extends Service
                 if ($one['qty'] > 1) {
                     $one['qty'] = $one['qty'] - 1;
                     $one->save();
-                    # 重新计算购物车的数量
+                    // 重新计算购物车的数量
                     Yii::$service->cart->quote->computeCartInfo();
 
                     return true;
@@ -304,7 +304,7 @@ class QuoteItem extends Service
             ])->one();
             if ($one['item_id']) {
                 $one->delete();
-                # 重新计算购物车的数量
+                // 重新计算购物车的数量
                 Yii::$service->cart->quote->computeCartInfo();
 
                 return true;
@@ -330,7 +330,7 @@ class QuoteItem extends Service
                 'cart_id' => $cart_id,
                 //'item_id' => $item_id,
             ]);
-            # 重新计算购物车的数量
+            // 重新计算购物车的数量
             Yii::$service->cart->quote->computeCartInfo(0);
         }
 
@@ -347,10 +347,10 @@ class QuoteItem extends Service
     {
         if ($cart_id && $new_cart_id) {
             MyCartItem::updateAll(
-                ['cart_id' => $new_cart_id],  # $attributes
-                'cart_id = ' . $cart_id       # $condition
+                ['cart_id' => $new_cart_id],  // $attributes
+                'cart_id = ' . $cart_id       // $condition
             );
-            # 重新计算购物车的数量
+            // 重新计算购物车的数量
             //Yii::$service->cart->quote->computeCartInfo();
             return true;
         }

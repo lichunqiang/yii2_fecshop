@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Catalog\controllers;
 
-use Yii;
 use fecshop\app\appfront\modules\AppfrontController;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -24,7 +24,7 @@ class CategoryController extends AppfrontController
         Yii::$service->page->theme->layoutFile = 'category_view.php';
     }
 
-    # 网站信息管理
+    // 网站信息管理
     public function actionIndex()
     {
         $data = $this->getBlock()->getLastData();
@@ -43,7 +43,7 @@ class CategoryController extends AppfrontController
             $cacheUrlParam = Yii::$service->cache->cacheUrlParam($cacheName);
             $get_str = '';
             $get = Yii::$app->request->get();
-            # 存在无缓存参数，则关闭缓存
+            // 存在无缓存参数，则关闭缓存
             if (isset($get[$disableUrlParam])) {
                 return [
                     [
@@ -73,7 +73,7 @@ class CategoryController extends AppfrontController
                     'only' => ['index'],
                     'duration' => $timeout,
                     'variations' => [
-                        $store,$currency,$get_str,$category_id,
+                        $store, $currency, $get_str, $category_id,
                     ],
                     //'dependency' => [
                     //	'class' => 'yii\caching\DbDependency',

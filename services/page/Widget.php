@@ -9,15 +9,15 @@
 
 namespace fecshop\services\page;
 
-use Yii;
-use yii\base\InvalidValueException;
-use yii\base\InvalidConfigException;
 use fec\helpers\CCache;
-use fecshop\services\Service;
 use fecshop\interfaces\block\BlockCache;
+use fecshop\services\Service;
+use Yii;
+use yii\base\InvalidConfigException;
+use yii\base\InvalidValueException;
 
 /**
- * widget services
+ * widget services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -100,7 +100,7 @@ class Widget extends Service
         if (isset($config['cache']['enable']) && $config['cache']['enable']) {
             if (!isset($config['class']) || !$config['class']) {
                 throw new InvalidConfigException('in widget [' . $configKey . '],you enable cache ,you must config widget class .');
-            } elseif ($ob = new $config['class']) {
+            } elseif ($ob = new $config['class']()) {
                 if ($ob instanceof BlockCache) {
                     $cacheKey = $ob->getCacheKey();
                     if (!($content = CCache::get($cacheKey))) {

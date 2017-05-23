@@ -9,12 +9,12 @@
 
 namespace fecshop\app\appadmin\modules\Sales;
 
-/**
+/*
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
-use Yii;
 use fecadmin\FecadminbaseController;
+use Yii;
 
 class SalesController extends FecadminbaseController
 {

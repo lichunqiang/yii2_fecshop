@@ -13,7 +13,7 @@ namespace fecshop\app\appadmin\modules\Catalog\helper;
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
-# use fecshop\app\appadmin\modules\Catalog\helper\Product as ProductHelper;
+// use fecshop\app\appadmin\modules\Catalog\helper\Product as ProductHelper;
 class Product
 {
     public static function getStatusArr()

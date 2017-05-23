@@ -9,8 +9,8 @@
 
 namespace fecshop\app\apphtml5\modules\Cms\controllers;
 
-use Yii;
 use fecshop\app\apphtml5\modules\AppfrontController;
+use Yii;
 
 class ArticleController extends AppfrontController
 {
@@ -19,7 +19,7 @@ class ArticleController extends AppfrontController
         parent::init();
     }
 
-    # 网站信息管理
+    // 网站信息管理
     public function actionIndex()
     {
         $data = $this->getBlock()->getLastData();
@@ -44,7 +44,7 @@ class ArticleController extends AppfrontController
             $cacheUrlParam = Yii::$service->cache->cacheUrlParam($cacheName);
             $get_str = '';
             $get = Yii::$app->request->get();
-            # 存在无缓存参数，则关闭缓存
+            // 存在无缓存参数，则关闭缓存
             if (isset($get[$disableUrlParam])) {
                 return [
                     [
@@ -74,7 +74,7 @@ class ArticleController extends AppfrontController
                     'only' => ['index'],
                     'duration' => $timeout,
                     'variations' => [
-                        $store,$currency,$get_str,$article_id,
+                        $store, $currency, $get_str, $article_id,
                     ],
                     //'dependency' => [
                     //	'class' => 'yii\caching\DbDependency',

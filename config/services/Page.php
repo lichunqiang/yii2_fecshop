@@ -11,12 +11,12 @@ return [
     'page' => [
         'class' => 'fecshop\services\Page',
         //'terry' => 'xxxx',
-        # 子服务
+        // 子服务
         'childService' => [
             'breadcrumbs' => [
                 'class' => 'fecshop\services\page\Breadcrumbs',
-                'homeName' => 'Home',  # if homeName => '', Home will not show in breadcrums.
-                'ifAddHomeUrl' => true,    # default true, if set false, home will not add url (a).
+                'homeName' => 'Home',  // if homeName => '', Home will not show in breadcrums.
+                'ifAddHomeUrl' => true,    // default true, if set false, home will not add url (a).
                 //'intervalSymbol'=> ' >> '	# default value:' > '
             ],
             'translate' => [
@@ -25,13 +25,13 @@ return [
 
             'asset' => [
                 'class' => 'fecshop\services\page\Asset',
-                # 在js后面加一个v参数，修改js后，更改v参数，否则，浏览器会使用缓存。
-                # /assets/dbdba3fa/js/js.js?v=2
+                // 在js后面加一个v参数，修改js后，更改v参数，否则，浏览器会使用缓存。
+                // /assets/dbdba3fa/js/js.js?v=2
                 'jsVersion' => 1,
-                # /assets/dbdba3fa/css/owl.carousel.css?v=2
+                // /assets/dbdba3fa/css/owl.carousel.css?v=2
                 'cssVersion' => 1,
-                # js和css的域名，如果不设置，则使用网站的域名。
-                # 'jsCssDomain'   => '',
+                // js和css的域名，如果不设置，则使用网站的域名。
+                // 'jsCssDomain'   => '',
                 /* js and css config example:
                 'jsOptions'	=> [
                     # js config 1
@@ -80,7 +80,7 @@ return [
 
             'theme' => [
                 'class' => 'fecshop\services\page\Theme',
-            /**
+            /*
              #'fecshopThemeDir'	=> '',
              */
             ],

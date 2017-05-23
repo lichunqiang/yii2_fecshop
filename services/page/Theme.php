@@ -9,31 +9,31 @@
 
 namespace fecshop\services\page;
 
+use fecshop\services\Service;
 use Yii;
 use yii\base\InvalidValueException;
-use fecshop\services\Service;
 
 /**
- * Theme services
+ * Theme services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Theme extends Service
 {
     /**
-     * user current theme dir. Highest priority
+     * user current theme dir. Highest priority.
      */
     public $localThemeDir;
     /**
      * $thirdThemeDir | Array
      * user current theme dir.Second priority.
-     * array[0] priority is higher than array[1],
+     * array[0] priority is higher than array[1],.
      */
     public $thirdThemeDir;
     /**
-     * fecshop theme dir. lower priority
+     * fecshop theme dir. lower priority.
      */
-    public $fecshopThemeDir ;
+    public $fecshopThemeDir;
     /**
      * current layout file path.
      */

@@ -9,10 +9,10 @@
 
 namespace fecshop\services\product\viewLog;
 
-use fecshop\services\Service;
 use fec\helpers\CDate;
 use fec\helpers\CUser;
 use fecshop\models\db\product\ViewLog as DbViewLog;
+use fecshop\services\Service;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -24,7 +24,7 @@ class Db extends Service
     public $_defaultTable = 'log_product_view';
     public $_maxProductCount = 10;
 
-    # init function
+    // init function
     public function init()
     {
         if (!$this->table) {
@@ -34,7 +34,7 @@ class Db extends Service
     }
 
     /**
-     *	get product history log
+     *	get product history log.
      */
     public function getHistory($user_id = '', $count = '')
     {
@@ -45,7 +45,7 @@ class Db extends Service
             $user_id = CUser::getCurrentUserId();
         }
         if (!$user_id) {
-            return ;
+            return;
         }
         $coll = DbViewLog::find()->where([
                 'user_id' => $user_id,
@@ -59,11 +59,11 @@ class Db extends Service
     }
 
     /**
-     *	save product visit log
+     *	save product visit log.
      */
     public function setHistory($productOb)
     {
-        $DbViewLog = new DbViewLog;
+        $DbViewLog = new DbViewLog();
         if (isset($productOb['user_id']) && $productOb['user_id']) {
             $DbViewLog->user_id = $productOb['user_id'];
         } elseif ($currentUser = CUser::getCurrentUserId()) {

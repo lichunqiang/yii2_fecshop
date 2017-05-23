@@ -7,7 +7,7 @@
 		
 		<div class="media_img">
 			<div class="media_img_content">
-				<?php # 图片部分。
+				<?php // 图片部分。
                     $imageView = [
                         'view' => 'catalog/product/index/image.php',
                     ];
@@ -29,7 +29,7 @@
 						<span class="average_rating"><?= Yii::$service->page->translate->__('Average rating'); ?> :</span>
 						<span class="review_star review_star_<?= $reviw_rate_star_average ?>" style="font-weight:bold;" itemprop="average"></span>  
 						
-						<a external rel="nofollow" href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/lists', ['spu' => $spu,'_id' => $_id]); ?>">
+						<a external rel="nofollow" href="<?= Yii::$service->url->getUrl('catalog/reviewproduct/lists', ['spu' => $spu, '_id' => $_id]); ?>">
 							(<span itemprop="count"><?= $review_count ?> <?= Yii::$service->page->translate->__('reviews'); ?></span>)
 						</a>
 					</span>
@@ -42,7 +42,7 @@
 				<div class="clear"></div>
 			</div>
 			<div class="price_info">
-				<?php # 价格部分
+				<?php // 价格部分
                     $priceView = [
                         'view' => 'catalog/product/index/price.php',
                     ];
@@ -55,7 +55,7 @@
 			</div>
 			<div class="product_info_section">
 				<div class="product_options">
-					<?php # options部分
+					<?php // options部分
                         $optionsView = [
                             'view' => 'catalog/product/index/options.php',
                         ];
@@ -68,13 +68,13 @@
 				</div>
 				
 				<div class="product_custom_options">
-					<?php # custom options部分
+					<?php // custom options部分
                         $optionsView = [
                             'class' => 'fecshop\app\apphtml5\modules\Catalog\block\product\CustomOption',
                             'view' => 'catalog/product/index/custom_option.php',
                             'custom_option' => $custom_option,
                             'attr_group' => $attr_group,
-                            'product_id' => $_id ,
+                            'product_id' => $_id,
                             'middle_img_width' => $media_size['middle_img_width'],
                         ];
                         $optionsParam = [
@@ -118,7 +118,7 @@
 				
 				
 				<div class="tier_price_info">
-					<?php # tier price 部分。
+					<?php // tier price 部分。
                         $priceView = [
                             'view' => 'catalog/product/index/tier_price.php',
                         ];
@@ -173,7 +173,7 @@
 			  <div id="tab2" class="tab">
 				<div class="content-block">
 					<div class="text-reviews" id="text-reviews" style="">
-						<?php # review部分。
+						<?php // review部分。
                             $reviewView = [
                                 'class' => 'fecshop\app\apphtml5\modules\Catalog\block\product\Review',
                                 'view' => 'catalog/product/index/review.php',
@@ -189,7 +189,7 @@
 			  <div id="tab3" class="tab">
 				<div class="content-block">
 					<div class="text-questions" style="">
-						<?php # payment部分。
+						<?php // payment部分。
                             $paymentView = [
                                 'view' => 'catalog/product/index/payment.php',
                             ];
@@ -210,7 +210,7 @@
 	</div>
 	
 	<div class="buy_also_buy_cer">
-		<?php # buy also buy 部分。
+		<?php // buy also buy 部分。
             $buyAlsoBuyView = [
                 'view' => 'catalog/product/index/buy_also_buy.php',
             ];
@@ -353,7 +353,7 @@
 		});
 	});
 	<?php $this->endBlock(); ?> 
-	<?php $this->registerJs($this->blocks['add_to_cart'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+	<?php $this->registerJs($this->blocks['add_to_cart'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 	
 	//tab 切换js
@@ -417,7 +417,7 @@
 	}  
 	$.init(); 
 	<?php $this->endBlock(); ?>  
-	<?php $this->registerJs($this->blocks['product_info_tab'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+	<?php $this->registerJs($this->blocks['product_info_tab'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 </script> 
   
  

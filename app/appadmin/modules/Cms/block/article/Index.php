@@ -9,32 +9,32 @@
 
 namespace fecshop\app\appadmin\modules\Cms\block\article;
 
-use Yii;
-use fecshop\app\appadmin\modules\AppadminbaseBlock;
 use fec\helpers\CUrl;
 use fecshop\app\appadmin\interfaces\base\AppadminbaseBlockInterface;
+use fecshop\app\appadmin\modules\AppadminbaseBlock;
+use Yii;
 
 /**
- * block cms\article
+ * block cms\article.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
 {
     /**
-     * init param function ,execute in construct
+     * init param function ,execute in construct.
      */
     public function init()
     {
-        /**
+        /*
          * edit data url
          */
         $this->_editUrl = CUrl::getUrl('cms/article/manageredit');
-        /**
+        /*
          * delete data url
          */
         $this->_deleteUrl = CUrl::getUrl('cms/article/managerdelete');
-        /**
+        /*
          * service component, data provider
          */
         $this->_service = Yii::$service->cms->article;
@@ -44,17 +44,17 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
     public function getLastData()
     {
 
-        # hidden section ,that storage page info
+        // hidden section ,that storage page info
         $pagerForm = $this->getPagerForm();
-        # search section
+        // search section
         $searchBar = $this->getSearchBar();
-        # edit button, delete button,
+        // edit button, delete button,
         $editBar = $this->getEditBar();
-        # table head
+        // table head
         $thead = $this->getTableThead();
-        # table body
+        // table body
         $tbody = $this->getTableTbody();
-        # paging section
+        // paging section
         $toolBar = $this->getToolBar($this->_param['numCount'], $this->_param['pageNum'], $this->_param['numPerPage']);
 
         return [
@@ -68,28 +68,28 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
     }
 
     /**
-     * get search bar Arr config
+     * get search bar Arr config.
      */
     public function getSearchArr()
     {
         $data = [
-            [    # selecit的Int 类型
+            [    // selecit的Int 类型
                 'type' => 'select',
                 'title' => '状态',
                 'name' => 'status',
-                'columns_type' => 'int',  # int使用标准匹配， string使用模糊查询
-                'value' => [                    # select 类型的值
+                'columns_type' => 'int',  // int使用标准匹配， string使用模糊查询
+                'value' => [                    // select 类型的值
                     1 => '激活',
                     2 => '关闭',
                 ],
             ],
-            [    # 字符串类型
+            [    // 字符串类型
                 'type' => 'inputtext',
                 'title' => '标题',
-                'name' => 'title' ,
+                'name' => 'title',
                 'columns_type' => 'string',
             ],
-            [    # 时间区间类型搜索
+            [    // 时间区间类型搜索
                 'type' => 'inputdatefilter',
                 'name' => 'created_at',
                 'columns_type' => 'int',
@@ -146,11 +146,11 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
 
         ];
 
-        return $table_th_bar ;
+        return $table_th_bar;
     }
 
     /**
-     * rewrite parent getTableTbodyHtml($data)
+     * rewrite parent getTableTbodyHtml($data).
      */
     public function getTableTbodyHtml($data)
     {
@@ -234,6 +234,6 @@ class Index extends AppadminbaseBlock implements AppadminbaseBlockInterface
             $str .= '</tr>';
         }
 
-        return $str ;
+        return $str;
     }
 }

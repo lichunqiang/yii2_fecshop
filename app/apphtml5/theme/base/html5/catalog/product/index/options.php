@@ -1,6 +1,6 @@
 <?php list($current_attr1, $current_attr2, $all_attr1, $all_attr2, $attr1_2_attr2, $attr2_2_attr1, $attr1, $attr2) = $parentThis['options']; ?>
 
-<?php # 这里是 一种类似京东的处理方式。?>
+<?php // 这里是 一种类似京东的处理方式。?>
 <?php if (is_array($all_attr1) && !empty($all_attr1)) {
     ?>
 	<div class="pg">
@@ -27,7 +27,7 @@
 <?php	
         } ?>
 			<li <?= $active ?>>
-				<a title="<?= $attr1Val ?>" <?= $active ?> href="javascript:void(0)" rel="<?= $url ?>"><img src="<?= Yii::$service->product->image->getResize($main_img, [40,45], false) ?>"/></a>
+				<a title="<?= $attr1Val ?>" <?= $active ?> href="javascript:void(0)" rel="<?= $url ?>"><img src="<?= Yii::$service->product->image->getResize($main_img, [40, 45], false) ?>"/></a>
 				<b></b>
 			</li>
 <?php	
@@ -87,5 +87,5 @@ $(document).ready(function(){
 });
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['product_options'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+<?php $this->registerJs($this->blocks['product_options'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 

@@ -9,13 +9,13 @@
 
 namespace fecshop\services\search;
 
-use Yii;
+use fecshop\models\mongodb\Product;
 use fecshop\models\mongodb\Search;
 use fecshop\services\Service;
-use fecshop\models\mongodb\Product;
+use Yii;
 
 /**
- * Search
+ * Search.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -31,7 +31,7 @@ class MongoSearch extends Service implements SearchInterface
          *  $searchModel 		= new Search;
          *  $searchModel->attributes();
          *	上面的获取的属性，就会有下面添加的属性了。
-         *  将产品同步到搜索表的时候，就会把这些字段也添加进去
+         *  将产品同步到搜索表的时候，就会把这些字段也添加进去.
          */
         $filterAttr = Yii::$service->search->filterAttr;
         if (is_array($filterAttr) && !empty($filterAttr)) {
@@ -40,7 +40,7 @@ class MongoSearch extends Service implements SearchInterface
     }
 
     /**
-     * 创建索引
+     * 创建索引.
      */
     protected function actionInitFullSearchIndex()
     {
@@ -57,14 +57,14 @@ class MongoSearch extends Service implements SearchInterface
         //$langCodes = Yii::$service->fecshoplang->allLangCode;
         if (!empty($this->searchLang) && is_array($this->searchLang)) {
             foreach ($this->searchLang as $langCode => $mongoSearchLangName) {
-                /**
+                /*
                  * 如果语言不存在，譬如中文，mongodb的fullSearch是不支持中文的，
                  * 这种情况是不能搜索的。
                  * 能够进行搜索的语言列表：https://docs.mongodb.com/manual/reference/text-search-languages/#text-search-languages
                  */
                 if ($mongoSearchLangName) {
                     Search::$_lang = $langCode;
-                    $searchModel = new Search;
+                    $searchModel = new Search();
                     $colltionM = $searchModel::getCollection();
                     $config2['default_language'] = $mongoSearchLangName;
                     $colltionM->createIndex($config1, $config2);
@@ -97,10 +97,10 @@ class MongoSearch extends Service implements SearchInterface
     {
         if (is_array($product_ids) && !empty($product_ids)) {
             $productPrimaryKey = Yii::$service->product->getPrimaryKey();
-            $searchModel = new Search;
+            $searchModel = new Search();
             $filter['select'] = $searchModel->attributes();
             $filter['asArray'] = true;
-            $filter['where'][] = ['in',$productPrimaryKey,$product_ids];
+            $filter['where'][] = ['in', $productPrimaryKey, $product_ids];
             $filter['numPerPage'] = $numPerPage;
             $filter['pageNum'] = 1;
             $coll = Yii::$service->product->coll($filter);
@@ -117,7 +117,7 @@ class MongoSearch extends Service implements SearchInterface
                             Search::$_lang = $langCode;
                             $searchModel = Search::findOne(['_id' => $one['_id']]);
                             if (!$searchModel['_id']) {
-                                $searchModel = new Search;
+                                $searchModel = new Search();
                             }
                             $one['name'] = Yii::$service->fecshoplang->getLangAttrVal($one_name, 'name', $langCode);
                             $one['description'] = Yii::$service->fecshoplang->getLangAttrVal($one_description, 'description', $langCode);
@@ -125,7 +125,7 @@ class MongoSearch extends Service implements SearchInterface
                             $one['sync_updated_at'] = time();
                             Yii::$service->helper->ar->save($searchModel, $one);
                             if ($errors = Yii::$service->helper->errors->get()) {
-                                # 报错。
+                                // 报错。
                                 echo  $errors;
                                 //return false;
                             }
@@ -140,7 +140,7 @@ class MongoSearch extends Service implements SearchInterface
 
     /**
      * 批量更新过程中，被更新的产品都会更新字段sync_updated_at
-     * 删除xunSearch引擎中sync_updated_at小于$nowTimeStamp的字段
+     * 删除xunSearch引擎中sync_updated_at小于$nowTimeStamp的字段.
      */
     protected function actionDeleteNotActiveProduct($nowTimeStamp)
     {
@@ -151,11 +151,11 @@ class MongoSearch extends Service implements SearchInterface
         if (!empty($this->searchLang) && is_array($this->searchLang)) {
             foreach ($this->searchLang as $langCode => $mongoSearchLangName) {
                 Search::$_lang = $langCode;
-                # 更新时间方式删除。
+                // 更新时间方式删除。
                 Search::deleteAll([
-                    '<','sync_updated_at',(int) $nowTimeStamp,
+                    '<', 'sync_updated_at', (int) $nowTimeStamp,
                 ]);
-                # 不存在更新时间的直接删除掉。
+                // 不存在更新时间的直接删除掉。
                 Search::deleteAll([
                     'sync_updated_at' => [
                         '?exists' => false,
@@ -181,7 +181,7 @@ class MongoSearch extends Service implements SearchInterface
     }
 
     /**
-     * 得到搜索的产品列表
+     * 得到搜索的产品列表.
      */
     protected function actionGetSearchProductColl($select, $where, $pageNum, $numPerPage, $product_search_max_count)
     {
@@ -212,7 +212,7 @@ class MongoSearch extends Service implements SearchInterface
      *  因为mongodb的搜索涉及到计算量，因此产品过多的情况下，要设置 product_search_max_count的值。减轻服务器负担
      *  因为对客户来说，前10页的产品已经足矣，后面的不需要看了，限定一下产品个数，减轻服务器的压力。
      *  多个spu，取score最高的那个一个显示。
-     *  按照搜索的匹配度来进行排序，没有其他排序方式
+     *  按照搜索的匹配度来进行排序，没有其他排序方式.
      */
     protected function fullTearchText($filter)
     {
@@ -223,8 +223,8 @@ class MongoSearch extends Service implements SearchInterface
         $pageNum = $filter['pageNum'];
         $numPerPage = $filter['numPerPage'];
         $orderBy = $filter['orderBy'];
-        #
-        /**
+        //
+        /*
          * 说明：1.'search_score'=>['$meta'=>"textScore" ，这个是text搜索为了排序，
          *		    详细参看：https://docs.mongodb.com/manual/core/text-search-operators/
          *		 2. sort排序：search_score是全文搜索匹配后的得分，score是product表的一个字段，这个字段可以通过销售量或者其他作为参考设置。
@@ -237,9 +237,9 @@ class MongoSearch extends Service implements SearchInterface
 
         $search_data = Search::getCollection()->find(
             $where,
-            ['search_score' => ['$meta' => 'textScore' ],'id' => 1 ,'spu' => 1,'score' => 1],
+            ['search_score' => ['$meta' => 'textScore'], 'id' => 1, 'spu' => 1, 'score' => 1],
             [
-                'sort' => ['search_score' => [ '$meta' => 'textScore' ],'score' => -1],
+                'sort' => ['search_score' => ['$meta' => 'textScore'], 'score' => -1],
                 'limit' => $product_search_max_count,
             ]
         );
@@ -264,8 +264,7 @@ class MongoSearch extends Service implements SearchInterface
         if (!empty($productIds)) {
             $query = Product::find()->asArray()
                     ->select($select)
-                    ->where(['_id' => ['$in' => $productIds]])
-                    ;
+                    ->where(['_id' => ['$in' => $productIds]]);
             $data = $query->all();
             /**
              * 下面的代码的作用：将结果按照上面in查询的顺序进行数组的排序，使结果和上面的搜索结果排序一致（_id）。
@@ -281,7 +280,7 @@ class MongoSearch extends Service implements SearchInterface
             }
 
             return [
-                'coll' => $return_data ,
+                'coll' => $return_data,
                 'count' => $count,
             ];
         }

@@ -33,13 +33,13 @@ class ProductinfoController extends CatalogController
         return $this->render($this->action->id, $data);
     }
 
-    # catalog
+    // catalog
     public function actionImageupload()
     {
         $this->getBlock()->upload();
     }
 
-    # catalog product
+    // catalog product
     public function actionGetproductcategory()
     {
         $this->getBlock()->getProductCategory();

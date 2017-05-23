@@ -5,7 +5,7 @@
 		<div class="page-title">
 			<h1><?= Yii::$service->page->translate->__('Login or Create an Account'); ?></h1>
 		</div>
-		<form action="<?= Yii::$service->url->getUrl('customer/account/login');  ?>" method="post" id="login-form">
+		<form action="<?= Yii::$service->url->getUrl('customer/account/login'); ?>" method="post" id="login-form">
 			<div class="col2-set">
 				<div class="col-1 new-users">
 					<div class="content">
@@ -49,7 +49,7 @@
 								});
 								<?php $this->endBlock(); ?>  
 								</script>  
-								<?php $this->registerJs($this->blocks['login_captcha_onclick_refulsh'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+								<?php $this->registerJs($this->blocks['login_captcha_onclick_refulsh'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 							</li>
 							<?php 
@@ -58,7 +58,7 @@
 						<div class="clear"></div>
 						<div class="buttons-set">
 							<button type="submit" id="js_registBtn" class="redBtn"><em><span><i></i><?= Yii::$service->page->translate->__('Sign In'); ?></span></em></button>
-							<a href="<?= Yii::$service->url->getUrl('customer/account/forgotpassword');  ?>" class="f-left"><?= Yii::$service->page->translate->__('Forgot Your Password?'); ?></a>
+							<a href="<?= Yii::$service->url->getUrl('customer/account/forgotpassword'); ?>" class="f-left"><?= Yii::$service->page->translate->__('Forgot Your Password?'); ?></a>
 							
 						</div>
 						<div class="clear"></div>
@@ -69,7 +69,7 @@
 					</div>
 				</div>
 			</div>
-			<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+			<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 			<div class="col2-set">
 				<div class="col-1 new-users">
 					<div class="buttons-set">

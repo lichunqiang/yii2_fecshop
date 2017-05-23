@@ -9,11 +9,11 @@
 
 namespace fecshop\services\helper;
 
-use Yii;
 use fecshop\services\Service;
+use Yii;
 
 /**
- * AR services
+ * AR services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */

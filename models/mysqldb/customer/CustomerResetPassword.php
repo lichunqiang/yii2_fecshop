@@ -26,7 +26,7 @@ class CustomerResetPassword extends Customer
     public function rules()
     {
         return [
-            [['old_password', 'new_password','password_repeat'], 'required'],
+            [['old_password', 'new_password', 'password_repeat'], 'required'],
         //	['username', 'validateLogin'],
             ['new_password', 'validateNewPassword'],
             ['old_password', 'validateOldPassword'],

@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appfront\modules\Customer\block\account;
 
-use Yii;
 use fecshop\app\appfront\helper\mailer\Email;
+use Yii;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -44,7 +44,7 @@ class Register
         $captcha = $param['captcha'];
         $registerParam = \Yii::$app->getModule('customer')->params['register'];
         $registerPageCaptcha = isset($registerParam['registerPageCaptcha']) ? $registerParam['registerPageCaptcha'] : false;
-        # 如果开启了验证码，但是验证码验证不正确就报错返回。
+        // 如果开启了验证码，但是验证码验证不正确就报错返回。
         if ($registerPageCaptcha && !$captcha) {
             Yii::$service->page->message->addError(['Captcha can not empty']);
 
@@ -57,7 +57,7 @@ class Register
         Yii::$service->customer->register($param);
         $errors = Yii::$service->page->message->addByHelperErrors();
         if (!$errors) {
-            # 发送注册邮件
+            // 发送注册邮件
             $this->sendRegisterEmail($param);
 
             return true;
@@ -65,7 +65,7 @@ class Register
     }
 
     /**
-     * 发送登录邮件
+     * 发送登录邮件.
      */
     public function sendRegisterEmail($param)
     {

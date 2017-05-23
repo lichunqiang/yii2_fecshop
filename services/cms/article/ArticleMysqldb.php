@@ -9,9 +9,9 @@
 
 namespace fecshop\services\cms\article;
 
+use fecshop\models\mysqldb\cms\Article;
 use Yii;
 use yii\base\InvalidValueException;
-use fecshop\models\mysqldb\cms\Article;
 
 /**
  * @author Terry Zhao <2358269014@qq.com>
@@ -47,7 +47,7 @@ class ArticleMysqldb implements ArticleInterface
 
             return $one;
         } else {
-            return new Article;
+            return new Article();
         }
     }
 
@@ -101,7 +101,7 @@ class ArticleMysqldb implements ArticleInterface
                 return;
             }
         } else {
-            $model = new Article;
+            $model = new Article();
             $model->created_at = time();
             $model->created_user_id = \fec\helpers\CUser::getCurrentUserId();
         }

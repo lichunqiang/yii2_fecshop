@@ -9,8 +9,8 @@
 
 namespace fecshop\app\apphtml5\modules\Cms\controllers;
 
-use Yii;
 use fecshop\app\apphtml5\modules\AppfrontController;
+use Yii;
 
 class HomeController extends AppfrontController
 {
@@ -20,7 +20,7 @@ class HomeController extends AppfrontController
         parent::init();
     }
 
-    # 网站信息管理
+    // 网站信息管理
     public function actionIndex()
     {
         $data = $this->getBlock()->getLastData();
@@ -35,7 +35,7 @@ class HomeController extends AppfrontController
             $timeout = Yii::$service->cache->timeout($cacheName);
             $disableUrlParam = Yii::$service->cache->timeout($cacheName);
             $get = Yii::$app->request->get();
-            # 存在无缓存参数，则关闭缓存
+            // 存在无缓存参数，则关闭缓存
             if (isset($get[$disableUrlParam])) {
                 return [
                     [
@@ -56,7 +56,7 @@ class HomeController extends AppfrontController
                     'only' => ['index'],
                     'duration' => $timeout,
                     'variations' => [
-                        $store,$currency,
+                        $store, $currency,
                     ],
                 ],
             ];

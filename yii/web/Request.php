@@ -24,7 +24,7 @@ use yii\base\InvalidConfigException;
 class Request extends \yii\web\Request
 {
     /**
-     * rewrite yii\web\Request  resolveRequestUri()
+     * rewrite yii\web\Request  resolveRequestUri().
      */
     protected function resolveRequestUri()
     {
@@ -44,7 +44,7 @@ class Request extends \yii\web\Request
             throw new InvalidConfigException('Unable to determine the request URI.');
         }
 
-        /**
+        /*
          * Replace Code
          * //return $requestUri;
          * To:
@@ -53,7 +53,7 @@ class Request extends \yii\web\Request
     }
 
     /**
-     * get module request url by db ;
+     * get module request url by db ;.
      */
     protected function getRewriteUri($requestUri)
     {
@@ -115,7 +115,7 @@ class Request extends \yii\web\Request
 
     /**
      * after get urlPath from db, if urlPath has get param ,
-     * set the param to $_GET
+     * set the param to $_GET.
      */
     public function setRequestParam($originUrlPath)
     {
@@ -128,7 +128,7 @@ class Request extends \yii\web\Request
         }
     }
 
-    /**
+    /*
      *  mongodb url_rewrite collection columns: _id,  type ,custom_url, yii_url,
      *	if selete date from UrlRewrite, return the yii url.
      */

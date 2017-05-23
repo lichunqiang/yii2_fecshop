@@ -19,8 +19,8 @@
 				<table id="my-orders-table" class="edit_order">
 					<thead>
 						<tr class="first last">
-							<th><?= Yii::$service->page->translate->__('Order #');?> </th>
-							<th><?= Yii::$service->page->translate->__('Date');?></th>
+							<th><?= Yii::$service->page->translate->__('Order #'); ?> </th>
+							<th><?= Yii::$service->page->translate->__('Date'); ?></th>
 							<th>operate</th>
 						</tr>
 					</thead>

@@ -9,8 +9,8 @@
 
 namespace fecshop\services;
 
-use Yii;
 use fecshop\services\product\ProductMongodb;
+use Yii;
 
 /**
  * Product Service is the component that you can get product info from it.
@@ -28,13 +28,13 @@ class Product extends Service
     public function init()
     {
         if ($this->storage == 'mongodb') {
-            $this->_product = new ProductMongodb;
+            $this->_product = new ProductMongodb();
         //}else if($this->storage == 'mysqldb'){
             //$this->_category = new CategoryMysqldb;
         }
     }
 
-    # Yii::$service->product->getCustomAttrGroup();
+    // Yii::$service->product->getCustomAttrGroup();
 
     /**
      * 得到产品的所有的属性组。
@@ -60,13 +60,13 @@ class Product extends Service
         if ($productAttrGroup == $this->_defaultAttrGroup) {
             return [];
         }
-        # 得到普通属性
+        // 得到普通属性
         if (isset($this->customAttrGroup[$productAttrGroup]['general_attr'])
                 && is_array($this->customAttrGroup[$productAttrGroup]['general_attr'])
         ) {
             $arr = array_merge($arr, $this->customAttrGroup[$productAttrGroup]['general_attr']);
         }
-        # 得到用于spu，细分sku的属性，譬如颜色尺码之类。
+        // 得到用于spu，细分sku的属性，譬如颜色尺码之类。
         if (isset($this->customAttrGroup[$productAttrGroup]['spu_attr'])
                 && is_array($this->customAttrGroup[$productAttrGroup]['spu_attr'])
         ) {
@@ -88,7 +88,7 @@ class Product extends Service
             return [];
         }
 
-        # 得到用于spu，细分sku的属性，譬如颜色尺码之类。
+        // 得到用于spu，细分sku的属性，譬如颜色尺码之类。
         if (isset($this->customAttrGroup[$productAttrGroup]['spu_attr'])
                 && is_array($this->customAttrGroup[$productAttrGroup]['spu_attr'])
         ) {
@@ -98,11 +98,11 @@ class Product extends Service
         return array_keys($arr);
     }
 
-    # spu的属性目前不能超过两个选项，譬如衣服同一个spu
-    # 不同的sku 是通过颜色和尺码进行区分的。此时， color 和 size 被称为spu属性
-    # 如果您有的产品可能有超过2个的spu属性，您可以通过拆分，将一个spu切分成多个spu
-    # 譬如：您的spu属性有三个： 颜色，尺码，材质。你可以把不同的材质设置成不同的spu
-    # 然后颜色和尺码作为spu属性，也就是同一个款式同一个材质的衣服，不同的颜色尺码是相同的spu，但是sku是不同的
+    // spu的属性目前不能超过两个选项，譬如衣服同一个spu
+    // 不同的sku 是通过颜色和尺码进行区分的。此时， color 和 size 被称为spu属性
+    // 如果您有的产品可能有超过2个的spu属性，您可以通过拆分，将一个spu切分成多个spu
+    // 譬如：您的spu属性有三个： 颜色，尺码，材质。你可以把不同的材质设置成不同的spu
+    // 然后颜色和尺码作为spu属性，也就是同一个款式同一个材质的衣服，不同的颜色尺码是相同的spu，但是sku是不同的
     protected function actionIsCorrectSpuConfig($productAttrGroup)
     {
         $spuAttrArr = $this->GetSpuAttr($productAttrGroup);
@@ -141,7 +141,7 @@ class Product extends Service
     }
 
     /**
-     * 得到主键的名称
+     * 得到主键的名称.
      */
     protected function actionGetPrimaryKey()
     {
@@ -185,7 +185,7 @@ class Product extends Service
     }
 
     /**
-     * 得到category model的全名
+     * 得到category model的全名.
      */
     protected function actionGetModelName()
     {
@@ -309,7 +309,7 @@ class Product extends Service
      *   处理后的结果不能大约32MB，因此，如果一个分类下面的产品几十万的时候可能就会出现问题，
      *   这种情况可以用专业的搜索引擎做聚合工具。
      *   不过，对于一般的用户来说，这个不会成为瓶颈问题，一般一个分类下的产品不会出现几十万的情况。
-     * 4.最后就得到spu唯一的产品列表（多个spu相同，sku不同的产品，只要score最高的那个）
+     * 4.最后就得到spu唯一的产品列表（多个spu相同，sku不同的产品，只要score最高的那个）.
      */
     protected function actionGetFrontCategoryProducts($filter)
     {
@@ -340,7 +340,7 @@ class Product extends Service
      *  因为mongodb的搜索涉及到计算量，因此产品过多的情况下，要设置 product_search_max_count的值。减轻服务器负担
      *  因为对客户来说，前10页的产品已经足矣，后面的不需要看了，限定一下产品个数，减轻服务器的压力。
      *  多个spu，取score最高的那个一个显示。
-     *  按照搜索的匹配度来进行排序，没有其他排序方式
+     *  按照搜索的匹配度来进行排序，没有其他排序方式.
      */
     //protected function actionFullTearchText($filter){
     //	return $this->_product->fullTearchText($filter);
@@ -360,7 +360,7 @@ class Product extends Service
             }
             $filter = [
                 'where' => [
-                    ['in',$_id,$ids_ob_arr],
+                    ['in', $_id, $ids_ob_arr],
 
                 ],
                 'asArray' => true,

@@ -26,7 +26,7 @@ class SearchController extends Controller
      * 当重新执行initmongoindex的时候就会重建text索引，否则会报错
      * 在mongodb中text可以是多个字段组合，但是只能有一个text索引。
      * 这也就是为什么要把各个语言分开成多个表的原因。
-     * 2.初始化其他表的索引
+     * 2.初始化其他表的索引.
      */
     public function actionInitindex()
     {

@@ -9,12 +9,12 @@
 
 namespace fecshop\services\order;
 
-use Yii;
-use fecshop\services\Service;
 use fecshop\models\mysqldb\order\Item as MyOrderItem;
+use fecshop\services\Service;
+use Yii;
 
 /**
- * Cart services
+ * Cart services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -46,7 +46,7 @@ class Item extends Service
             $items[$k]['image'] = $this->getProductImage($product_one, $one);
         }
 
-        return $items ;
+        return $items;
     }
 
     /**
@@ -59,7 +59,7 @@ class Item extends Service
         $custom_option = $product_one['custom_option'];
         $custom_option_sku = $item_one['custom_option_sku'];
         $image = '';
-        # 设置图片
+        // 设置图片
         if (isset($product_one['image']['main']['image'])) {
             $image = $product_one['image']['main']['image'];
         }
@@ -68,7 +68,7 @@ class Item extends Service
             $image = $custom_option_image;
         }
         if (!$image) {
-            $image = $item_one['image']    ;
+            $image = $item_one['image'];
         }
 
         return $image;
@@ -88,7 +88,7 @@ class Item extends Service
         if (isset($custom_option[$custom_option_sku]) && !empty($custom_option[$custom_option_sku])) {
             $custom_option_info = $custom_option[$custom_option_sku];
             foreach ($custom_option_info as $attr => $val) {
-                if (!in_array($attr, ['qty','sku','price','image'])) {
+                if (!in_array($attr, ['qty', 'sku', 'price', 'image'])) {
                     $attr = str_replace('_', ' ', $attr);
                     $attr = ucfirst($attr);
                     $custom_option_info_arr[$attr] = $val;
@@ -135,7 +135,7 @@ class Item extends Service
             }
         }
 
-        return $custom_option_info_arr ;
+        return $custom_option_info_arr;
     }
 
     /**
@@ -170,7 +170,7 @@ class Item extends Service
     {
         if (is_array($items) && !empty($items) && $order_id && $store) {
             foreach ($items as $item) {
-                $myOrderItem = new MyOrderItem;
+                $myOrderItem = new MyOrderItem();
                 $myOrderItem['order_id'] = $order_id;
                 $myOrderItem['store'] = $store;
                 $myOrderItem['created_at'] = time();
@@ -179,7 +179,7 @@ class Item extends Service
                 $myOrderItem['sku'] = $item['sku'];
                 $myOrderItem['name'] = $item['name'];
                 $myOrderItem['custom_option_sku'] = $item['custom_option_sku'];
-                $myOrderItem['image'] = isset($item['product_image']['main']['image']) ? $item['product_image']['main']['image'] : '' ;
+                $myOrderItem['image'] = isset($item['product_image']['main']['image']) ? $item['product_image']['main']['image'] : '';
                 $myOrderItem['weight'] = $item['product_weight'];
                 $myOrderItem['qty'] = $item['qty'];
                 $myOrderItem['row_weight'] = $item['product_row_weight'];

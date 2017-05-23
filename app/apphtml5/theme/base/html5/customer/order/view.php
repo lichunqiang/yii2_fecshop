@@ -20,16 +20,16 @@ use fecshop\app\apphtml5\helper\Format;
 				<div class="my_account_order">
 					<table class="page-title title-buttons">
 						<tbody>
-							<tr><td><?= Yii::$service->page->translate->__('Order# :');?></td><td><?=  $increment_id ?>	</td></tr>		
-							<tr><td><?= Yii::$service->page->translate->__('Order Status:');?></td><td><?= Yii::$service->page->translate->__($order_status);?></td></tr>		
-							<tr><td><?= Yii::$service->page->translate->__('Order Date:');?></td><td><?=  date('Y-m-d H:i:s', $created_at); ?></td></tr>								
+							<tr><td><?= Yii::$service->page->translate->__('Order# :'); ?></td><td><?=  $increment_id ?>	</td></tr>		
+							<tr><td><?= Yii::$service->page->translate->__('Order Status:'); ?></td><td><?= Yii::$service->page->translate->__($order_status); ?></td></tr>		
+							<tr><td><?= Yii::$service->page->translate->__('Order Date:'); ?></td><td><?=  date('Y-m-d H:i:s', $created_at); ?></td></tr>								
 						</tbody>
 					</table>
 					<div class="col2-set order-info-box">
 						<div class="col-1">
 							<div class="box">
 							<div class="box-title">
-								<h5><?= Yii::$service->page->translate->__('Shipping Address:');?></h5>
+								<h5><?= Yii::$service->page->translate->__('Shipping Address:'); ?></h5>
 							</div>
 							<div class="box-content">
 								<table>
@@ -37,7 +37,7 @@ use fecshop\app\apphtml5\helper\Format;
 										<tr><td><?=  $customer_firstname ?> <?=  $customer_lastname ?></td></tr>	
 										<tr><td><?=  $customer_address_street1 ?><br><?=  $customer_address_street2 ?></td></tr>	
 										<tr><td><?=  $customer_address_city ?>,<?=  $customer_address_state_name ?>,<?=  $customer_address_country_name ?></td></tr>	
-										<tr><td><?= Yii::$service->page->translate->__('T:');?><?=  $customer_telephone ?></td></tr>	
+										<tr><td><?= Yii::$service->page->translate->__('T:'); ?><?=  $customer_telephone ?></td></tr>	
 
 									</tbody>
 								</table>
@@ -46,7 +46,7 @@ use fecshop\app\apphtml5\helper\Format;
 						<div class="col-2">
 							<div class="box">
 								<div class="box-title">
-									<h5><?= Yii::$service->page->translate->__('Shipping Method:');?></h5>
+									<h5><?= Yii::$service->page->translate->__('Shipping Method:'); ?></h5>
 								</div>
 								<div class="box-content">
 									<table>
@@ -59,7 +59,7 @@ use fecshop\app\apphtml5\helper\Format;
 						<div class="col-2">
 							<div class="box box-payment">
 								<div class="box-title">
-									<h5><?= Yii::$service->page->translate->__('Payment Method:');?></h5>
+									<h5><?= Yii::$service->page->translate->__('Payment Method:'); ?></h5>
 								</div>
 								<div class="box-content">
 									<table>
@@ -73,7 +73,7 @@ use fecshop\app\apphtml5\helper\Format;
 					</div>
 					
 					<div class="order-items order-details box-title">
-						<h5 class="table-caption"><?= Yii::$service->page->translate->__('Items Ordered:');?></h5>
+						<h5 class="table-caption"><?= Yii::$service->page->translate->__('Items Ordered:'); ?></h5>
 
 						<table summary="Items Ordered" id="my-orders-table" class="data-table">
 							<colgroup>
@@ -84,32 +84,32 @@ use fecshop\app\apphtml5\helper\Format;
 							</colgroup>
 							<thead>
 								<tr class="first last">
-									<th><?= Yii::$service->page->translate->__('Product Image');?></th>
-									<th><?= Yii::$service->page->translate->__('Product Info');?></th>
-									<th class="a-center"><?= Yii::$service->page->translate->__('Qty');?></th>
-									<th class="a-right"><?= Yii::$service->page->translate->__('Subtotal');?></th>
+									<th><?= Yii::$service->page->translate->__('Product Image'); ?></th>
+									<th><?= Yii::$service->page->translate->__('Product Info'); ?></th>
+									<th class="a-center"><?= Yii::$service->page->translate->__('Qty'); ?></th>
+									<th class="a-right"><?= Yii::$service->page->translate->__('Subtotal'); ?></th>
 								</tr>
 							</thead>
 							<tfoot>
 								<tr class="subtotal first">
-									<td class="a-right" colspan="3"><?= Yii::$service->page->translate->__('Subtotal');?></td>
+									<td class="a-right" colspan="3"><?= Yii::$service->page->translate->__('Subtotal'); ?></td>
 									<td class="last a-right"><span class="price"><?= $currency_symbol ?><?=  Format::price($subtotal); ?></span></td>
 								</tr>
 								<tr class="shipping">
-									<td class="a-right" colspan="3"><?= Yii::$service->page->translate->__('Shipping Cost');?></td>
+									<td class="a-right" colspan="3"><?= Yii::$service->page->translate->__('Shipping Cost'); ?></td>
 									<td class="last a-right">
 										<span class="price"><?= $currency_symbol ?><?=  Format::price($shipping_total); ?></span>    
 									</td>
 								</tr>
 								<tr class="discount">
-									<td class="a-right" colspan="3"><?= Yii::$service->page->translate->__('Discount');?></td>
+									<td class="a-right" colspan="3"><?= Yii::$service->page->translate->__('Discount'); ?></td>
 									<td class="last a-right">
 										<span class="price"><?= $currency_symbol ?><?=  Format::price($subtotal_with_discount); ?></span>    
 									</td>
 								</tr>
 								<tr class="grand_total last">
 									<td class="a-right" colspan="3">
-										<strong><?= Yii::$service->page->translate->__('Grand Total');?></strong>
+										<strong><?= Yii::$service->page->translate->__('Grand Total'); ?></strong>
 									</td>
 									<td class="last a-right">
 										<strong><span class="price"><?= $currency_symbol ?><?=  Format::price($grand_total); ?></span></strong>
@@ -123,8 +123,8 @@ use fecshop\app\apphtml5\helper\Format;
         ?>
 									<tr id="order-item-row" class="border first">	
 										<td>
-											<a href="<?=  Yii::$service->url->getUrl($product['redirect_url']) ; ?>">
-												<img src="<?= Yii::$service->product->image->getResize($product['image'], [100,100], false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
+											<a href="<?=  Yii::$service->url->getUrl($product['redirect_url']); ?>">
+												<img src="<?= Yii::$service->product->image->getResize($product['image'], [100, 100], false) ?>" alt="<?= $product['name'] ?>" width="75" height="75">
 											</a>
 										</td>
 										<td>

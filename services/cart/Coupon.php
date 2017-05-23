@@ -9,23 +9,23 @@
 
 namespace fecshop\services\cart;
 
-use Yii;
-use fecshop\services\Service;
 use fecshop\models\mysqldb\cart\Coupon as MyCoupon;
 use fecshop\models\mysqldb\cart\CouponUsage as MyCouponUsage;
+use fecshop\services\Service;
+use Yii;
 
 /**
- * Cart services
+ * Cart services.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
 class Coupon extends Service
 {
-    protected $_useCouponInit; # 是否初始化这个百年两
-    protected $_customer_id;   # 用户id
-    protected $_coupon_code;   # 优惠卷码
-    protected $_coupon_model;  # 优惠券model
-    protected $_coupon_usage_model; # 优惠券使用次数记录model
+    protected $_useCouponInit; // 是否初始化这个百年两
+    protected $_customer_id;   // 用户id
+    protected $_coupon_code;   // 优惠卷码
+    protected $_coupon_model;  // 优惠券model
+    protected $_coupon_usage_model; // 优惠券使用次数记录model
 
     protected function actionGetPrimaryKey()
     {
@@ -44,7 +44,7 @@ class Coupon extends Service
         if ($one[$primaryKey]) {
             return $one;
         } else {
-            return new MyCoupon;
+            return new MyCoupon();
         }
     }
 
@@ -144,9 +144,8 @@ class Coupon extends Service
             } else {
                 $o_one = MyCoupon::find()
                     ->where(['coupon_code' => $one['coupon_code']])
-                    ->andWhere(['!=',$primaryKey,$primaryVal])
-                    ->one()
-                    ;
+                    ->andWhere(['!=', $primaryKey, $primaryVal])
+                    ->one();
                 if ($o_one[$primaryKey]) {
                     Yii::$service->helper->errors->add('coupon_code must be unique');
 
@@ -156,14 +155,13 @@ class Coupon extends Service
         } else {
             $o_one = MyCoupon::find()
                 ->where(['coupon_code' => $one['coupon_code']])
-                ->one()
-                ;
+                ->one();
             if ($o_one[$primaryKey]) {
                 Yii::$service->helper->errors->add('coupon_code must be unique');
 
                 return;
             }
-            $model = new MyCoupon;
+            $model = new MyCoupon();
             $model->created_at = time();
             if (isset(Yii::$app->user)) {
                 $user = Yii::$app->user;
@@ -236,7 +234,7 @@ class Coupon extends Service
     protected function useCouponInit($coupon_code)
     {
         if (!$this->_useCouponInit) {
-            # $this->_customer_id
+            // $this->_customer_id
             if (Yii::$app->user->isGuest) {
                 $this->_customer_id = '';
             } else {
@@ -244,27 +242,24 @@ class Coupon extends Service
                     $this->_customer_id = Yii::$app->user->identity->id;
                 }
             }
-            # $this->getCouponUsageModel();
-            # $this->getCouponModel();
+            // $this->getCouponUsageModel();
+            // $this->getCouponModel();
 
-            # $this->_coupon_code
+            // $this->_coupon_code
             $this->_coupon_code = $coupon_code;
 
             $this->_useCouponInit = 1;
         }
     }
 
-    /**
-     *
-     */
-    # $this->getCouponUsageModel();
-    # $this->getCouponModel();
+    // $this->getCouponUsageModel();
+    // $this->getCouponModel();
     protected function couponIsActive()
     {
         if ($this->_customer_id) {
             if ($couponModel = $this->getCouponModel()) {
                 $expiration_date = $couponModel['expiration_date'];
-                # 未过期
+                // 未过期
                 if ($expiration_date > time()) {
                     $couponUsageModel = $this->getCouponUsageModel();
                     $times_used = 0;
@@ -272,7 +267,7 @@ class Coupon extends Service
                         $times_used = $couponUsageModel['times_used'];
                     }
                     $users_per_customer = $couponModel['users_per_customer'];
-                    # 次数限制
+                    // 次数限制
                     if ($times_used < $users_per_customer) {
                         return true;
                     } else {
@@ -298,9 +293,9 @@ class Coupon extends Service
             $discount = $couponModel['discount'];
             //echo $conditions.'##'.$dc_price;;exit;
             if ($conditions <= $dc_price) {
-                if ($type == 1) { # 百分比
+                if ($type == 1) { // 百分比
                     $base_discount_cost = $discount / 100 * $dc_price;
-                } elseif ($type == 2) { # 直接折扣
+                } elseif ($type == 2) { // 直接折扣
                     $base_discount_cost = $dc_price - $discount;
                 }
                 $curr_discount_cost = Yii::$service->page->currency->getCurrentCurrencyPrice($base_discount_cost);
@@ -326,7 +321,7 @@ class Coupon extends Service
                 if ($type == 'add') {
                     $cu_model = $this->getCouponUsageModel();
                     if (!$cu_model) {
-                        $cu_model = new MyCouponUsage;
+                        $cu_model = new MyCouponUsage();
                         $cu_model->times_used = 1;
                         $cu_model->customer_id = $this->_customer_id;
                         $cu_model->coupon_id = $c_model['coupon_id'];
@@ -376,15 +371,15 @@ class Coupon extends Service
             $type = $couponModel['type'];
             $conditions = $couponModel['conditions'];
             $discount = $couponModel['discount'];
-            # 判断购物车金额是否满足条件
+            // 判断购物车金额是否满足条件
             $cartProduct = Yii::$service->cart->quoteItem->getCartProductInfo();
             $product_total = isset($cartProduct['product_total']) ? $cartProduct['product_total'] : 0;
             if ($product_total) {
                 //var_dump($product_total);
                 $dc_price = Yii::$service->page->currency->getBaseCurrencyPrice($product_total);
                 if ($dc_price > $conditions) {
-                    # 更新购物侧的coupon 和优惠券的使用情况。
-                    # 在service中不要出现事务等操作。在调用层使用。
+                    // 更新购物侧的coupon 和优惠券的使用情况。
+                    // 在service中不要出现事务等操作。在调用层使用。
                     //$innerTransaction = Yii::$app->db->beginTransaction();
                     //try {
                         $set_status = Yii::$service->cart->quote->setCartCoupon($coupon_code);
@@ -410,10 +405,10 @@ class Coupon extends Service
         }
     }
 
-    # 取消优惠券
-    # $this->getCouponUsageModel();
-    # $this->getCouponModel();
-    # $this->useCouponInit($coupon_code);
+    // 取消优惠券
+    // $this->getCouponUsageModel();
+    // $this->getCouponModel();
+    // $this->useCouponInit($coupon_code);
     protected function actionCancelCoupon($coupon_code)
     {
         $this->useCouponInit($coupon_code);

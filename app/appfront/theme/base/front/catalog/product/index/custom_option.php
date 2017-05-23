@@ -22,7 +22,7 @@
                     ?>
 				<li id="gal1">
 					<a data-image="<?= Yii::$service->product->image->getResize($image, $middle_img_width, false) ?>"  data-zoom-image="<?= Yii::$service->product->image->getUrl($image); ?>"  attr="<?= $attr ?>"  class="imgshow active_v"  value="<?= $key ?>">
-						<img  src="<?= Yii::$service->product->image->getResize($image, [50,55], false) ?>" /></a>
+						<img  src="<?= Yii::$service->product->image->getResize($image, [50, 55], false) ?>" /></a>
 					<b></b>
 				</li>
 			<?php 
@@ -245,4 +245,4 @@ $(document).ready(function(){
 });
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['product_custom_option'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+<?php $this->registerJs($this->blocks['product_custom_option'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>

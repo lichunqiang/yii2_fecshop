@@ -9,8 +9,8 @@
 
 namespace fecshop\app\appapi\modules\V1\controllers;
 
-use Yii;
 use fecshop\app\appapi\modules\AppapiController;
+use Yii;
 
 class ArticleController extends AppapiController
 {
@@ -18,7 +18,7 @@ class ArticleController extends AppapiController
 
     public function init()
     {
-        # 得到当前service相应的model
+        // 得到当前service相应的model
         $this->modelClass = Yii::$service->cms->article->getModelName();
         parent::init();
     }

@@ -9,11 +9,11 @@
 
 namespace fecshop\services;
 
-use Yii;
 use fecshop\services\search\MongoSearch;
+use Yii;
 
 /**
- * Search
+ * Search.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -21,7 +21,7 @@ class Search extends Service
 {
     //protected $_searchEngine;
     /**
-     * 在搜索页面侧栏的搜索过滤属性字段
+     * 在搜索页面侧栏的搜索过滤属性字段.
      */
     public $filterAttr;
 
@@ -36,7 +36,7 @@ class Search extends Service
     }
 
     /**
-     * init search engine index
+     * init search engine index.
      */
     protected function actionInitFullSearchIndex()
     {
@@ -66,7 +66,7 @@ class Search extends Service
     }
 
     /**
-     * 在批量更新脚本中，将no active 的产品，从搜索表中删除掉
+     * 在批量更新脚本中，将no active 的产品，从搜索表中删除掉.
      */
     protected function actionDeleteNotActiveProduct($nowTimeStamp)
     {
@@ -80,14 +80,14 @@ class Search extends Service
     }
 
     /**
-     * 得到搜索的sku列表
+     * 得到搜索的sku列表.
      */
     protected function actionGetSearchProductColl($select, $where, $pageNum, $numPerPage, $product_search_max_count)
     {
         $currentLangCode = Yii::$service->store->currentLangCode;
 
         if (!$currentLangCode) {
-            return ;
+            return;
         }
         $searchEngineList = $this->getAllChildServiceName();
         if (is_array($searchEngineList) && !empty($searchEngineList)) {
@@ -96,7 +96,7 @@ class Search extends Service
                 $searchLang = $service->searchLang;
                 if (is_array($searchLang) && !empty($searchLang)) {
                     $searchLangCode = array_keys($searchLang);
-                    # 如果当前store的语言，在当前的搜索引擎中支持，则会使用这个搜索，作为支持。
+                    // 如果当前store的语言，在当前的搜索引擎中支持，则会使用这个搜索，作为支持。
 
                     if (in_array($currentLangCode, $searchLangCode)) {
                         return $service->getSearchProductColl($select, $where, $pageNum, $numPerPage, $product_search_max_count);
@@ -107,7 +107,7 @@ class Search extends Service
     }
 
     /**
-     * 得到搜索的sku列表侧栏的过滤
+     * 得到搜索的sku列表侧栏的过滤.
      * @property $filter_attr | Array
      * @property $where | Array
      */
@@ -115,7 +115,7 @@ class Search extends Service
     {
         $currentLangCode = Yii::$service->store->currentLangCode;
         if (!$currentLangCode) {
-            return ;
+            return;
         }
         $searchEngineList = $this->getAllChildServiceName();
         if (is_array($searchEngineList) && !empty($searchEngineList)) {
@@ -124,7 +124,7 @@ class Search extends Service
                 $searchLang = $service->searchLang;
                 if (is_array($searchLang) && !empty($searchLang)) {
                     $searchLangCode = array_keys($searchLang);
-                    # 如果当前store的语言，在当前的搜索引擎中支持，则会使用这个搜索，作为支持。
+                    // 如果当前store的语言，在当前的搜索引擎中支持，则会使用这个搜索，作为支持。
 
                     if (in_array($currentLangCode, $searchLangCode)) {
                         return $service->getFrontSearchFilter($filter_attr, $where);
@@ -135,7 +135,7 @@ class Search extends Service
     }
 
     /**
-     * 通过product_id删除搜索数据
+     * 通过product_id删除搜索数据.
      * @property $product_id | \mongoId
      */
     protected function actionRemoveByProductId($product_id)

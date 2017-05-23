@@ -9,11 +9,11 @@
 
 namespace fecshop\app\appadmin\modules\Catalog\block\productinfo;
 
-use Yii;
 use fec\helpers\CRequest;
+use Yii;
 
 /**
- * block cms\article
+ * block cms\article.
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -66,7 +66,7 @@ class Getproductcategory
         return $str;
     }
 
-    # 得到產品的分類id
+    // 得到產品的分類id
     public function getCategoryByProductId($product_id)
     {
         $product = Yii::$service->product->getByPrimaryKey($product_id);
@@ -79,7 +79,7 @@ class Getproductcategory
 
     public function getMenu($product_id)
     {
-        #设置在config设置的值
+        //设置在config设置的值
 
         //echo $this->_modelName;exit;
         $query = $this->getModelQuery('catalog_category');
@@ -125,7 +125,7 @@ class Getproductcategory
         $default_name = Store::getStoreDefaultName();
 
         $root_id = $root_catefory['_id'];
-        $menu[$root_id] = ['name' => $root_catefory['name'][$default_name ]];
+        $menu[$root_id] = ['name' => $root_catefory['name'][$default_name]];
         //var_dump($menu);exit;
         //echo 3;
         foreach ($this->_menu as $lev_1) {
@@ -133,19 +133,19 @@ class Getproductcategory
 
                 //$level1_arr[$lev_1['_id']] = ['name'=>$lev_1['name'][$default_name ]];
                 $lev_1_id = $lev_1['_id'];
-                $menu[$root_id]['child'][$lev_1_id] = ['name' => $lev_1['name'][$default_name ]];
+                $menu[$root_id]['child'][$lev_1_id] = ['name' => $lev_1['name'][$default_name]];
                 $parent_id_1 = $lev_1['_id'];
                 foreach ($this->_menu as $lev_2) {
                     //echo $lev_2['parent_id'].$parent_id_1."#";
                     if ($lev_2['parent_id'] == $parent_id_1) {
                         $lev_2_id = $lev_2['_id'];
-                        $menu[$root_id]['child'][$lev_1_id]['child'][$lev_2_id] = ['name' => $lev_2['name'][$default_name ]];
+                        $menu[$root_id]['child'][$lev_1_id]['child'][$lev_2_id] = ['name' => $lev_2['name'][$default_name]];
                         $parent_id_2 = $lev_2['_id'];
                         foreach ($this->_menu as $lev_3) {
                             if ($lev_3['parent_id'] == $parent_id_2) {
                                 //var_dump($lev_3);
                                 $lev_3_id = $lev_3['_id'];
-                                $menu[$root_id]['child'][$lev_1_id]['child'][$lev_2_id]['child'][$lev_3_id] = ['name' => $lev_3['name'][$default_name ]];
+                                $menu[$root_id]['child'][$lev_1_id]['child'][$lev_2_id]['child'][$lev_3_id] = ['name' => $lev_3['name'][$default_name]];
                                 $parent_id_3 = $lev_3['_id'];
                             }
                         }

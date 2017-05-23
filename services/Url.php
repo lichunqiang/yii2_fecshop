@@ -35,7 +35,7 @@ class Url extends Service
      */
 
     /**
-     * save custom url to mongodb collection url_rewrite
+     * save custom url to mongodb collection url_rewrite.
      * @param $str|String, example:  fashion handbag women
      * @param $originUrl|string , origin url ,example: /cms/home/index?id=5
      * @param $originUrlKey|String,origin url key, it can be empty ,or generate by system , or custom url key.
@@ -57,7 +57,7 @@ class Url extends Service
                 'origin_url' => $originUrl,
             ])->one();
             if (isset($data_one['custom_url_key'])) {
-                /**
+                /*
                  * 只要进行了查询，就要更新一下rewrite url表的updated_at.
                  */
                 $data_one->updated_at = time();
@@ -109,7 +109,7 @@ class Url extends Service
     }
 
     /**
-     * get current url
+     * get current url.
      */
     protected function actionGetCurrentUrl()
     {
@@ -217,7 +217,7 @@ class Url extends Service
     }
 
     /**
-     * get current base url , is was generate by http(or https ).'://'.store_code
+     * get current base url , is was generate by http(or https ).'://'.store_code.
      */
     protected function actionGetCurrentBaseUrl()
     {
@@ -236,7 +236,7 @@ class Url extends Service
     }
 
     /**
-     * get current home url , is was generate by 'http://'.store_code
+     * get current home url , is was generate by 'http://'.store_code.
      */
     protected function actionHomeUrl()
     {
@@ -298,7 +298,7 @@ class Url extends Service
         $model = $this->find();
         $data = $model->where([
             'custom_url_key' => $urlKey,
-        ])->andWhere(['<>','origin_url',$originUrl])
+        ])->andWhere(['<>', 'origin_url', $originUrl])
         ->asArray()->one();
         if (isset($data['custom_url_key'])) {
             $urlKey = $this->getRandomUrlKey($urlKey);
@@ -320,15 +320,15 @@ class Url extends Service
         $str = null;
         $strPol = '123456789';
         $max = strlen($strPol) - 1;
-        for ($i = 0;$i < $length;$i++) {
-            $str .= $strPol[rand(0, $max)];//rand($min,$max)生成介于min和max两个数之间的一个随机整数
+        for ($i = 0; $i < $length; $i++) {
+            $str .= $strPol[rand(0, $max)]; //rand($min,$max)生成介于min和max两个数之间的一个随机整数
         }
 
         return $str;
     }
 
     /**
-     * if url key is exist in url_rewrite table ,Behind url add some random string
+     * if url key is exist in url_rewrite table ,Behind url add some random string.
      */
     protected function getRandomUrlKey($url)
     {
@@ -392,7 +392,7 @@ class Url extends Service
     }
 
     /**
-     * url 跳转
+     * url 跳转.
      */
     protected function actionRedirect($url)
     {

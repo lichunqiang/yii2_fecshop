@@ -10,7 +10,7 @@ $productImgMagnifier = $parentThis['productImgMagnifier'];
 ?>
 <?php  $main_img = isset($image['main']['image']) ? $image['main']['image'] : '' ?>
 <div class="product-main-img">
-	<img id="zoom_03" src="<?= Yii::$service->product->image->getResize($main_img, $middle_img_width, false) ?>" data-zoom-image="<?= Yii::$service->product->image->getUrl($main_img);  ?>"/>
+	<img id="zoom_03" src="<?= Yii::$service->product->image->getResize($main_img, $middle_img_width, false) ?>" data-zoom-image="<?= Yii::$service->product->image->getUrl($main_img); ?>"/>
 </div>
 <?php
     if (isset($image['gallery']) && is_array($image['gallery']) && !empty($image['gallery'])) {
@@ -37,7 +37,7 @@ $productImgMagnifier = $parentThis['productImgMagnifier'];
                 $sort_order = $gallery['sort_order'];
                 $label = $gallery['label']; ?>
 						<a href="#" data-image="<?= Yii::$service->product->image->getResize($image, $middle_img_width, false) ?>" data-zoom-image="<?= Yii::$service->product->image->getUrl($image); ?>">
-							<img class="elevateZoom lazyOwl" id="img_01" src="<?= Yii::$service->product->image->getResize($image, [$small_img_width,$small_img_height], false) ?>" />
+							<img class="elevateZoom lazyOwl" id="img_01" src="<?= Yii::$service->product->image->getResize($image, [$small_img_width, $small_img_height], false) ?>" />
 						</a>
 		<?php
 
@@ -124,7 +124,7 @@ $(document).ready(function(){
 });
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['product_view_zoom'], \yii\web\View::POS_END);//将编写的js代码注册到页面底部?>
+<?php $this->registerJs($this->blocks['product_view_zoom'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 <style>
 .owl-theme .owl-controls{display:none}

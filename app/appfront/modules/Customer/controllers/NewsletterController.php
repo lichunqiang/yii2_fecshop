@@ -24,9 +24,6 @@ class NewsletterController extends AppfrontController
         parent::init();
     }
 
-    /**
-     *
-     */
     public function actionIndex()
     {
         $data = $this->getBlock()->getLastData();
