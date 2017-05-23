@@ -5,13 +5,17 @@
 		</div>
 		<div class="block-content">
 			<ul>
-				<?php  if(!empty($leftMenuArr) && is_array($leftMenuArr)){  ?>
-					<?php foreach($leftMenuArr as $one){ ?>
+				<?php  if (!empty($leftMenuArr) && is_array($leftMenuArr)) {
+    ?>
+					<?php foreach ($leftMenuArr as $one) {
+        ?>
 					<li <?= $one['current'] ?>>
 						<a href="<?= $one['url'] ?>"  ><?= Yii::$service->page->translate->__($one['name']); ?></a>
 					</li>
-					<?php } ?>
-				<?php } ?>	
+					<?php 
+    } ?>
+				<?php 
+} ?>	
 			</ul>
 		</div>
 	</div>

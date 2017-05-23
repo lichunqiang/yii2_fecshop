@@ -7,7 +7,8 @@
  * @license http://www.fecshop.com/license/
  */
 use fec\helpers\CRequest;
-/** 
+
+/*
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -20,14 +21,14 @@ use fec\helpers\CRequest;
 .grid .gridTbody td div{height:auto;}
 .searchContent input{width:60px;}
 </style>
-<div id="pagerForm2" onsubmit="return divSearch(this, 'jbsxBox_product');"  method="post" action="<?= \fec\helpers\CUrl::getCurrentUrl();  ?>">
-	<?=  CRequest::getCsrfInputHtml();  ?>
-	<?=  $pagerForm;  ?>
+<div id="pagerForm2" onsubmit="return divSearch(this, 'jbsxBox_product');"  method="post" action="<?= \fec\helpers\CUrl::getCurrentUrl(); ?>">
+	<?=  CRequest::getCsrfInputHtml(); ?>
+	<?=  $pagerForm; ?>
 	
 </div>
 <div class="pageHeader">
-	<div rel="pagerForm2" onsubmit="return divSearch(this, 'jbsxBox_product');"  action="<?= \fec\helpers\CUrl::getCurrentUrl();  ?>" method="post">
-		<?php echo CRequest::getCsrfInputHtml();  ?>
+	<div rel="pagerForm2" onsubmit="return divSearch(this, 'jbsxBox_product');"  action="<?= \fec\helpers\CUrl::getCurrentUrl(); ?>" method="post">
+		<?php echo CRequest::getCsrfInputHtml(); ?>
 		<div class="searchBar">
 			<?php  echo $searchBar; ?>
 		</div>

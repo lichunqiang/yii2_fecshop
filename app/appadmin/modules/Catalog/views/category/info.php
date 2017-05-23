@@ -1,5 +1,6 @@
 <?php
 use fec\helpers\CUrl;
+
 ?>
 <div class="tabs" >
 	<div class="tabsHeader">
@@ -7,7 +8,7 @@ use fec\helpers\CUrl;
 			<ul>
 				<li><a href="javascript:;"><span>基本信息</span></a></li>
 				<li><a href="javascript:;"><span>Meta信息</span></a></li>
-				<li><a href="<?= $product_url;  ?>" class="j-ajax"><span>产品</span></a></li>
+				<li><a href="<?= $product_url; ?>" class="j-ajax"><span>产品</span></a></li>
 			</ul>
 		</div>
 	</div>

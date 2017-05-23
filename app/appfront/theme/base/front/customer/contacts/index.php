@@ -7,7 +7,7 @@
 				<h2><?= Yii::$service->page->translate->__('Contact Information'); ?></h2>
 			</div>
 			<form method="post" id="form-validate" autocomplete="off">
-				<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+				<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 				<div class="fieldset">
 					<h2 class="legend"><?= Yii::$service->page->translate->__('Contact Information'); ?></h2>
 					<ul class="form-list">
@@ -45,7 +45,8 @@
 								<span id="contacts_comment_span"></span>
 							</div>
 						</li>
-						<?php  if($contactsCaptcha){  ?>
+						<?php  if ($contactsCaptcha) {
+    ?>
 						<li>
 							<label for="pass" class="required customertitle"><em>*</em><?= Yii::$service->page->translate->__('Captcha'); ?></label>
 							<div class="input-box login_box">
@@ -62,10 +63,11 @@
 								});
 								<?php $this->endBlock(); ?>  
 								</script>  
-								<?php $this->registerJs($this->blocks['login_captcha_onclick_refulsh'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+								<?php $this->registerJs($this->blocks['login_captcha_onclick_refulsh'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 							</div>
 						</li>
-						<?php  } ?>
+						<?php 
+} ?>
 					</ul>
 				</div>
 			<div class="buttons-set">
