@@ -13,6 +13,6 @@ finder:
   exclude:
     - "lib"
     - "shell"
-    - "**/views"
+    - "views"
   name:
     - "*.php"
