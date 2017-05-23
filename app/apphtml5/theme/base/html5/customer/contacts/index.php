@@ -5,7 +5,7 @@
 <div class="list-block customer-login ">
 	<div class="col-main account_center">
 		<form method="post" id="form-validate" class="account-form" >
-			<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+			<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 			<ul>
 				<li>
 					<div class="item-content">
@@ -58,7 +58,8 @@
 						</div>
 					</div>
 				</li>
-				<?php if($contactsCaptcha){  ?>
+				<?php if ($contactsCaptcha) {
+    ?>
 					<li>
 						<div class="item-content">
 							<div class="item-media"><i class="icon icon-form-password"></i></div>
@@ -78,9 +79,10 @@
 							});
 							<?php $this->endBlock(); ?>  
 						</script>  
-						<?php $this->registerJs($this->blocks['forgot_password_captcha_onclick_refulsh'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+						<?php $this->registerJs($this->blocks['forgot_password_captcha_onclick_refulsh'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 					</li>
-				<?php } ?>
+				<?php 
+} ?>
 			</ul>
 			<div class="clear"></div>
 			<div class="buttons-set">
@@ -110,7 +112,7 @@
 	});
 	<?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['contact_us'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+<?php $this->registerJs($this->blocks['contact_us'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 	
 	
