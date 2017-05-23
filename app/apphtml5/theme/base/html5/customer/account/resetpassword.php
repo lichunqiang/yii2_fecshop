@@ -8,12 +8,13 @@
 </div>
 <?= Yii::$service->page->widget->render('flashmessage'); ?>	
 <div class="list-block customer-login ">
-	<?php  if(!empty($identity)){  ?>
+	<?php  if (!empty($identity)) {
+    ?>
 		
 		<div class="account-create">
 			
-			<form action="<?= Yii::$service->url->getUrl('customer/account/resetpassword',['resetToken'=>$resetToken]); ?>" method="post" id="form-validate">
-				<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+			<form action="<?= Yii::$service->url->getUrl('customer/account/resetpassword', ['resetToken'=>$resetToken]); ?>" method="post" id="form-validate">
+				<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 				<input type="hidden"  name="editForm[resetToken]"  value="<?= $resetToken ?>" />
 				
 				<ul>
@@ -24,7 +25,7 @@
 							</div>
 							<div class="item-inner">
 								<div class="item-input">
-									<input placeholder="<?= Yii::$service->page->translate->__('Your Email Address');?>" name="editForm[email]" id="email_address" value="<?= $email ?>" title="Email Address" class="input-text validate-email required-entry" type="text">
+									<input placeholder="<?= Yii::$service->page->translate->__('Your Email Address'); ?>" name="editForm[email]" id="email_address" value="<?= $email ?>" title="Email Address" class="input-text validate-email required-entry" type="text">
 							
 								</div>
 							</div>
@@ -38,7 +39,7 @@
 							</div>
 							<div class="item-inner">
 								<div class="item-input">
-									<input placeholder="<?= Yii::$service->page->translate->__('New password');?>" name="editForm[password]" id="password" title="Password" class="input-text required-entry validate-password" type="password">
+									<input placeholder="<?= Yii::$service->page->translate->__('New password'); ?>" name="editForm[password]" id="password" title="Password" class="input-text required-entry validate-password" type="password">
 								
 								</div>
 							</div>
@@ -53,7 +54,7 @@
 							</div>
 							<div class="item-inner">
 								<div class="item-input">
-									<input placeholder="<?= Yii::$service->page->translate->__('Confirm Password');?>" name="editForm[confirmation]" title="Confirm Password" id="confirmation" class="input-text required-entry validate-cpassword" type="password">
+									<input placeholder="<?= Yii::$service->page->translate->__('Confirm Password'); ?>" name="editForm[confirmation]" title="Confirm Password" id="confirmation" class="input-text required-entry validate-cpassword" type="password">
 								
 								</div>
 							</div>
@@ -75,16 +76,16 @@
 		</div>
 		
 		<?php 
-		$requiredValidate 			= Yii::$service->page->translate->__('This is a required field.');
-		$emailFormatValidate 		= Yii::$service->page->translate->__('Please enter a valid email address. For example johndoe@domain.com.');
-		$passwordLenghtValidate 	= Yii::$service->page->translate->__('Please enter 6 or more characters. Leading or trailing spaces will be ignored.');
-		$passwordMatchValidate 		= Yii::$service->page->translate->__('Please make sure your passwords match.');
-		//$minNameLength = 2;
-		//$maxNameLength = 20;
-		//$minPassLength = 6;  
-		//$maxPassLength = 30;
+        $requiredValidate = Yii::$service->page->translate->__('This is a required field.');
+    $emailFormatValidate = Yii::$service->page->translate->__('Please enter a valid email address. For example johndoe@domain.com.');
+    $passwordLenghtValidate = Yii::$service->page->translate->__('Please enter 6 or more characters. Leading or trailing spaces will be ignored.');
+    $passwordMatchValidate = Yii::$service->page->translate->__('Please make sure your passwords match.');
+        //$minNameLength = 2;
+        //$maxNameLength = 20;
+        //$minPassLength = 6;
+        //$maxPassLength = 30;
 
-		?>
+        ?>
 		<script>
 		<?php $this->beginBlock('customer_account_reset') ?>  
 		$(document).ready(function(){
@@ -154,17 +155,19 @@
 		});
 		<?php $this->endBlock(); ?>  
 		</script>  
-		<?php $this->registerJs($this->blocks['customer_account_reset'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+		<?php $this->registerJs($this->blocks['customer_account_reset'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 
-	<?php  }else{  ?>
+	<?php 
+} else {
+    ?>
 		<div class="customer-forgot-success">
 			<?php
-				$param = ['logUrlB' => '<a external href="'.$forgotPasswordUrl.'">','logUrlE' => '</a> '];
-			?>
-			<?= Yii::$service->page->translate->__('Your Reset Password Token is Expired, You can {logUrlB} click here {logUrlE} to retrieve it ',$param); ?>
+                $param = ['logUrlB' => '<a external href="'.$forgotPasswordUrl.'">', 'logUrlE' => '</a> ']; ?>
+			<?= Yii::$service->page->translate->__('Your Reset Password Token is Expired, You can {logUrlB} click here {logUrlE} to retrieve it ', $param); ?>
 			
 		</div>
-	<?php  } ?>
+	<?php 
+} ?>
 	
 </div>
