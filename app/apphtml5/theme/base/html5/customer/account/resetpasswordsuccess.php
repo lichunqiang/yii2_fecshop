@@ -9,8 +9,8 @@
 <?= Yii::$service->page->widget->render('flashmessage'); ?>	
 <div class="customer-forgot-success">
 	<?php
-		$param = ['logUrlB' => '<a external href="'.$loginUrl.'">','logUrlE' => '</a> '];
-	?>
-	<?= Yii::$service->page->translate->__('Reset you account success, you can {logUrlB} click here {logUrlE} to login .',$param); ?>
+        $param = ['logUrlB' => '<a external href="'.$loginUrl.'">', 'logUrlE' => '</a> '];
+    ?>
+	<?= Yii::$service->page->translate->__('Reset you account success, you can {logUrlB} click here {logUrlE} to login .', $param); ?>
 
 </div>

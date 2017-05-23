@@ -1,14 +1,14 @@
 <div class="shopping-cart-img">
 	<?= Yii::$service->page->translate->__('Register'); ?>
 	
-	<a external href="<?= Yii::$service->url->getUrl('customer/account/login');  ?>" class="f-right">
+	<a external href="<?= Yii::$service->url->getUrl('customer/account/login'); ?>" class="f-right">
 		<?= Yii::$service->page->translate->__('Login'); ?>
 	</a>
 </div>
 <?= Yii::$service->page->widget->render('flashmessage'); ?>	
 <div class="list-block customer-login  customer-register">
 	<form action="<?= Yii::$service->url->getUrl('customer/account/register'); ?>" method="post" id="register-form" class="account-form">
-		<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+		<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 		<ul>
 			<li>
 				<div class="item-content">
@@ -66,7 +66,8 @@
 				</div>
 			</li>
 			
-			<?php if($registerPageCaptcha){  ?>
+			<?php if ($registerPageCaptcha) {
+    ?>
 				<li>
 					<div class="item-content">
 						<div class="item-media"><i class="icon icon-form-password"></i></div>
@@ -86,10 +87,11 @@
 					});
 					<?php $this->endBlock(); ?>  
 					</script>  
-					<?php $this->registerJs($this->blocks['register_captcha_onclick_refulsh'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+					<?php $this->registerJs($this->blocks['register_captcha_onclick_refulsh'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 				</li>	
-			<?php }  ?>	
+			<?php 
+}  ?>	
 			<li class="control">
 				<div class="newsletter">
 					<input name="editForm[is_subscribed]" title="Sign Up for Newsletter" value="1" id="is_subscribed" class="checkbox" type="checkbox" checked="checked">
@@ -109,15 +111,15 @@
 </div>
 
 <?php 
-$requiredValidate 			= Yii::$service->page->translate->__('This is a required field.');
-$emailFormatValidate 		= Yii::$service->page->translate->__('Please enter a valid email address. For example johndoe@domain.com.');
-$firstNameLenghtValidate 	= Yii::$service->page->translate->__('first name length must between');
-$lastNameLenghtValidate 	= Yii::$service->page->translate->__('last name length must between');
-$passwordLenghtValidate 	= Yii::$service->page->translate->__('Please enter 6 or more characters. Leading or trailing spaces will be ignored.');
-$passwordMatchValidate 		= Yii::$service->page->translate->__('Please make sure your passwords match. ');
+$requiredValidate = Yii::$service->page->translate->__('This is a required field.');
+$emailFormatValidate = Yii::$service->page->translate->__('Please enter a valid email address. For example johndoe@domain.com.');
+$firstNameLenghtValidate = Yii::$service->page->translate->__('first name length must between');
+$lastNameLenghtValidate = Yii::$service->page->translate->__('last name length must between');
+$passwordLenghtValidate = Yii::$service->page->translate->__('Please enter 6 or more characters. Leading or trailing spaces will be ignored.');
+$passwordMatchValidate = Yii::$service->page->translate->__('Please make sure your passwords match. ');
 //$minNameLength = 2;
 //$maxNameLength = 20;
-//$minPassLength = 6;  
+//$minPassLength = 6;
 //$maxPassLength = 30;
 
 ?>
@@ -216,7 +218,7 @@ $(document).ready(function(){
 });
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['customer_account_register'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+<?php $this->registerJs($this->blocks['customer_account_register'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 
 

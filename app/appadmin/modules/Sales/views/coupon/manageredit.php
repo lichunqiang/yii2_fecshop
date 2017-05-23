@@ -6,10 +6,9 @@
  * @copyright Copyright (c) 2016 FecShop Software LLC
  * @license http://www.fecshop.com/license/
  */
-use yii\helpers\Html;
 use fec\helpers\CRequest;
-use fecadmin\models\AdminRole;
-/** 
+
+/*
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
@@ -22,7 +21,7 @@ use fecadmin\models\AdminRole;
 
 <div class="pageContent"> 
 	<form  method="post" action="<?= $saveUrl ?>" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDoneCloseAndReflush);">
-		<?php echo CRequest::getCsrfInputHtml();  ?>	
+		<?php echo CRequest::getCsrfInputHtml(); ?>	
 		<div layouth="56" class="pageFormContent" style="height: 240px; overflow: auto;">
 			
 				<input type="hidden"  value="<?=  $product_id; ?>" size="30" name="product_id" class="textInput ">

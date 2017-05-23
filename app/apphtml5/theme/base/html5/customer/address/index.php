@@ -17,28 +17,32 @@
 				<table class="addressbook" width="100%" cellspacing="0" cellpadding="0" border="0">
 					<thead>
 						<tr class="ress_tit">
-							<th width="76" valign="middle" align="center" height="31"><?= Yii::$service->page->translate->__('Name');?></th>                                                                                        
-							<th width="67" valign="middle" align="center"><?= Yii::$service->page->translate->__('Address');?></th>
-							<th class="th3" width="71" valign="middle" align="center"><?= Yii::$service->page->translate->__('Operation');?></th>
+							<th width="76" valign="middle" align="center" height="31"><?= Yii::$service->page->translate->__('Name'); ?></th>                                                                                        
+							<th width="67" valign="middle" align="center"><?= Yii::$service->page->translate->__('Address'); ?></th>
+							<th class="th3" width="71" valign="middle" align="center"><?= Yii::$service->page->translate->__('Operation'); ?></th>
 						</tr>
 					</thead>
 					<tbody>
-					<?php   if(is_array($coll) && !empty($coll)){   ?>
-					<?php 		foreach($coll as $one){ ?>
+					<?php   if (is_array($coll) && !empty($coll)) {
+    ?>
+					<?php         foreach ($coll as $one) {
+        ?>
 						<tr class="">
 							<td valign="top" align="center"><?= $one['first_name'].' '.$one['last_name'] ?></td>
 							
 							<td valign="top" align="center">
 								<?= $one['street1'].' '.$one['street2'] ?><br>
 								<?= $one['city'] ?> 
-								<?= Yii::$service->helper->country->getStateByContryCode($one['country'],$one['state']); ?>
+								<?= Yii::$service->helper->country->getStateByContryCode($one['country'], $one['state']); ?>
 								<?= Yii::$service->helper->country->getCountryNameByKey($one['country']); ?>
-								<?php  if($one['is_default'] == 1){ ?>
-								<br/><span style=" color:#cc0000"><?= Yii::$service->page->translate->__('Default Address');?></span> 
-								<?php  } ?>	
+								<?php  if ($one['is_default'] == 1) {
+            ?>
+								<br/><span style=" color:#cc0000"><?= Yii::$service->page->translate->__('Default Address'); ?></span> 
+								<?php 
+        } ?>	
 							</td>
 							<td class="ltp" valign="top ltp" align="center">
-								<a external href="<?= Yii::$service->url->getUrl('customer/address/edit',['address_id' => $one['address_id']]); ?>">
+								<a external href="<?= Yii::$service->url->getUrl('customer/address/edit', ['address_id' => $one['address_id']]); ?>">
 									<span class="icon icon-edit"></span>
 								</a>
 								<a external href="javascript:deleteAddress(<?= $one['address_id'] ?>)">
@@ -47,12 +51,14 @@
 															
 							</td>
 						</tr>	
-					<?php 		} ?>
-					<?php 	} ?>
+					<?php 
+    } ?>
+					<?php 
+} ?>
 					</tbody>
 				</table>
 				<div class="add_new_address">
-					<a external href="<?= Yii::$service->url->getUrl('customer/address/edit') ?>" class="button  button-light"><?= Yii::$service->page->translate->__('Add New Address');?></a>
+					<a external href="<?= Yii::$service->url->getUrl('customer/address/edit') ?>" class="button  button-light"><?= Yii::$service->page->translate->__('Add New Address'); ?></a>
 				</div>
 			</div>
 		</div>
