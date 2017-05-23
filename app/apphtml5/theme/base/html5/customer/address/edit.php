@@ -9,7 +9,7 @@
 <?= Yii::$service->page->widget->render('flashmessage'); ?>	
 <div class="list-block customer-login  customer-register">
 	<form class="addressedit" action="<?= Yii::$service->url->getUrl('customer/address/edit'); ?>" id="form-validate" method="post">
-		<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+		<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 		<input name="address[address_id]" value="<?= $address_id; ?>" type="hidden">
 					
 		<ul>
@@ -73,7 +73,7 @@
 					<div class="item-inner">
 						<div class="item-input">
 							<select id="address:country" class="address_country validate-select" placeholder="Country"   title="Country" name="address[country]">
-								<?= $countrySelect;  ?>
+								<?= $countrySelect; ?>
 							</select>
 						</div>
 					</div>
@@ -87,7 +87,7 @@
 					</div>
 					<div class="item-inner">
 						<div class="item-input state_html">
-							<?= $stateHtml;  ?>
+							<?= $stateHtml; ?>
 							
 						</div>
 					</div>
@@ -152,7 +152,7 @@
 			<li class="control">
 				<div class="change_password_label item-content">
 					<input name="address[is_default]" value="1" title="Save in address book" id="address:is_default" class="address_is_default checkbox" <?= $is_default_str; ?> type="checkbox">
-						<label for="address:is_default" style="display:inline;"><?= Yii::$service->page->translate->__('Is Default');?></label>
+						<label for="address:is_default" style="display:inline;"><?= Yii::$service->page->translate->__('Is Default'); ?></label>
 						
 				</div>
 			</li>
@@ -225,6 +225,6 @@
 	
 	
 <?php $this->endBlock(); ?> 
-<?php $this->registerJs($this->blocks['editCustomerAddress'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+<?php $this->registerJs($this->blocks['editCustomerAddress'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 </script>

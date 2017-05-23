@@ -17,12 +17,13 @@
 					</div>
 					<div class="item-inner">
 						<div class="item-input">
-							<input placeholder="<?= Yii::$service->page->translate->__('Your Email Address');?>" name="editForm[email]" id="email_address" value="<?= $email ?>" title="Email Address" class="input-text validate-email required-entry" type="text">
+							<input placeholder="<?= Yii::$service->page->translate->__('Your Email Address'); ?>" name="editForm[email]" id="email_address" value="<?= $email ?>" title="Email Address" class="input-text validate-email required-entry" type="text">
 						</div>
 					</div>
 				</div>
 			</li>
-			<?php if($forgotCaptcha){  ?>
+			<?php if ($forgotCaptcha) {
+    ?>
 				<li>
 					<div class="item-content">
 						<div class="item-media"><i class="icon icon-form-password"></i></div>
@@ -42,11 +43,12 @@
 						});
 						<?php $this->endBlock(); ?>  
 					</script>  
-					<?php $this->registerJs($this->blocks['forgot_password_captcha_onclick_refulsh'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+					<?php $this->registerJs($this->blocks['forgot_password_captcha_onclick_refulsh'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 				</li>
-			<?php } ?>
+			<?php 
+} ?>
 		</ul>
-		<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+		<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 		<div class="clear"></div>
 		<div class="buttons-set">
 			<p>
@@ -60,8 +62,8 @@
 	</form>
 </div>
 <?php 
-$requiredValidate 			= 'This is a required field.';
-$emailFormatValidate 		= 'Please enter a valid email address. For example johndoe@domain.com.';
+$requiredValidate = 'This is a required field.';
+$emailFormatValidate = 'Please enter a valid email address. For example johndoe@domain.com.';
 
 ?>
 <script>
@@ -104,7 +106,7 @@ $(document).ready(function(){
 });
 <?php $this->endBlock(); ?>  
 </script>  
-<?php $this->registerJs($this->blocks['forgot_password'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+<?php $this->registerJs($this->blocks['forgot_password'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 
 
