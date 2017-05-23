@@ -1,13 +1,14 @@
 <div class="main container one-column">
 <?= Yii::$service->page->widget->render('flashmessage'); ?>
 
-<?php  if(!empty($identity)){  ?>
+<?php  if (!empty($identity)) {
+    ?>
 	
 	<div class="account-create">
 		<div class="page-title">
 			<h1><?= Yii::$service->page->translate->__('Forgot Password'); ?></h1>
 		</div>
-		<form action="<?= Yii::$service->url->getUrl('customer/account/resetpassword',['resetToken'=>$resetToken]); ?>" method="post" id="form-validate">
+		<form action="<?= Yii::$service->url->getUrl('customer/account/resetpassword', ['resetToken'=>$resetToken]); ?>" method="post" id="form-validate">
 				
 			<div class="fieldset" style="width:auto">
 				<h2 class="legend"><?= Yii::$service->page->translate->__('Select your new password'); ?></h2>
@@ -38,7 +39,7 @@
 				</ul>
 			</div>
 			
-			<?= \fec\helpers\CRequest::getCsrfInputHtml();  ?>
+			<?= \fec\helpers\CRequest::getCsrfInputHtml(); ?>
 			<input type="hidden"  name="editForm[resetToken]"  value="<?= $resetToken ?>" />
 			<div class="buttons-set">
 				
@@ -50,16 +51,16 @@
 	</div>
 	
 	<?php 
-	$requiredValidate 			= Yii::$service->page->translate->__('This is a required field.');
-	$emailFormatValidate 		= Yii::$service->page->translate->__('Please enter a valid email address. For example johndoe@domain.com.');
-	$passwordLenghtValidate 	= Yii::$service->page->translate->__('Please enter 6 or more characters. Leading or trailing spaces will be ignored.');
-	$passwordMatchValidate 		= Yii::$service->page->translate->__('Please make sure your passwords match.');
-	//$minNameLength = 2;
-	//$maxNameLength = 20;
-	//$minPassLength = 6;  
-	//$maxPassLength = 30;
+    $requiredValidate = Yii::$service->page->translate->__('This is a required field.');
+    $emailFormatValidate = Yii::$service->page->translate->__('Please enter a valid email address. For example johndoe@domain.com.');
+    $passwordLenghtValidate = Yii::$service->page->translate->__('Please enter 6 or more characters. Leading or trailing spaces will be ignored.');
+    $passwordMatchValidate = Yii::$service->page->translate->__('Please make sure your passwords match.');
+    //$minNameLength = 2;
+    //$maxNameLength = 20;
+    //$minPassLength = 6;
+    //$maxPassLength = 30;
 
-	?>
+    ?>
 	<script>
 	<?php $this->beginBlock('customer_account_reset') ?>  
 	$(document).ready(function(){
@@ -129,16 +130,18 @@
 	});
 	<?php $this->endBlock(); ?>  
 	</script>  
-	<?php $this->registerJs($this->blocks['customer_account_reset'],\yii\web\View::POS_END);//将编写的js代码注册到页面底部 ?>
+	<?php $this->registerJs($this->blocks['customer_account_reset'], \yii\web\View::POS_END); //将编写的js代码注册到页面底部?>
 
 
-<?php  }else{  ?>
+<?php 
+} else {
+    ?>
 	<div>
 		<?php
-			$param = ['logUrlB' => '<a href="'.$forgotPasswordUrl.'">','logUrlE' => '</a> '];
-		?>
-		<?= Yii::$service->page->translate->__('Your Reset Password Token is Expired, You can {logUrlB} click here {logUrlE} to retrieve it ',$param); ?>
+            $param = ['logUrlB' => '<a href="'.$forgotPasswordUrl.'">', 'logUrlE' => '</a> ']; ?>
+		<?= Yii::$service->page->translate->__('Your Reset Password Token is Expired, You can {logUrlB} click here {logUrlE} to retrieve it ', $param); ?>
 		
 	</div>
-<?php  } ?>
+<?php 
+} ?>
 </div>

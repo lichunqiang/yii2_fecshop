@@ -1,5 +1,5 @@
 <?php
-use fecshop\app\apphtml5\helper\Format;
+
 ?>
 <div class="account-ds">
 	<div class="bar bar-nav account-top-m">
@@ -17,47 +17,48 @@ use fecshop\app\apphtml5\helper\Format;
 			<div style="margin:4px 0 0">
 				<div style="width:100%;min-height:500px;">
 					<div style="width:100%;">
-						<?php if(is_array($coll) && !empty($coll)){  ?>
+						<?php if (is_array($coll) && !empty($coll)) {
+    ?>
 						<table class="product-Reviews"> 
-							<?php  foreach($coll as $one){  ?>
-							<?php  $main_img = $one['image']['main']['image'];  ?>
+							<?php  foreach ($coll as $one) {
+        ?>
+							<?php  $main_img = $one['image']['main']['image']; ?>
 							
 							<tr>
 								<td>
 									<a external href="<?= Yii::$service->url->getUrl($one['url_key'])  ?>">
-										<p style="text-align:center;"><img src="<?= Yii::$service->product->image->getResize($main_img,[80,80],false) ?>"></p>
+										<p style="text-align:center;"><img src="<?= Yii::$service->product->image->getResize($main_img, [80, 80], false) ?>"></p>
 									</a>
 								</td>
 								<td>
 									<span class="review_description_right_span"><b>
 										<a external  href="<?= Yii::$service->url->getUrl($one['url_key'])  ?>">
-											<?= Yii::$service->store->getStoreAttrVal($one['name'],'name')  ?>
+											<?= Yii::$service->store->getStoreAttrVal($one['name'], 'name')  ?>
 										</a>
 									</span>
 									<div class="review_description_centen">
 										<div class="category_product" style="display:inline-block;float:left;">
 											<?php
-												$config = [
-													'class' 		=> 'fecshop\app\apphtml5\modules\Catalog\block\category\Price',
-													'view'  		=> 'catalog/category/price.php',
-													'price' 		=> $one['price'],
-													'special_price' => $one['special_price'],
-													'special_from' 	=> $one['special_from'],
-													'special_to' 	=> $one['special_to'],
-												];
-												echo Yii::$service->page->widget->renderContent('category_product_price',$config);
-											?>
+                                                $config = [
+                                                    'class'        => 'fecshop\app\apphtml5\modules\Catalog\block\category\Price',
+                                                    'view'        => 'catalog/category/price.php',
+                                                    'price'        => $one['price'],
+                                                    'special_price' => $one['special_price'],
+                                                    'special_from'    => $one['special_from'],
+                                                    'special_to'    => $one['special_to'],
+                                                ];
+        echo Yii::$service->page->widget->renderContent('category_product_price', $config); ?>
 										</div>
 										
 										<div class="clear"></div>
 										<div style="font-weight:100">
-											<?= Yii::$service->page->translate->__('Favorite Date:');?><?= date('Y-m-d H:i:s',$one['updated_at']) ?>
+											<?= Yii::$service->page->translate->__('Favorite Date:'); ?><?= date('Y-m-d H:i:s', $one['updated_at']) ?>
 										</div>
 									</div>	
 								</td>
 								<td>
 									<div class="favorite-Operation addressbook " style="display:inline-block;float:right; margin-top: 0px;">
-										<a external href="<?= Yii::$service->url->getUrl('customer/productfavorite',['type'=>'remove','favorite_id' => $one['favorite_id']]); ?>">
+										<a external href="<?= Yii::$service->url->getUrl('customer/productfavorite', ['type'=>'remove', 'favorite_id' => $one['favorite_id']]); ?>">
 											<span class="icon icon-remove"></span>
 										</a>
 									</div>
@@ -65,16 +66,22 @@ use fecshop\app\apphtml5\helper\Format;
 							</tr>
 									
 							
-							<?php  }  ?>
+							<?php 
+    } ?>
 						</table>
-						<?php  }else{  ?>
-							<?= Yii::$service->page->translate->__('You have no items in your favorite.');?>
-						<?php  } ?>
-						<?php if($pageToolBar){ ?>
+						<?php 
+} else {
+    ?>
+							<?= Yii::$service->page->translate->__('You have no items in your favorite.'); ?>
+						<?php 
+} ?>
+						<?php if ($pageToolBar) {
+    ?>
 						<div class="pageToolbar">
 							<label class="title">Page:</label><?= $pageToolBar ?>
 						</div>
-						<?php } ?>
+						<?php 
+} ?>
 					</div>
 				</div>
 			</div>
@@ -83,12 +90,12 @@ use fecshop\app\apphtml5\helper\Format;
 	
 	<div class="col-left ">
 		<?php
-			$leftMenu = [
-				'class' => 'fecshop\app\apphtml5\modules\Customer\block\LeftMenu',
-				'view'	=> 'customer/leftmenu.php'
-			];
-		?>
-		<?= Yii::$service->page->widget->render($leftMenu,$this); ?>
+            $leftMenu = [
+                'class' => 'fecshop\app\apphtml5\modules\Customer\block\LeftMenu',
+                'view'    => 'customer/leftmenu.php',
+            ];
+        ?>
+		<?= Yii::$service->page->widget->render($leftMenu, $this); ?>
 	</div>
 	<div class="clear"></div>
 </div>
